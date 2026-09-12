@@ -4,6 +4,7 @@ Reusable [Claude Code skills](https://docs.anthropic.com/en/docs/claude-code/ski
 
 | Skill | What it does |
 |---|---|
+| [delivery-orchestrator](./delivery-orchestrator) | Interview-driven kickoff and end-to-end orchestration for software work |
 | [product-naming](product-naming/) | Find and clear a unique, trademark-friendly product name: tiered generation, live domain checks (RDAP), exact-word web search, competitor-collision and cross-language checks, ranked shortlist, name critiques |
 
 ## Install all skills at once
