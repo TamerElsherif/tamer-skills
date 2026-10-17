@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Rabet — Clip 5 — Thumbnails</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "LalezarLocal"; src: url("assets/fonts/Lalezar-Regular.ttf") format("truetype"); font-weight: 400; font-display: block; }
+      @font-face { font-family: "AlexandriaFull"; src: url("assets/fonts/Alexandria.ttf") format("truetype"); font-weight: 100 900; font-display: block; }
+      :root { --navy: #10335a; --teal: #1aaac1; --aqua: #07c3be; --orange: #ff6600; --cream: #fdf9f5; --ink: #0b0d10; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--ink); }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      .box { display: inline-block; line-height: 1.12; direction: rtl; box-shadow: 12px 12px 0 rgba(0, 0, 0, 0.3); }
+      .lal { font-family: "LalezarLocal", sans-serif; }
+      .alx { font-family: "AlexandriaFull", sans-serif; }
+      .outline { filter: drop-shadow(10px 0 0 #fff) drop-shadow(-10px 0 0 #fff) drop-shadow(0 10px 0 #fff) drop-shadow(0 -10px 0 #fff) drop-shadow(0 30px 40px rgba(0, 0, 0, 0.45)); }
+
+      /* ===== T1 — cut-out + bold text (your ref 1/2 family) ===== */
+      #t1 {
+        background-color: var(--navy);
+        background-image: repeating-linear-gradient(0deg, rgba(7, 195, 190, 0.22) 0 3px, transparent 3px 68px), repeating-linear-gradient(90deg, rgba(7, 195, 190, 0.22) 0 3px, transparent 3px 68px);
+      }
+      #t1 .paper { position: absolute; left: -10px; top: 0; width: 80px; height: 1920px; background: #f2eee8;
+        clip-path: polygon(0 0, 70% 0, 92% 3%, 60% 6%, 85% 10%, 55% 14%, 90% 18%, 62% 23%, 88% 27%, 58% 32%, 86% 37%, 60% 42%, 92% 47%, 57% 52%, 84% 57%, 61% 62%, 90% 67%, 56% 72%, 87% 77%, 60% 82%, 91% 87%, 58% 92%, 85% 96%, 66% 100%, 0 100%); }
+      #t1 .who { position: absolute; left: 40px; top: 560px; width: 1050px; height: 1512px; object-fit: contain; }
+      #t1 .head { position: absolute; left: 0; right: 0; top: 300px; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+      #t1 .l1 { font-size: 190px; color: var(--cream); line-height: 1; text-shadow: 0 8px 0 rgba(0,0,0,.35); }
+      #t1 .l2 { font-size: 150px; background: var(--ink); color: var(--orange); padding: 0 40px 30px; transform: rotate(-2deg); }
+      #t1 .chips { position: absolute; left: 70px; top: 1440px; display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+      #t1 .c1 { font-size: 80px; background: var(--cream); color: var(--ink); padding: 0 30px 18px; transform: rotate(-3deg); }
+      #t1 .c2 { font-family: "Archivo Black", sans-serif; direction: ltr; font-size: 58px; background: var(--aqua); color: var(--ink); padding: 12px 26px 16px; transform: rotate(2deg); letter-spacing: -0.02em; }
+      #t1 .logo { position: absolute; right: 44px; top: 150px; width: 175px; height: 175px; object-fit: contain; }
+
+      /* ===== T2 — cinematic scene (your ref 3 family) ===== */
+      #t2 .bg { position: absolute; inset: -40px; width: 1160px; height: 2000px; object-fit: cover; filter: blur(4px) brightness(0.72) saturate(1.25); }
+      #t2 .tint { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(16, 51, 90, 0.55) 0%, rgba(11, 13, 16, 0.2) 45%, rgba(11, 13, 16, 0.85) 100%); }
+      #t2 .beam { position: absolute; left: -200px; top: -200px; width: 900px; height: 1500px; background: radial-gradient(closest-side, rgba(255, 236, 200, 0.32), rgba(255, 236, 200, 0)); transform: rotate(-20deg); }
+      #t2 .who { position: absolute; left: -60px; top: 560px; width: 1250px; height: 1800px; object-fit: contain; filter: drop-shadow(0 30px 50px rgba(0,0,0,.6)); }
+      #t2 .txt { position: absolute; left: 60px; right: 60px; top: 300px; direction: rtl; text-align: right; display: flex; flex-direction: column; align-items: flex-start; gap: 0; }
+      #t2 .k1 { font-size: 170px; color: var(--orange); line-height: 0.95; text-shadow: 0 10px 30px rgba(0,0,0,.6); }
+      #t2 .k2 { font-size: 150px; color: var(--cream); line-height: 1.0; text-shadow: 0 10px 30px rgba(0,0,0,.6); }
+      #t2 .k3 { font-family: "AlexandriaFull"; font-weight: 800; font-size: 50px; color: var(--cream); margin-top: 18px; background: rgba(16, 51, 90, 0.9); padding: 8px 22px 14px; border-radius: 10px; }
+      #t2 .k3 b { color: var(--aqua); font-weight: 900; }
+      #t2 .tag { position: absolute; right: 0; top: 190px; background: var(--cream); color: var(--ink); font-family: "AlexandriaFull"; font-weight: 900; font-size: 34px; padding: 10px 24px 14px; }
+      #t2 .stamp { position: absolute; left: 70px; top: 1080px; transform: rotate(-12deg); border: 10px solid var(--orange); color: var(--orange); font-size: 92px; padding: 0 30px 16px; direction: rtl; background: rgba(11,13,16,.55); }
+      #t2 .logo { position: absolute; left: 44px; top: 140px; width: 180px; height: 180px; object-fit: contain; }
+
+      /* ===== T3 — minimal premium ===== */
+      #t3 .frame { position: absolute; left: -540px; top: 0; width: 1500px; height: 2160px; object-fit: cover; filter: brightness(0.9) contrast(1.05); }
+      #t3 .shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7, 20, 35, 0.15) 0%, rgba(7, 20, 35, 0.1) 38%, rgba(7, 20, 35, 0.88) 62%, rgba(7, 20, 35, 0.97) 100%); }
+      #t3 .txt { position: absolute; left: 80px; right: 80px; top: 1180px; direction: rtl; text-align: right; }
+      #t3 .rule { width: 160px; height: 8px; background: var(--aqua); margin-bottom: 34px; margin-right: 0; margin-left: auto; }
+      #t3 .m1 { font-family: "AlexandriaFull"; font-weight: 900; font-size: 128px; color: var(--cream); line-height: 1.12; letter-spacing: -0.01em; }
+      #t3 .m1 span { color: var(--aqua); }
+      #t3 .m2 { font-family: "AlexandriaFull"; font-weight: 400; font-size: 36px; color: rgba(253, 249, 245, 0.85); margin-top: 26px; white-space: nowrap; }
+      #t3 .logo { position: absolute; left: 70px; top: 1130px; width: 160px; height: 160px; object-fit: contain; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-width="1080" data-height="1920" data-duration="3">
+      <section id="t1" class="clip" data-start="0" data-duration="1" data-track-index="0">
+        <img class="who outline" src="assets/cut_smile.png" alt="" />
+        <div class="paper"></div>
+        <img class="logo" src="assets/logo-mark.png" alt="" />
+        <div class="head">
+          <div class="l1 lal">الماركتينج</div>
+          <div class="l2 box lal">مش إعلانات!</div>
+        </div>
+        <div class="chips">
+          <div class="c1 box lal">بيبدأ قبل البزنس</div>
+          <div class="c2 box">FEASIBILITY FIRST</div>
+        </div>
+      </section>
+
+      <section id="t2" class="clip" data-start="1" data-duration="1" data-track-index="0">
+        <img class="bg" src="assets/bg_city.jpg" alt="" />
+        <div class="tint"></div>
+        <div class="beam"></div>
+        <img class="who" src="assets/cut_smile.png" alt="" />
+        <div class="tag">رابط · تصحيح مفهوم</div>
+        <div class="txt">
+          <div class="k1 lal">الماركتينج</div>
+          <div class="k2 lal">مش اللي انت فاكره</div>
+          <div class="k3">بيبدأ <b>قبل</b> ما البزنس يبدأ</div>
+        </div>
+        <div class="stamp lal">≠ إعلانات</div>
+        <img class="logo" src="assets/logo.png" alt="" />
+      </section>
+
+      <section id="t3" class="clip" data-start="2" data-duration="1" data-track-index="0">
+        <img class="frame" src="assets/frame_point.png" alt="" />
+        <div class="shade"></div>
+        <img class="logo" src="assets/logo-mark.png" alt="" />
+        <div class="txt">
+          <div class="rule"></div>
+          <div class="m1">الماركتينج <span>مش</span> إعلانات.</div>
+          <div class="m2">م. خالد ناصر الدين — مستشار التسويق الإستراتيجي</div>
+        </div>
+      </section>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

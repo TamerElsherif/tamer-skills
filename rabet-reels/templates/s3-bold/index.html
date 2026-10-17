@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Rabet Reel — S3 Bold Social</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script src="reel-data.js"></script>
+    <style>
+      @font-face { font-family: "LalezarLocal"; src: url("assets/fonts/Lalezar-Regular.ttf") format("truetype"); font-weight: 400; font-display: block; }
+      @font-face { font-family: "AlexandriaFull"; src: url("assets/fonts/Alexandria.ttf") format("truetype"); font-weight: 100 900; font-display: block; }
+      :root { --navy: #10335a; --deep: #0b2340; --teal: #1aaac1; --aqua: #07c3be; --orange: #ff6600; --cream: #fdf9f5; --ink: #071018; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--deep); }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; font-family: "LalezarLocal", "AlexandriaFull", sans-serif; }
+
+      /* cool grid backgrounds (base → turn flip) */
+      .bg { position: absolute; inset: -64px; }
+      #bg-a { background-color: var(--deep);
+        background-image: radial-gradient(70% 45% at 50% 30%, rgba(7, 195, 190, 0.18), rgba(7, 195, 190, 0) 70%),
+          repeating-linear-gradient(0deg, rgba(7, 195, 190, 0.2) 0 3px, transparent 3px 64px), repeating-linear-gradient(90deg, rgba(7, 195, 190, 0.2) 0 3px, transparent 3px 64px); }
+      #bg-b { opacity: 0; background-color: var(--ink);
+        background-image: radial-gradient(70% 45% at 50% 30%, rgba(255, 102, 0, 0.16), rgba(255, 102, 0, 0) 70%),
+          repeating-linear-gradient(0deg, rgba(255, 102, 0, 0.18) 0 3px, transparent 3px 64px), repeating-linear-gradient(90deg, rgba(255, 102, 0, 0.18) 0 3px, transparent 3px 64px); }
+      #paper { position: absolute; left: -10px; top: 0; width: 70px; height: 1920px; background: #e9eef3; z-index: 3;
+        clip-path: polygon(0 0, 70% 0, 92% 3%, 60% 6%, 85% 10%, 55% 14%, 90% 18%, 62% 23%, 88% 27%, 58% 32%, 86% 37%, 60% 42%, 92% 47%, 57% 52%, 84% 57%, 61% 62%, 90% 67%, 56% 72%, 87% 77%, 60% 82%, 91% 87%, 58% 92%, 85% 96%, 66% 100%, 0 100%); box-shadow: 6px 0 20px rgba(0, 0, 0, 0.3); }
+
+      /* layer stack: bg < behind (graphics) < speaker < front */
+      #behind { position: absolute; inset: 0; z-index: 1; }
+      #cutrig { position: absolute; inset: 0; transform-origin: 50% 46%; z-index: 2; }
+      #cutshift { position: absolute; left: 0; top: 300px; width: 1080px; height: 1920px; }
+      #cutout { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+        filter: drop-shadow(9px 0 0 #fff) drop-shadow(-9px 0 0 #fff) drop-shadow(0 9px 0 #fff) drop-shadow(0 -9px 0 #fff) drop-shadow(0 22px 30px rgba(0, 0, 0, 0.45)); }
+      #front { position: absolute; inset: 0; z-index: 3; }
+
+      /* generic box groups */
+      .grp { position: absolute; left: 0; right: 0; display: flex; flex-direction: column; align-items: center; gap: 10px; opacity: 0; }
+      .grp.left { align-items: flex-start; padding-left: 110px; }
+      .grp.right { align-items: flex-end; padding-right: 70px; }
+      .box { display: inline-block; padding: 4px 32px 20px; line-height: 1.12; direction: rtl; box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.35); white-space: nowrap; position: relative; }
+      .b-black { background: var(--ink); color: var(--cream); }
+      .b-white { background: var(--cream); color: var(--ink); }
+      .b-navy { background: var(--navy); color: var(--cream); }
+      .b-teal { background: var(--aqua); color: var(--ink); }
+      .b-orange { background: var(--orange); color: var(--cream); }
+      .b-outline { background: transparent; color: var(--cream); border: 8px solid var(--cream); box-shadow: none; padding: 0 24px 12px; }
+      .b-text { background: transparent; box-shadow: none; color: var(--cream); padding: 0; }
+      .lat { font-family: "Archivo Black", sans-serif; direction: ltr; letter-spacing: -0.02em; padding-top: 14px; padding-bottom: 18px; }
+      .box .or { color: var(--orange); }
+      .box .tk { display: inline-block; width: 1.05em; height: 1.05em; border-radius: 50%; background: var(--aqua); color: var(--ink); text-align: center; line-height: 1.05em; font-size: 0.7em; margin-left: 14px; vertical-align: middle; }
+      .xmark { position: absolute; inset: -16px; width: calc(100% + 32px); height: calc(100% + 32px); overflow: visible; }
+      .xmark path { fill: none; stroke: var(--orange); stroke-width: 22; stroke-linecap: round; }
+
+      #polaroid { position: absolute; left: 650px; top: 380px; width: 360px; height: 520px; background: #fff; padding: 16px 16px 76px; box-shadow: 12px 14px 0 rgba(0, 0, 0, 0.35); opacity: 0; }
+      #broll { position: absolute; left: 16px; top: 16px; width: 328px; height: 428px; object-fit: cover; display: block; }
+      #polaroid .cap { position: absolute; left: 0; right: 0; bottom: 6px; text-align: center; font-size: 62px; color: var(--ink); direction: rtl; }
+
+      /* front */
+      #mark { position: absolute; right: 44px; top: 128px; width: 132px; height: 132px; }
+      #mark img { width: 100%; height: 100%; object-fit: contain; }
+      #name { position: absolute; left: 80px; top: 1150px; display: flex; flex-direction: column; align-items: flex-start; transform-origin: 0 50%; opacity: 0; }
+      #name .n1 { font-size: 66px; padding: 2px 24px 14px; }
+      #name .n2 { font-family: "AlexandriaFull", sans-serif; font-weight: 700; font-size: 32px; padding: 6px 20px 12px; }
+      #captions { position: absolute; left: 60px; right: 60px; top: 1390px; height: 200px; }
+      .cp { position: absolute; left: 0; right: 0; top: 0; display: flex; justify-content: center; opacity: 0; }
+      .cp .line { direction: rtl; text-align: center;  display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: 0 22px;}
+      .cp .w { display: inline-block; font-size: 118px; line-height: 1.1; color: #fff; -webkit-text-stroke: 14px var(--ink); paint-order: stroke fill; padding: 0 8px; }
+      .cp .w.en { font-family: "Archivo Black", sans-serif; font-size: 84px; -webkit-text-stroke: 12px var(--ink); white-space: nowrap; }
+      .cp .w.hi { color: var(--aqua); }
+
+      #flash { position: absolute; inset: 0; background: #fff; opacity: 0; z-index: 5; }
+      #cta { position: absolute; inset: 0; opacity: 0; z-index: 6; background-color: var(--deep);
+        background-image: repeating-linear-gradient(0deg, rgba(7, 195, 190, 0.2) 0 3px, transparent 3px 64px), repeating-linear-gradient(90deg, rgba(7, 195, 190, 0.2) 0 3px, transparent 3px 64px);
+        display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 34px; }
+      #cta img { width: 520px; height: 520px; object-fit: contain; }
+      #cta .box { font-size: 92px; }
+      #cta .yt { direction: ltr; display: inline-flex; align-items: center; gap: 16px; font-family: "Archivo Black", sans-serif; font-size: 76px; color: var(--cream); }
+      #cta .play { width: 96px; height: 68px; border-radius: 18px; background: var(--orange); display: flex; align-items: center; justify-content: center; }
+      #cta .play i { display: block; width: 0; height: 0; border-left: 30px solid var(--cream); border-top: 18px solid transparent; border-bottom: 18px solid transparent; margin-left: 6px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-width="1080" data-height="1920" data-duration="{{DURATION}}">
+      <div id="bg-a" class="bg"></div>
+      <div id="bg-b" class="bg"></div>
+      <div id="behind">
+        <div id="groups"></div>
+        <div id="polaroid">
+          <video id="broll" class="clip" src="assets/broll.mp4" data-start="{{BROLL_START}}" data-duration="{{BROLL_DUR}}" data-media-start="0" data-track-index="1" muted playsinline></video>
+          <div class="cap"></div>
+        </div>
+      </div>
+      <div id="cutrig"><div id="cutshift">
+        <video id="cutout" class="clip" src="assets/cutout.webm" data-start="0" data-duration="{{AROLL_DUR}}" data-media-start="0" data-track-index="0" muted playsinline></video>
+      </div></div>
+      <div id="front">
+        <div id="paper"></div>
+        <div id="mark"><img src="assets/logo-mark.png" alt="" /></div>
+        <div id="name"><div class="n1 box b-white"></div><div class="n2 box b-navy"></div></div>
+        <div id="captions"></div>
+      </div>
+      <div id="flash"></div>
+      <div id="cta">
+        <img src="assets/logo.png" alt="" />
+        <div class="box b-white ctatext"></div>
+        <div class="yt"><span class="play"><i></i></span>YouTube</div>
+      </div>
+      <audio id="vo" src="assets/vo.wav" data-start="0" data-duration="{{AROLL_DUR}}" data-media-start="0" data-track-index="10" data-volume="1"></audio>
+<!--SFX-->
+    </div>
+
+    <script>
+      const R = window.REEL, T = R.t, C = R.content, D = R.duration;
+      const $ = (s) => document.querySelector(s);
+      const el = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
+      const at = (k) => (typeof k === "number" ? k : T[k]);
+
+      // captions: hard-cut chunks
+      R.caps.forEach((c, i) => {
+        const cp = el("div", "cp"); cp.id = "cp-" + i;
+        const line = el("div", "line");
+        c.w.forEach(([t, en], j) => { const w = el("span", "w" + (en ? " en" : "") + (c.hl.includes(j) ? " hi" : ""), t); if (en) w.dir = "ltr"; line.appendChild(w); });
+        cp.appendChild(line); $("#captions").appendChild(cp);
+      });
+      // box groups
+      (C.groups || []).forEach((g) => {
+        const gr = el("div", "grp" + (g.align ? " " + g.align : "")); gr.id = g.id; gr.style.top = (g.top || 220) + "px";
+        g.lines.forEach((ln, i) => {
+          const b = el("div", "box b-" + (ln.s || "white") + (ln.ltr ? " lat" : "")); b.id = `${g.id}-${i}`;
+          b.style.fontSize = (ln.size || (ln.ltr ? 96 : 104)) + "px";
+          if (ln.tick) b.appendChild(el("span", "tk", "✓"));
+          (ln.t || "").split(/(\*[^*]+\*)/).forEach((part) => { if (!part) return; if (part.startsWith("*")) b.appendChild(el("span", "or", part.slice(1, -1))); else b.appendChild(document.createTextNode(part)); });
+          gr.appendChild(b);
+        });
+        $("#groups").appendChild(gr);
+      });
+      (C.xmarks || []).forEach((x) => { const tgt = $("#" + x.target); if (tgt) tgt.insertAdjacentHTML("beforeend", '<svg class="xmark" viewBox="0 0 100 100" preserveAspectRatio="none"><path vector-effect="non-scaling-stroke" d="M4 6 L 96 94" /><path vector-effect="non-scaling-stroke" d="M96 6 L 4 94" /></svg>'); });
+      if (C.polaroid) $("#polaroid .cap").textContent = C.polaroid.caption || "";
+      $("#name .n1").textContent = C.name || ""; $("#name .n2").textContent = C.title || "";
+      $("#cta .ctatext").textContent = C.cta || "الحلقة كاملة على";
+      document.querySelectorAll(".xmark path").forEach((p) => { p.style.strokeDasharray = 3000; p.style.strokeDashoffset = 3000; });
+
+      const tl = gsap.timeline({ paused: true });
+
+      R.caps.forEach((c, i) => {
+        // a chunk shorter than the pop-in must still end hidden (else the tween finishes at opacity 1 and the word sticks)
+        const pop = Math.min(0.12, Math.max(0.03, (c.e - c.s) * 0.6));
+        tl.fromTo("#cp-" + i, { opacity: 0, scale: 0.6, rotation: i % 2 ? 3 : -3 }, { opacity: 1, scale: 1, rotation: 0, duration: pop, ease: "back.out(3)" }, c.s);
+        tl.set("#cp-" + i, { opacity: 0 }, Math.max(c.e - 0.02, c.s + pop + 0.001));
+      });
+
+      // speaker: punch alternation on joins + idle drift of the grid
+      const Z = C.zoom || [1.0, 1.07];
+      R.joins.forEach((j, i) => tl.set("#cutrig", { scale: Z[(i + 1) % 2] }, j));
+      tl.fromTo(".bg", { y: 0 }, { y: 60, duration: D, ease: "none" }, 0);
+      if (typeof T.flip === "number") {
+        tl.to("#cutrig", { scale: 1.16, duration: 0.1, ease: "power4.out" }, T.flip);
+        tl.fromTo("#cutrig", { x: 0 }, { x: 0, keyframes: [{ x: -22, duration: 0.03 }, { x: 18, duration: 0.03 }, { x: -12, duration: 0.03 }, { x: 8, duration: 0.03 }, { x: 0, duration: 0.04 }] }, T.flip);
+        tl.fromTo("#flash", { opacity: 0 }, { opacity: 0.85, duration: 0.04, ease: "none" }, T.flip - 0.02);
+        tl.to("#flash", { opacity: 0, duration: 0.2, ease: "power2.out" }, T.flip + 0.04);
+        tl.set("#bg-b", { opacity: 1 }, T.flip);
+      }
+      if (R.hookEnd > 0) {
+        tl.fromTo("#flash", { opacity: 0 }, { opacity: 0.7, duration: 0.04, ease: "none" }, R.hookEnd - 0.05);
+        tl.to("#flash", { opacity: 0, duration: 0.18, ease: "power2.out" }, R.hookEnd);
+      }
+
+      // box groups: entrance per line (varied), exit at "out"
+      const ENTER = {
+        slam: (s, t, i) => tl.fromTo(s, { scale: 2.4, opacity: 0, rotation: i % 2 ? 6 : -6 }, { scale: 1, opacity: 1, rotation: i % 2 ? 2 : -3, duration: 0.18, ease: "power4.out" }, t),
+        right: (s, t, i) => tl.fromTo(s, { x: 700, opacity: 0, rotation: 20 }, { x: 0, opacity: 1, rotation: i % 2 ? 3 : -4, duration: 0.32, ease: "back.out(1.8)" }, t),
+        left: (s, t, i) => tl.fromTo(s, { x: -700, opacity: 0, rotation: -20 }, { x: 0, opacity: 1, rotation: i % 2 ? -3 : 2, duration: 0.32, ease: "back.out(1.8)" }, t),
+        drop: (s, t, i) => tl.fromTo(s, { y: -360, opacity: 0, rotation: -8 }, { y: 0, opacity: 1, rotation: i % 2 ? 2 : -2, duration: 0.34, ease: "back.out(2)" }, t),
+        pop: (s, t, i) => tl.fromTo(s, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, rotation: i % 2 ? 2 : -2, duration: 0.3, ease: "back.out(2.6)" }, t),
+      };
+      (C.groups || []).forEach((g) => {
+        const t0 = at(g.at); if (typeof t0 !== "number") return;
+        tl.set("#" + g.id, { opacity: 1 }, t0);
+        g.lines.forEach((ln, i) => {
+          const t = ln.at != null ? at(ln.at) : t0 + i * (g.step || 0.3);
+          const anim = ENTER[ln.anim || g.anim || "slam"];
+          tl.set(`#${g.id}-${i}`, { opacity: 0 }, 0);
+          anim(`#${g.id}-${i}`, t, i);
+        });
+        if (g.out != null) tl.to("#" + g.id, { y: g.outY != null ? g.outY : -600, opacity: 0, duration: g.outDur || 0.28, ease: "power3.in" }, at(g.out));
+      });
+      (C.xmarks || []).forEach((x) => { tl.to(`#${x.target} .xmark path`, { strokeDashoffset: 0, duration: 0.12, ease: "power2.out", stagger: 0.12 }, at(x.at)); });
+      (C.pulses || []).forEach((p) => tl.to("#" + p.target, { scale: 1.12, duration: 0.2, ease: "power2.out", yoyo: true, repeat: 1 }, at(p.at)));
+      if (C.polaroid && typeof at(C.polaroid.at) === "number") {
+        tl.fromTo("#polaroid", { x: 700, rotation: 30, opacity: 0 }, { x: 0, rotation: 5, opacity: 1, duration: 0.45, ease: "back.out(1.5)" }, at(C.polaroid.at));
+        if (C.polaroid.out) tl.to("#polaroid", { x: 700, rotation: 20, opacity: 0, duration: 0.3, ease: "power3.in" }, at(C.polaroid.out));
+      } else tl.set("#polaroid", { opacity: 0 }, 0);
+
+      // name sticker
+      if (typeof T.name === "number") {
+        tl.set("#name", { opacity: 1 }, T.name);
+        tl.fromTo("#name", { x: -700, rotation: -8 }, { x: 0, rotation: -3, duration: 0.4, ease: "back.out(1.6)" }, T.name);
+        tl.to("#name", { x: -800, duration: 0.3, ease: "power3.in" }, T.name + (C.nameHold || 2.4));
+      }
+
+      // CTA
+      tl.fromTo("#cta", { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" }, D - 0.04);
+      tl.fromTo("#cta img", { scale: 0.6, rotation: -8 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(2)" }, D + 0.04);
+      tl.fromTo("#cta .box", { x: 500, rotation: 8 }, { x: 0, rotation: -2, duration: 0.35, ease: "back.out(1.8)" }, D + 0.2);
+      tl.fromTo("#cta .yt", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "power3.out" }, D + 0.35);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

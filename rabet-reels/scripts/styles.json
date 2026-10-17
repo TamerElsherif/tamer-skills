@@ -1,0 +1,6 @@
+{
+  "_doc": "Style registry: which template a style uses and what matte it needs. head_rows = top crop matted at higher detail; full = also matte the whole body (speaker cut-out styles).",
+  "s1": { "template": "s1-clean", "crop": "vertical", "matte": { "head_rows": 1400, "full": false } },
+  "s2": { "template": "s2-split", "crop": "split", "matte": null },
+  "s3": { "template": "s3-bold", "crop": "vertical", "matte": { "head_rows": 1216, "full": true } }
+}

@@ -1,0 +1,310 @@
+{
+ "_doc": "fixes: whole-token spelling corrections (Whisper Egyptian-Arabic slips). phrases: token sequences (normalized, lowercase for Latin) rendered as ONE Latin-script English run. Add new terms here once and every future reel benefits.",
+ "fixes": {
+  "يأمى": "يا إما",
+  "يأما": "يا إما",
+  "يامة": "يا إما",
+  "بيعين": "بيّاعين",
+  "البيزنس": "البزنس",
+  "للزوء": "للسوق",
+  "هيكد": "هتلاقيه",
+  "مزنوئين": "مزنوقين",
+  "شرع": "شرا",
+  "هيسام": "حسام",
+  "يأم": "يا إما",
+  "هيك": "هتلاقي",
+  "الماركتنج": "Marketing",
+  "الماركتينج": "Marketing",
+  "ماركتنج": "Marketing",
+  "ماركتينج": "Marketing",
+  "بالماركتنج": "بالـ Marketing",
+  "بالماركتينج": "بالـ Marketing",
+  "للماركتينج": "للـ Marketing",
+  "بأيه؟": "بإيه؟",
+  "بأيه": "بإيه",
+  "برودكت": "Product",
+  "البرودكت": "الـ Product",
+  "بالبرودكت": "بالـ Product",
+  "برودكتس": "Products",
+  "البرودك": "الـ Product",
+  "السيجمنتيشن": "الـ Segmentation",
+  "تارجيتينج": "Targeting",
+  "باجز": "Bugs",
+  "الساس": "الـ SaaS",
+  "السيلز": "الـ Sales",
+  "الكستمر": "الـ Customer",
+  "الكاستمر": "الـ Customer",
+  "تشهر": "شهور",
+  "فيدباك": "Feedback",
+  "ميسج": "Message",
+  "بروفيت": "Profit",
+  "ريسورس": "Resources",
+  "ريسورس،": "Resources،",
+  "الفيتشرز": "الـ Features",
+  "بيزنس": "Business",
+  "ازاي": "إزاي",
+  "انا": "أنا",
+  "او": "أو",
+  "الاول": "الأول",
+  "بالزبط": "بالظبط",
+  "بالضبط": "بالظبط",
+  "انت": "إنت",
+  "امكانياتك": "إمكانياتك",
+  "الامكانيات": "الإمكانيات",
+  "اتنين": "اتنين"
+ },
+ "phrases": [
+  {
+   "ar": [
+    "pricing",
+    "مودل"
+   ],
+   "en": "Pricing Model"
+  },
+  {
+   "ar": [
+    "revenue",
+    "stream"
+   ],
+   "en": "Revenue Stream"
+  },
+  {
+   "ar": [
+    "digital",
+    "agency"
+   ],
+   "en": "Digital Agency"
+  },
+  {
+   "ar": [
+    "customer",
+    "ساكسيس",
+    "تيم"
+   ],
+   "en": "Customer Success Team"
+  },
+  {
+   "ar": [
+    "customer",
+    "ساكسيس"
+   ],
+   "en": "Customer Success"
+  },
+  {
+   "ar": [
+    "product",
+    "مانيجمنت"
+   ],
+   "en": "Product Management"
+  },
+  {
+   "ar": [
+    "product",
+    "مانجمنت"
+   ],
+   "en": "Product Management"
+  },
+  {
+   "ar": [
+    "فسترتيجيك",
+    "marketing",
+    "بلان"
+   ],
+   "en": "Strategic Marketing Plan",
+   "prefix": "فـ"
+  },
+  {
+   "ar": [
+    "سترتيجيك",
+    "marketing",
+    "بلان"
+   ],
+   "en": "Strategic Marketing Plan"
+  },
+  {
+   "ar": [
+    "strategic",
+    "marketing",
+    "plan"
+   ],
+   "en": "Strategic Marketing Plan"
+  },
+  {
+   "ar": [
+    "البيزنس",
+    "مودل"
+   ],
+   "en": "Business Model",
+   "prefix": "الـ"
+  },
+  {
+   "ar": [
+    "البزنس",
+    "مودل"
+   ],
+   "en": "Business Model",
+   "prefix": "الـ"
+  },
+  {
+   "ar": [
+    "business",
+    "مودل"
+   ],
+   "en": "Business Model"
+  },
+  {
+   "ar": [
+    "بيزنس",
+    "مودل"
+   ],
+   "en": "Business Model"
+  },
+  {
+   "ar": [
+    "unit",
+    "economics"
+   ],
+   "en": "Unit Economics"
+  },
+  {
+   "ar": [
+    "kill",
+    "switch"
+   ],
+   "en": "Kill Switch"
+  },
+  {
+   "ar": [
+    "net",
+    "profit"
+   ],
+   "en": "Net Profit"
+  },
+  {
+   "ar": [
+    "الماركت",
+    "ريسيرش"
+   ],
+   "en": "Market Research"
+  },
+  {
+   "ar": [
+    "ستيواشن",
+    "أناليسز"
+   ],
+   "en": "Situation Analysis"
+  },
+  {
+   "ar": [
+    "فيزيبيليتي",
+    "ستادي"
+   ],
+   "en": "Feasibility Study"
+  },
+  {
+   "ar": [
+    "feasibility",
+    "study"
+   ],
+   "en": "Feasibility Study"
+  },
+  {
+   "ar": [
+    "ماركت",
+    "ريسيرش"
+   ],
+   "en": "Market Research"
+  },
+  {
+   "ar": [
+    "الماركت",
+    "ريسيرش"
+   ],
+   "en": "Market Research"
+  },
+  {
+   "ar": [
+    "market",
+    "research"
+   ],
+   "en": "Market Research"
+  },
+  {
+   "ar": [
+    "سيتيواشن",
+    "أناليسز"
+   ],
+   "en": "Situation Analysis"
+  },
+  {
+   "ar": [
+    "وسيتيواشن",
+    "أناليسز"
+   ],
+   "en": "Situation Analysis",
+   "prefix": "و"
+  },
+  {
+   "ar": [
+    "situation",
+    "analysis"
+   ],
+   "en": "Situation Analysis"
+  },
+  {
+   "ar": [
+    "بيستل",
+    "أناليسيوس"
+   ],
+   "en": "PESTEL Analysis"
+  },
+  {
+   "ar": [
+    "بيستل"
+   ],
+   "en": "PESTEL"
+  },
+  {
+   "ar": [
+    "سيلز"
+   ],
+   "en": "Sales"
+  },
+  {
+   "ar": [
+    "sales"
+   ],
+   "en": "Sales"
+  }
+ ],
+ "break_before": [
+  "يعني",
+  "هتلاقي",
+  "فالموضوع",
+  "فالمفروض",
+  "ويربط",
+  "بيعرف",
+  "يقولك",
+  "بس",
+  "لكن",
+  "طب"
+ ],
+ "break_after": [
+  "خالص",
+  "كفاية"
+ ],
+ "no_end": [
+  "ما",
+  "لا",
+  "اللي",
+  "يا إما",
+  "في",
+  "من",
+  "على",
+  "و",
+  "بالـ",
+  "للـ",
+  "عن",
+  "مش"
+ ]
+}

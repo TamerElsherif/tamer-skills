@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Rabet Reel — S2 Split Explainer</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script src="reel-data.js"></script>
+    <style>
+      @font-face { font-family: "AlexandriaFull"; src: url("assets/fonts/Alexandria.ttf") format("truetype"); font-weight: 100 900; font-display: block; }
+      :root { --navy: #10335a; --teal: #1aaac1; --aqua: #07c3be; --orange: #ff6600; --cream: #fdf9f5; --ink: #071423; --tealtext: #0e7487; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--ink); }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; font-family: "AlexandriaFull", sans-serif; }
+
+      #board { position: absolute; left: 0; top: 0; width: 1080px; height: 960px; overflow: hidden; background-color: var(--cream);
+        background-image: radial-gradient(rgba(16, 51, 90, 0.16) 2.4px, transparent 2.6px); background-size: 44px 44px; }
+      #board .corner { position: absolute; right: 40px; top: 120px; width: 70px; height: 70px; border-right: 5px solid var(--navy); border-top: 5px solid var(--navy); opacity: 0.55; }
+      #board .tag { position: absolute; right: 60px; top: 140px; direction: rtl; font-weight: 700; font-size: 30px; color: var(--navy); background: rgba(7, 195, 190, 0.22); padding: 6px 18px 10px; border-radius: 10px; }
+      #mark { position: absolute; left: 50px; top: 118px; width: 132px; height: 132px; border-radius: 26px; background: var(--ink); padding: 10px; }
+      #mark img { width: 100%; height: 100%; object-fit: contain; }
+      .scene { position: absolute; inset: 0; opacity: 0; }
+
+      /* A. question */
+      #q .wrap { position: absolute; left: 0; right: 0; top: 270px; display: flex; flex-direction: column; align-items: center; }
+      #q .mark { font-weight: 900; font-size: 330px; line-height: 1; color: var(--orange); }
+      #q .hl { direction: rtl; font-weight: 900; font-size: 96px; color: var(--navy); margin-top: -10px; }
+
+      /* B. myth */
+      #myth .head { position: absolute; left: 0; right: 0; top: 270px; text-align: center; direction: ltr; font-weight: 900; font-size: 100px; color: var(--navy); letter-spacing: -0.02em; }
+      .mcard { position: absolute; top: 450px; width: 400px; height: 220px; border-radius: 28px; background: var(--navy); color: var(--cream); display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 16px 34px rgba(16, 51, 90, 0.28); }
+      .mcard .big { font-weight: 900; font-size: 78px; letter-spacing: -0.02em; }
+      .mcard .sub { font-weight: 600; font-size: 34px; color: var(--aqua); }
+      #mc-0 { right: 90px; } #mc-1 { left: 90px; }
+      .mcard svg { position: absolute; inset: -14px; width: 428px; height: 248px; overflow: visible; }
+      .mcard svg path { fill: none; stroke: var(--orange); stroke-width: 18; stroke-linecap: round; }
+      #quote { position: absolute; left: 140px; right: 140px; top: 720px; direction: rtl; text-align: center; font-weight: 700; font-size: 44px; color: var(--navy); background: #fff; border: 4px solid var(--navy); border-radius: 30px; padding: 12px 24px 20px; }
+      #stamp { position: absolute; left: 0; right: 0; top: 440px; display: flex; justify-content: center; }
+      #stamp div { direction: rtl; white-space: nowrap; font-weight: 900; font-size: 104px; color: var(--orange); border: 12px solid var(--orange); border-radius: 20px; padding: 0 36px 22px; background: rgba(253, 249, 245, 0.92); transform: rotate(-8deg); }
+
+      /* C. timeline (RTL) */
+      #tline svg { position: absolute; inset: 0; width: 1080px; height: 960px; overflow: visible; }
+      #tl-line { fill: none; stroke: var(--navy); stroke-width: 9; stroke-linecap: round; }
+      #tl-head { fill: var(--navy); }
+      #tl-arc { fill: none; stroke: var(--orange); stroke-width: 8; stroke-linecap: round; stroke-dasharray: 2 18; }
+      .pin { position: absolute; top: 360px; width: 320px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+      .pin .card { border-radius: 22px; padding: 12px 30px 18px; text-align: center; box-shadow: 0 14px 30px rgba(16, 51, 90, 0.22); }
+      .pin .dot { width: 34px; height: 34px; border-radius: 50%; border: 7px solid var(--cream); }
+      #pin-mkt { left: 380px; } #pin-mkt .card { background: var(--aqua); color: var(--ink); } #pin-mkt .dot { background: var(--aqua); }
+      #pin-biz { left: 140px; } #pin-biz .card { background: var(--navy); color: var(--cream); } #pin-biz .dot { background: var(--navy); }
+      .pin .en { direction: ltr; font-weight: 900; font-size: 54px; letter-spacing: -0.02em; display: block; }
+      .pin .ar { direction: rtl; font-weight: 900; font-size: 50px; display: block; }
+      #time-lbl { position: absolute; left: 110px; top: 610px; direction: rtl; font-weight: 600; font-size: 30px; color: #5d6168; }
+      #before-lbl { position: absolute; left: 470px; top: 215px; width: 260px; text-align: center; direction: rtl; font-weight: 900; font-size: 64px; color: var(--orange); }
+
+      /* D–F. triangle (= the Rabet mark) */
+      #tri { position: absolute; inset: 0; transform-origin: 100% 0; }
+      #tri svg { position: absolute; inset: 0; width: 1080px; height: 960px; overflow: visible; }
+      #tri .link { fill: none; stroke: var(--navy); stroke-width: 12; stroke-linecap: round; }
+      #tri #lk-base { stroke: var(--orange); }
+      .node { position: absolute; border-radius: 50%; border: 6px solid var(--cream); box-shadow: 0 14px 30px rgba(16, 51, 90, 0.3); }
+      #nd-top { left: 450px; top: 215px; width: 180px; height: 180px; background: radial-gradient(circle at 35% 30%, #2fe0da, var(--aqua) 50%, var(--teal)); }
+      #nd-r { left: 735px; top: 575px; width: 130px; height: 130px; background: radial-gradient(circle at 35% 30%, #2fc6dc, var(--teal) 55%, #12819a); }
+      #nd-l { left: 215px; top: 575px; width: 130px; height: 130px; background: radial-gradient(circle at 35% 30%, #2d5d93, var(--navy) 60%, #0a2240); }
+      .lbl { position: absolute; display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; }
+      .lbl .en { direction: ltr; font-weight: 900; font-size: 48px; color: var(--cream); background: var(--navy); border-radius: 16px; padding: 4px 20px 10px; letter-spacing: -0.02em; white-space: nowrap; }
+      .lbl .ar { direction: rtl; font-weight: 700; font-size: 32px; color: var(--tealtext); }
+      #lb-top { left: 290px; top: 405px; width: 500px; }
+      #lb-r { left: 600px; top: 715px; width: 400px; }
+      #lb-l { left: 80px; top: 715px; width: 400px; }
+      #lens { position: absolute; left: 860px; top: 520px; width: 120px; height: 120px; opacity: 0; }
+      #lens .ring { position: absolute; left: 0; top: 0; width: 92px; height: 92px; border-radius: 50%; border: 12px solid var(--orange); background: rgba(253, 249, 245, 0.35); }
+      #lens .handle { position: absolute; left: 76px; top: 80px; width: 48px; height: 14px; border-radius: 7px; background: var(--orange); transform: rotate(45deg); transform-origin: 0 50%; }
+      #lb-probe { position: absolute; left: 760px; top: 462px; width: 300px; text-align: center; direction: rtl; font-weight: 800; font-size: 30px; color: var(--orange); white-space: nowrap; opacity: 0; }
+      #lb-link { position: absolute; left: 0; right: 0; top: 572px; text-align: center; direction: rtl; font-weight: 800; font-size: 38px; color: var(--orange); opacity: 0; }
+
+      /* E. checklist */
+      #chk { position: absolute; left: 70px; top: 260px; width: 560px; opacity: 0; }
+      #chk .ttl { direction: ltr; font-weight: 900; font-size: 50px; color: var(--navy); margin-bottom: 18px; text-align: right; letter-spacing: -0.02em; }
+      #chk .it { display: flex; align-items: center; gap: 16px; direction: rtl; margin-bottom: 14px; opacity: 0; }
+      #chk .tick { width: 52px; height: 52px; border-radius: 50%; background: var(--aqua); color: var(--ink); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 32px; flex: none; }
+      #chk .tx { font-weight: 800; font-size: 46px; color: var(--navy); }
+
+      /* G. generic board panels */
+      .panel { position: absolute; left: 70px; right: 70px; display: flex; flex-direction: column; align-items: center; gap: 16px; opacity: 0; }
+      .panel.right { align-items: flex-end; } .panel.left { align-items: flex-start; }
+      .panel > div { direction: rtl; white-space: nowrap; }
+      .panel .ltr { direction: ltr; letter-spacing: -0.02em; }
+      .pn-title { font-weight: 900; font-size: 78px; color: var(--navy); line-height: 1.1; }
+      .pn-sub { font-weight: 700; font-size: 40px; color: var(--tealtext); }
+      .pn-chip, .pn-chip-teal, .pn-chip-orange { font-weight: 900; font-size: 54px; border-radius: 20px; padding: 8px 30px 16px; box-shadow: 0 14px 30px rgba(16, 51, 90, 0.22); }
+      .pn-chip { color: var(--cream); background: var(--navy); }
+      .pn-chip-teal { color: var(--ink); background: var(--aqua); }
+      .pn-chip-orange { color: var(--cream); background: var(--orange); }
+      .pn-tick { display: flex; align-items: center; gap: 16px; font-weight: 800; font-size: 48px; color: var(--navy); }
+      .pn-tick .tick { width: 54px; height: 54px; border-radius: 50%; background: var(--aqua); color: var(--ink); display: flex; align-items: center; justify-content: center; font-size: 32px; flex: none; }
+      .pn-big { font-weight: 900; font-size: 200px; line-height: 1; color: var(--orange); }
+      .pn-arrow { font-weight: 900; font-size: 60px; color: var(--orange); line-height: 1; }
+
+      /* speaker panel */
+      #seam { position: absolute; left: 0; top: 952px; width: 1080px; height: 16px; background: var(--navy); z-index: 2; }
+      #seam .acc { position: absolute; right: 0; top: 0; height: 16px; width: 1080px; background: var(--teal); transform-origin: 100% 50%; }
+      #stage { position: absolute; left: 0; top: 968px; width: 1080px; height: 952px; overflow: hidden; background: var(--ink); }
+      #cam { position: absolute; inset: 0; transform-origin: 50% 28%; }
+      #aroll { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      #stage .shade { position: absolute; left: 0; right: 0; bottom: 0; height: 420px; background: linear-gradient(180deg, rgba(7,20,35,0), rgba(7,20,35,.6)); }
+      #namecard { position: absolute; left: 50px; top: 1480px; direction: rtl; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; opacity: 0; z-index: 3; }
+      #namecard .nm { font-weight: 800; font-size: 46px; color: var(--cream); background: var(--navy); padding: 6px 20px 12px; border-radius: 12px; }
+      #namecard .ttl { font-weight: 600; font-size: 30px; color: var(--ink); background: var(--aqua); padding: 4px 16px 8px; border-radius: 10px; }
+
+      #captions { position: absolute; left: 60px; right: 60px; top: 892px; height: 140px; z-index: 4; }
+      .cap { position: absolute; left: 0; right: 0; top: 0; display: flex; justify-content: center; opacity: 0; }
+      .cap .pill { direction: rtl; text-align: center; background: var(--navy); border: 4px solid var(--cream); border-radius: 24px; padding: 8px 30px 18px; box-shadow: 0 12px 30px rgba(0,0,0,.35);  display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: 0 18px;}
+      .cap .w { display: inline-block; font-weight: 800; font-size: 62px; line-height: 1.2; color: var(--cream); }
+      .cap .w.en { font-weight: 900; letter-spacing: -0.02em; }
+
+      #cta { position: absolute; inset: 0; opacity: 0; z-index: 6; background-color: var(--cream);
+        background-image: radial-gradient(rgba(16, 51, 90, 0.16) 2.4px, transparent 2.6px); background-size: 44px 44px;
+        display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 36px; }
+      #cta .logo-plate { width: 560px; height: 560px; border-radius: 48px; background: var(--ink); display: flex; align-items: center; justify-content: center; }
+      #cta img { width: 500px; height: 500px; object-fit: contain; }
+      #cta .line { direction: rtl; font-weight: 900; font-size: 62px; color: var(--navy); display: flex; align-items: center; gap: 22px; }
+      #cta .yt { direction: ltr; display: inline-flex; align-items: center; gap: 14px; }
+      #cta .play { width: 84px; height: 60px; border-radius: 16px; background: var(--orange); display: flex; align-items: center; justify-content: center; }
+      #cta .play i { display: block; width: 0; height: 0; border-left: 26px solid var(--cream); border-top: 16px solid transparent; border-bottom: 16px solid transparent; margin-left: 6px; }
+      #cta .guest { direction: rtl; font-weight: 700; font-size: 38px; color: var(--tealtext); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-width="1080" data-height="1920" data-duration="{{DURATION}}">
+      <div id="board">
+        <div class="corner"></div><div class="tag"></div>
+        <div id="q" class="scene"><div class="wrap"><div class="mark">؟</div><div class="hl"></div></div></div>
+        <div id="myth" class="scene">
+          <div class="head"></div>
+          <div id="mc-0" class="mcard"><div class="big"></div><div class="sub"></div><svg viewBox="0 0 428 248"><path d="M30 210 C 150 150, 280 100, 400 36" /></svg></div>
+          <div id="mc-1" class="mcard"><div class="big"></div><div class="sub"></div><svg viewBox="0 0 428 248"><path d="M30 210 C 150 150, 280 100, 400 36" /></svg></div>
+          <div id="quote"></div>
+          <div id="stamp"><div></div></div>
+        </div>
+        <div id="tline" class="scene">
+          <svg viewBox="0 0 1080 960"><path id="tl-line" d="M960 560 L 140 560" /><path id="tl-head" d="M110 560 L 152 534 L 152 586 Z" /><path id="tl-arc" d="M860 340 C 760 230, 400 230, 300 340" /></svg>
+          <div id="before-lbl"></div>
+          <div id="pin-mkt" class="pin"><div class="card"><span class="en"></span></div><div class="dot"></div></div>
+          <div id="pin-biz" class="pin"><div class="card"><span class="ar"></span></div><div class="dot"></div></div>
+          <div id="time-lbl">الوقت</div>
+        </div>
+        <div id="tri" class="scene">
+          <svg viewBox="0 0 1080 960">
+            <path id="lk-r" class="link" d="M590 380 L 790 600" /><path id="lk-l" class="link" d="M490 380 L 290 600" /><path id="lk-base" class="link" d="M345 640 L 735 640" />
+          </svg>
+          <div id="nd-top" class="node"></div><div id="nd-r" class="node"></div><div id="nd-l" class="node"></div>
+          <div id="lb-top" class="lbl"><div class="en"></div><div class="ar"></div></div>
+          <div id="lb-r" class="lbl"><div class="en"></div><div class="ar"></div></div>
+          <div id="lb-l" class="lbl"><div class="en"></div><div class="ar"></div></div>
+          <div id="lb-probe"></div>
+          <div id="lens"><div class="ring"></div><div class="handle"></div></div>
+          <div id="lb-link"></div>
+        </div>
+        <div id="chk"><div class="ttl"></div></div>
+        <div id="panels"></div>
+        <div id="mark"><img src="assets/logo-mark.png" alt="" /></div>
+      </div>
+
+      <div id="stage">
+        <div id="cam"><video id="aroll" class="clip" src="assets/aroll.mp4" data-start="0" data-duration="{{AROLL_DUR}}" data-media-start="0" data-track-index="0" muted playsinline></video></div>
+        <div class="shade"></div>
+      </div>
+      <div id="seam"><div class="acc"></div></div>
+      <div id="namecard"><div class="nm"></div><div class="ttl"></div></div>
+      <div id="captions"></div>
+      <div id="cta">
+        <div class="logo-plate"><img src="assets/logo.png" alt="" /></div>
+        <div class="line"><span class="ctatext"></span> <span class="yt"><span class="play"><i></i></span>YouTube</span></div>
+        <div class="guest"></div>
+      </div>
+
+      <audio id="vo" src="assets/vo.wav" data-start="0" data-duration="{{AROLL_DUR}}" data-media-start="0" data-track-index="10" data-volume="1"></audio>
+<!--SFX-->
+    </div>
+
+    <script>
+      const R = window.REEL, T = R.t, C = R.content, D = R.duration;
+      const $ = (s) => document.querySelector(s);
+      const el = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
+      const has = (k) => typeof T[k] === "number";
+
+      // ---------- DOM from data ----------
+      R.caps.forEach((c, i) => {
+        const cap = el("div", "cap"); cap.id = "cap-" + i;
+        const pill = el("div", "pill"); if (c.w.every(([, en]) => en)) pill.style.direction = "ltr";
+        c.w.forEach(([t, en], j) => { const s = el("span", "w" + (en ? " en" : ""), t); s.id = `cap-${i}-w${j}`; if (en) s.dir = "ltr"; pill.appendChild(s); });
+        cap.appendChild(pill); $("#captions").appendChild(cap);
+      });
+      $("#board .tag").textContent = C.tag || "";
+      $("#q .hl").textContent = C.question || "";
+      $("#myth .head").textContent = C.mythHead || "";
+      (C.cards || []).forEach((cd, i) => { $(`#mc-${i} .big`).textContent = cd.big; if (cd.ltr) $(`#mc-${i} .big`).dir = "ltr"; $(`#mc-${i} .sub`).textContent = cd.sub; if (cd.subLtr) $(`#mc-${i} .sub`).dir = "ltr"; });
+      $("#quote").textContent = C.quote || ""; $("#stamp div").textContent = C.stamp || "";
+      $("#pin-mkt .en").textContent = (C.timeline || {}).first || ""; $("#pin-biz .ar").textContent = (C.timeline || {}).second || ""; $("#before-lbl").textContent = (C.timeline || {}).label || "";
+      const DG = C.diagram || {};
+      [["top", "#lb-top"], ["right", "#lb-r"], ["left", "#lb-l"]].forEach(([k, id]) => { if (DG[k]) { $(id + " .en").textContent = DG[k].en; $(id + " .ar").textContent = DG[k].ar || ""; } });
+      $("#lb-probe").textContent = C.probe || ""; $("#lb-link").textContent = C.linkLabel || "";
+      $("#chk .ttl").textContent = C.checkTitle || "";
+      (C.panels || []).forEach((g) => {
+        const p = el("div", "panel" + (g.align ? " " + g.align : "")); p.id = g.id; p.style.top = (g.top || 240) + "px";
+        g.items.forEach((it, i) => {
+          const d = el("div", (it.k || "pn-chip") + (it.ltr ? " ltr" : "")); d.id = `${g.id}-${i}`;
+          if (it.k === "pn-tick") { d.appendChild(el("span", "tick", "✓")); d.appendChild(el("span", "", it.t)); } else d.textContent = it.t;
+          if (it.size) d.style.fontSize = it.size + "px";
+          p.appendChild(d);
+        });
+        $("#panels").appendChild(p);
+      });
+      (C.checklist || []).forEach((it, i) => { const r = el("div", "it"); r.id = "chk-" + i; r.appendChild(el("div", "tick", "✓")); r.appendChild(el("div", "tx", it.text)); $("#chk").appendChild(r); });
+      $("#namecard .nm").textContent = C.name || ""; $("#namecard .ttl").textContent = C.title || "";
+      $("#cta .ctatext").textContent = C.cta || "الحلقة كاملة على"; $("#cta .guest").textContent = C.guest || "";
+      document.querySelectorAll(".mcard svg path, #tl-line, #tri .link").forEach((p) => { const L = p.getTotalLength() * 1.05; p.style.strokeDasharray = L; p.style.strokeDashoffset = L; });
+
+      const tl = gsap.timeline({ paused: true });
+      const show = (sel, at) => tl.fromTo(sel, { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, at);
+      const hide = (sel, at) => tl.to(sel, { opacity: 0, duration: 0.25, ease: "power2.in" }, at);
+
+      // speaker camera + progress rail
+      const Z = C.zoom || [1.0, 1.09];
+      R.joins.forEach((j, i) => tl.set("#cam", { scale: Z[(i + 1) % 2] }, j));
+      tl.fromTo("#seam .acc", { scaleX: 0 }, { scaleX: 1, duration: D, ease: "none" }, 0);
+
+      // captions
+      R.caps.forEach((c, i) => {
+        const id = "#cap-" + i;
+        tl.fromTo(id, { opacity: 0, y: 18, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 0.15, ease: "back.out(2)" }, c.s);
+        tl.to(id, { opacity: 0, duration: 0.06, ease: "none" }, Math.max(c.s + 0.2, c.e - 0.04));
+        c.w.forEach(([t, en, ws], j) => {
+          const we = j + 1 < c.w.length ? c.w[j + 1][2] : c.e, hl = c.hl.includes(j), wId = `#cap-${i}-w${j}`;
+          tl.fromTo(wId, { color: "#fdf9f5" }, { color: hl ? "#ff6600" : "#07c3be", duration: 0.08, ease: "none", immediateRender: false }, ws);
+          if (!hl) tl.to(wId, { color: "#fdf9f5", duration: 0.1, ease: "none" }, we);
+        });
+      });
+
+      // A. question (optional)
+      if (C.question) {
+        show("#q", 0);
+        tl.fromTo("#q .mark", { y: -420, rotation: -25 }, { y: 0, rotation: 0, duration: 0.6, ease: "bounce.out" }, 0);
+        tl.fromTo("#q .hl", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, 0.25);
+        tl.to("#q .mark", { rotation: 10, duration: 0.18, ease: "sine.inOut", yoyo: true, repeat: 3 }, 0.9);
+        hide("#q", has("qOut") ? T.qOut : 2.5);
+      }
+
+      // B. myth (optional): head = cards -> quote -> strike -> stamp
+      if (has("mythIn")) {
+        show("#myth", T.mythIn);
+        tl.fromTo("#myth .head", { y: -40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, T.mythIn);
+        [0, 1].forEach((i) => { if (has("card" + i)) tl.fromTo("#mc-" + i, { scale: 0, rotation: i ? 8 : -8 }, { scale: 1, rotation: i ? 3 : -3, duration: 0.4, ease: "back.out(2)" }, T["card" + i]); else tl.set("#mc-" + i, { opacity: 0 }, 0); });
+        if (has("quote")) tl.fromTo("#quote", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "back.out(1.6)" }, T.quote); else tl.set("#quote", { opacity: 0 }, 0);
+        if (has("strike")) { tl.to("#mc-0 svg path", { strokeDashoffset: 0, duration: 0.2, ease: "power2.out" }, T.strike); tl.to("#mc-1 svg path", { strokeDashoffset: 0, duration: 0.2, ease: "power2.out" }, T.strike + 0.2); }
+        if (has("turn")) { tl.to(["#mc-0", "#mc-1", "#quote", "#myth .head"], { opacity: 0.25, duration: 0.2, ease: "none" }, T.turn - 0.05); tl.fromTo("#stamp div", { scale: 2.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.18, ease: "power4.out" }, T.turn); }
+        else tl.set("#stamp", { opacity: 0 }, 0);
+        if (has("mythOut")) hide("#myth", T.mythOut);
+      }
+
+      // C. RTL timeline (optional)
+      if (has("tlIn")) {
+        show("#tline", T.tlIn);
+        tl.to("#tl-line", { strokeDashoffset: 0, duration: 0.5, ease: "power2.out" }, T.tlIn);
+        tl.fromTo("#tl-head", { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" }, T.tlIn + 0.3);
+        tl.fromTo("#pin-mkt", { y: -80, opacity: 0, scale: 0.7 }, { y: 0, opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2)" }, T.tlIn);
+        if (has("tlBefore")) tl.to("#pin-mkt", { x: 300, duration: 0.5, ease: "power3.inOut" }, T.tlBefore);
+        if (has("tlBiz")) { tl.fromTo("#pin-biz", { y: -260, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "bounce.out" }, T.tlBiz);
+          tl.fromTo(["#tl-arc", "#before-lbl"], { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2.5)" }, T.tlBiz + 0.25); }
+        if (has("tlOut")) hide("#tline", T.tlOut);
+      }
+
+      // D-F. triangle (optional; = the Rabet mark)
+      tl.set(["#nd-r", "#nd-l", "#lb-r", "#lb-l"], { opacity: 0 }, 0);
+      if (has("top")) {
+        show("#tri", T.top - 0.1);
+        tl.fromTo("#nd-top", { scale: 0 }, { scale: 1, duration: 0.5, ease: "back.out(2)" }, T.top - 0.1);
+        tl.fromTo("#lb-top", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, T.top);
+        if (has("kids")) {
+          tl.to("#lk-r", { strokeDashoffset: 0, duration: 0.4, ease: "power2.out" }, T.kids);
+          tl.to("#lk-l", { strokeDashoffset: 0, duration: 0.4, ease: "power2.out" }, T.kids + 0.08);
+          tl.fromTo(["#nd-r", "#nd-l"], { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(2.2)", stagger: 0.1 }, T.kids + 0.3);
+          tl.to("#lb-top", { scale: 0.82, y: -10, duration: 0.35, ease: "power2.inOut" }, T.kids + 0.4);
+        }
+        if (has("right")) tl.fromTo("#lb-r", { x: 60, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, T.right);
+        if (has("left")) tl.fromTo("#lb-l", { x: -60, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, T.left);
+        if (has("probe")) {
+          tl.fromTo("#lens", { x: 120, y: -120, opacity: 0, rotation: -20 }, { x: 0, y: 0, opacity: 1, rotation: 0, duration: 0.5, ease: "power3.out" }, T.probe);
+          tl.to("#lens", { x: -40, y: 20, duration: 0.5, ease: "sine.inOut", yoyo: true, repeat: 1 }, T.probe + 0.5);
+          tl.fromTo("#lb-probe", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, T.probe + 0.3);
+          tl.to("#nd-r", { scale: 1.15, duration: 0.25, ease: "power2.out", yoyo: true, repeat: 1 }, T.probe + 0.1);
+          tl.to(["#lens", "#lb-probe"], { opacity: 0, duration: 0.25, ease: "none" }, T.probe + 1.9);
+        }
+        if (has("check0")) tl.to("#tri", { scale: 0.42, x: -30, y: 175, duration: 0.5, ease: "power3.inOut" }, T.check0 - 0.5);
+        if (has("checkOut")) tl.to("#tri", { scale: 1, x: 0, y: 0, duration: 0.5, ease: "power3.inOut" }, T.checkOut + 0.1);
+        if (has("link")) { tl.to("#lk-base", { strokeDashoffset: 0, duration: 0.5, ease: "power2.inOut" }, T.link); tl.fromTo("#lb-link", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, T.link + 0.3); }
+        if (has("focus")) tl.to("#nd-r", { scale: 1.25, duration: 0.22, ease: "power2.out", yoyo: true, repeat: 3 }, T.focus);
+        if (has("triOut")) hide("#tri", T.triOut);
+      }
+      // E. checklist (optional)
+      if (has("check0")) {
+        show("#chk", T.check0 - 0.3);
+        (C.checklist || []).forEach((it, i) => { const at = T["check" + i]; if (typeof at === "number") { tl.fromTo("#chk-" + i, { x: 60, opacity: 0 }, { x: 0, opacity: 1, duration: 0.35, ease: "back.out(1.5)" }, at); tl.fromTo(`#chk-${i} .tick`, { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(3)" }, at + 0.15); } });
+        if (has("checkOut")) hide("#chk", T.checkOut);
+      }
+
+      // G. generic board panels: [{id, at, out, top, align, step, items:[{t, k, ltr, at, size, pulse, dimAt}]}]
+      const PANIM = { "pn-big": { scale: 0.3, rotation: -12 }, "pn-title": { y: -40 }, "pn-tick": { x: 70 } };
+      const AT = (v) => (typeof v === "number" ? v : T[v]);
+      (C.panels || []).forEach((g) => {
+        const t0 = AT(g.at); if (typeof t0 !== "number") return;
+        tl.set("#" + g.id, { opacity: 1 }, t0);
+        g.items.forEach((it, i) => {
+          const t = it.at != null ? AT(it.at) : t0 + i * (g.step || 0.3);
+          const from = Object.assign({ opacity: 0, scale: 0.6, y: 20 }, PANIM[it.k] || {});
+          tl.fromTo(`#${g.id}-${i}`, from, { opacity: 1, scale: 1, y: 0, x: 0, rotation: it.rot || 0, duration: 0.38, ease: "back.out(1.9)" }, t);
+          if (it.k === "pn-tick") tl.fromTo(`#${g.id}-${i} .tick`, { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(3)" }, t + 0.15);
+          if (it.pulse != null) tl.to(`#${g.id}-${i}`, { scale: 1.12, duration: 0.22, ease: "power2.out", yoyo: true, repeat: 1 }, AT(it.pulse));
+          if (it.dimAt != null) tl.to(`#${g.id}-${i}`, { opacity: 0.35, duration: 0.25, ease: "none" }, AT(it.dimAt));
+        });
+        if (g.out != null) hide("#" + g.id, AT(g.out));
+      });
+
+      // name card (below the face)
+      if (has("name")) {
+        tl.set("#namecard", { opacity: 1 }, T.name);
+        tl.fromTo("#namecard .nm", { x: -50, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, T.name);
+        tl.fromTo("#namecard .ttl", { x: -50, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, T.name + 0.12);
+        tl.to("#namecard", { opacity: 0, duration: 0.3, ease: "none" }, T.name + (C.nameHold || 3.0));
+      }
+
+      // CTA
+      tl.fromTo("#cta", { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "power2.out" }, D - 0.05);
+      tl.fromTo("#cta .logo-plate", { scale: 0.75, rotation: -4 }, { scale: 1, rotation: 0, duration: 0.55, ease: "back.out(1.7)" }, D);
+      tl.fromTo("#cta .line", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, D + 0.2);
+      tl.fromTo("#cta .guest", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, D + 0.35);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

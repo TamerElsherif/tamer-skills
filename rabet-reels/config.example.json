@@ -1,0 +1,16 @@
+{
+  "_doc": "Copy to ~/.rabet-reels.json (or point $RABET_REELS_CONFIG at it) and fill in. Never commit the real file.",
+  "output_dir": "~/Videos/MyPodcast/Reels",
+  "postiz_url": "https://postiz.example.com",
+  "postiz_token_file": "~/Videos/MyPodcast/postiz-token.txt",
+  "channels": {
+    "li_host":  {"id": "<postiz-integration-id>", "name": "LinkedIn (host)"},
+    "yt_brand": {"id": "<postiz-integration-id>", "name": "YouTube (brand)"},
+    "yt_host":  {"id": "<postiz-integration-id>", "name": "YouTube (host)"},
+    "fb_brand": {"id": "<postiz-integration-id>", "name": "Facebook (brand page)"},
+    "fb_host":  {"id": "<postiz-integration-id>", "name": "Facebook (host)"},
+    "ig_brand": {"id": "<postiz-integration-id>", "name": "Instagram (brand)"},
+    "ig_host":  {"id": "<postiz-integration-id>", "name": "Instagram (host)"},
+    "tiktok":   {"id": "<postiz-integration-id>", "name": "TikTok"}
+  }
+}
