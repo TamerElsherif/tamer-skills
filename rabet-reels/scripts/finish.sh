@@ -5,7 +5,7 @@
 #   e.g. finish.sh projects/ep2-reels/reels/clip06 06 s3-bold Can-You-Make-Money
 # Output folder: $RABET_OUTPUT_DIR, else "output_dir" in ~/.rabet-reels.json.
 set -e
-SK=$(cd "$(dirname "$0")/.." && pwd)
+SK=$(cd "$(dirname "$0")/.." && (pwd -W 2>/dev/null || pwd))  # Windows path for Windows Python
 PY=${RABET_PY:-python}
 R=$1; NN=$2; TPL=$3; TITLE=$4
 O=${RABET_OUTPUT_DIR:-$($PY -c "import sys;sys.path.insert(0,r'$SK/scripts');import config;print(config.load().get('output_dir',''))")}

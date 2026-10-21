@@ -116,6 +116,11 @@
       #cta .play { width: 84px; height: 60px; border-radius: 16px; background: var(--orange); display: flex; align-items: center; justify-content: center; }
       #cta .play i { display: block; width: 0; height: 0; border-left: 26px solid var(--cream); border-top: 16px solid transparent; border-bottom: 16px solid transparent; margin-left: 6px; }
       #cta .guest { direction: rtl; font-weight: 600; font-size: 38px; color: var(--aqua); }
+      /* hook -> story transition: brand wipe over the cut so the story doesn't read as the hook continuing */
+      #hookwipe { position: absolute; inset: 0; z-index: 7; background: #0b2340; display: flex; align-items: center; justify-content: center; pointer-events: none; visibility: hidden; }
+      #hookwipe::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 18px; background: #07c3be; }
+      #hookwipe::after { content: ""; position: absolute; right: 0; top: 0; bottom: 0; width: 18px; background: #ff6600; }
+      #hookwipe img { width: 220px; height: 220px; object-fit: contain; }
     </style>
   </head>
   <body>
@@ -156,6 +161,7 @@
         <div id="captions"></div>
       </div>
       <div id="flash"></div>
+      <div id="hookwipe"><img src="assets/logo-mark.png" alt="" /></div>
       <div id="cta">
         <img src="assets/logo.png" alt="" />
         <div class="line"><span class="ctatext"></span> <span class="yt"><span class="play"><i></i></span>YouTube</span></div>
@@ -362,6 +368,14 @@
       tl.fromTo("#cta .line", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, D + 0.25);
       tl.fromTo("#cta .guest", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, D + 0.4);
 
+      // hook -> story: wipe in from the right (RTL), cover the cut, wipe out to the left
+      if (R.hookEnd > 0) {
+        // positions only through GSAP (a CSS transform would be added on top and park the panel on screen)
+        tl.set("#hookwipe", { xPercent: 100, visibility: "visible" }, 0);
+        tl.to("#hookwipe", { xPercent: 0, duration: 0.2, ease: "power3.in" }, R.hookEnd - 0.2);
+        tl.to("#hookwipe", { xPercent: -100, duration: 0.24, ease: "power3.out" }, R.hookEnd + 0.1);
+        tl.set("#hookwipe", { visibility: "hidden" }, R.hookEnd + 0.36);
+      }
       window.__timelines["main"] = tl;
     </script>
   </body>

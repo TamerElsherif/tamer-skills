@@ -124,7 +124,7 @@ python $S/postiz_drafts.py payload.json 06 posts.csv                         # c
 | `postiz_token_file` | file holding the API token. The raw token or a `claude mcp add … "Authorization: Bearer <token>"` line both work |
 | `channels.<key>.id` / `.name` | Postiz integration id and label for `li_host`, `yt_brand`, `yt_host`, `fb_brand`, `fb_host`, `ig_brand`, `ig_host`, `tiktok` |
 
-**Env overrides:** `RABET_REELS_CONFIG` (config path), `POSTIZ_URL`, `POSTIZ_API_KEY`, `POSTIZ_TOKEN_FILE`, `POSTIZ_MCP_URL`, `RABET_OUTPUT_DIR`, `RABET_PY` (Python used by the shell scripts).
+**Env overrides:** `RABET_REELS_CONFIG` (config path), `POSTIZ_URL`, `POSTIZ_API_KEY`, `POSTIZ_TOKEN_FILE`, `POSTIZ_MCP_URL`, `RABET_OUTPUT_DIR`, `RABET_PY` (Python used by the shell scripts), `RABET_SFX_GAIN` (SFX volume multiplier, default 0.6), `RABET_DEBUG_TOKENS=1` (print the caption tokens when an anchor is missing).
 </details>
 
 <details>
@@ -155,6 +155,7 @@ python $S/postiz_drafts.py payload.json 06 posts.csv                         # c
 | `content` | template data: `name`, `title`, `cta`, `zoom`, `hero`, and per style `stacks[]` (S1), `panels[]` (S2), `groups[]` (S3), plus `sfx[]` with `{"at": anchor, "file", "vol", "dur"}` |
 | `extra_words`, `wide_words` | inject words / use a wider transcript when the A-roll transcript is poor |
 | S1 placement | `stackLeft`, `stackWidth`, and per stack `left`, `width`, `top`, `front:true` |
+| `content.sfxGain` | per-reel SFX volume multiplier (house default 0.6) |
 
 Every anchor must resolve, so `make_reel_data.py` fails loudly on a typo.
 </details>
@@ -226,7 +227,9 @@ rabet-reels/
 ## 🧱 House rules (enforced by the skill)
 
 - Graphics **never cover a face**. They go beside, above, below or behind the speaker cut-out.
-- A hook in the first 1–3 s, SFX only (no music), and a CTA to the full episode.
+- A hook in the first 1–3 s, SFX only (no music, at 0.6× volume), and a CTA to the full episode.
+- **Complete ideas only:** a reel starts on a sentence start and ends on a sentence end. Never end on the first words of the next idea, never start mid-sentence.
+- **Hooks are a complete micro-idea** (no trailing «أو / و / ف», no leading «كده / فهو / أو»), and a brand wipe covers the cut from hook to story so it doesn't read as the hook continuing.
 - English terms stay in Latin script. **No line or headline starts with an English word**, and Arabic lines start with RLM (U+200F).
 - Name cards appear only while the named speaker is on camera.
 - One reel per topic. Choose the style by content, not by habit.
@@ -241,6 +244,9 @@ rabet-reels/
 | Dim render, missing alpha, 10-minute render | HDR stock footage. Tone-map to BT.709 and render with `--sdr` |
 | Postiz 403 | Cloudflare blocks the default Python user agent. Scripts send a curl UA |
 | Postiz YouTube thumbnail rejected | known Postiz validation issue. Use the cover video and set the thumbnail in Studio |
+| A navy panel covers the whole reel after the hook | an overlay had a CSS `transform` plus a GSAP `xPercent`. Position overlays only through GSAP (fixed in the templates) |
+| Captions miss words, or an anchor isn't found | GPU Whisper sometimes drops words in a cut. Caption from the wide CPU transcript (`wide_words`) and run with `RABET_DEBUG_TOKENS=1` to see the tokens |
+| Render fails at "capture_disk" | not enough free space on C: (an S3 render needs about 4 GB of temporary frames) |
 
 ## 🔗 Dependencies
 
@@ -248,5 +254,6 @@ rabet-reels/
 
 ## 📝 Changelog
 
+- **2026-10-21**: v0.5. New house rules: reels start and end on a complete idea; hooks are a complete micro-idea followed by a brand wipe; SFX at 0.6× (`sfxGain`). Wide-transcript gap snapping, «ال -term» normalisation, `finish.sh` Windows-path fix.
 - **2026-10-17**: v0.4. Portable config (`~/.rabet-reels.json`), draft or schedule posts, GPU Whisper and mattes, S1 placement knobs, S3 ghost-caption fix, `finish.sh`.
 - **2026-10-16**: v0.1–v0.3. Three styles (Clean, Split, Bold) and T1–T3 thumbnails, then multicam auto-framing, generic engines (stacks/panels/groups), parametric thumbnails, Postiz upload and drafts.

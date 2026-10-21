@@ -39,7 +39,10 @@ Alternate guests and styles across a campaign so the feed doesn't repeat.
 6. Mixed script: English terms in Latin (glossary), every "marketing" form → Latin `Marketing` («بالـ Marketing»).
 7. Tighten pauses; alternate framing (1.0 ↔ 1.08) on every join; punch-in + impact at the turn.
 8. **RTL**: never start a line/headline with an English word; big wrapped headlines carry no English (bidi reorders it) — put English in its own box or mid-line. Captions/posts: RLM (U+200F) at each Arabic line start.
-9. S3 palette is **cool**: deep navy grid (aqua lines) → near-black grid (orange lines) at the turn. Orange = accent only.
+9. **Complete ideas only (start and end).** A reel ends on the end of a sentence/idea, never on the first words of the next one (Ep 2 reel 05 ended on «السوق ده Market Research» before the outro — cut before it). It also starts on a sentence start, not on a stammer or a trailing «ف/كده/أو». Before rendering, read the last 5 s and the first 3 s of the A-roll transcript; move `range` ends to a word boundary from the wide transcript (end ≥ last word's end, < next word's start).
+10. **Hooks are a complete micro-idea.** Never end a hook on «أو / و / ف…» or start it with «كده / فالحقيقة», and never let it run into the next sentence. Hook range = first word's start → last word's end; check that no next word starts before the hook end (even 0.05 s of it is audible). The story after the hook must not read as the hook continuing: every template plays a **brand wipe** over the hook→story cut (`#hookwipe`, automatic when `hookEnd > 0`) — keep the `@hookEnd` whoosh with it.
+11. **Effects sit under the voice.** SFX only, no music; `assemble.py` multiplies every cue by `sfxGain` (house default **0.6**; per-reel `content.sfxGain`, or `RABET_SFX_GAIN`). Don't raise individual `vol` values to compensate.
+12. S3 palette is **cool**: deep navy grid (aqua lines) → near-black grid (orange lines) at the turn. Orange = accent only.
 
 ## 2. Fast path for the next reel (≈ 15 min hands-on + ~25 min machine time)
 
@@ -65,8 +68,10 @@ projects/<episode>-reels/reels/clipNN/
 ### Multicam auto-framing (HQ master)
 `reel_spec` crop `auto-vertical` / `auto-split`: `shots.py` finds camera cuts (scene>0.25) and the face x per shot (Haar, OpenCV **4.x** — 5.x has no CascadeClassifier); `build_aroll.py` splits pieces at cuts and crops each with the face at 60 % (vertical) / 55 % (split). Multi-range clips: `"ranges": [[a,b],[c,d]]`.
 S1 placement knobs (beats `content`): `stackLeft`/`stackWidth` (all stacks) and per-stack `left`/`width`/`top`/`front:true` (front = drawn over the body, use only below the face, e.g. top ≈ 930 on the shirt). Haitham sits large and left: `stackLeft 22, stackWidth 292, zoom [1,1.04]`, no `hero`. Snapshot every stack's peak before rendering.
+Overlays animated with GSAP `xPercent`/`x` must not also carry a CSS `transform` (GSAP adds its own on top: the hook wipe once parked on screen and covered the whole story). Position them only through `tl.set(...)` at t=0. A render needs several GB of free temp space on C: (S3 ≈ 4 GB of captured frames); a full disk fails at "capture_disk".
 Caption chunks shorter than the pop-in tween used to stick on screen forever in S3 ("ghost" glyphs over later captions; snapshots don't show it). Fixed in the template; if you see overlapping caption glyphs in a render, look for caps with `e - s < 0.12`.
 S1 stack lines never wrap (template shrinks the font to fit 400 px) — a wrapped mixed line pushes English to a line start.
+Transcripts: GPU large-v3 sometimes **drops words** in a cut A-roll (Ep 2 reels 10/11 lost «SaaS / Customer Success / scale-ups»). If captions miss words or anchors fail, caption from the wide transcript (`wide_words`); words that start in a cut gap snap to the next piece, and «ال -development» / «ن -implement» forms are normalised to «الـ Development».
 Multicam layout: cut-ins of the other person put their head higher (top ≈ y 590 of 1920). Keep S3 groups ending above ≈ y 560: max 3 lines (sizes ≤ 80 after a 120+ headline), merge list items («الأوتوبيس · الترام») or split a long list into two groups. Check every reaction shot in the sheet.
 Beats extras: `extra_words` (inject words into segments), `wide_words {"file","offset"}` (use the wide transcript when the cut-A-roll transcript is poor).
 

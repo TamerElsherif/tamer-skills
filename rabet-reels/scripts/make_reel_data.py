@@ -10,6 +10,7 @@ Everything a template animates is resolved here, so a new reel = new data, not n
 usage: python make_reel_data.py <aroll_X.words.json> <aroll_X.segments.json> <beats.json> <out reel-data.js>
 """
 import json
+import os
 import re
 import sys
 from pathlib import Path
@@ -30,6 +31,11 @@ def tokens_from(words, extra_fixes=None):
         t = w["w"].strip()
         if not t:
             continue
+        if t.startswith("-") and LATIN.search(t):  # wide transcripts write "ال -development", "ن -implement"
+            t = t.lstrip("-")
+            if toks and toks[-1]["t"] in ("ال", "وال", "بال", "فال", "لل") and not toks[-1].get("en"):
+                toks[-1]["t"] += "ـ"  # "ال" -> "الـ" so it reads «الـ Development»
+            t = t[:1].upper() + t[1:]
         t = fixes.get(t, t)
         if not t:  # fix mapped to "" = drop the token (mis-heard filler)
             continue
@@ -129,6 +135,8 @@ def resolve(anchors, toks, segs):
                 and (where == "any" or (where == "hook") == (tk["s"] < hook_end - 0.12))]
         n = a.get("n", 1)
         if len(hits) < n:
+            if os.environ.get("RABET_DEBUG_TOKENS"):  # show what the caption tokens actually are
+                print(" | ".join(f"{t['t']}@{t['s']:.1f}" for t in toks))
             raise SystemExit(f"anchor not found: {a}  (have {len(hits)} hits)")
         return round(hits[n - 1]["s"] + a.get("offset", 0), 3)
 
@@ -150,7 +158,17 @@ def main(words_p, segs_p, beats_p, out_p):
         words = []
         for w in ww:
             src = w["s"] + off
-            for sg in (g for g in segs if g["src_start"] - 0.05 <= src < g["src_end"]):
+            hits = []
+            for kind in {g.get("kind") for g in segs}:  # hook and body are separate copies of the source
+                ks = [g for g in segs if g.get("kind") == kind]
+                inside = [g for g in ks if g["src_start"] - 0.05 <= src < g["src_end"]]
+                if not inside:  # wide timings run a little early: a word starting in a cut gap belongs to the next piece
+                    # ...but only if most of the word lies inside that piece (not a previous word's tail)
+                    inside = [g for g in ks if 0 < g["src_start"] - src <= 0.45
+                              and (w["e"] + off - g["src_start"]) > 0.5 * (w["e"] - w["s"])][:1]
+                hits += inside[:1]  # one copy per kind, even when a word straddles a cut
+            for sg in hits:
+                src = max(w["s"] + off, sg["src_start"])
                 t = round(sg["start"] + src - sg["src_start"], 3)
                 words.append({"w": w["w"], "s": max(t, sg["start"]), "e": round(min(sg["end"], t + (w["e"] - w["s"])), 3)})
     # words Whisper dropped on the cut A-roll, recovered from the wide transcript in SOURCE time

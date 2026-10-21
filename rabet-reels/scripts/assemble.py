@@ -9,6 +9,7 @@ and copies media (aroll, cutout, dialogue WAV) + shared assets into the project.
 usage: python assemble.py <template_dir> <project_dir> <reel-data.js> <aroll.mp4> [cutout.webm]
 """
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -37,6 +38,8 @@ subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(aroll), "-vn", "
 dur = reel["duration"]
 total = round(dur + reel["ctaDur"], 3)
 lanes, tags = {}, []
+# SFX sit under the voice: every cue's volume x sfxGain (house default 0.6 — user asked for quieter effects)
+gain = float(os.environ.get("RABET_SFX_GAIN", reel["content"].get("sfxGain", 0.6)))
 for i, c in enumerate(reel["content"].get("sfx", [])):
     at = c["at"]
     special = {"@hookEnd": reel["hookEnd"], "@cta": dur}
@@ -48,7 +51,7 @@ for i, c in enumerate(reel["content"].get("sfx", [])):
         lane += 1
     lanes.setdefault(lane, []).append((t, t + d))
     tags.append(f'      <audio id="sfx-{i}" src="assets/{c["file"]}.mp3" data-start="{t}" data-duration="{d}" '
-                f'data-track-index="{lane}" data-volume="{c.get("vol", 0.45)}"></audio>')
+                f'data-track-index="{lane}" data-volume="{round(c.get("vol", 0.45) * gain, 3)}"></audio>')
 
 html = (tpl / "index.html").read_text(encoding="utf-8")
 extra = data_js.parent / "extra"  # reel-specific files (e.g. SDR-converted B-roll) -> assets/
