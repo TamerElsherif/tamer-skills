@@ -254,6 +254,7 @@ rabet-reels/
 
 ## 📝 Changelog
 
+- **2026-10-22**: v0.6. Brand LinkedIn page + brand TikTok via the Zernio connector (`zernio` block in the config; SKILL.md section 7).
 - **2026-10-21**: v0.5. New house rules: reels start and end on a complete idea; hooks are a complete micro-idea followed by a brand wipe; SFX at 0.6× (`sfxGain`). Wide-transcript gap snapping, «ال -term» normalisation, `finish.sh` Windows-path fix.
 - **2026-10-17**: v0.4. Portable config (`~/.rabet-reels.json`), draft or schedule posts, GPU Whisper and mattes, S1 placement knobs, S3 ghost-caption fix, `finish.sh`.
 - **2026-10-16**: v0.1–v0.3. Three styles (Clean, Split, Bold) and T1–T3 thumbnails, then multicam auto-framing, generic engines (stacks/panels/groups), parametric thumbnails, Postiz upload and drafts.

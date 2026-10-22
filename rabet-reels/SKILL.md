@@ -127,3 +127,16 @@ navy `#10335A` · deep `#0B2340` · teal `#1AAAC1` · aqua `#07C3BE` · orange `
 - To change existing posts (new video, wording, draft→schedule): create the replacements first, check them (`GET /api/public/v1/posts` → `state` QUEUE/DRAFT), then `DELETE /api/public/v1/posts/<id>` the old ones (it replies `{"error":true}` but deletes).
 - Per reel: LinkedIn host (+link comment) 09:30 · YT brand 17:00 · YT host 18:00 · FB brand 19:30 · FB host 20:00 · IG brand 20:30 · IG host 21:00 · TikTok 21:30 (+ link comments on FB/IG, engagement question on FB) · 4 stories (IG/FB ×2, clean video) 22:00 Cairo. Egypt DST ends last Thu of Oct (UTC+3 → +2); `postiz_payload.py` handles it.
 - Feeds/Shorts/TikTok get the **cover** video; stories get the clean one. YouTube thumbnail setting fails validation in Postiz → cover video + manual Studio thumbnail. Comments can't be pinned via Postiz (manual). `ask_postiz` fails (no OpenAI key on server).
+
+## 7. Zernio (brand LinkedIn page + brand TikTok)
+Postiz has no LinkedIn **page** or Rabet TikTok integration, so those two channels go through the **Zernio** MCP connector.
+Every reel scheduled on Postiz also gets 2 Zernio posts at the same date. Account ids, timezone and slots are in
+`~/.rabet-reels.json` → `zernio` (Rabet: LinkedIn page "Rabet Podcast", TikTok "rabetpodcast").
+- Call `call_tool` → `posts_create_post` (the simple `posts_create` only schedules "N minutes from now" and has no first comment).
+  Arguments: `content`, `media_items: [{url, type: "video"}]`, `platforms: [{platform, accountId, platformSpecificData}]`,
+  `scheduled_for: "YYYY-MM-DDTHH:MM:SS"` + `timezone: "Africa/Cairo"` (Zernio handles Egypt DST).
+- **Media:** the reel's **cover** video. Its Postiz upload URL is public, so pass it straight in `media_items` (no re-upload).
+- **LinkedIn page (09:30 Cairo):** use the brand-voice caption (`facebook_brand`), drop the link lines, end with «الحلقة كاملة على YouTube، اللينك في أول كومنت.» and put the link in `platformSpecificData.firstComment` (LinkedIn suppresses links in captions). Don't use the host's `linkedin` caption: it has first-person opinions.
+- **TikTok (21:30 Cairo):** `content` = TikTok title line + TikTok caption; `tiktok_settings`: `privacyLevel PUBLIC_TO_EVERYONE`, `allowComment/allowDuet/allowStitch true`, `commercialContentType none`, `contentPreviewConfirmed true`, `expressConsentGiven true`, `videoCoverTimestampMs 500` (inside the 1.2 s thumbnail intro). Test with `dry_run: true` (TikTok only); LinkedIn: `validate_post`.
+- ⚠️ A `scheduled_for` already in the past **publishes immediately**. Check the Cairo time first and move a passed slot.
+- To replace a Zernio post: `posts_delete` (scheduled posts only) and create the new one. Log ids in `_campaign/zernio_scheduled.csv`.
