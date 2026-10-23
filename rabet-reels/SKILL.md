@@ -5,7 +5,7 @@ description: Produce 9:16 reels + thumbnails from Rabet (رابط) Podcast episo
 
 # Rabet Reels
 
-> v0.4 (2026-10-17): Whisper + mattes on the RTX 5050. v0.3 (2026-10-16): Episode 2 clips 05–12 shipped from this pipeline (HQ multicam master, Postiz campaign).
+> v0.7 (2026-10-23): surgical cuts (`cutsafe.py`, rule 13) and an edge check before delivery. v0.4 (2026-10-17): Whisper + mattes on the RTX 5050. v0.3 (2026-10-16): Episode 2 clips 05–12 shipped from this pipeline (HQ multicam master, Postiz campaign).
 > Per-user settings (output folder, Postiz URL/token, channel ids) live in `~/.rabet-reels.json` — copy
 > `config.example.json`. Never hard-code them in the skill.
 > **ONE reel per sheet topic** — never three variants. Pick the style by content (below) and the
@@ -43,6 +43,13 @@ Alternate guests and styles across a campaign so the feed doesn't repeat.
 10. **Hooks are a complete micro-idea.** Never end a hook on «أو / و / ف…» or start it with «كده / فالحقيقة», and never let it run into the next sentence. Hook range = first word's start → last word's end; check that no next word starts before the hook end (even 0.05 s of it is audible). The story after the hook must not read as the hook continuing: every template plays a **brand wipe** over the hook→story cut (`#hookwipe`, automatic when `hookEnd > 0`) — keep the `@hookEnd` whoosh with it.
 11. **Effects sit under the voice.** SFX only, no music; `assemble.py` multiplies every cue by `sfxGain` (house default **0.6**; per-reel `content.sfxGain`, or `RABET_SFX_GAIN`). Don't raise individual `vol` values to compensate.
 12. S3 palette is **cool**: deep navy grid (aqua lines) → near-black grid (orange lines) at the turn. Orange = accent only.
+13. **Surgical cuts: never cut inside a word.** Sheet times are whole seconds and Whisper word edges drift 50–300 ms, so neither is a cut point. Every in/out, jump cut and removed pause goes through `scripts/cutsafe.py`. It places each cut in a real acoustic gap: full-band and high-frequency level both dip, so a final "s" counts as speech. Outs use the first gap after the last kept word that follows real speech. Ins use the last gap before the first kept word. Use `on_grid` for the frame. `build_aroll.py` does this automatically.
+    - Never pick the deepest dip. A deeper pause after the next word swallows that word (teaser v2: «costs» was cut at 54.44; the real gap was 54.57).
+    - When cutsafe raises `CutError`, the words run together. End at another phrase break; don't force the cut.
+    - Cut audio exactly at the gap, not trimmed to the frame grid.
+    - Never drop a short leftover part; keep that pause instead.
+    - Before delivery, run the isolated edge check: transcribe every kept part on its own with 1 s of silence around it, and confirm its first and last words are whole (`scripts/edge_check.py <source> <cuts.json | aroll_<style>.segments.json>`).
+    - Don't cut inside a sentence unless the dropped part is redundant or off-topic.
 
 ## 2. Fast path for the next reel (≈ 15 min hands-on + ~25 min machine time)
 
@@ -79,7 +86,9 @@ Beats extras: `extra_words` (inject words into segments), `wide_words {"file","o
 
 | File | Role |
 |---|---|
-| `scripts/build_aroll.py` | speech islands via silencedetect → drop tiny/filler/`drop_ranges` → pad/merge → hook + body → frame-snapped cut, 12 ms fades |
+| `scripts/build_aroll.py` | speech islands via silencedetect → drop tiny/filler/`drop_ranges` → pad/merge → hook + body → every edge moved into a real word gap (`cutsafe.py`) → quieter neighbouring frame, 12 ms fades |
+| `scripts/cutsafe.py` | surgical cut points: full-band + high-frequency gap finder (`Env.snap_in/snap_out/safe_in/safe_out/on_grid/pauses`); raises `CutError` when words run together |
+| `scripts/edge_check.py` | pre-delivery check: transcribes every kept part on its own and lists its words with offsets, so a clipped edge word shows |
 | `scripts/transcribe_words.py` | Whisper large-v3 on GPU (float16) word timings in output time; prints the device and warns on CPU fallback |
 | `scripts/glossary.json` | Whisper spelling fixes, English phrase map, `break_before` / `break_after` / `no_end` caption rules — **grow it every reel** |
 | `scripts/make_reel_data.py` | captions (phrase-aware chunks ≤3 words, segment-by-midpoint +0.1 s bias, stretched-word pauses), joins, anchors → `reel-data.js` |

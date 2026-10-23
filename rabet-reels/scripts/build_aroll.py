@@ -2,13 +2,15 @@
 
 Speech islands are found automatically (ffmpeg silencedetect inside spec.range),
 tiny islands and filler-only islands are dropped, near islands are merged, each
-island is padded, then the hook ranges (if any) are prepended. Cuts are snapped
-to the frame grid so audio/video stay locked, with 12 ms audio fades per join.
+island is padded, then the hook ranges (if any) are prepended. Every cut edge is then
+moved into a real word gap (cutsafe.py: never inside a word, never on a whole second from
+the sheet), and put on whichever neighbouring frame is quieter, with 12 ms fades per join.
 
 usage: python build_aroll.py <reel_spec.json> [style ...]
 writes <out_dir>/aroll_<style>.mp4 + aroll_<style>.segments.json
 """
 import json
+import math
 import os
 import re
 import subprocess
@@ -85,7 +87,9 @@ def _body_range(spec, a, b):
             merged[-1][1] = e
         else:
             merged.append([s, e])
-    return merged
+    from cutsafe import Env                      # surgical edges: sheet ranges are whole seconds
+    env = Env(spec["source"])
+    return [[env.safe_in(s), env.safe_out(e)] for s, e in merged]
 
 
 def snap(t, fps):
@@ -137,14 +141,17 @@ def pieces(segs, smap):
 def build(spec, style, body):
     st = spec["styles"][style]
     fps = spec.get("fps", 25)
-    segs = [(h[0], h[1], "hook") for h in st.get("hook", [])] + [(s, e, "body") for s, e in body]
+    from cutsafe import Env
+    env = Env(spec["source"])
+    hooks = [(env.safe_in(h[0]), env.safe_out(h[1])) for h in st.get("hook", [])]
+    segs = [(a, b, "hook") for a, b in hooks] + [(s, e, "body") for s, e in body]
     auto = AUTO.get(st["crop"])
     items = pieces(segs, shot_map(spec, segs)) if auto else [(a, b, k, None) for a, b, k in segs]
-    base = max(0.0, min(s for s, *_ in items) - 1.0)
+    base = max(0.0, math.floor((min(s for s, *_ in items) - 1.0) * fps) / fps)   # on the frame grid
     span = max(e for _, e, *_ in items) - base + 1.0
     parts, labels, meta, cursor = [], [], [], 0.0
     for i, (a, b, kind, fx) in enumerate(items):
-        ra, rb = snap(a - base, fps), snap(b - base, fps)
+        ra, rb = round(env.on_grid(a, fps) - base, 3), round(env.on_grid(b, fps) - base, 3)
         d = round(rb - ra, 3)
         vf = ""
         if auto:

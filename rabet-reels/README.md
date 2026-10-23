@@ -190,6 +190,11 @@ Claude compares the render with the A-roll and the cutout, finds where the rende
 
 For each reel: `finish.sh` builds the cover and uploads, `postiz_payload.py … schedule` builds 8 channel posts with first comments plus 4 stories at the Cairo time slots (DST handled), and `postiz_drafts.py` creates them and logs the ids.
 
+**4. A word got clipped at a cut**
+> *"At 0:10 it cuts in the middle of «costs». Never cut inside a word."*
+
+Claude re-places every cut with `cutsafe.py`. Whisper had put the next word 0.15 s early, so the cut landed on the "s". The real gap was the dip at 54.57 s, where both the voice and the hiss drop. It moves boundaries with no real gap to another phrase break, re-renders, and runs `edge_check.py` so every part's first and last words are confirmed whole.
+
 ## 🗂️ Layout
 
 ```
@@ -207,6 +212,8 @@ rabet-reels/
 └── scripts/
     ├── pipeline.sh          # one command per stage
     ├── build_aroll.py       # silence tightening, hooks, multicam auto-crop
+    ├── cutsafe.py           # surgical cut points: never inside a word
+    ├── edge_check.py        # pre-delivery check: is any edge word clipped?
     ├── shots.py             # camera cuts + face position per shot
     ├── transcribe_words.py  # Whisper large-v3 word timings
     ├── glossary.json        # spelling fixes, English phrases, caption break rules
@@ -228,6 +235,7 @@ rabet-reels/
 
 - Graphics **never cover a face**. They go beside, above, below or behind the speaker cut-out.
 - A hook in the first 1–3 s, SFX only (no music, at 0.6× volume), and a CTA to the full episode.
+- **Surgical cuts:** never cut inside a word. Sheet times are whole seconds and Whisper word edges drift, so every cut is moved into a real acoustic gap by `cutsafe.py` (it hears the hiss of a final "s" as speech), and `edge_check.py` confirms each part's first and last words are whole before delivery.
 - **Complete ideas only:** a reel starts on a sentence start and ends on a sentence end. Never end on the first words of the next idea, never start mid-sentence.
 - **Hooks are a complete micro-idea** (no trailing «أو / و / ف», no leading «كده / فهو / أو»), and a brand wipe covers the cut from hook to story so it doesn't read as the hook continuing.
 - English terms stay in Latin script. **No line or headline starts with an English word**, and Arabic lines start with RLM (U+200F).
@@ -254,6 +262,7 @@ rabet-reels/
 
 ## 📝 Changelog
 
+- **2026-10-23**: v0.7. Surgical cuts: `cutsafe.py` places every cut in a real word gap (full-band + high-frequency level, first gap after speech for outs, last gap before speech for ins, soft tails extend to the pause). `build_aroll.py` uses it for every edge and picks the quieter neighbouring frame. New `edge_check.py` pre-delivery check. House rule 13.
 - **2026-10-22**: v0.6. Brand LinkedIn page + brand TikTok via the Zernio connector (`zernio` block in the config; SKILL.md section 7).
 - **2026-10-21**: v0.5. New house rules: reels start and end on a complete idea; hooks are a complete micro-idea followed by a brand wipe; SFX at 0.6× (`sfxGain`). Wide-transcript gap snapping, «ال -term» normalisation, `finish.sh` Windows-path fix.
 - **2026-10-17**: v0.4. Portable config (`~/.rabet-reels.json`), draft or schedule posts, GPU Whisper and mattes, S1 placement knobs, S3 ghost-caption fix, `finish.sh`.
