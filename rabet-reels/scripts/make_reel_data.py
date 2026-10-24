@@ -77,12 +77,14 @@ def chunk(toks, segs, max_words=3, max_chars=20, gap=0.45, merge_words=3, bias=0
         m = (tk["s"] + tk["e"]) / 2 + bias
         return next((i for i, sg in enumerate(segs) if m < sg["end"]), len(segs) - 1)
 
+    hook_end = max([sg["end"] for sg in segs if sg.get("kind") == "hook"] or [0.0])
     phrases, cur = [], []
     for tk in toks:
         if cur:
             prev = cur[-1]
             pause = (tk["s"] - prev["e"] > gap or seg_of(tk) != seg_of(prev)
-                     or (not prev["en"] and prev["e"] - prev["s"] > stretched))  # Whisper stretches a word over a pause
+                     or (not prev["en"] and prev["e"] - prev["s"] > stretched)  # Whisper stretches a word over a pause
+                     or prev["s"] < hook_end <= tk["s"] + bias)  # the hook never shares a chunk with the body
             marker = norm(tk["t"]) in GLOSSARY.get("break_before", []) or norm(prev["t"]) in GLOSSARY.get("break_after", [])
             if pause or marker or prev["t"].endswith(("؟", "?", "!")):
                 phrases.append(cur)
@@ -92,7 +94,7 @@ def chunk(toks, segs, max_words=3, max_chars=20, gap=0.45, merge_words=3, bias=0
         phrases.append(cur)
     merged = []
     for ph in phrases:
-        if merged and len(merged[-1]) == 1 and merged[-1][0]["t"].endswith("ـ"):  # lone prefix "فـ"/"الـ" glues forward
+        if merged and merged[-1][-1]["t"].endswith("ـ"):  # a phrase ending on a prefix "فـ"/"الـ" glues forward
             merged[-1] = merged[-1] + ph
             continue
         if merged:
@@ -100,6 +102,7 @@ def chunk(toks, segs, max_words=3, max_chars=20, gap=0.45, merge_words=3, bias=0
             chars = sum(len(x["t"]) for x in last + ph)
             if (len(last) <= 2 and len(last) + len(ph) <= merge_words and chars <= max_chars
                     and not last[-1]["t"].endswith(("؟", "?", "!"))
+                    and not last[-1]["s"] < hook_end <= ph[0]["s"] + bias
                     and norm(ph[0]["t"]) not in GLOSSARY.get("break_before", [])
                     and norm(last[-1]["t"]) not in GLOSSARY.get("break_after", [])):
                 merged[-1] = last + ph
@@ -112,9 +115,17 @@ def chunk(toks, segs, max_words=3, max_chars=20, gap=0.45, merge_words=3, bias=0
         while k < n and any(sum(len(x["t"]) for x in ph[i * n // k:(i + 1) * n // k]) > max_chars for i in range(k)):
             k += 1
         parts = [ph[i * n // k:(i + 1) * n // k] for i in range(k)]
+        if k >= n > 2:  # one long token (e.g. «Product Knowledge») made every even split too wide: pack greedily instead
+            parts, cur = [], []
+            for x in ph:
+                if cur and (len(cur) >= max_words or sum(len(y["t"]) for y in cur + [x]) > max_chars):
+                    parts.append(cur)
+                    cur = []
+                cur.append(x)
+            parts.append(cur)
         parts = [p for p in parts if p]
         for i in range(len(parts) - 1):  # never end a chunk on a function word
-            while len(parts[i]) > 1 and norm(parts[i][-1]["t"]) in GLOSSARY.get("no_end", []):
+            while len(parts[i]) > 1 and (norm(parts[i][-1]["t"]) in GLOSSARY.get("no_end", []) or parts[i][-1]["t"].endswith("ـ")):
                 parts[i + 1].insert(0, parts[i].pop())
         out.extend(parts)
     return out
@@ -161,7 +172,9 @@ def main(words_p, segs_p, beats_p, out_p):
             hits = []
             for kind in {g.get("kind") for g in segs}:  # hook and body are separate copies of the source
                 ks = [g for g in segs if g.get("kind") == kind]
-                inside = [g for g in ks if g["src_start"] - 0.05 <= src < g["src_end"]]
+                ws_, we_ = w["s"] + off, w["e"] + off
+                # a word belongs to a piece only if most of it is inside (a word straddling a cut edge is mostly cut away)
+                inside = [g for g in ks if min(we_, g["src_end"]) - max(ws_, g["src_start"]) >= min(0.4 * max(we_ - ws_, 0.05), 0.3)]
                 if not inside:  # wide timings run a little early: a word starting in a cut gap belongs to the next piece
                     # ...but only if most of the word lies inside that piece (not a previous word's tail)
                     inside = [g for g in ks if 0 < g["src_start"] - src <= 0.45
@@ -179,9 +192,23 @@ def main(words_p, segs_p, beats_p, out_p):
                 words.append({"w": xw["w"], "s": t, "e": round(t + xw.get("dur", 0.4), 3)})
     words.sort(key=lambda w: w["s"])
     toks = tokens_from(words, beats.get("fixes"))
-    joins = [s["start"] for s in segs[1:]]
     emph = set(beats.get("emphasis", []))
-    groups = chunk(toks, segs, **beats.get("chunking", {}))
+    joins = [s["start"] for s in segs[1:]]
+    # adjacent English words become one caption token: separate LTR spans in an RTL line display reversed
+    # («Pain Point» -> «Point Pain») and a chunk break between them splits the term. Anchors keep the single words.
+    ctoks = []
+    for tk in toks:
+        if (ctoks and tk["en"] and ctoks[-1]["en"] and tk["s"] - ctoks[-1]["e"] < 0.6
+                and not any(ctoks[-1]["s"] < j <= tk["s"] + 0.1 for j in joins)):  # never across a cut
+            ctoks[-1] = {**ctoks[-1], "t": ctoks[-1]["t"] + " " + tk["t"], "e": tk["e"]}
+        else:
+            ctoks.append(dict(tk))
+    groups = chunk(ctoks, segs, **beats.get("chunking", {}))
+    # a cut inside a hesitated «ال… Market» leaves «الـ» alone in a chunk: it always travels with the next word
+    for gi in range(len(groups) - 2, -1, -1):
+        if all(x["t"].endswith("ـ") for x in groups[gi]):
+            groups[gi + 1] = groups[gi] + groups[gi + 1]
+            del groups[gi]
     caps = []
     for gi, g in enumerate(groups):
         nxt = groups[gi + 1][0]["s"] if gi + 1 < len(groups) else segd["duration"]

@@ -262,6 +262,7 @@ rabet-reels/
 
 ## 📝 Changelog
 
+- **2026-10-25**: v0.8. Episode 3 (33 reels). Outro shows the channel link (no «مع …» line); cover-only delivery; S1 shirt stacks with `nameClear`; hero word above the head; `exact_ends`/`exact_starts` for edges in continuous speech; per-piece ffmpeg inputs (no 4K buffering); caption fixes (merged English terms, no prefix chunk ends, hook/body split, lowercase-English normalisation); strike-through on stack cards; Zernio drafts and draft→scheduled swaps.
 - **2026-10-23**: v0.7. Surgical cuts: `cutsafe.py` places every cut in a real word gap (full-band + high-frequency level, first gap after speech for outs, last gap before speech for ins, soft tails extend to the pause). `build_aroll.py` uses it for every edge and picks the quieter neighbouring frame. New `edge_check.py` pre-delivery check. House rule 13.
 - **2026-10-22**: v0.6. Brand LinkedIn page + brand TikTok via the Zernio connector (`zernio` block in the config; SKILL.md section 7).
 - **2026-10-21**: v0.5. New house rules: reels start and end on a complete idea; hooks are a complete micro-idea followed by a brand wipe; SFX at 0.6× (`sfxGain`). Wide-transcript gap snapping, «ال -term» normalisation, `finish.sh` Windows-path fix.

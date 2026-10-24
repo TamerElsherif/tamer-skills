@@ -89,7 +89,11 @@ def _body_range(spec, a, b):
             merged.append([s, e])
     from cutsafe import Env                      # surgical edges: sheet ranges are whole seconds
     env = Env(spec["source"])
-    return [[env.safe_in(s), env.safe_out(e)] for s, e in merged]
+    # exact_ends: ends measured on the cut itself (edge check) where speech runs straight into the next word;
+    # snapping forward to "the first gap" would land inside that next word, so they are used as given
+    ex = lambda e: any(abs(e - x) < 0.02 for x in spec.get("exact_ends", []))
+    exs = lambda s: any(abs(s - x) < 0.02 for x in spec.get("exact_starts", []))  # starts measured the same way
+    return [[s if exs(s) else env.safe_in(s), e if ex(e) else env.safe_out(e)] for s, e in merged]
 
 
 def snap(t, fps):
@@ -143,13 +147,15 @@ def build(spec, style, body):
     fps = spec.get("fps", 25)
     from cutsafe import Env
     env = Env(spec["source"])
-    hooks = [(env.safe_in(h[0]), env.safe_out(h[1])) for h in st.get("hook", [])]
+    ex = lambda e: any(abs(e - x) < 0.02 for x in spec.get("exact_ends", []))
+    exs = lambda s: any(abs(s - x) < 0.02 for x in spec.get("exact_starts", []))
+    hooks = [(h[0] if exs(h[0]) else env.safe_in(h[0]), h[1] if ex(h[1]) else env.safe_out(h[1])) for h in st.get("hook", [])]
     segs = [(a, b, "hook") for a, b in hooks] + [(s, e, "body") for s, e in body]
     auto = AUTO.get(st["crop"])
     items = pieces(segs, shot_map(spec, segs)) if auto else [(a, b, k, None) for a, b, k in segs]
     base = max(0.0, math.floor((min(s for s, *_ in items) - 1.0) * fps) / fps)   # on the frame grid
     span = max(e for _, e, *_ in items) - base + 1.0
-    parts, labels, meta, cursor = [], [], [], 0.0
+    parts, labels, meta, cursor, inputs = [], [], [], 0.0, []
     for i, (a, b, kind, fx) in enumerate(items):
         ra, rb = round(env.on_grid(a, fps) - base, 3), round(env.on_grid(b, fps) - base, 3)
         d = round(rb - ra, 3)
@@ -158,8 +164,10 @@ def build(spec, style, body):
             W = auto["w"]
             x = int(min(max(fx - auto["face"] * W, 0), spec.get("src_width", 3840) - W)) // 2 * 2
             vf = f",crop={W}:2160:{x}:0" + (f",scale={auto['scale']}" if auto["scale"] else "")
-        parts.append(f"[0:v]trim=start={ra}:end={rb},setpts=PTS-STARTPTS{vf}[v{i}];"
-                     f"[0:a]atrim=start={ra}:end={rb},asetpts=PTS-STARTPTS,"
+        # one seeked input per piece: trimming one long 4K input makes ffmpeg buffer every later piece (20+ GB)
+        inputs += ["-ss", f"{ra + base:.3f}", "-t", f"{d + 0.08:.3f}", "-i", spec["source"]]
+        parts.append(f"[{i}:v]trim=end={d},setpts=PTS-STARTPTS{vf}[v{i}];"
+                     f"[{i}:a]atrim=end={d},asetpts=PTS-STARTPTS,"
                      f"afade=t=in:d=0.012,afade=t=out:st={d - 0.012:.3f}:d=0.012[a{i}];")
         labels.append(f"[v{i}][a{i}]")
         meta.append({"kind": kind, "src_start": round(ra + base, 3), "src_end": round(rb + base, 3),
@@ -175,7 +183,7 @@ def build(spec, style, body):
     out = out_dir / f"aroll_{style}.mp4"
     gfile = out_dir / f"graph_{style}.txt"  # long multi-shot graphs exceed the Windows command line
     gfile.write_text(graph, encoding="utf-8")
-    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-ss", f"{base}", "-t", f"{span}", "-i", spec["source"],
+    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", *inputs,
                     "-/filter_complex", str(gfile), "-map", "[outv]", "-map", "[ca]",
                     "-c:v", "libx264", "-crf", "16", "-preset", "medium", "-g", "12", "-pix_fmt", "yuv420p",
                     "-r", str(fps), "-c:a", "aac", "-b:a", "192k", "-ar", "48000", str(out)], check=True)

@@ -27,9 +27,9 @@
       .vignette { position: absolute; inset: 0; background: radial-gradient(120% 80% at 62% 38%, rgba(7, 20, 35, 0) 45%, rgba(7, 20, 35, 0.55) 100%); }
       .floor-shade { position: absolute; left: 0; right: 0; bottom: 0; height: 760px; background: linear-gradient(180deg, rgba(7, 20, 35, 0) 0%, rgba(7, 20, 35, 0.72) 100%); }
 
-      /* hook hero word, behind the head */
-      #hero { position: absolute; left: 0; right: 0; top: 90px; height: 300px; display: flex; justify-content: center; align-items: flex-end; direction: ltr; }
-      #hero .ch { display: inline-block; font-weight: 900; font-size: 150px; line-height: 1; letter-spacing: -0.04em; color: #54d6d2; text-shadow: 0 12px 36px rgba(0, 0, 0, 0.45); }
+      /* hook hero word: above the head line (behind the head only at its lower edge, so it stays readable) */
+      #hero { position: absolute; left: 0; right: 0; top: 40px; height: 230px; display: flex; justify-content: center; align-items: flex-end; direction: ltr; }
+      #hero .ch { display: inline-block; font-weight: 900; font-size: var(--hs, 170px); line-height: 1; letter-spacing: -0.04em; color: #54d6d2; text-shadow: 0 12px 36px rgba(0, 0, 0, 0.45); }
 
       /* side column (left wall), max width keeps clear of the face */
       .card {
@@ -87,6 +87,7 @@
       .stack > div { direction: rtl; border-radius: 18px; box-shadow: 0 12px 30px rgba(0, 0, 0, 0.42); }
       .stack .ltr { direction: ltr; letter-spacing: -0.02em; }
       .sk-title { background: transparent !important; box-shadow: none !important; font-weight: 900; font-size: 54px; color: var(--cream); text-shadow: 0 4px 18px rgba(0,0,0,.6); text-align: right; }
+      .sk-title.plate { background: rgba(10, 28, 52, 0.78) !important; border-radius: 18px; padding: 8px 24px 14px; text-align: center; } /* light shirts (Ep2 Khaled) */
       .sk-card { background: rgba(16, 51, 90, 0.94); border: 3px solid rgba(26, 170, 193, 0.9); padding: 12px 22px 18px; text-align: center; font-weight: 900; font-size: 50px; color: var(--cream); }
       .sk-teal { background: var(--aqua); color: var(--ink); padding: 10px 22px 16px; text-align: center; font-weight: 900; font-size: 48px; }
       .sk-orange { background: var(--orange); color: var(--cream); padding: 10px 22px 16px; text-align: center; font-weight: 900; font-size: 48px; }
@@ -97,10 +98,10 @@
       /* front: logo, name card, captions */
       #mark { position: absolute; top: 130px; left: 56px; width: 128px; height: 128px; }
       #mark img { width: 100%; height: 100%; object-fit: contain; }
-      #namecard { position: absolute; right: 120px; top: 1030px; direction: rtl; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; opacity: 0; }
-      #namecard .bar { width: 120px; height: 8px; border-radius: 4px; background: var(--orange); transform-origin: 100% 50%; }
-      #namecard .nm { font-weight: 800; font-size: 50px; color: var(--cream); text-shadow: 0 3px 18px rgba(0, 0, 0, 0.6); }
-      #namecard .ttl { font-weight: 600; font-size: 32px; color: var(--ink); background: var(--aqua); padding: 6px 18px 10px; border-radius: 10px; }
+      #namecard, [id^="namecard-x"] { position: absolute; right: 120px; top: 1030px; direction: rtl; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; opacity: 0; }
+      #namecard .bar, [id^="namecard-x"] .bar { width: 120px; height: 8px; border-radius: 4px; background: var(--orange); transform-origin: 100% 50%; }
+      #namecard .nm, [id^="namecard-x"] .nm { font-weight: 800; font-size: 50px; color: var(--cream); text-shadow: 0 3px 18px rgba(0, 0, 0, 0.6); }
+      #namecard .ttl, [id^="namecard-x"] .ttl { font-weight: 600; font-size: 32px; color: var(--ink); background: var(--aqua); padding: 6px 18px 10px; border-radius: 10px; }
       #captions { position: absolute; left: 90px; right: 150px; top: 1260px; height: 260px; }
       .cap { position: absolute; left: 0; right: 0; top: 0; display: flex; justify-content: center; opacity: 0; }
       .cap .pill { direction: rtl; max-width: 840px; text-align: center; background: rgba(16, 51, 90, 0.9); border-radius: 26px; padding: 14px 34px 24px; box-shadow: 0 14px 40px rgba(0, 0, 0, 0.4);  display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: 0 38px;}
@@ -115,7 +116,7 @@
       #cta .yt { direction: ltr; display: inline-flex; align-items: center; gap: 14px; }
       #cta .play { width: 84px; height: 60px; border-radius: 16px; background: var(--orange); display: flex; align-items: center; justify-content: center; }
       #cta .play i { display: block; width: 0; height: 0; border-left: 26px solid var(--cream); border-top: 16px solid transparent; border-bottom: 16px solid transparent; margin-left: 6px; }
-      #cta .guest { direction: rtl; font-weight: 600; font-size: 38px; color: var(--aqua); }
+      #cta .url { direction: ltr; font-weight: 800; font-size: 46px; letter-spacing: -0.01em; color: var(--aqua); }
       /* hook -> story transition: brand wipe over the cut so the story doesn't read as the hook continuing */
       #hookwipe { position: absolute; inset: 0; z-index: 7; background: #0b2340; display: flex; align-items: center; justify-content: center; pointer-events: none; visibility: hidden; }
       #hookwipe::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 18px; background: #07c3be; }
@@ -165,7 +166,7 @@
       <div id="cta">
         <img src="assets/logo.png" alt="" />
         <div class="line"><span class="ctatext"></span> <span class="yt"><span class="play"><i></i></span>YouTube</span></div>
-        <div class="guest"></div>
+        <div class="url"></div>
       </div>
 
       <audio id="vo" src="assets/vo.wav" data-start="0" data-duration="{{AROLL_DUR}}" data-media-start="0" data-track-index="10" data-volume="1"></audio>
@@ -189,6 +190,10 @@
         });
         cap.appendChild(pill); $("#captions").appendChild(cap);
       });
+      if (C.capTop) $("#captions").style.top = C.capTop + "px"; // lower captions when the stacks sit low (Ep2 Khaled)
+      if (C.capWide) { $("#captions").style.left = "40px"; $("#captions").style.right = "40px"; document.querySelectorAll(".cap .pill").forEach((p) => (p.style.maxWidth = "1000px")); } // long English runs stay on one line
+      if (C.heroTop != null) $("#hero").style.top = C.heroTop + "px";
+      if (C.heroSize) document.querySelectorAll("#hero").forEach((h) => h.style.setProperty("--hs", C.heroSize + "px"));
       (C.hero || "").split("").forEach((ch, i) => { const s = el("span", "ch", ch); s.id = "hero-" + i; s.setAttribute("data-layout-allow-occlusion", ""); $("#hero").appendChild(s); });
       (C.cards || []).forEach((cd, i) => {
         const c = el("div", "card"); c.id = "card-" + i; c.style.top = (360 + i * 200) + "px";
@@ -215,7 +220,14 @@
         const r = el("div", "it"); r.id = "chk-" + i; r.appendChild(el("div", "tick", "✓")); r.appendChild(el("div", "tx", it.text)); $("#check").appendChild(r);
       });
       $("#namecard .nm").textContent = C.name || ""; $("#namecard .ttl").textContent = C.title || "";
-      $("#cta .ctatext").textContent = C.cta || "الحلقة كاملة على"; $("#cta .guest").textContent = C.guest || "";
+      // extra name cards for a second speaker: [{name, title, at: anchor, top, hold}] — placed clear of the stacks via top
+      (C.extraNames || []).forEach((x, i) => {
+        const nc = $("#namecard").cloneNode(true); nc.id = "namecard-x" + i;
+        nc.querySelector(".nm").textContent = x.name; nc.querySelector(".ttl").textContent = x.title;
+        if (x.top != null) nc.style.top = x.top + "px";
+        $("#namecard").parentNode.appendChild(nc);
+      });
+      $("#cta .ctatext").textContent = C.cta || "الحلقة كاملة على"; $("#cta .url").textContent = C.ytUrl || "youtube.com/@RabetPodcast"; // channel link, no «مع …» line
 
       (C.stacks || []).forEach((g) => {
         const st = el("div", "stack"); st.id = g.id; st.style.top = (g.top || 360) + "px";
@@ -223,7 +235,7 @@
         if (g.left ?? C.stackLeft) st.style.left = (g.left ?? C.stackLeft) + "px";
         if (g.width ?? C.stackWidth) st.style.width = (g.width ?? C.stackWidth) + "px";
         g.items.forEach((it, i) => {
-          const d = el("div", (it.k || "sk-card") + (it.ltr ? " ltr" : "")); d.id = `${g.id}-${i}`;
+          const d = el("div", (it.k || "sk-card") + (it.ltr ? " ltr" : "") + (C.titlePlate && it.k === "sk-title" ? " plate" : "")); d.id = `${g.id}-${i}`;
           if (it.k === "sk-tick") { d.appendChild(el("span", "tick", "✓")); d.appendChild(el("span", "", it.t)); } else d.textContent = it.t;
           if (it.size) d.style.fontSize = it.size + "px";
           if (it.strike) d.insertAdjacentHTML("beforeend", '<svg class="strike" viewBox="0 0 420 200" preserveAspectRatio="none" style="position:absolute;inset:-6px;width:calc(100% + 12px);height:calc(100% + 12px);overflow:visible"><path d="M20 165 C 140 115, 260 85, 400 30" style="fill:none;stroke:#ff6600;stroke-width:14;stroke-linecap:round" /></svg>');
@@ -236,7 +248,7 @@
       const fitStacks = () => document.querySelectorAll(".stack > div").forEach((d) => {
         d.style.whiteSpace = "nowrap";
         let fs = parseFloat(getComputedStyle(d).fontSize);
-        const inner = () => { const r = document.createRange(); r.selectNodeContents(d); const k = d.getBoundingClientRect().width / (d.offsetWidth || 1) || 1; return r.getBoundingClientRect().width / k; };
+        const inner = () => { const r = document.createRange(); r.selectNodeContents(d.firstChild && d.firstChild.nodeType === 3 ? d.firstChild : d); /* text only: a strike SVG is as wide as the box */ const k = d.getBoundingClientRect().width / (d.offsetWidth || 1) || 1; return r.getBoundingClientRect().width / k; };
         const room = () => d.clientWidth - parseFloat(getComputedStyle(d).paddingLeft) - parseFloat(getComputedStyle(d).paddingRight) - 6;
         while (inner() > room() && fs > 20) { fs -= 1; d.style.fontSize = fs + "px"; }
       });
@@ -292,6 +304,15 @@
         tl.fromTo("#namecard .ttl", { x: 60, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, T.name + 0.18);
         tl.to("#namecard", { opacity: 0, x: 40, duration: 0.3, ease: "power2.in" }, T.name + (C.nameHold || 2.6));
       }
+      (C.extraNames || []).forEach((x, i) => {
+        const id = "#namecard-x" + i, at = T[x.at];
+        if (typeof at !== "number") return;
+        tl.set(id, { opacity: 1 }, at);
+        tl.fromTo(id + " .bar", { scaleX: 0 }, { scaleX: 1, duration: 0.35, ease: "power3.out" }, at);
+        tl.fromTo(id + " .nm", { x: 60, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, at + 0.06);
+        tl.fromTo(id + " .ttl", { x: 60, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, at + 0.18);
+        tl.to(id, { opacity: 0, x: 40, duration: 0.3, ease: "power2.in" }, at + (x.hold || 2.4));
+      });
 
       // ---------- myth cards → strike → out ----------
       (C.cards || []).forEach((cd, i) => {
@@ -349,24 +370,31 @@
 
       // ---------- generic side stacks ----------
       const AT = (v) => (typeof v === "number" ? v : T[v]);
+      // nameClear: shirt stacks and the name card share a zone -> no stack while the card is up
+      const nW = C.nameClear && typeof T.name === "number" ? [T.name - 0.25, T.name + (C.nameHold || 2.6) + 0.35] : null;
       (C.stacks || []).forEach((g) => {
-        const t0 = AT(g.at); if (typeof t0 !== "number") return;
+        let t0 = AT(g.at); if (typeof t0 !== "number") return;
+        let tOut = g.out != null ? AT(g.out) : null;
+        if (nW && t0 < nW[0] && (tOut == null || tOut > nW[0])) tOut = nW[0];   // leaves before the card
+        if (nW && t0 >= nW[0] && t0 < nW[1]) t0 = nW[1];                         // waits for the card
+        if (tOut != null && tOut <= t0) return;
         tl.set("#" + g.id, { opacity: 1 }, t0);
         g.items.forEach((it, i) => {
-          const t = it.at != null ? AT(it.at) : t0 + i * (g.step || 0.3);
+          let t = it.at != null ? AT(it.at) : t0 + i * (g.step || 0.3);
+          if (t < t0) t = t0 + i * 0.12;
           tl.fromTo(`#${g.id}-${i}`, { x: -440, opacity: 0, rotation: i % 2 ? 4 : -4 }, { x: 0, opacity: 1, rotation: 0, duration: 0.42, ease: "back.out(1.6)" }, t);
           if (it.k === "sk-tick") tl.fromTo(`#${g.id}-${i} .tick`, { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(3)" }, t + 0.15);
           if (it.strike) { tl.to(`#${g.id}-${i} svg.strike path`, { strokeDashoffset: 0, duration: 0.22, ease: "power2.out" }, AT(it.strike)); tl.to(`#${g.id}-${i}`, { filter: "grayscale(0.6) brightness(0.92)", duration: 0.3, ease: "none" }, AT(it.strike) + 0.25); }
           if (it.pulse != null) tl.to(`#${g.id}-${i}`, { scale: 1.1, duration: 0.22, ease: "power2.out", yoyo: true, repeat: 1 }, AT(it.pulse));
         });
-        if (g.out != null) tl.to("#" + g.id, { x: -500, opacity: 0, duration: 0.35, ease: "power3.in" }, AT(g.out));
+        if (tOut != null) tl.to("#" + g.id, { x: -500, opacity: 0, duration: 0.35, ease: "power3.in" }, tOut);
       });
 
       // ---------- CTA ----------
       tl.fromTo("#cta", { opacity: 0, yPercent: 8 }, { opacity: 1, yPercent: 0, duration: 0.4, ease: "power3.out" }, D - 0.05);
       tl.fromTo("#cta img", { scale: 0.7, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.7)" }, D + 0.05);
       tl.fromTo("#cta .line", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, D + 0.25);
-      tl.fromTo("#cta .guest", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, D + 0.4);
+      tl.fromTo("#cta .url", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, D + 0.4);
 
       // hook -> story: wipe in from the right (RTL), cover the cut, wipe out to the left
       if (R.hookEnd > 0) {

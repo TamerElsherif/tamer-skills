@@ -8,8 +8,8 @@ description: Produce 9:16 reels + thumbnails from Rabet (رابط) Podcast episo
 > v0.7 (2026-10-23): surgical cuts (`cutsafe.py`, rule 13) and an edge check before delivery. v0.4 (2026-10-17): Whisper + mattes on the RTX 5050. v0.3 (2026-10-16): Episode 2 clips 05–12 shipped from this pipeline (HQ multicam master, Postiz campaign).
 > Per-user settings (output folder, Postiz URL/token, channel ids) live in `~/.rabet-reels.json` — copy
 > `config.example.json`. Never hard-code them in the skill.
-> **ONE reel per sheet topic** — never three variants. Pick the style by content (below) and the
-> thumbnail by content + B2B audience. All three styles and T1–T3 thumbnails are user-approved.
+> **ONE reel per sheet topic** — never three variants. **Style: always S1 Clean** (user decision, 24 Oct 2026 —
+> S2 Split / S3 Bold only if the user asks). Pick the thumbnail by content + B2B audience (T1–T3 are user-approved).
 
 ### Style / thumbnail choice
 | Content | Style | Thumb |
@@ -17,7 +17,7 @@ description: Produce 9:16 reels + thumbnails from Rabet (رابط) Podcast episo
 | Calm advice, checklists, "how we work" | S1 Clean (side stacks) | T1 big two-line question/claim |
 | Step-by-step teaching, frameworks, lists | S2 Split (panels; no matte → fastest, most robust) | T3 editorial quote |
 | Punchy / contrarian / quotable framework | S3 Bold (box groups) | T2 cinematic BG + cutout |
-Alternate guests and styles across a campaign so the feed doesn't repeat.
+The style column is kept for reference only: every reel now ships in S1 Clean. Alternate guests across a campaign so the feed doesn't repeat.
 
 ## 0. Inputs
 
@@ -27,7 +27,7 @@ Alternate guests and styles across a campaign so the feed doesn't repeat.
 | Episodes | HQ episode master from the user (multicam, cuts between cameras). If sheet times come from an earlier cut, find the constant offset by audio cross-correlation (Ep 2: +51.36 s) |
 | Output | `output_dir` from `~/.rabet-reels.json`: `ReelNN_<Title>.mp4` + `_cover.mp4` + `ReelNN_thumbnail.png` |
 | Brand | The user's brand-identity folder · named photos of hosts and guests |
-| Names | Use the name the user gives, not photo file names (Ep 2 guest: «م. خالد ناصر الدين — مستشار التسويق الإستراتيجي»; host: هيثم فؤاد). The episode is «الحلقة الثانية» — check the episode number before writing captions |
+| Names | Ep 3 titles: تامر الشريف — IT & AI Transformation Expert · حسام عزت — Software Engineering Advocate · هيثم فؤاد — Founder - prodXeed. Use the name the user gives, not photo file names (Ep 2 guest: «م. خالد ناصر الدين — مستشار التسويق الإستراتيجي»; host: هيثم فؤاد). The episode is «الحلقة الثانية» — check the episode number before writing captions |
 
 ## 1. Rules (from the user — do not regress)
 
@@ -35,7 +35,7 @@ Alternate guests and styles across a campaign so the feed doesn't repeat.
 2. **Graphics never cover the speaker's face.** Place them beside, above, below, or *behind* the speaker. Anything that touches the head goes on the **behind layer** (between plate and matte). Keep it identifiable: lay side graphics in the clear wall zone (S1: x 40–420, y 300–850, above the mic — the matte includes the mic).
 3. **Rabet logo**: ~130 px (videos) / ~175 px (thumbnails), placed high (top ≈ 120–150 px).
 4. **Matte edges must be clean** (no halo/slop around the head) → always `refine_matte.py` (head-crop matte + choke), never the raw full-frame matte.
-5. SFX only, no music. Full-episode CTA «الحلقة كاملة على YouTube». Name card once, early, below/beside the face, **timed on a shot where the named speaker is on screen** (check `media/shots.json`).
+5. SFX only, no music. Full-episode CTA «الحلقة كاملة على YouTube» + the channel link `youtube.com/@RabetPodcast` (beats `ytUrl` overrides); no «مع …» guest line (user, 2026-10-23). Name card once, early, below/beside the face, **timed on a shot where the named speaker is on screen** (check `media/shots.json`).
 6. Mixed script: English terms in Latin (glossary), every "marketing" form → Latin `Marketing` («بالـ Marketing»).
 7. Tighten pauses; alternate framing (1.0 ↔ 1.08) on every join; punch-in + impact at the turn.
 8. **RTL**: never start a line/headline with an English word; big wrapped headlines carry no English (bidi reorders it) — put English in its own box or mid-line. Captions/posts: RLM (U+200F) at each Arabic line start.
@@ -50,6 +50,10 @@ Alternate guests and styles across a campaign so the feed doesn't repeat.
     - Never drop a short leftover part; keep that pause instead.
     - Before delivery, run the isolated edge check: transcribe every kept part on its own with 1 s of silence around it, and confirm its first and last words are whole (`scripts/edge_check.py <source> <cuts.json | aroll_<style>.segments.json>`).
     - Don't cut inside a sentence unless the dropped part is redundant or off-topic.
+    - Check **both** edges. An end in continuous speech can make `safe_out` find "the first gap" inside the next word, and `safe_in` reaches up to 0.5 s back, which can pull in the previous speaker's last word. When the edge check hears a fragment, set the measured time in the spec: `exact_ends` / `exact_starts` (`build_aroll.py` uses those values as given).
+14. **Cover versions only** (user, 2026-10-23): ship `ReelNN_<Title>_cover.mp4` (thumbnail as a 1.2 s intro) + `ReelNN_thumbnail.png`; no plain copy. Stories get the cover version too.
+15. **S1 Clean is the default style** (user preferred it over S2 Split for Ep 3). When speakers fill the 9:16 frame there is no free wall: put **short stacks (≤ 3 lines) on the shirt**, `front: true`, `top ≈ 930`, `stackLeft 150`, `stackWidth 780`, and `nameClear: true` so no stack shares the name card's moment. The hook **hero word sits above the head** (`#hero` top 40 px, 170 px; `heroTop` / `heroSize` knobs), never mostly hidden behind it.
+16. **Keep every reel's final transcript** (from its corrected captions, body only) for the Reels sheet's `Transcript` column.
 
 ## 2. Fast path for the next reel (≈ 15 min hands-on + ~25 min machine time)
 
@@ -78,6 +82,7 @@ S1 placement knobs (beats `content`): `stackLeft`/`stackWidth` (all stacks) and 
 Overlays animated with GSAP `xPercent`/`x` must not also carry a CSS `transform` (GSAP adds its own on top: the hook wipe once parked on screen and covered the whole story). Position them only through `tl.set(...)` at t=0. A render needs several GB of free temp space on C: (S3 ≈ 4 GB of captured frames); a full disk fails at "capture_disk".
 Caption chunks shorter than the pop-in tween used to stick on screen forever in S3 ("ghost" glyphs over later captions; snapshots don't show it). Fixed in the template; if you see overlapping caption glyphs in a render, look for caps with `e - s < 0.12`.
 S1 stack lines never wrap (template shrinks the font to fit 400 px) — a wrapped mixed line pushes English to a line start.
+S1 opt-in knobs (content): `titlePlate` (dark plate behind stack titles — light shirts), `capTop` (caption y, default 1260), `capWide` (wider caption pill for long English runs). Spec `exact_starts` / builder `hook_start_exact`: measured cut starts that cutsafe must not move. A lone «الـ» caption chunk always merges into the next one.
 Transcripts: GPU large-v3 sometimes **drops words** in a cut A-roll (Ep 2 reels 10/11 lost «SaaS / Customer Success / scale-ups»). If captions miss words or anchors fail, caption from the wide transcript (`wide_words`); words that start in a cut gap snap to the next piece, and «ال -development» / «ن -implement» forms are normalised to «الـ Development».
 Multicam layout: cut-ins of the other person put their head higher (top ≈ y 590 of 1920). Keep S3 groups ending above ≈ y 560: max 3 lines (sizes ≤ 80 after a 120+ headline), merge list items («الأوتوبيس · الترام») or split a long list into two groups. Check every reaction shot in the sheet.
 Beats extras: `extra_words` (inject words into segments), `wide_words {"file","offset"}` (use the wide transcript when the cut-A-roll transcript is poor).
@@ -131,11 +136,17 @@ navy `#10335A` · deep `#0B2340` · teal `#1AAAC1` · aqua `#07C3BE` · orange `
 - Full `hyperframes check` times out on 60 s+ reels → check in 15 s ranges (`--range a,b --samples 4`).
 - Mattes: ~10 fps on GPU (a 45 s pass ≈ 2 min); the final VP9-alpha encode stays on CPU (NVENC has no alpha). Captures ~20–25 min for S1/S3 and are the bottleneck now: headless Chrome gets the Intel iGPU (Windows hybrid graphics), and `render --gpu` (NVENC) gave no speed-up (encode is ~10 % of a render) — don't add it.
 
+- **A-roll memory:** trimming many pieces from one long 4K input made ffmpeg buffer every later piece (19 GB commit, crashes). `build_aroll.py` now gives each piece its own seeked input.
+- **Render cache:** HyperFrames caches extracted frames in `%TEMP%` (GBs per reel, C: filled up). Point `TEMP`/`TMP` at a D: folder for batch renders and clear `hyperframes-extract-cache-*` after each reel. Two parallel render chains need **separate** temp folders (one chain's cleanup kills the other's render).
+- **Whisper on short cuts** sometimes hallucinates (English "translations", other scripts) or mishears English as Arabic letters. Compare the cut's own transcript with the episode transcript and use the better one (`wide_words`), map the glitches in `fixes`, and prefer `contains` anchors for words Whisper spells differently between runs.
+- **Captions:** adjacent English words are merged into one caption token (separate LTR spans display reversed, «Point Pain»); a chunk never ends on a prefix («الـ», «بالـ») and the hook never shares a chunk with the body (`make_reel_data.py`).
+
 ## 6. Postiz (self-hosted or cloud)
 - Default to **drafts** (`draft`) for user review; switch to `schedule` only when the user says so. URL/token from `~/.rabet-reels.json` (`postiz_token_file` may hold the `claude mcp add … Bearer …` line); never print the token.
 - To change existing posts (new video, wording, draft→schedule): create the replacements first, check them (`GET /api/public/v1/posts` → `state` QUEUE/DRAFT), then `DELETE /api/public/v1/posts/<id>` the old ones (it replies `{"error":true}` but deletes).
 - Per reel: LinkedIn host (+link comment) 09:30 · YT brand 17:00 · YT host 18:00 · FB brand 19:30 · FB host 20:00 · IG brand 20:30 · IG host 21:00 · TikTok 21:30 (+ link comments on FB/IG, engagement question on FB) · 4 stories (IG/FB ×2, clean video) 22:00 Cairo. Egypt DST ends last Thu of Oct (UTC+3 → +2); `postiz_payload.py` handles it.
-- Feeds/Shorts/TikTok get the **cover** video; stories get the clean one. YouTube thumbnail setting fails validation in Postiz → cover video + manual Studio thumbnail. Comments can't be pinned via Postiz (manual). `ask_postiz` fails (no OpenAI key on server).
+- Ep 3 states (user, 2026-10-24): LinkedIn Tamer + both Facebook posts stay **DRAFT** for review; YouTube, Instagram, TikTok and the stories are **scheduled**. Postiz can't flip a draft in place: create scheduled copies, then delete the drafts they replace.
+- Feeds/Shorts/TikTok get the **cover** video; stories get the clean one (Ep 3: cover only, see rule 14). YouTube thumbnail setting fails validation in Postiz → cover video + manual Studio thumbnail. Comments can't be pinned via Postiz (manual). `ask_postiz` fails (no OpenAI key on server).
 
 ## 7. Zernio (brand LinkedIn page + brand TikTok)
 Postiz has no LinkedIn **page** or Rabet TikTok integration, so those two channels go through the **Zernio** MCP connector.
@@ -144,6 +155,7 @@ Every reel scheduled on Postiz also gets 2 Zernio posts at the same date. Accoun
 - Call `call_tool` → `posts_create_post` (the simple `posts_create` only schedules "N minutes from now" and has no first comment).
   Arguments: `content`, `media_items: [{url, type: "video"}]`, `platforms: [{platform, accountId, platformSpecificData}]`,
   `scheduled_for: "YYYY-MM-DDTHH:MM:SS"` + `timezone: "Africa/Cairo"` (Zernio handles Egypt DST).
+  Add `is_draft: true` to save a draft that keeps its date (Ep 3: all Zernio posts are drafts). To replace a video, create the new draft, then `posts_delete` the old one.
 - **Media:** the reel's **cover** video. Its Postiz upload URL is public, so pass it straight in `media_items` (no re-upload).
 - **LinkedIn page (09:30 Cairo):** use the brand-voice caption (`facebook_brand`), drop the link lines, end with «الحلقة كاملة على YouTube، اللينك في أول كومنت.» and put the link in `platformSpecificData.firstComment` (LinkedIn suppresses links in captions). Don't use the host's `linkedin` caption: it has first-person opinions.
 - **TikTok (21:30 Cairo):** `content` = TikTok title line + TikTok caption; `tiktok_settings`: `privacyLevel PUBLIC_TO_EVERYONE`, `allowComment/allowDuet/allowStitch true`, `commercialContentType none`, `contentPreviewConfirmed true`, `expressConsentGiven true`, `videoCoverTimestampMs 500` (inside the 1.2 s thumbnail intro). Test with `dry_run: true` (TikTok only); LinkedIn: `validate_post`.

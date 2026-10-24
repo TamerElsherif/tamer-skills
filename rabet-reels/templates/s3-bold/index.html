@@ -74,6 +74,7 @@
         display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 34px; }
       #cta img { width: 520px; height: 520px; object-fit: contain; }
       #cta .box { font-size: 92px; }
+      #cta .url { direction: ltr; font-family: "Archivo Black", sans-serif; font-size: 48px; color: #07c3be; }
       #cta .yt { direction: ltr; display: inline-flex; align-items: center; gap: 16px; font-family: "Archivo Black", sans-serif; font-size: 76px; color: var(--cream); }
       #cta .play { width: 96px; height: 68px; border-radius: 18px; background: var(--orange); display: flex; align-items: center; justify-content: center; }
       #cta .play i { display: block; width: 0; height: 0; border-left: 30px solid var(--cream); border-top: 18px solid transparent; border-bottom: 18px solid transparent; margin-left: 6px; }
@@ -110,6 +111,7 @@
         <img src="assets/logo.png" alt="" />
         <div class="box b-white ctatext"></div>
         <div class="yt"><span class="play"><i></i></span>YouTube</div>
+        <div class="url"></div>
       </div>
       <audio id="vo" src="assets/vo.wav" data-start="0" data-duration="{{AROLL_DUR}}" data-media-start="0" data-track-index="10" data-volume="1"></audio>
 <!--SFX-->
@@ -143,7 +145,7 @@
       (C.xmarks || []).forEach((x) => { const tgt = $("#" + x.target); if (tgt) tgt.insertAdjacentHTML("beforeend", '<svg class="xmark" viewBox="0 0 100 100" preserveAspectRatio="none"><path vector-effect="non-scaling-stroke" d="M4 6 L 96 94" /><path vector-effect="non-scaling-stroke" d="M96 6 L 4 94" /></svg>'); });
       if (C.polaroid) $("#polaroid .cap").textContent = C.polaroid.caption || "";
       $("#name .n1").textContent = C.name || ""; $("#name .n2").textContent = C.title || "";
-      $("#cta .ctatext").textContent = C.cta || "الحلقة كاملة على";
+      $("#cta .ctatext").textContent = C.cta || "الحلقة كاملة على"; $("#cta .url").textContent = C.ytUrl || "youtube.com/@RabetPodcast";
       document.querySelectorAll(".xmark path").forEach((p) => { p.style.strokeDasharray = 3000; p.style.strokeDashoffset = 3000; });
 
       const tl = gsap.timeline({ paused: true });
@@ -209,6 +211,7 @@
       tl.fromTo("#cta img", { scale: 0.6, rotation: -8 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(2)" }, D + 0.04);
       tl.fromTo("#cta .box", { x: 500, rotation: 8 }, { x: 0, rotation: -2, duration: 0.35, ease: "back.out(1.8)" }, D + 0.2);
       tl.fromTo("#cta .yt", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "power3.out" }, D + 0.35);
+      tl.fromTo("#cta .url", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "power3.out" }, D + 0.5);
 
       // hook -> story: wipe in from the right (RTL), cover the cut, wipe out to the left
       if (R.hookEnd > 0) {
