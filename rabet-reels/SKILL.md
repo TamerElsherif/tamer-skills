@@ -5,7 +5,7 @@ description: Produce 9:16 reels + thumbnails (and 16:9 YouTube episode thumbnail
 
 # Rabet Reels
 
-> v0.9 (2026-10-28): episode thumbnails (`make_episode_thumbs.py`) + YouTube description recipe (§8); Facebook link in the first comment (rule 17). v0.7 (2026-10-23): surgical cuts (`cutsafe.py`, rule 13) and an edge check before delivery. v0.4 (2026-10-17): Whisper + mattes on the RTX 5050. v0.3 (2026-10-16): Episode 2 clips 05–12 shipped from this pipeline (HQ multicam master, Postiz campaign).
+> v1.0 (2026-10-28): reel ends checked past the end (`tail_check.py`, rule 18) after a partner review found five reels cut mid-thought; fixing shipped reels (§9). v0.9 (2026-10-28): episode thumbnails (`make_episode_thumbs.py`) + YouTube description recipe (§8); Facebook link in the first comment (rule 17). v0.7 (2026-10-23): surgical cuts (`cutsafe.py`, rule 13) and an edge check before delivery. v0.4 (2026-10-17): Whisper + mattes on the RTX 5050. v0.3 (2026-10-16): Episode 2 clips 05–12 shipped from this pipeline (HQ multicam master, Postiz campaign).
 > Per-user settings (output folder, Postiz URL/token, channel ids) live in `~/.rabet-reels.json` — copy
 > `config.example.json`. Never hard-code them in the skill.
 > **ONE reel per sheet topic** — never three variants. **Style: always S1 Clean** (user decision, 24 Oct 2026 —
@@ -50,11 +50,15 @@ The style column is kept for reference only: every reel now ships in S1 Clean. A
     - Never drop a short leftover part; keep that pause instead.
     - Before delivery, run the isolated edge check: transcribe every kept part on its own with 1 s of silence around it, and confirm its first and last words are whole (`scripts/edge_check.py <source> <cuts.json | aroll_<style>.segments.json>`).
     - Don't cut inside a sentence unless the dropped part is redundant or off-topic.
+    - When a speaker's last word runs straight into the next speaker's first word (no gap), `safe_out` prints "kept" and leaves the cut **inside** the word (Ep 3 Reel23 ended on «كا-» of «كاش» before Hossam's «طيب»). Never ship a "kept" end: find the gap with `tail_check.py` and set it in `exact_ends`.
     - Check **both** edges. An end in continuous speech can make `safe_out` find "the first gap" inside the next word, and `safe_in` reaches up to 0.5 s back, which can pull in the previous speaker's last word. When the edge check hears a fragment, set the measured time in the spec: `exact_ends` / `exact_starts` (`build_aroll.py` uses those values as given).
 14. **Cover versions only** (user, 2026-10-23): ship `ReelNN_<Title>_cover.mp4` (thumbnail as a 1.2 s intro) + `ReelNN_thumbnail.png`; no plain copy. Stories get the cover version too.
 15. **S1 Clean is the default style** (user preferred it over S2 Split for Ep 3). When speakers fill the 9:16 frame there is no free wall: put **short stacks (≤ 3 lines) on the shirt**, `front: true`, `top ≈ 930`, `stackLeft 150`, `stackWidth 780`, and `nameClear: true` so no stack shares the name card's moment. The hook **hero word sits above the head** (`#hero` top 40 px, 170 px; `heroTop` / `heroSize` knobs), never mostly hidden behind it.
 16. **Keep every reel's final transcript** (from its corrected captions, body only) for the Reels sheet's `Transcript` column.
 17. **No YouTube link in Facebook / LinkedIn post text** (user, 2026-10-26: links cut the reach). The text ends with «الحلقة كاملة على YouTube، اللينك في أول كومنت 👇» (before the hashtags) and the link becomes the **first comment** («الحلقة كاملة على YouTube:» + link). Existing posts: rebuild from the current server text and tags, create the replacement, then delete the old one with the same date, state, media and later comments.
+18. **Listen past the end before building** (partner review, 2026-10-28: 5 of 13 Haitham reels in Ep 3 ended early). Sheet ends are whole seconds picked by ear, and the episode transcript **drops words** (Haitham's section), so a snapped end can be mid-sentence. For every range end, run `scripts/tail_check.py <source> <end>`. It runs its own Whisper pass and shows 15 s past the end, plus the real pauses with the words on each side. Extend the end while the next words continue the thought: «علشان / عشان / لكن / بس / ف… / على مستوى…», the second half of «X ولا Y», or a parallel «طب بالنسبة لـ…» that answers the same question. Stop at a speaker change, a new question or a new topic. Then `--cut T` checks both sides in isolation: the before part ends on the whole last word, the after part starts on the next word.
+    Partner time stamps may come from the **low-quality** episode file (Ep 3: 13.4 s shorter, −6.36 s at 10 min, not constant). Map them by transcribing the same line in both files.
+    After the render, the reel's **last caption** must be the last spoken word. A wide-transcript word that straddles the final cut can vanish, and a phantom next word («على») can show instead (Reel32). Compare with the cut's own transcript and use `own_words` when it's clean.
 
 ## 2. Fast path for the next reel (≈ 15 min hands-on + ~25 min machine time)
 
@@ -94,6 +98,7 @@ Beats extras: `extra_words` (inject words into segments), `wide_words {"file","o
 |---|---|
 | `scripts/build_aroll.py` | speech islands via silencedetect → drop tiny/filler/`drop_ranges` → pad/merge → hook + body → every edge moved into a real word gap (`cutsafe.py`) → quieter neighbouring frame, 12 ms fades |
 | `scripts/cutsafe.py` | surgical cut points: full-band + high-frequency gap finder (`Env.snap_in/snap_out/safe_in/safe_out/on_grid/pauses`); raises `CutError` when words run together |
+| `scripts/tail_check.py` | pre-build check of a range end/start: own Whisper pass 15 s past it (source times), real pauses with the words around them, `--cut T` isolated before/after check (rule 18) |
 | `scripts/edge_check.py` | pre-delivery check: transcribes every kept part on its own and lists its words with offsets, so a clipped edge word shows |
 | `scripts/transcribe_words.py` | Whisper large-v3 on GPU (float16) word timings in output time; prints the device and warns on CPU fallback |
 | `scripts/glossary.json` | Whisper spelling fixes, English phrase map, `break_before` / `break_after` / `no_end` caption rules — **grow it every reel** |
@@ -182,3 +187,12 @@ Every reel scheduled on Postiz also gets 2 Zernio posts at the same date. Accoun
    The times are for the master **without** a teaser; if the upload has the teaser, shift every chapter by the teaser length (Ep 3: +58 s, ffprobe both masters) and add `00:00 التيزر`. Give both lists if unsure which file goes up.
 4. Channel CTA `https://www.youtube.com/@RabetPodcast`, then ~12 hashtags (#رابط_بودكاست #بودكاست_تقني #الذكاء_الاصطناعي #RabetPodcast + topic tags) and a comma list for the tags field.
 Save as `Ep<N>_YouTube_Title_Description.txt` next to the thumbnails.
+
+## 9. Fixing a shipped reel (re-cut after review)
+1. Find the right edge with `tail_check.py` and put the new end in the reel definition (`ranges` + `range_end_exact`; and `hook_end_exact` when the hook ends on the same word). Rebuild A-roll → words → beats → render → ship. Thumbnails stay.
+2. A re-transcribed cut can spell English terms in Arabic letters («إجزام», «زومبي فيتشرز»), which breaks word anchors. Add `fixes`; don't move anchors.
+3. Check the rendered file: transcribe its last 12 s (the speaker's last word, then the CTA) and pull a frame before the CTA.
+4. **Drive:** the Drive connector can't upload content. Copy the file into the synced `G:/My Drive/<upload folder>`, find the new file id with `search_files`, then `update_file parentId` into the reels folder. Files owned by the other Google account can't be trashed from the connector, so rename them `OLD_…` and tell the user. A full C: drive (Drive caches uploads there) fails the copy with "No space left"; `pip cache purge` frees GBs. New file ⇒ new link: update the sheet's Reel Link (S) and Transcript (U) (`export_transcripts.py`).
+5. **Zernio:** `call_tool posts_update_post {post_id, media_items:[{url, type:"video"}]}` swaps the video in place and keeps text, mentions, first comment, tags and date. No delete/recreate needed.
+6. **Postiz:** media can't be edited in place. Rebuild every post of the reel from its current server text, tags, date, state and settings, take the comments from the reel's payload (Facebook: link comment first), create it, then delete the old post (`video_swap.py` pattern). The public API allows ≈ 30 calls/hour, so run it paced in the background (`PACE=125`, about 4 h for 5 reels).
+

@@ -220,6 +220,7 @@ rabet-reels/
     ├── build_aroll.py       # silence tightening, hooks, multicam auto-crop
     ├── cutsafe.py           # surgical cut points: never inside a word
     ├── edge_check.py        # pre-delivery check: is any edge word clipped?
+    ├── tail_check.py        # pre-build check: does the reel end where the idea ends?
     ├── shots.py             # camera cuts + face position per shot
     ├── transcribe_words.py  # Whisper large-v3 word timings
     ├── glossary.json        # spelling fixes, English phrases, caption break rules
@@ -242,7 +243,7 @@ rabet-reels/
 
 - Graphics **never cover a face**. They go beside, above, below or behind the speaker cut-out.
 - A hook in the first 1–3 s, SFX only (no music, at 0.6× volume), and a CTA to the full episode.
-- **Surgical cuts:** never cut inside a word. Sheet times are whole seconds and Whisper word edges drift, so every cut is moved into a real acoustic gap by `cutsafe.py` (it hears the hiss of a final "s" as speech), and `edge_check.py` confirms each part's first and last words are whole before delivery.
+- **Surgical cuts:** never cut inside a word. Sheet times are whole seconds and Whisper word edges drift, so every cut is moved into a real acoustic gap by `cutsafe.py` (it hears the hiss of a final "s" as speech), and `edge_check.py` confirms each part's first and last words are whole before delivery. Before building, `tail_check.py` reads 15 s past every planned end so a reel never stops mid-thought.
 - **Complete ideas only:** a reel starts on a sentence start and ends on a sentence end. Never end on the first words of the next idea, never start mid-sentence.
 - **Hooks are a complete micro-idea** (no trailing «أو / و / ف», no leading «كده / فهو / أو»), and a brand wipe covers the cut from hook to story so it doesn't read as the hook continuing.
 - English terms stay in Latin script. **No line or headline starts with an English word**, and Arabic lines start with RLM (U+200F).
@@ -269,6 +270,7 @@ rabet-reels/
 
 ## 📝 Changelog
 
+- **2026-10-28**: v1.0. Partner review fixes: five Ep 3 reels ended mid-thought or inside the last word. New `tail_check.py` (own Whisper pass 15 s past a planned end, real pauses around it, isolated before/after check), house rule 18 (extend while the next words continue the idea; never ship a cutsafe "kept" end; last caption = last spoken word), and §9 for fixing shipped reels (Drive replace, Zernio in-place video swap, paced Postiz rebuild).
 - **2026-10-28**: v0.9. Full-episode YouTube kit: `make_episode_thumbs.py` (three 1280×720 variants for 2–3 guests from a spec JSON) and a title/description recipe with chapters, teaser offset, guest LinkedIn links and hashtags. Facebook/LinkedIn posts carry no YouTube link in the text; the link goes in the first comment.
 - **2026-10-25**: v0.8. Episode 3 (33 reels). Outro shows the channel link (no «مع …» line); cover-only delivery; S1 shirt stacks with `nameClear`; hero word above the head; `exact_ends`/`exact_starts` for edges in continuous speech; per-piece ffmpeg inputs (no 4K buffering); caption fixes (merged English terms, no prefix chunk ends, hook/body split, lowercase-English normalisation); strike-through on stack cards; Zernio drafts and draft→scheduled swaps.
 - **2026-10-23**: v0.7. Surgical cuts: `cutsafe.py` places every cut in a real word gap (full-band + high-frequency level, first gap after speech for outs, last gap before speech for ins, soft tails extend to the pause). `build_aroll.py` uses it for every edge and picks the quieter neighbouring frame. New `edge_check.py` pre-delivery check. House rule 13.
