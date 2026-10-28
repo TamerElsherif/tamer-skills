@@ -89,6 +89,7 @@ bash $S/pipeline.sh <reel_dir> render  [styles]     # data → assemble → rang
 bash $S/pipeline.sh <reel_dir> all     [styles]     # everything in order
 
 python $S/make_thumb.py <reel_dir>/thumb.json <reel_dir>/thumb.png          # 1080×1920 thumbnail
+python $S/make_episode_thumbs.py episode_thumb.json                         # 3× 1280×720 YouTube episode thumbnails
 bash   $S/finish.sh <reel_dir> 06 s3-bold Can-You-Make-Money                # copy + cover + upload
 python $S/postiz_payload.py captions.json 06 uploads.json \
        Reel06_Can-You-Make-Money.mp4 Reel06_Can-You-Make-Money_cover.mp4 2026-10-22 payload.json schedule
@@ -195,6 +196,11 @@ For each reel: `finish.sh` builds the cover and uploads, `postiz_payload.py … 
 
 Claude re-places every cut with `cutsafe.py`. Whisper had put the next word 0.15 s early, so the cut landed on the "s". The real gap was the dip at 54.57 s, where both the voice and the hiss drop. It moves boundaries with no real gap to another phrase break, re-renders, and runs `edge_check.py` so every part's first and last words are confirmed whole.
 
+**5. Ship the full episode on YouTube**
+> *"Create 3 thumbnail variants for Ep3, suggest title, description and hashtags, include the topics and the guests' LinkedIn links."*
+
+Claude cuts out each guest from a 4K frame, writes an `episode_thumb.json` spec and runs `make_episode_thumbs.py` for variants A/B/C. It then writes title options and a description with chapters taken from the clip times (shifted by the teaser length when the upload has one), the guests' titles and LinkedIn links, the channel link and hashtags.
+
 ## 🗂️ Layout
 
 ```
@@ -223,6 +229,7 @@ rabet-reels/
     ├── assemble.py          # stamps a template into a HyperFrames project
     ├── styles.json          # style → template + matte needs
     ├── make_thumb.py        # thumbnail renderer
+    ├── make_episode_thumbs.py # 16:9 episode thumbnails A/B/C (2–3 guests)
     ├── add_cover.py         # thumbnail as a 1.2 s intro
     ├── finish.sh            # ship: copy + cover + upload
     ├── config.py            # loads ~/.rabet-reels.json
@@ -262,6 +269,7 @@ rabet-reels/
 
 ## 📝 Changelog
 
+- **2026-10-28**: v0.9. Full-episode YouTube kit: `make_episode_thumbs.py` (three 1280×720 variants for 2–3 guests from a spec JSON) and a title/description recipe with chapters, teaser offset, guest LinkedIn links and hashtags. Facebook/LinkedIn posts carry no YouTube link in the text; the link goes in the first comment.
 - **2026-10-25**: v0.8. Episode 3 (33 reels). Outro shows the channel link (no «مع …» line); cover-only delivery; S1 shirt stacks with `nameClear`; hero word above the head; `exact_ends`/`exact_starts` for edges in continuous speech; per-piece ffmpeg inputs (no 4K buffering); caption fixes (merged English terms, no prefix chunk ends, hook/body split, lowercase-English normalisation); strike-through on stack cards; Zernio drafts and draft→scheduled swaps.
 - **2026-10-23**: v0.7. Surgical cuts: `cutsafe.py` places every cut in a real word gap (full-band + high-frequency level, first gap after speech for outs, last gap before speech for ins, soft tails extend to the pause). `build_aroll.py` uses it for every edge and picks the quieter neighbouring frame. New `edge_check.py` pre-delivery check. House rule 13.
 - **2026-10-22**: v0.6. Brand LinkedIn page + brand TikTok via the Zernio connector (`zernio` block in the config; SKILL.md section 7).

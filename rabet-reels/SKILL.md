@@ -1,11 +1,11 @@
 ---
 name: rabet-reels
-description: Produce 9:16 reels + thumbnails from Rabet (رابط) Podcast episodes — Egyptian Arabic mixed with English, B2B tech audience — and schedule them on Postiz. Use when the user asks to cut, style, caption, or thumbnail a Rabet clip, references the Rabet clip sheet, a "Final Clip ID", says "make the next reel", or wants reels drafted/scheduled across LinkedIn, YouTube Shorts, Facebook, Instagram and TikTok. Data-driven: a reel is a reel_spec.json + one beats file per style; scripts and HyperFrames templates do the rest.
+description: Produce 9:16 reels + thumbnails (and 16:9 YouTube episode thumbnails, titles and descriptions) from Rabet (رابط) Podcast episodes — Egyptian Arabic mixed with English, B2B tech audience — and schedule them on Postiz. Use when the user asks to cut, style, caption, or thumbnail a Rabet clip, references the Rabet clip sheet, a "Final Clip ID", says "make the next reel", or wants reels drafted/scheduled across LinkedIn, YouTube Shorts, Facebook, Instagram and TikTok, or asks for a full-episode YouTube thumbnail, title, description, chapters or hashtags. Data-driven: a reel is a reel_spec.json + one beats file per style; scripts and HyperFrames templates do the rest.
 ---
 
 # Rabet Reels
 
-> v0.7 (2026-10-23): surgical cuts (`cutsafe.py`, rule 13) and an edge check before delivery. v0.4 (2026-10-17): Whisper + mattes on the RTX 5050. v0.3 (2026-10-16): Episode 2 clips 05–12 shipped from this pipeline (HQ multicam master, Postiz campaign).
+> v0.9 (2026-10-28): episode thumbnails (`make_episode_thumbs.py`) + YouTube description recipe (§8); Facebook link in the first comment (rule 17). v0.7 (2026-10-23): surgical cuts (`cutsafe.py`, rule 13) and an edge check before delivery. v0.4 (2026-10-17): Whisper + mattes on the RTX 5050. v0.3 (2026-10-16): Episode 2 clips 05–12 shipped from this pipeline (HQ multicam master, Postiz campaign).
 > Per-user settings (output folder, Postiz URL/token, channel ids) live in `~/.rabet-reels.json` — copy
 > `config.example.json`. Never hard-code them in the skill.
 > **ONE reel per sheet topic** — never three variants. **Style: always S1 Clean** (user decision, 24 Oct 2026 —
@@ -54,6 +54,7 @@ The style column is kept for reference only: every reel now ships in S1 Clean. A
 14. **Cover versions only** (user, 2026-10-23): ship `ReelNN_<Title>_cover.mp4` (thumbnail as a 1.2 s intro) + `ReelNN_thumbnail.png`; no plain copy. Stories get the cover version too.
 15. **S1 Clean is the default style** (user preferred it over S2 Split for Ep 3). When speakers fill the 9:16 frame there is no free wall: put **short stacks (≤ 3 lines) on the shirt**, `front: true`, `top ≈ 930`, `stackLeft 150`, `stackWidth 780`, and `nameClear: true` so no stack shares the name card's moment. The hook **hero word sits above the head** (`#hero` top 40 px, 170 px; `heroTop` / `heroSize` knobs), never mostly hidden behind it.
 16. **Keep every reel's final transcript** (from its corrected captions, body only) for the Reels sheet's `Transcript` column.
+17. **No YouTube link in Facebook / LinkedIn post text** (user, 2026-10-26: links cut the reach). The text ends with «الحلقة كاملة على YouTube، اللينك في أول كومنت 👇» (before the hashtags) and the link becomes the **first comment** («الحلقة كاملة على YouTube:» + link). Existing posts: rebuild from the current server text and tags, create the replacement, then delete the old one with the same date, state, media and later comments.
 
 ## 2. Fast path for the next reel (≈ 15 min hands-on + ~25 min machine time)
 
@@ -110,6 +111,7 @@ Beats extras: `extra_words` (inject words into segments), `wide_words {"file","o
 | `scripts/postiz_upload.py` / `postiz_payload.py` / `postiz_drafts.py` | media upload (public API) → 12-post payload per reel → posts via the Postiz MCP endpoint (JSON-RPC; needs a curl User-Agent or Cloudflare 403s) |
 | `scripts/config.py` + `config.example.json` | per-user settings loader (`~/.rabet-reels.json`): output folder, Postiz URL/token, channel ids |
 | `scripts/finish.sh` | ship one reel: copy to `output_dir`, build the cover version, upload both to Postiz |
+| `scripts/make_episode_thumbs.py` | 16:9 YouTube episode thumbnails A/B/C (1280×720) for 2–3 guests from a spec JSON (§8) |
 | `templates/thumbs` | T1 cut-out+bold · T2 cinematic · T3 minimal (1080×1920, key content in centre 4:5) |
 
 Beats `content` keys per template are read directly by the template script — open the template's `<script>` to see every supported key.
@@ -161,3 +163,22 @@ Every reel scheduled on Postiz also gets 2 Zernio posts at the same date. Accoun
 - **TikTok (21:30 Cairo):** `content` = TikTok title line + TikTok caption; `tiktok_settings`: `privacyLevel PUBLIC_TO_EVERYONE`, `allowComment/allowDuet/allowStitch true`, `commercialContentType none`, `contentPreviewConfirmed true`, `expressConsentGiven true`, `videoCoverTimestampMs 500` (inside the 1.2 s thumbnail intro). Test with `dry_run: true` (TikTok only); LinkedIn: `validate_post`.
 - ⚠️ A `scheduled_for` already in the past **publishes immediately**. Check the Cairo time first and move a passed slot.
 - To replace a Zernio post: `posts_delete` (scheduled posts only) and create the new one. Log ids in `_campaign/zernio_scheduled.csv`.
+
+## 8. Full episode: YouTube thumbnail, title, description
+
+**Thumbnails** (user-approved style, Ep 2 and Ep 3): `python scripts/make_episode_thumbs.py spec.json` → `<prefix>.jpg/.png`, `_B`, `_C` in `out`.
+- A: navy grid, guest cut-outs left with a white outline, «الحلقة …» chip + logo, l1 (cream Lalezar) + l2 (orange tilted box) + kicker bar.
+- B: cream board, navy slanted block with an outlined episode number, guests clipped to the block, l1 navy + l2 orange + English chips.
+- C: like A with a huge aqua English word between l1 and l2.
+- Cut-outs: pick a 4K frame per guest where they look toward camera/right, `npx hyperframes@0.8.163 remove-background`. Mics stay in; table/cup remnants hide under the name chips. Order guests back→front (the front one is the rightmost head); tune `left/top/width` until no head touches the text (≈ x < 700) and check the contact sheet.
+- RTL rule 8 applies: no line starts with English; English words sit mid-line or in their own element.
+
+**Title**: 3–5 options under 100 chars, each pairing with one thumbnail, ending `| رابط بودكاست - الحلقة N`. B2B, insightful, a question or tension, no clickbait claims.
+
+**Description** (Egyptian Arabic + English terms, humanized):
+1. Two-sentence hook naming the tension, then who talks about what.
+2. Guests/hosts: name | title, LinkedIn link on the next line (ask the user for any profile link you don't have; Ep 3: Tamer, Haitham, Hossam).
+3. «محاور الحلقة:» chapters from the reel/clip source times (`ep*_defs.py` / sheet), first line `00:00`, ascending, ≥ 10 s apart.
+   The times are for the master **without** a teaser; if the upload has the teaser, shift every chapter by the teaser length (Ep 3: +58 s, ffprobe both masters) and add `00:00 التيزر`. Give both lists if unsure which file goes up.
+4. Channel CTA `https://www.youtube.com/@RabetPodcast`, then ~12 hashtags (#رابط_بودكاست #بودكاست_تقني #الذكاء_الاصطناعي #RabetPodcast + topic tags) and a comma list for the tags field.
+Save as `Ep<N>_YouTube_Title_Description.txt` next to the thumbnails.

@@ -7,7 +7,7 @@ Reusable [Claude Code skills](https://docs.anthropic.com/en/docs/claude-code/ski
 | [delivery-orchestrator](./delivery-orchestrator) | Interview-driven kickoff and end-to-end orchestration for software work |
 | [product-naming](product-naming/) | Find and clear a unique, trademark-friendly product name: tiered generation, live domain checks (RDAP), exact-word web search, competitor-collision and cross-language checks, ranked shortlist, name critiques |
 | [push-to-tamer-skills](./push-to-tamer-skills) | Publish a skill to Tamer's personal skills repository github.com/TamerElsherif/tamer-skills |
-| [rabet-reels](./rabet-reels) | Produce 9:16 reels + thumbnails from Rabet (رابط) Podcast episodes |
+| [rabet-reels](./rabet-reels) | Produce 9:16 reels + thumbnails (and 16:9 YouTube episode thumbnails, titles and descriptions) from Rabet (راب… |
 
 ## Install all skills at once
 
