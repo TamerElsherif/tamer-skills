@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Rabet Reel Thumbnail</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script src="thumb-data.js"></script>
+    <style>
+      @font-face { font-family: "LalezarLocal"; src: url("assets/fonts/Lalezar-Regular.ttf") format("truetype"); font-weight: 400; font-display: block; }
+      @font-face { font-family: "AlexandriaFull"; src: url("assets/fonts/Alexandria.ttf") format("truetype"); font-weight: 100 900; font-display: block; }
+      :root { --navy: #10335a; --teal: #1aaac1; --aqua: #07c3be; --orange: #ff6600; --cream: #fdf9f5; --ink: #0b0d10; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--ink); }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      .t { display: none; position: absolute; inset: 0; }
+      .box { display: inline-block; line-height: 1.12; direction: rtl; box-shadow: 12px 12px 0 rgba(0, 0, 0, 0.3); white-space: nowrap; }
+      .lal { font-family: "LalezarLocal", sans-serif; }
+      .ltr { direction: ltr; }
+      .outline { filter: drop-shadow(10px 0 0 #fff) drop-shadow(-10px 0 0 #fff) drop-shadow(0 10px 0 #fff) drop-shadow(0 -10px 0 #fff) drop-shadow(0 30px 40px rgba(0, 0, 0, 0.45)); }
+      .who { position: absolute; object-fit: contain; }
+
+      /* T1 cut-out + bold */
+      #T1 { background-color: var(--navy); background-image: repeating-linear-gradient(0deg, rgba(7, 195, 190, 0.22) 0 3px, transparent 3px 68px), repeating-linear-gradient(90deg, rgba(7, 195, 190, 0.22) 0 3px, transparent 3px 68px); }
+      #T1 .paper { position: absolute; left: -10px; top: 0; width: 80px; height: 1920px; background: #f2eee8;
+        clip-path: polygon(0 0, 70% 0, 92% 3%, 60% 6%, 85% 10%, 55% 14%, 90% 18%, 62% 23%, 88% 27%, 58% 32%, 86% 37%, 60% 42%, 92% 47%, 57% 52%, 84% 57%, 61% 62%, 90% 67%, 56% 72%, 87% 77%, 60% 82%, 91% 87%, 58% 92%, 85% 96%, 66% 100%, 0 100%); }
+      #T1 .head { position: absolute; left: 0; right: 0; top: 300px; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+      #T1 .l1 { font-size: 170px; color: var(--cream); line-height: 1; text-shadow: 0 8px 0 rgba(0,0,0,.35); white-space: nowrap; }
+      #T1 .l2 { font-size: 132px; background: var(--ink); color: var(--orange); padding: 0 40px 28px; transform: rotate(-2deg); }
+      #T1 .chips { position: absolute; left: 70px; top: 1440px; display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+      #T1 .c1 { font-size: 74px; background: var(--cream); color: var(--ink); padding: 0 30px 18px; transform: rotate(-3deg); }
+      #T1 .c2 { font-family: "Archivo Black", sans-serif; direction: ltr; font-size: 54px; background: var(--aqua); color: var(--ink); padding: 12px 26px 16px; transform: rotate(2deg); letter-spacing: -0.02em; }
+      #T1 .logo { position: absolute; right: 44px; top: 150px; width: 175px; height: 175px; object-fit: contain; }
+
+      /* T2 cinematic */
+      #T2 .bg { position: absolute; inset: -40px; width: 1160px; height: 2000px; object-fit: cover; filter: blur(4px) brightness(0.72) saturate(1.2); }
+      #T2 .tint { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(16, 51, 90, 0.55) 0%, rgba(11, 13, 16, 0.2) 45%, rgba(11, 13, 16, 0.85) 100%); }
+      #T2 .beam { position: absolute; left: -200px; top: -200px; width: 900px; height: 1500px; background: radial-gradient(closest-side, rgba(255, 236, 200, 0.32), rgba(255, 236, 200, 0)); transform: rotate(-20deg); }
+      #T2 .txt { position: absolute; left: 60px; right: 60px; top: 300px; direction: rtl; text-align: right; display: flex; flex-direction: column; align-items: flex-start; }
+      #T2 .k1 { font-size: 160px; color: var(--orange); line-height: 0.98; text-shadow: 0 10px 30px rgba(0,0,0,.6); }
+      #T2 .k2 { font-size: 130px; color: var(--cream); line-height: 1.02; text-shadow: 0 10px 30px rgba(0,0,0,.6); }
+      #T2 .k3 { font-family: "AlexandriaFull"; font-weight: 800; font-size: 48px; color: var(--cream); margin-top: 18px; background: rgba(16, 51, 90, 0.9); padding: 8px 22px 14px; border-radius: 10px; }
+      #T2 .tag { position: absolute; right: 0; top: 190px; background: var(--cream); color: var(--ink); font-family: "AlexandriaFull"; font-weight: 900; font-size: 34px; padding: 10px 24px 14px; }
+      #T2 .stamp { position: absolute; left: 70px; top: 1560px; transform: rotate(-12deg); border: 10px solid var(--orange); color: var(--orange); font-size: 86px; padding: 0 30px 16px; direction: rtl; background: rgba(11,13,16,.55); white-space: nowrap; }
+      #T2 .logo { position: absolute; left: 44px; top: 140px; width: 180px; height: 180px; object-fit: contain; }
+
+      /* T3 minimal premium */
+      #T3 .frame { position: absolute; top: 0; height: 2160px; width: auto; filter: brightness(0.9) contrast(1.05); }
+      #T3 .shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7, 20, 35, 0.15) 0%, rgba(7, 20, 35, 0.1) 38%, rgba(7, 20, 35, 0.88) 62%, rgba(7, 20, 35, 0.97) 100%); }
+      #T3 .txt { position: absolute; left: 80px; right: 80px; top: 1180px; direction: rtl; text-align: right; }
+      #T3 .rule { width: 160px; height: 8px; background: var(--aqua); margin-bottom: 34px; margin-left: auto; }
+      #T3 .m1 { font-family: "AlexandriaFull"; font-weight: 900; font-size: 116px; color: var(--cream); line-height: 1.14; }
+      #T3 .m1 span { color: var(--aqua); }
+      #T3 .m2 { font-family: "AlexandriaFull"; font-weight: 400; font-size: 36px; color: rgba(253, 249, 245, 0.85); margin-top: 26px; white-space: nowrap; }
+      #T3 .logo { position: absolute; left: 70px; top: 1130px; width: 160px; height: 160px; object-fit: contain; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-width="1080" data-height="1920" data-duration="1">
+      <section class="clip" data-start="0" data-duration="1" data-track-index="0">
+        <div id="T1" class="t">
+          <img class="who outline" src="assets/subject.png" alt="" />
+          <div class="paper"></div>
+          <img class="logo" src="assets/logo-mark.png" alt="" />
+          <div class="head"><div class="l1 lal"></div><div class="l2 box lal"></div></div>
+          <div class="chips"><div class="c1 box lal"></div><div class="c2 box"></div></div>
+        </div>
+        <div id="T2" class="t">
+          <img class="bg" src="assets/bg.jpg" alt="" />
+          <div class="tint"></div><div class="beam"></div>
+          <img class="who" src="assets/subject.png" alt="" style="filter: drop-shadow(0 30px 50px rgba(0,0,0,.6))" />
+          <div class="tag"></div>
+          <div class="txt"><div class="k1 lal"></div><div class="k2 lal"></div><div class="k3"></div></div>
+          <div class="stamp lal"></div>
+          <img class="logo" src="assets/logo.png" alt="" />
+        </div>
+        <div id="T3" class="t">
+          <img class="frame" src="assets/frame.png" alt="" />
+          <div class="shade"></div>
+          <img class="logo" src="assets/logo-mark.png" alt="" />
+          <div class="txt"><div class="rule"></div><div class="m1"></div><div class="m2"></div></div>
+        </div>
+      </section>
+    </div>
+    <script>
+      const D = window.THUMB, $ = (s) => document.querySelector(s);
+      const t = $("#" + D.type); t.style.display = "block";
+      const who = t.querySelector(".who");
+      if (who) { const b = D.subjectBox || { left: 40, top: 560, width: 1050 }; Object.assign(who.style, { left: b.left + "px", top: b.top + "px", width: b.width + "px", height: Math.round(b.width * 1.44) + "px" }); }
+      if (D.type === "T1") { $("#T1 .l1").textContent = D.l1; $("#T1 .l2").textContent = D.l2; $("#T1 .c1").textContent = D.chip1 || ""; $("#T1 .c2").textContent = D.chip2 || ""; if (!D.chip2) $("#T1 .c2").style.display = "none"; }
+      if (D.type === "T2") { $("#T2 .k1").textContent = D.l1; $("#T2 .k2").textContent = D.l2; $("#T2 .k3").textContent = D.kicker || ""; $("#T2 .tag").textContent = D.tag || "رابط · بودكاست"; $("#T2 .stamp").textContent = D.stamp || ""; if (!D.stamp) $("#T2 .stamp").style.display = "none"; }
+      if (D.type === "T3") { $("#T3 .m1").innerHTML = D.l1html; $("#T3 .m2").textContent = D.kicker || ""; $("#T3 .frame").style.left = (D.frameLeft || -540) + "px"; }
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>

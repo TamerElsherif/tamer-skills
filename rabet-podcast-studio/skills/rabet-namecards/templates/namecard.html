@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Rabet Name Card</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "AlexandriaFull"; src: url("assets/fonts/Alexandria.ttf") format("truetype"); font-weight: 100 900; font-display: block; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: transparent; }
+      #root { position: relative; width: 100%; height: 100%; font-family: "AlexandriaFull", sans-serif; color: #fff; }
+      #bar { position: absolute; left: 92px; top: 898px; width: 7px; height: 128px; background: #07c3be; transform-origin: 50% 50%; }
+      #card { position: absolute; left: 116px; top: 892px; width: fit-content; }
+      #reveal { clip-path: inset(0 100% 0 0); }
+      #name { direction: rtl; text-align: left; font-size: 68px; font-weight: 800; line-height: 1.25; white-space: nowrap;
+              text-shadow: 0 3px 10px rgba(0,0,0,.65), 0 1px 2px rgba(0,0,0,.8); }
+      #title { direction: ltr; text-align: left; font-size: 25px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; white-space: nowrap; margin-top: 2px;
+               text-shadow: 0 2px 8px rgba(0,0,0,.7), 0 1px 2px rgba(0,0,0,.8); }
+      #block { position: absolute; top: 8px; left: 0%; width: 0px; height: 76px; background: #fff; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-width="1920" data-height="1080" data-duration="{{DURATION}}">
+      <div id="bar"></div>
+      <div id="card">
+        <div id="reveal"><div id="name">{{NAME}}</div><div id="title">{{TITLE}}</div></div>
+        <div id="block"></div>
+      </div>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      const P = { p: 0 };
+      const apply = () => {
+        const w = parseFloat(getComputedStyle(document.getElementById("block")).width) || 0;
+        document.getElementById("reveal").style.clipPath = `inset(0 calc(${100 - P.p}% - ${w}px) 0 0)`;
+        document.getElementById("block").style.left = P.p + "%";
+      };
+      tl.set("#bar", { scaleY: 0 }, 0);
+      tl.set("#block", { opacity: 1, width: 0 }, 0);
+      tl.call(apply, null, 0);
+      // in: bar grows, block appears and sweeps right revealing the text, shrinks to a cursor, fades
+      tl.to("#bar", { scaleY: 1, duration: 0.3, ease: "power2.out" }, 0);
+      tl.to("#block", { width: 70, duration: 0.18, ease: "power2.out", onUpdate: apply }, 0.22);
+      tl.to(P, { p: 100, duration: 0.85, ease: "power2.inOut", onUpdate: apply }, 0.32);
+      tl.to("#block", { width: 8, duration: 0.25, ease: "power2.out", onUpdate: apply }, 1.05);
+      tl.to("#block", { opacity: 0, duration: 0.4, ease: "none" }, 1.55);
+      tl.fromTo("#card", { x: 0 }, { x: 6, duration: 6, ease: "none" }, 0);
+      // out: cursor returns, grows into the block, sweeps back left hiding the text, bar collapses
+      tl.to("#block", { opacity: 1, duration: 0.12, ease: "none" }, 4.45);
+      tl.to("#block", { width: 70, duration: 0.18, ease: "power2.in", onUpdate: apply }, 4.6);
+      tl.to(P, { p: 0, duration: 0.7, ease: "power2.inOut", onUpdate: apply }, 4.72);
+      tl.to("#block", { width: 0, duration: 0.15, ease: "power2.in", onUpdate: apply }, 5.4);
+      tl.to("#bar", { scaleY: 0, duration: 0.3, ease: "power2.in" }, 5.5);
+      // SPEED > 1 plays the 6 s card faster (1.4 = 4.3 s, the Ep3 "fast" cards)
+      const master = gsap.timeline({ paused: true });
+      master.add(tl.tweenFromTo(0, 6, { duration: 6 / {{SPEED}}, ease: "none" }), 0);
+      window.__timelines["main"] = master;
+    </script>
+  </body>
+</html>

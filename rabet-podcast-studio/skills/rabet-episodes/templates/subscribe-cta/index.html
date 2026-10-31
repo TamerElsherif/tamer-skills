@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=2000, height=440" />
+    <title>Rabet Subscribe CTA</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      /* Transparent 2000x440 canvas in 4K pixels (rendered as ProRes 4444 with alpha, overlaid on the 3840x2160 episode).
+         White card, YouTube red button, no dark-blue / orange backgrounds (user rule). */
+      @font-face { font-family: "AlexandriaFull"; src: url("assets/fonts/Alexandria.ttf") format("truetype"); font-weight: 100 900; font-display: block; }
+      :root { --red: #ff0033; --ink: #0f0f0f; --grey: #606060; --chip: #f2f2f2; --teal: #1aaac1; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 2000px; height: 440px; overflow: hidden; background: transparent; }
+      #root { position: relative; width: 100%; height: 100%; font-family: "AlexandriaFull", sans-serif; }
+
+      #card {
+        position: absolute; right: 120px; top: 70px; height: 300px; padding: 0 44px 0 40px;
+        display: flex; align-items: center; gap: 38px; direction: ltr;
+        background: #ffffff; border-radius: 150px; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+        transform-origin: 85% 50%; opacity: 0;
+      }
+      #avatar { width: 210px; height: 210px; border-radius: 50%; background: #ffffff; border: 6px solid var(--teal); display: flex; align-items: center; justify-content: center; overflow: hidden; flex: none; }
+      #avatar img { width: 74%; height: 74%; object-fit: contain; margin-top: -6px; }
+      #name { display: flex; flex-direction: column; gap: 6px; }
+      #name .ch { font-weight: 800; font-size: 74px; line-height: 1.05; color: var(--ink); direction: rtl; white-space: nowrap; }
+      #name .handle { font-weight: 500; font-size: 42px; color: var(--grey); white-space: nowrap; }
+
+      #sub { position: relative; height: 150px; padding: 0 52px 0 40px; border-radius: 75px; background: var(--red); display: flex; align-items: center; gap: 26px; flex: none; overflow: hidden; }
+      #sub .yt { width: 96px; height: 68px; flex: none; }
+      #sub .label { display: grid; height: 70px; }
+      #sub .label span { grid-area: 1 / 1; font-weight: 800; font-size: 60px; line-height: 70px; color: #ffffff; white-space: nowrap; letter-spacing: 0.01em; }
+      #sub .label .done { color: var(--ink); opacity: 0; }
+      #sub .ripple { position: absolute; width: 60px; height: 60px; border-radius: 50%; background: rgba(255, 255, 255, 0.55); left: 50%; top: 50%; margin: -30px 0 0 -30px; transform: scale(0); opacity: 0; }
+
+      #bell { position: relative; width: 150px; height: 150px; border-radius: 50%; background: var(--chip); display: flex; align-items: center; justify-content: center; flex: none; }
+      #bell svg.b { width: 86px; height: 86px; transform-origin: 50% 12%; overflow: visible; }
+      #bell .rays { position: absolute; inset: 0; opacity: 0; }
+
+      #cursor { position: absolute; left: 1960px; top: 470px; width: 92px; height: 92px; z-index: 5; filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.35)); transform-origin: 20% 10%; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-width="2000" data-height="440" data-duration="{{DURATION}}">
+      <div id="card">
+        <div id="avatar"><img src="assets/mark.png" alt="" /></div>
+        <div id="name"><div class="ch">{{CHANNEL}}</div><div class="handle">{{HANDLE}}</div></div>
+        <div id="sub">
+          <svg class="yt" viewBox="0 0 96 68"><rect x="0" y="0" width="96" height="68" rx="18" fill="#ffffff" /><path d="M38 18 L66 34 L38 50 Z" fill="#ff0033" /></svg>
+          <div class="label"><span class="todo">{{SUBSCRIBE}}</span><span class="done">{{SUBSCRIBED}}</span></div>
+          <div class="ripple"></div>
+        </div>
+        <div id="bell">
+          <svg class="b" viewBox="0 0 64 64">
+            <path id="bellShape" d="M32 6c-2.2 0-4 1.8-4 4v1.6C19.6 13.4 14 20.6 14 29v12l-5 6v3h46v-3l-5-6V29c0-8.4-5.6-15.6-14-17.4V10c0-2.2-1.8-4-4-4z" fill="none" stroke="#0f0f0f" stroke-width="4.5" stroke-linejoin="round" />
+            <path d="M25 54a7 7 0 0 0 14 0z" fill="#0f0f0f" />
+          </svg>
+          <svg class="rays" viewBox="0 0 150 150"><g stroke="#0f0f0f" stroke-width="7" stroke-linecap="round"><path d="M22 52 L10 46" /><path d="M20 76 L6 78" /><path d="M128 52 L140 46" /><path d="M130 76 L144 78" /></g></svg>
+        </div>
+      </div>
+      <svg id="cursor" viewBox="0 0 32 32"><path d="M4 2 L4 26 L10.5 20 L15 30 L19.5 28 L15 18.5 L24 18.5 Z" fill="#ffffff" stroke="#0f0f0f" stroke-width="2" stroke-linejoin="round" /></svg>
+    </div>
+    <script>
+      // pop in -> cursor clicks Subscribe (turns grey "Subscribed") -> clicks the bell (rings) -> pop out.
+      // Cue times are mirrored in render_cta.py (SFX); change both together.
+      window.__timelines = window.__timelines || {};
+      const T = { in: 0.0, click1: 1.45, click2: 2.6, out: {{OUT_AT}} };
+      const tl = gsap.timeline({ paused: true });
+      const card = document.getElementById("card"), sub = document.getElementById("sub"), bell = document.getElementById("bell");
+      const center = (el) => { const r = el.getBoundingClientRect(); return { x: r.left + r.width * 0.55 - 18, y: r.top + r.height * 0.5 - 8 }; };
+      tl.set(card, { opacity: 0, scale: 0.55, y: 60 }, 0);
+      tl.to(card, { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: "back.out(2.2)" }, T.in);
+      // cursor targets are measured when each move starts (card fully in, fonts loaded)
+      tl.to("#cursor", { left: () => center(sub).x, top: () => center(sub).y, duration: 0.75, ease: "power2.inOut" }, T.click1 - 0.8);
+      tl.to("#cursor", { scale: 0.82, duration: 0.08, yoyo: true, repeat: 1 }, T.click1 - 0.04);
+      tl.to("#sub .ripple", { scale: 9, opacity: 1, duration: 0.25, ease: "power1.out" }, T.click1);
+      tl.to("#sub .ripple", { opacity: 0, duration: 0.25 }, T.click1 + 0.2);
+      tl.to(sub, { backgroundColor: "#f2f2f2", duration: 0.2 }, T.click1 + 0.05);
+      tl.to("#sub .yt rect", { fill: "#ff0033", duration: 0.2 }, T.click1 + 0.05);
+      tl.to("#sub .yt path", { fill: "#ffffff", duration: 0.2 }, T.click1 + 0.05);
+      tl.to("#sub .todo", { opacity: 0, y: -24, duration: 0.18 }, T.click1 + 0.05);
+      tl.fromTo("#sub .done", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.22 }, T.click1 + 0.12);
+      tl.to("#cursor", { left: () => center(bell).x, top: () => center(bell).y, duration: 0.7, ease: "power2.inOut" }, T.click2 - 0.75);
+      tl.to("#cursor", { scale: 0.82, duration: 0.08, yoyo: true, repeat: 1 }, T.click2 - 0.04);
+      tl.to("#bellShape", { fill: "#0f0f0f", duration: 0.12 }, T.click2 + 0.02);
+      tl.to("#bell .b", { keyframes: { rotation: [0, 22, -20, 16, -12, 8, -4, 0] }, duration: 0.9, ease: "none" }, T.click2 + 0.02);
+      tl.fromTo("#bell .rays", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1.08, duration: 0.2 }, T.click2 + 0.05);
+      tl.to("#bell .rays", { opacity: 0, duration: 0.35 }, T.click2 + 0.75);
+      tl.to("#cursor", { left: 2080, top: 520, duration: 0.6, ease: "power2.in" }, T.click2 + 0.7);
+      tl.to(card, { opacity: 0, scale: 0.6, y: 50, duration: 0.4, ease: "back.in(1.8)" }, T.out);
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

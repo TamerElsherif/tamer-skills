@@ -1,0 +1,62 @@
+{
+  "_doc": "Copy to ~/.rabet-reels.json (or point $RABET_REELS_CONFIG at it) and fill in. Never commit the real file.",
+  "output_dir": "~/Videos/MyPodcast/Reels",
+  "postiz_url": "https://postiz.example.com",
+  "postiz_token_file": "~/Videos/MyPodcast/postiz-token.txt",
+  "channels": {
+    "li_host": {
+      "id": "<postiz-integration-id>",
+      "name": "LinkedIn (host)"
+    },
+    "yt_brand": {
+      "id": "<postiz-integration-id>",
+      "name": "YouTube (brand)"
+    },
+    "yt_host": {
+      "id": "<postiz-integration-id>",
+      "name": "YouTube (host)"
+    },
+    "fb_brand": {
+      "id": "<postiz-integration-id>",
+      "name": "Facebook (brand page)"
+    },
+    "fb_host": {
+      "id": "<postiz-integration-id>",
+      "name": "Facebook (host)"
+    },
+    "ig_brand": {
+      "id": "<postiz-integration-id>",
+      "name": "Instagram (brand)"
+    },
+    "ig_host": {
+      "id": "<postiz-integration-id>",
+      "name": "Instagram (host)"
+    },
+    "tiktok": {
+      "id": "<postiz-integration-id>",
+      "name": "TikTok"
+    }
+  },
+  "zernio": {
+    "_doc": "Optional: brand pages Postiz cannot post to (e.g. a LinkedIn company page, a brand TikTok), scheduled through the Zernio MCP connector",
+    "linkedin_brand": "<zernio-account-id>",
+    "tiktok_brand": "<zernio-account-id>",
+    "timezone": "Africa/Cairo",
+    "slots": {
+      "linkedin_brand": "09:30",
+      "tiktok_brand": "21:30"
+    }
+  },
+  "episodes": {
+    "_doc": "rabet-episodes (16:9 mini / sub-episodes): logos, name cards, follow & subscribe pop-up cache",
+    "intro": "~/Videos/MyPodcast/Assets/Intro-Logo.mp4",
+    "outro": "~/Videos/MyPodcast/Assets/Outro-Logo.mp4",
+    "name_cards": {
+      "Host": "~/Videos/MyPodcast/Assets/NameCard_host.mov"
+    },
+    "out_dir": "~/Videos/MyPodcast/Episodes",
+    "cta_dir": "~/.cache/rabet-episodes/cta",
+    "channel": "رابط بودكاست",
+    "handle": "@RabetPodcast"
+  }
+}
