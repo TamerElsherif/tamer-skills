@@ -42,6 +42,10 @@ cover versions + thumbnails (rabet-thumbnails), tail_check / edge_check every ed
 - rabet-social: humanized posts (humanizer skill) for every video and platform.
 
 ## 6. Schedule (rabet-social)
+Uploads: check each file's size first. Over 100 MB (Cloudflare limit in front of Postiz) → tell the user, then use
+rabet-social's temporary-URL route (`scripts/tunnel_upload.py`), and close the tunnel and remove its temp folder
+when done. Full episodes go to the playlist «Full Episodes», mini episodes to «Mini Episodes - Topics»
+(rabet-youtube "Playlists": Zernio sets it at upload; with Postiz, hand the user a Studio checklist).
 Calendar across YouTube, LinkedIn, Facebook, Instagram, TikTok (◆ calendar), then Postiz/Zernio drafts; schedule only
 after the user approves the calendar.
 

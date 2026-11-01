@@ -58,5 +58,14 @@
     "cta_dir": "~/.cache/rabet-episodes/cta",
     "channel": "رابط بودكاست",
     "handle": "@RabetPodcast"
+  },
+  "youtube": {
+    "_doc": "rabet-youtube: playlist per video kind, category and language (Zernio sets them at upload; Postiz can't)",
+    "playlists": {
+      "full": "Full Episodes",
+      "mini": "Mini Episodes - Topics"
+    },
+    "category_id": "28",
+    "language": "ar"
   }
 }

@@ -145,6 +145,35 @@ ideas). Every joint is checked afterwards on this contact sheet:
 You get 5 titles (each paired with a thumbnail) and a humanized Egyptian-Arabic description with guest/host links
 and chapters timed to the uploaded file. Facebook and LinkedIn posts put the YouTube link in the first comment.
 
+### 8. Upload big videos to YouTube, into the right playlist
+
+> Upload the 6 mini episodes to the Rabet YouTube channel as private.
+
+Mini and full episodes are hundreds of MB to several GB. A Postiz server behind Cloudflare rejects any upload over
+100 MB (HTTP 413), so the skills check every file's size first:
+
+- **Under 100 MB:** normal Postiz upload.
+- **Over 100 MB:** Claude tells you which files and sizes, then opens a **temporary Cloudflare quick tunnel** that
+  serves only those files, and Postiz pulls them by URL:
+
+```bash
+python skills/rabet-social/scripts/tunnel_upload.py start "Sub-01.mp4" "Sub-02.mp4"   # one https URL per file
+python skills/rabet-social/scripts/tunnel_upload.py wait                              # until Postiz finishes pulling
+python skills/rabet-social/scripts/tunnel_upload.py stop                              # close tunnel, delete temp links
+```
+
+  The files are hard-linked into a temp folder (no extra disk space, originals never touched), and `stop` always
+  closes the tunnel and removes the folder. Each media item's size is checked against the local file before posting.
+- **Posting:** one video at a time (parallel posts failed with "byte range" errors), private by default, with title,
+  description, chapters, tags and thumbnail.
+- **Over ~1 GB:** Postiz's URL upload stops there. A file just over it gets a temporary ~900 MB re-encode; a
+  3–4 GB full episode goes through Zernio (if YouTube is connected there) or YouTube Studio.
+
+**Playlists:** full episodes go to **Full Episodes**, mini episodes to **Mini Episodes - Topics**, with category
+Science & Technology and language Arabic. Zernio sets all of this at upload time (`playlistId`, `categoryId`). Postiz
+can't, so you get a short checklist per video for YouTube Studio. The names live in `~/.rabet-reels.json` →
+`youtube.playlists`.
+
 ## The house rules every skill follows
 
 - **Never cut inside a word.** Cuts land in real acoustic gaps (`cutsafe.py`), and every edge is re-transcribed in
@@ -177,6 +206,7 @@ rabet-podcast-studio/
     ├── rabet-thumbnails/       16:9 YouTube + 9:16 covers (uses rabet-reels scripts/templates)
     ├── rabet-youtube/          titles, descriptions, chapters, hashtags
     └── rabet-social/           humanized posts + Postiz / Zernio scheduling
+                                (scripts/tunnel_upload.py: temporary public URL for uploads over 100 MB)
 ```
 
 ## Dependencies
@@ -189,6 +219,7 @@ rabet-podcast-studio/
 | Node 18+ and `npx hyperframes@0.8.163` | reels, thumbnails, name cards, subscribe pop-up render |
 | `onnxruntime-gpu` (optional) | fast speaker mattes for reels |
 | Postiz instance and/or Zernio MCP connector | scheduling (optional) |
+| `cloudflared` (optional) | temporary tunnel for Postiz uploads over 100 MB |
 | `humanizer` skill | post and description text |
 | Your assets | intro/outro logo videos, name-card MOVs, guest photos (paths in `~/.rabet-reels.json`) |
 
@@ -196,6 +227,11 @@ Tested on Windows 11 with an RTX 5050 (CUDA 12). GPU Whisper needs `cublas64_12.
 `skills/rabet-reels/SKILL.md` §5.
 
 ## Changelog
+
+- **2026-11-01 · v1.1.0**: big-video uploads to YouTube. Size check first; over 100 MB goes through a temporary
+  Cloudflare tunnel (`tunnel_upload.py`, cleans up after itself), one post at a time, the ~1 GB Postiz cap and the
+  byte-range fix. Playlists: full episodes → «Full Episodes», mini episodes → «Mini Episodes - Topics» (set by
+  Zernio at upload, or a Studio checklist with Postiz), plus category and language. New `youtube` block in the config.
 
 - **2026-10-31 · v1.0.0**: first release as a skill set. Added rabet-studio (orchestrator), rabet-teaser,
   rabet-subscribe, rabet-namecards, rabet-thumbnails, rabet-youtube and rabet-social; bundled rabet-episodes and

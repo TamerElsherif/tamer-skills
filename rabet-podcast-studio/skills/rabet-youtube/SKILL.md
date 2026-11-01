@@ -29,3 +29,30 @@ no clickbait claim the episode doesn't make; no title starts with an English wor
 - A chapter time = the start of the line where the topic starts (the host's question, if there is one).
 - Mini episodes: use the section starts from the build (`<spec>.render.json` / the .docx brief), not the master times.
 - Verify lengths in a script: titles < 100, tags < 500, description < 5000 characters.
+
+## Uploading (Postiz → Rabet YouTube, integration `yt_brand` in `~/.rabet-reels.json`)
+- Video files are almost always > 100 MB: use rabet-social's temporary-URL route (size check, tell the user,
+  `tunnel_upload.py`, close it after). Never post a big file to the Postiz upload API (HTTP 413).
+- Post settings: `title`, `type` **private** (the user makes it public), `selfDeclaredMadeForKids` no, `thumbnail`
+  {id, path}, `tags` [{value, label}]. Description = the post content, one `<p>` per line.
+- Videos over 15 min need a verified channel; custom thumbnails too.
+
+## Playlists, category, language
+Every upload goes into its playlist (names in `~/.rabet-reels.json` → `youtube.playlists`):
+
+| Video | Playlist |
+|---|---|
+| Full episode | **Full Episodes** |
+| Mini / sub / topic episode | **Mini Episodes - Topics** |
+| Reel / Short | none unless the user names one |
+
+Category **Science & Technology** (`28`), language **Arabic**, made for kids **no**.
+- **Postiz** has no playlist, category or language field (checked 2026-11-01). After the upload, give the user one
+  checklist per video: Studio → video → Details → Playlists / Show more → Category, Language.
+- **Zernio** sets them at upload time when the Rabet YouTube channel is connected there: `platformSpecificData`
+  `playlistId`, `categoryId: "28"`, `visibility: "private"`, `madeForKids: false`, `firstComment` (optional).
+  Find the playlist id by its **exact** title on that account (`youtube-playlists`); if it's missing, ask before
+  creating it (create as private). Never create a second playlist with the same name.
+  Prefer Zernio for YouTube once it's connected: it also takes full episodes (Postiz's URL upload stops at ~1 GB),
+  with `validate_media` first.
+- Report per video which playlist it went into, or that it still needs to be added by hand.

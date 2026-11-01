@@ -29,6 +29,29 @@ description: Write humanized social posts for Rabet (رابط) Podcast reels, mi
    Validate every post (`validate_post`, `validate_media`) before creating it.
 4. Which tool posts to which account is the user's choice — ask once and remember it (e.g. in `~/.rabet-reels.json`
    `"social": {"linkedin": "postiz", "tiktok": "zernio"}`).
+   **Files over 100 MB** (most mini and full episodes): Postiz sits behind Cloudflare, which rejects any upload
+   request over 100 MB (HTTP 413). Check every file's size first. Under 100 MB → normal upload. Over 100 MB → never
+   send it to the upload API; use a **temporary public URL** instead (tested 2026-11-01, 384 MB–4 GB):
+   1. Tell the user first, in one line: which files, their sizes, and that a temporary Cloudflare tunnel will expose
+      only those files for the duration of the upload and be closed straight after.
+   2. `python scripts/tunnel_upload.py start <file> …` → one `https://….trycloudflare.com/fNN.ext` URL per file.
+      It hard-links the files into `<drive>:\rabet_tunnel_tmp` (no extra disk space, originals untouched).
+   3. Per file, one at a time: Postiz `uploadFromUrlTool` with the URL. The call reports "server isn't responding"
+      after ~60 s, but Postiz keeps downloading (and retries once). Run `tunnel_upload.py wait`, then find the new item
+      in `mediaListTool` and check its `Content-Length` equals the local file size before using it. Thumbnails can go
+      the same way.
+      **Postiz's own URL-upload cap is ~1 GB** ("File is too large": 829 MB passed, 1,046 MB failed). For a file a bit
+      over it, make a temporary smaller copy in the tunnel folder (ffmpeg `h264_nvenc -rc vbr -b:v` sized to ≈ 900 MB,
+      `-c:a copy`; ~6 Mbps is fine for 1080p since YouTube re-encodes anyway) and delete it on `stop`. A full episode
+      (3–4 GB) can't go through Postiz: upload it in YouTube Studio, or via Zernio if YouTube is connected there.
+   4. Create the posts (YouTube: `type` private unless told otherwise) **one at a time**: wait until each is
+      PUBLISHED in `postsListTool` before creating the next. Four at once failed with "The media storage did not
+      return the requested byte range"; the same post sent alone went through. A failed post stays in Postiz as ERROR
+      (Postiz tools can't delete it; tell the user to remove it in the app). If one file keeps failing alone with the
+      byte-range error, pull a fresh copy into Postiz (new `uploadFromUrlTool`) and post with the new path: that fixed
+      EP1 Sub-04 after 3 failures. Large posts can sit in QUEUE for ~10 min before PUBLISHED. Then **always** `tunnel_upload.py stop` (also
+      after any error): it closes the tunnel and server and deletes the temp folder (links only, never the originals).
+      Confirm nothing is left: no `rabet_tunnel_tmp` folder, no cloudflared process.
 5. **Nothing goes public without the user's explicit OK**: create drafts by default; schedule only after the user
    approves the calendar; never "publish now" unasked. Report what was created where (post ids, dates).
 6. Replacing an existing post: rebuild from the current server text and tags, create the replacement, then delete the
