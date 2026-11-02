@@ -117,7 +117,8 @@ Beats extras: `extra_words` (inject words into segments), `wide_words {"file","o
 | `scripts/postiz_upload.py` / `postiz_payload.py` / `postiz_drafts.py` | media upload (public API) → 12-post payload per reel → posts via the Postiz MCP endpoint (JSON-RPC; needs a curl User-Agent or Cloudflare 403s) |
 | `scripts/config.py` + `config.example.json` | per-user settings loader (`~/.rabet-reels.json`): output folder, Postiz URL/token, channel ids |
 | `scripts/finish.sh` | ship one reel: copy to `output_dir`, build the cover version, upload both to Postiz |
-| `scripts/make_episode_thumbs.py` | 16:9 YouTube episode thumbnails A/B/C (1280×720) for 2–3 guests from a spec JSON (§8) |
+| `scripts/yt_thumbs.py` + `scripts/yt_styles/` | 16:9 YouTube thumbnails from an open style catalog (one file per style: grid/board/word = classic A/B/C, collage, dark, giant, stage); `--list` shows them (§8, rabet-thumbnails) |
+| `scripts/make_episode_thumbs.py` | classic A/B/C in one go from old specs (wrapper around yt_thumbs.py) |
 | `templates/thumbs` | T1 cut-out+bold · T2 cinematic · T3 minimal (1080×1920, key content in centre 4:5) |
 
 Beats `content` keys per template are read directly by the template script — open the template's `<script>` to see every supported key.
@@ -174,7 +175,7 @@ Every reel scheduled on Postiz also gets 2 Zernio posts at the same date. Accoun
 
 First ask whether the episode gets the follow & subscribe pop-up (rabet-episodes rule 1; render it with that skill).
 
-**Thumbnails** (user-approved style, Ep 2 and Ep 3): `python scripts/make_episode_thumbs.py spec.json` → `<prefix>.jpg/.png`, `_B`, `_C` in `out`.
+**Thumbnails**: styles are an open catalog (`python scripts/yt_thumbs.py --list`; ask the user which style when they name none, see rabet-thumbnails). The classic Ep 2/Ep 3 set: `python scripts/make_episode_thumbs.py spec.json` → `<prefix>.jpg/.png`, `_B`, `_C` in `out` (= styles grid, board, word).
 - A: navy grid, guest cut-outs left with a white outline, «الحلقة …» chip + logo, l1 (cream Lalezar) + l2 (orange tilted box) + kicker bar.
 - B: cream board, navy slanted block with an outlined episode number, guests clipped to the block, l1 navy + l2 orange + English chips.
 - C: like A with a huge aqua English word between l1 and l2.

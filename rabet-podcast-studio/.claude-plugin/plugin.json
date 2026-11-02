@@ -1,6 +1,6 @@
 {
   "name": "rabet-podcast-studio",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Rabet (رابط) Podcast production skill set: teaser/promo, mini episodes, reels, subscribe pop-up, name cards, thumbnails, YouTube metadata, humanized posts and Postiz/Zernio scheduling, plus a one-command studio pipeline.",
   "author": { "name": "Tamer Elsherif" },
   "homepage": "https://github.com/TamerElsherif/tamer-skills/tree/main/rabet-podcast-studio",

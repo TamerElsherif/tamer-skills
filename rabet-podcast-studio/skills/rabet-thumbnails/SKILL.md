@@ -1,46 +1,63 @@
 ---
 name: rabet-thumbnails
-description: Create Rabet (رابط) Podcast thumbnails — 16:9 YouTube thumbnails for full and mini episodes (classic A/B/C variants plus collage, dark, giant-word and stage styles, 1280×720) and 9:16 covers for Reels, YouTube Shorts, TikTok, Instagram and Facebook (1080×1920, with a cover-intro version) — using speaker cut-outs from the episode, the Rabet brand and RTL-safe Arabic headlines. Use when the user asks for a thumbnail, cover, poster frame, "thumbnail variants", a thumbnail "in this style" / like a reference image, or a Shorts/Reels/TikTok cover. Part of the rabet-podcast-studio set.
+description: Create Rabet (رابط) Podcast thumbnails — 16:9 YouTube thumbnails for full and mini episodes from an open, extendable style catalog (classic grid/board/word = A/B/C, collage, dark, giant word, stage, and any style added later; 1280×720) and 9:16 covers for Reels, YouTube Shorts, TikTok, Instagram and Facebook (1080×1920, with a cover-intro version) — using speaker cut-outs from the episode, the Rabet brand and RTL-safe Arabic headlines. Use when the user asks for a thumbnail, cover, poster frame, "thumbnail variants", a thumbnail "in this style" / like a reference image, a new thumbnail style, or a Shorts/Reels/TikTok cover. Part of the rabet-podcast-studio set.
 ---
 
 # Rabet thumbnails
 
 Scripts live in the shared engine `../rabet-reels` (same fonts, logo and templates as the reels).
 
-## Pick the style first: ask if the user didn't name one
-Before building any thumbnail, check whether the user named a style (or attached a reference). **If not, ask them**
-(AskUserQuestion, multi-select) and wait; don't default silently. Offer the styles below with a one-line look each.
-For a full episode, recommend **collage** plus **giant** for a YouTube "Test & Compare" pair. A reference image counts
-as a choice: build the closest style and match the reference.
+## Styles are an open catalog
+YouTube thumbnail styles are not a fixed A/B/C set. Each style is one file in `../rabet-reels/scripts/yt_styles/`;
+`python ../rabet-reels/scripts/yt_thumbs.py --list` prints every installed style with its look, guest count and
+text fields. Any combination can be rendered in one run, and the classic Ep2/Ep3 styles stay available.
 
-| Style | Look | Script |
+| Style | Look | Guests |
 |---|---|---|
-| **classic A/B/C** | A navy grid + cut-outs left + orange l2 box · B cream board + outlined number · C huge aqua English word | `make_episode_thumbs.py` |
-| **collage** | big cut-outs in front of two pinned photos on blue smoke, huge white l1 + orange l2 bar | `make_episode_styles.py` |
-| **dark** | dark close-up, small aqua kicker + l1 with orange l2, tilted low centre, «#N» top right | `make_episode_styles.py` |
-| **giant** | bright blurred office, huge orange word behind the speakers, name tags, navy bottom bar | `make_episode_styles.py` |
-| **stage** | navy curtain + teal spotlight, aqua frame, stacked centre title with l2 between cream rules | `make_episode_styles.py` |
+| **grid** (classic A) | navy grid, outlined cut-outs left, episode chip + logo, cream l1 + orange tilted l2 box + kicker | 2–3 |
+| **board** (classic B) | cream board, navy slanted block with the outlined episode number, navy l1 + orange l2 + English chips | 2–3 |
+| **word** (classic C) | grid layout with a huge aqua English word between l1 and the orange l2 box | 2–3 |
+| **collage** | big cut-outs in front of two pinned topic photos on blue smoke, huge white l1 + orange l2 bar | 3 |
+| **dark** | dark close-up, small aqua kicker + l1 with orange l2 tilted low centre, «#N» top right | 3 |
+| **giant** | bright blurred office, huge orange word behind the speakers, name tags, navy bottom bar | 3 |
+| **stage** | navy curtain + teal spotlight, aqua frame, stacked centre title with orange l2 between cream rules | 3 |
 
-Strongest at phone size: collage (largest faces + topic pictures), then giant (largest word). Dark has small text,
-stage is busier; use them when the user wants that mood.
+This table can fall behind; `--list` is the source of truth (a style added later shows up there first).
+
+## Pick the style first: ask if the user didn't name one
+Before building any 16:9 thumbnail, check whether the user named one or more styles, said "the classic ones / A, B
+and C" (= grid, board, word), or attached a reference image. **If not, run `--list` and ask them** (AskUserQuestion,
+multi-select, one option per style with its look; more than 4 styles: ask in text or group them) and wait. Don't
+default silently. Strongest at phone size: collage (largest faces + topic pictures), then giant (largest word); for a
+full episode suggest those two as a YouTube "Test & Compare" pair. A reference image that matches no style: build it
+as a new style (below) after confirming.
 
 ## 16:9 YouTube (full or mini episode)
-Classic: `python ../rabet-reels/scripts/make_episode_thumbs.py spec.json` → `<prefix>.jpg/.png`, `_B`, `_C` (1280×720).
-- **A** navy grid, cut-outs left with a white outline, «الحلقة …» chip + logo, l1 (cream) + l2 (orange tilted box) + kicker.
-- **B** cream board, navy slanted block with the outlined episode number, l1 navy + l2 orange + English chips.
-- **C** like A with a huge aqua English word between l1 and l2.
-Spec fields are in the script docstring (`out`, `prefix`, `ep`, `num`, `guests[{id,img,name,left,top,width}]`, `a`, `b`, `c`).
+`python ../rabet-reels/scripts/yt_thumbs.py spec.json <style> [<style> ...]` → `<out>/<prefix>_<style>.png/.jpg`.
+With no style it prints the list instead of rendering. Spec fields are in the `yt_thumbs.py` docstring:
+- Shared text `l1`, `l2`, `k` for every style; per-style text in `"text": {"<style>": {...}}` (pair each title option
+  with one thumbnail, e.g. board with its own l1/l2/chips, word with `sw`).
+- `guests` listed left, centre, right (the host in the centre with `"host": true` gets the aqua tag). Classic styles
+  place guests by each guest's `left`/`top`/`width` (back to front, front speaker last); the other styles have
+  defaults that fit trimmed 1080p cut-outs facing the centre. Nudge any style with `"pos": {"<style>": {"<id>":
+  [left, top, width]}}` after looking at the render. `fade_right` per guest fades the right edge (mic clips,
+  cropped shoulders).
+- `pins` = 2 photos for collage; optional `mid` (stage), `giant`/`small` (giant), `num` (dark, board).
+- `"names": {"grid": ""}` sets the output suffix per style. `make_episode_thumbs.py spec.json` still renders the
+  three classic styles as `<prefix>`, `_B`, `_C` from old specs with `a`/`b`/`c` blocks.
+- Collage pins: two free photos that show the topic at a glance (e.g. wireframe notebook + falling chart for "why
+  products fail"): `python ../rabet-reels/scripts/yt_thumbs.py stock "<query>" <dir>` (Pexels, `PEXELS_API_KEY`),
+  look at them, pick dark/high-contrast ones. Backgrounds (smoke, office) ship in `../rabet-reels/assets/thumb_bg`.
+  Ask before using paid image generation.
 
-Reference styles: `python ../rabet-reels/scripts/make_episode_styles.py spec.json [collage dark giant stage]` →
-`<prefix>_<style>.png/.jpg`. Exactly 3 guests, listed left, centre, right (centre = host, `"host": true` gives the
-aqua name tag). Spec: `l1`, `l2`, optional `k` (dark kicker), `mid` (stage middle line), `giant`/`small` (giant word
-and line, default l2 / l1 + "…"), `pins` (2 collage photos), `fade_right` per guest (fades the right edge: mic
-clips, cropped shoulders), `pos` per-style overrides `[left, top, width]`. Defaults fit trimmed 1080p cut-outs
-facing the centre; nudge with `pos` after looking at the render.
-- Collage pins: two free photos that show the topic at a glance (e.g. wireframe notebook + falling chart for
-  "why products fail"): `python ../rabet-reels/scripts/make_episode_styles.py stock "<query>" <dir>` (Pexels,
-  `PEXELS_API_KEY`), look at them, pick dark/high-contrast ones. Backgrounds (smoke, office) ship in
-  `assets/thumb_bg`. Ask before using paid image generation.
+## Adding a style
+1. Copy the closest file in `yt_styles/` to `yt_styles/<name>.py` (lowercase, one word). Set `NAME`, `LOOK`
+   (one line), `GUESTS` (min, max), `TEXT` (fields it reads) and write `render(s)` returning `(css, body)`; reuse
+   `_common.py` (`CUT` css, `cut()`, `tags()`) or `_classic.py`. New background images go in `assets/thumb_bg`.
+2. Brand only: the colour tokens in `_common.HEAD`, Lalezar for headlines, Alexandria for small text, the logo, no
+   coloured glow shadows, RTL rules below.
+3. Render it on a real episode spec, look at it, tune the default positions, then add a row to the table above and
+   (when publishing the skill set) an example image to the plugin README.
 
 Cut-outs (EP1 recipe):
 1. Scan frames (one every 10–12 s with the time printed) and pick, per person, a sharp frame with the face toward

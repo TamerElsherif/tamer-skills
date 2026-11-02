@@ -34,7 +34,7 @@ skills, so you (or a partner) can come back after months and get the same qualit
 | "Make the next reel" / "reels from these moments" | **rabet-reels** |
 | "Add the subscribe button at 4:30 and 32:03" | **rabet-subscribe** |
 | "Make a name card for our new guest" | **rabet-namecards** |
-| "Thumbnails for the episode" / "the same thumbnail in collage and giant style" / "a cover for this Short" | **rabet-thumbnails** (asks which style if you don't say) |
+| "Thumbnails for the episode" / "the same thumbnail in collage and giant style" / "a cover for this Short" | **rabet-thumbnails** (asks which styles if you don't say; new styles can be added) |
 | "Titles, description and chapters" | **rabet-youtube** |
 | "Write the posts and schedule the reels for next week" | **rabet-social** |
 
@@ -232,6 +232,12 @@ Tested on Windows 11 with an RTX 5050 (CUDA 12). GPU Whisper needs `cublas64_12.
 `skills/rabet-reels/SKILL.md` §5.
 
 ## Changelog
+
+- **2026-11-02 · v1.3.0**: YouTube thumbnail styles are now an open catalog instead of fixed A/B/C. Each style is one
+  file in `rabet-reels/scripts/yt_styles/` and `yt_thumbs.py` renders any mix of them (`--list` shows what's
+  installed). The classic Ep2/Ep3 looks stay as styles grid, board and word, with renders unchanged from before, and
+  `make_episode_thumbs.py` still makes A/B/C from old specs. Per-style text in one spec, a guide for adding a
+  style, and rabet-thumbnails asks which styles to build when none is named. Replaces `make_episode_styles.py` (v1.2.0).
 
 - **2026-11-02 · v1.2.0**: four new YouTube thumbnail styles from reference images: collage (pinned topic photos on
   blue smoke), dark (close-up, small tilted question, «#N»), giant (huge orange word behind the speakers) and stage
