@@ -9,6 +9,11 @@ thumbnails, YouTube metadata, humanized posts and a Postiz/Zernio posting schedu
   <img src="docs/images/thumb-youtube-b.jpg" width="32%" alt="YouTube thumbnail B">
   <img src="docs/images/thumb-youtube-c.jpg" width="32%" alt="YouTube thumbnail C">
 </p>
+<p>
+  <img src="docs/images/thumb-youtube-collage.jpg" width="32%" alt="YouTube thumbnail, collage style">
+  <img src="docs/images/thumb-youtube-dark.jpg" width="32%" alt="YouTube thumbnail, dark style">
+  <img src="docs/images/thumb-youtube-giant.jpg" width="32%" alt="YouTube thumbnail, giant-word style">
+</p>
 
 ---
 
@@ -29,7 +34,7 @@ skills, so you (or a partner) can come back after months and get the same qualit
 | "Make the next reel" / "reels from these moments" | **rabet-reels** |
 | "Add the subscribe button at 4:30 and 32:03" | **rabet-subscribe** |
 | "Make a name card for our new guest" | **rabet-namecards** |
-| "Thumbnails for the episode" / "a cover for this Short" | **rabet-thumbnails** |
+| "Thumbnails for the episode" / "the same thumbnail in collage and giant style" / "a cover for this Short" | **rabet-thumbnails** (asks which style if you don't say) |
 | "Titles, description and chapters" | **rabet-youtube** |
 | "Write the posts and schedule the reels for next week" | **rabet-social** |
 
@@ -227,6 +232,12 @@ Tested on Windows 11 with an RTX 5050 (CUDA 12). GPU Whisper needs `cublas64_12.
 `skills/rabet-reels/SKILL.md` §5.
 
 ## Changelog
+
+- **2026-11-02 · v1.2.0**: four new YouTube thumbnail styles from reference images: collage (pinned topic photos on
+  blue smoke), dark (close-up, small tilted question, «#N»), giant (huge orange word behind the speakers) and stage
+  (curtain, spotlight, framed centre title). New `make_episode_styles.py` (spec-driven, 3 guests, per-style position
+  overrides, right-edge fade for mic clips, a free Pexels `stock` helper for the collage photos) and bundled smoke and
+  office backgrounds. rabet-thumbnails now asks which style to build when the request names none.
 
 - **2026-11-01 · v1.1.0**: big-video uploads to YouTube. Size check first; over 100 MB goes through a temporary
   Cloudflare tunnel (`tunnel_upload.py`, cleans up after itself), one post at a time, the ~1 GB Postiz cap and the

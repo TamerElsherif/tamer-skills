@@ -90,6 +90,7 @@ bash $S/pipeline.sh <reel_dir> all     [styles]     # everything in order
 
 python $S/make_thumb.py <reel_dir>/thumb.json <reel_dir>/thumb.png          # 1080×1920 thumbnail
 python $S/make_episode_thumbs.py episode_thumb.json                         # 3× 1280×720 YouTube episode thumbnails
+python $S/make_episode_styles.py episode_styles.json collage giant           # reference styles: collage/dark/giant/stage
 bash   $S/finish.sh <reel_dir> 06 s3-bold Can-You-Make-Money                # copy + cover + upload
 python $S/postiz_payload.py captions.json 06 uploads.json \
        Reel06_Can-You-Make-Money.mp4 Reel06_Can-You-Make-Money_cover.mp4 2026-10-22 payload.json schedule
@@ -231,6 +232,7 @@ rabet-reels/
     ├── styles.json          # style → template + matte needs
     ├── make_thumb.py        # thumbnail renderer
     ├── make_episode_thumbs.py # 16:9 episode thumbnails A/B/C (2–3 guests)
+    ├── make_episode_styles.py # 16:9 thumbnails in collage/dark/giant/stage styles (3 guests) + Pexels stock helper
     ├── add_cover.py         # thumbnail as a 1.2 s intro
     ├── finish.sh            # ship: copy + cover + upload
     ├── config.py            # loads ~/.rabet-reels.json
