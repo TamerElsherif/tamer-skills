@@ -46,5 +46,26 @@
       "linkedin_brand": "09:30",
       "tiktok_brand": "21:30"
     }
+  },
+  "episodes": {
+    "_doc": "rabet-episodes (16:9 mini / sub-episodes): logos, name cards, follow & subscribe pop-up cache",
+    "intro": "~/Videos/MyPodcast/Assets/Intro-Logo.mp4",
+    "outro": "~/Videos/MyPodcast/Assets/Outro-Logo.mp4",
+    "name_cards": {
+      "Host": "~/Videos/MyPodcast/Assets/NameCard_host.mov"
+    },
+    "out_dir": "~/Videos/MyPodcast/Episodes",
+    "cta_dir": "~/.cache/rabet-episodes/cta",
+    "channel": "رابط بودكاست",
+    "handle": "@RabetPodcast"
+  },
+  "youtube": {
+    "_doc": "rabet-youtube: playlist per video kind, category and language (Zernio sets them at upload; Postiz can't)",
+    "playlists": {
+      "full": "Full Episodes",
+      "mini": "Mini Episodes - Topics"
+    },
+    "category_id": "28",
+    "language": "ar"
   }
 }

@@ -5,9 +5,10 @@ description: Produce 9:16 reels + thumbnails (and 16:9 YouTube episode thumbnail
 
 # Rabet Reels
 
-> v1.0 (2026-10-28): reel ends checked past the end (`tail_check.py`, rule 18) after a partner review found five reels cut mid-thought; fixing shipped reels (§9). v0.9 (2026-10-28): episode thumbnails (`make_episode_thumbs.py`) + YouTube description recipe (§8); Facebook link in the first comment (rule 17). v0.7 (2026-10-23): surgical cuts (`cutsafe.py`, rule 13) and an edge check before delivery. v0.4 (2026-10-17): Whisper + mattes on the RTX 5050. v0.3 (2026-10-16): Episode 2 clips 05–12 shipped from this pipeline (HQ multicam master, Postiz campaign).
+> v1.1 (2026-11-03): open YouTube thumbnail style catalog (`yt_thumbs.py`, `scripts/yt_styles/`; ask which style when none is named). v1.0 (2026-10-28): reel ends checked past the end (`tail_check.py`, rule 18) after a partner review found five reels cut mid-thought; fixing shipped reels (§9). v0.9 (2026-10-28): episode thumbnails (`make_episode_thumbs.py`) + YouTube description recipe (§8); Facebook link in the first comment (rule 17). v0.7 (2026-10-23): surgical cuts (`cutsafe.py`, rule 13) and an edge check before delivery. v0.4 (2026-10-17): Whisper + mattes on the RTX 5050. v0.3 (2026-10-16): Episode 2 clips 05–12 shipped from this pipeline (HQ multicam master, Postiz campaign).
 > Per-user settings (output folder, Postiz URL/token, channel ids) live in `~/.rabet-reels.json` — copy
 > `config.example.json`. Never hard-code them in the skill.
+> **16:9 mini / sub-episodes and topic episodes → the `rabet-episodes` skill.** Before creating, editing or preparing to publish a full or mini episode (incl. §8), ask whether to add the follow & subscribe pop-up (rabet-episodes rule 1).
 > **ONE reel per sheet topic** — never three variants. **Style: always S1 Clean** (user decision, 24 Oct 2026 —
 > S2 Split / S3 Bold only if the user asks). Pick the thumbnail by content + B2B audience (T1–T3 are user-approved).
 
@@ -116,7 +117,8 @@ Beats extras: `extra_words` (inject words into segments), `wide_words {"file","o
 | `scripts/postiz_upload.py` / `postiz_payload.py` / `postiz_drafts.py` | media upload (public API) → 12-post payload per reel → posts via the Postiz MCP endpoint (JSON-RPC; needs a curl User-Agent or Cloudflare 403s) |
 | `scripts/config.py` + `config.example.json` | per-user settings loader (`~/.rabet-reels.json`): output folder, Postiz URL/token, channel ids |
 | `scripts/finish.sh` | ship one reel: copy to `output_dir`, build the cover version, upload both to Postiz |
-| `scripts/make_episode_thumbs.py` | 16:9 YouTube episode thumbnails A/B/C (1280×720) for 2–3 guests from a spec JSON (§8) |
+| `scripts/yt_thumbs.py` + `scripts/yt_styles/` | 16:9 YouTube thumbnails from an open style catalog (one file per style: grid/board/word = classic A/B/C, collage, dark, giant, stage); `--list` shows them (§8, rabet-thumbnails) |
+| `scripts/make_episode_thumbs.py` | classic A/B/C in one go from old specs (wrapper around yt_thumbs.py) |
 | `templates/thumbs` | T1 cut-out+bold · T2 cinematic · T3 minimal (1080×1920, key content in centre 4:5) |
 
 Beats `content` keys per template are read directly by the template script — open the template's `<script>` to see every supported key.
@@ -171,7 +173,9 @@ Every reel scheduled on Postiz also gets 2 Zernio posts at the same date. Accoun
 
 ## 8. Full episode: YouTube thumbnail, title, description
 
-**Thumbnails** (user-approved style, Ep 2 and Ep 3): `python scripts/make_episode_thumbs.py spec.json` → `<prefix>.jpg/.png`, `_B`, `_C` in `out`.
+First ask whether the episode gets the follow & subscribe pop-up (rabet-episodes rule 1; render it with that skill).
+
+**Thumbnails**: styles are an open catalog (`python scripts/yt_thumbs.py --list`; ask the user which style when they name none, see rabet-thumbnails). The classic Ep 2/Ep 3 set: `python scripts/make_episode_thumbs.py spec.json` → `<prefix>.jpg/.png`, `_B`, `_C` in `out` (= styles grid, board, word).
 - A: navy grid, guest cut-outs left with a white outline, «الحلقة …» chip + logo, l1 (cream Lalezar) + l2 (orange tilted box) + kicker bar.
 - B: cream board, navy slanted block with an outlined episode number, guests clipped to the block, l1 navy + l2 orange + English chips.
 - C: like A with a huge aqua English word between l1 and l2.

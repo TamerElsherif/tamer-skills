@@ -90,6 +90,8 @@ bash $S/pipeline.sh <reel_dir> all     [styles]     # everything in order
 
 python $S/make_thumb.py <reel_dir>/thumb.json <reel_dir>/thumb.png          # 1080×1920 thumbnail
 python $S/make_episode_thumbs.py episode_thumb.json                         # 3× 1280×720 YouTube episode thumbnails
+python $S/yt_thumbs.py --list                                               # installed thumbnail styles
+python $S/yt_thumbs.py episode_thumb.json collage giant grid                # any mix of styles
 bash   $S/finish.sh <reel_dir> 06 s3-bold Can-You-Make-Money                # copy + cover + upload
 python $S/postiz_payload.py captions.json 06 uploads.json \
        Reel06_Can-You-Make-Money.mp4 Reel06_Can-You-Make-Money_cover.mp4 2026-10-22 payload.json schedule
@@ -199,7 +201,7 @@ Claude re-places every cut with `cutsafe.py`. Whisper had put the next word 0.15
 **5. Ship the full episode on YouTube**
 > *"Create 3 thumbnail variants for Ep3, suggest title, description and hashtags, include the topics and the guests' LinkedIn links."*
 
-Claude cuts out each guest from a 4K frame, writes an `episode_thumb.json` spec and runs `make_episode_thumbs.py` for variants A/B/C. It then writes title options and a description with chapters taken from the clip times (shifted by the teaser length when the upload has one), the guests' titles and LinkedIn links, the channel link and hashtags.
+Claude asks which thumbnail styles you want (`yt_thumbs.py --list` shows the catalog: classic grid/board/word = A/B/C, collage, dark, giant, stage, plus any style added later), cuts out each guest from a 4K frame, writes an `episode_thumb.json` spec and renders the chosen styles with `yt_thumbs.py` (or `make_episode_thumbs.py` for the classic A/B/C set). It then writes title options and a description with chapters taken from the clip times (shifted by the teaser length when the upload has one), the guests' titles and LinkedIn links, the channel link and hashtags.
 
 ## 🗂️ Layout
 
@@ -230,7 +232,9 @@ rabet-reels/
     ├── assemble.py          # stamps a template into a HyperFrames project
     ├── styles.json          # style → template + matte needs
     ├── make_thumb.py        # thumbnail renderer
-    ├── make_episode_thumbs.py # 16:9 episode thumbnails A/B/C (2–3 guests)
+    ├── make_episode_thumbs.py # classic A/B/C in one go from old specs (wrapper around yt_thumbs.py)
+    ├── yt_thumbs.py           # 16:9 thumbnails from the style catalog (--list) + Pexels stock helper
+    ├── yt_styles/             # one file per thumbnail style: grid, board, word (classic A/B/C), collage, dark, giant, stage
     ├── add_cover.py         # thumbnail as a 1.2 s intro
     ├── finish.sh            # ship: copy + cover + upload
     ├── config.py            # loads ~/.rabet-reels.json
@@ -270,6 +274,7 @@ rabet-reels/
 
 ## 📝 Changelog
 
+- **2026-11-03**: v1.1. 16:9 YouTube thumbnails from an open style catalog: one file per style in `scripts/yt_styles/` (classic grid/board/word kept pixel-identical, plus collage, dark, giant and stage), `yt_thumbs.py` renders any mix with per-style text, lists the styles instead of picking one when none is named, and fetches free Pexels photos. `make_episode_thumbs.py` is now a wrapper for the classic A/B/C set.
 - **2026-10-28**: v1.0. Partner review fixes: five Ep 3 reels ended mid-thought or inside the last word. New `tail_check.py` (own Whisper pass 15 s past a planned end, real pauses around it, isolated before/after check), house rule 18 (extend while the next words continue the idea; never ship a cutsafe "kept" end; last caption = last spoken word), and §9 for fixing shipped reels (Drive replace, Zernio in-place video swap, paced Postiz rebuild).
 - **2026-10-28**: v0.9. Full-episode YouTube kit: `make_episode_thumbs.py` (three 1280×720 variants for 2–3 guests from a spec JSON) and a title/description recipe with chapters, teaser offset, guest LinkedIn links and hashtags. Facebook/LinkedIn posts carry no YouTube link in the text; the link goes in the first comment.
 - **2026-10-25**: v0.8. Episode 3 (33 reels). Outro shows the channel link (no «مع …» line); cover-only delivery; S1 shirt stacks with `nameClear`; hero word above the head; `exact_ends`/`exact_starts` for edges in continuous speech; per-piece ffmpeg inputs (no 4K buffering); caption fixes (merged English terms, no prefix chunk ends, hook/body split, lowercase-English normalisation); strike-through on stack cards; Zernio drafts and draft→scheduled swaps.
