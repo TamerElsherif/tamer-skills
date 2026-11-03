@@ -38,13 +38,18 @@
     }
   },
   "zernio": {
-    "_doc": "Optional: brand pages Postiz cannot post to (e.g. a LinkedIn company page, a brand TikTok), scheduled through the Zernio MCP connector",
+    "_doc": "Optional: brand pages Postiz cannot post to (e.g. a LinkedIn company page, a brand TikTok), scheduled through the Zernio MCP connector. queues: one Zernio queue per episode (rabet-social 'Channel groups')",
     "linkedin_brand": "<zernio-account-id>",
     "tiktok_brand": "<zernio-account-id>",
     "timezone": "Africa/Cairo",
     "slots": {
       "linkedin_brand": "09:30",
       "tiktok_brand": "21:30"
+    },
+    "profile_id": "<zernio-profile-id>",
+    "queues": {
+      "default": "<zernio-queue-id>",
+      "ep1": "<zernio-queue-id>"
     }
   },
   "episodes": {

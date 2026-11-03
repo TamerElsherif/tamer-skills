@@ -37,6 +37,9 @@ skills, so you (or a partner) can come back after months and get the same qualit
 | "Thumbnails for the episode" / "the same thumbnail in collage and giant style" / "a cover for this Short" | **rabet-thumbnails** (asks which styles if you don't say; new styles can be added) |
 | "Titles, description and chapters" | **rabet-youtube** |
 | "Write the posts and schedule the reels for next week" | **rabet-social** |
+| "/rabet-post-rabet reels 5 to 8" / "schedule on the Rabet pages only" | **rabet-post-rabet** |
+| "/rabet-tamer-draft the full episode" / "post on Rabet, draft on my channels" | **rabet-tamer-draft** |
+| "/rabet-tamer this week's reels" / "schedule on my own accounts only" | **rabet-tamer** |
 
 **Not for:** other podcasts' branding (the colours, logo, names and rules are Rabet's), live streams, or music videos.
 
@@ -150,7 +153,29 @@ ideas). Every joint is checked afterwards on this contact sheet:
 You get 5 titles (each paired with a thumbnail) and a humanized Egyptian-Arabic description with guest/host links
 and chapters timed to the uploaded file. Facebook and LinkedIn posts put the YouTube link in the first comment.
 
-### 8. Upload big videos to YouTube, into the right playlist
+### 8. Schedule on the right channels, at the best times
+
+> /rabet-tamer-draft reels 5 to 8, starting Thursday.
+
+Three posting skills pick the channel set; all of them choose each post's day and time for Rabet's audience
+(Cairo time, Sunday to Thursday work week, evening peaks; `rabet-social/references/timing.md`), skip days a
+channel already has a post, and show the calendar before creating anything.
+
+| Skill | Rabet Podcast channels | Host's own channels |
+|---|---|---|
+| rabet-post-rabet | scheduled | not touched |
+| rabet-tamer-draft | scheduled | Postiz drafts, one day after the Rabet post |
+| rabet-tamer | not touched | scheduled |
+
+```bash
+python skills/rabet-social/scripts/plan_slots.py --group both --items "Reel 05" "Reel 06" --start 2026-11-05 --busy busy.json
+```
+
+Channel ids and Zernio queue ids come from `~/.rabet-reels.json` (`channels`, `zernio.queues`); Zernio posts go into
+their episode's queue with an explicit time, so the queue never moves them. Measured best times
+(Zernio `analytics_get_best_time_to_post`) replace the table only once a slot has 5+ posts behind it.
+
+### 9. Upload big videos to YouTube, into the right playlist
 
 > Upload the 6 mini episodes to the Rabet YouTube channel as private.
 
@@ -210,8 +235,12 @@ rabet-podcast-studio/
     ├── rabet-namecards/        name cards  (scripts/make_namecard.py, add_namecard.py, templates/namecard.html)
     ├── rabet-thumbnails/       16:9 YouTube + 9:16 covers (uses rabet-reels scripts/templates)
     ├── rabet-youtube/          titles, descriptions, chapters, hashtags
-    └── rabet-social/           humanized posts + Postiz / Zernio scheduling
-                                (scripts/tunnel_upload.py: temporary public URL for uploads over 100 MB)
+    ├── rabet-social/           humanized posts + Postiz / Zernio scheduling
+    │                           (scripts/tunnel_upload.py: temporary public URL for uploads over 100 MB;
+    │                            scripts/plan_slots.py + references/timing.md: best day/time calendar)
+    ├── rabet-post-rabet/       schedule on the Rabet Podcast channels only
+    ├── rabet-tamer-draft/      schedule on Rabet + drafts on the host's channels
+    └── rabet-tamer/            schedule on the host's channels only
 ```
 
 ## Dependencies
@@ -232,6 +261,13 @@ Tested on Windows 11 with an RTX 5050 (CUDA 12). GPU Whisper needs `cublas64_12.
 `skills/rabet-reels/SKILL.md` §5.
 
 ## Changelog
+
+- **2026-11-03 · v1.4.0**: three posting sub-skills that pick the channel set: rabet-post-rabet (Rabet channels
+  only), rabet-tamer-draft (Rabet scheduled, host channels as Postiz drafts a day later) and rabet-tamer (host
+  channels only). New `plan_slots.py` and `references/timing.md` choose each post's day and time for the audience
+  (Sun–Thu work week, evening peaks, one post per channel per day). rabet-social gained a channel-group table, Zernio
+  episode queues (posts keep their time inside a queue) and the tag/mention rules; config example gained
+  `zernio.profile_id`, `zernio.queues`, `fb_host`, `ig_host`.
 
 - **2026-11-02 · v1.3.0**: YouTube thumbnail styles are now an open catalog instead of fixed A/B/C. Each style is one
   file in `rabet-reels/scripts/yt_styles/` and `yt_thumbs.py` renders any mix of them (`--list` shows what's

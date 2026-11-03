@@ -16,11 +16,45 @@ description: Write humanized social posts for Rabet (رابط) Podcast reels, mi
   كومنت 👇» before the hashtags; the link goes in the **first comment** («الحلقة كاملة على YouTube:» + link).
 - Tag the guests where the platform allows (LinkedIn profile links above in rabet-youtube).
 
+## Channel groups (used by /rabet-post-rabet, /rabet-tamer-draft, /rabet-tamer)
+Ids live only in `~/.rabet-reels.json` (never in this repo): Postiz channels under `channels.<key>.id`, Zernio
+accounts under `zernio.<key>`, the Zernio profile under `zernio.profile_id`, queues under `zernio.queues`.
+
+| Group | Channel key | Platform | Tool |
+|---|---|---|---|
+| Rabet | fb_brand | Facebook Rabet Podcast page | Postiz |
+| Rabet | ig_brand | Instagram Rabet Podcast | Postiz |
+| Rabet | yt_brand | YouTube Rabet Podcast | Postiz |
+| Rabet | linkedin_brand | LinkedIn Rabet Podcast page | Zernio |
+| Rabet | tiktok_brand | TikTok @rabetpodcast | Zernio |
+| Tamer | li_host | LinkedIn Tamer ElSherif | Postiz |
+| Tamer | fb_host | Facebook Tamer ElSherif page | Postiz |
+| Tamer | ig_host | Instagram Tamer ElSherif | Postiz |
+| Tamer | tiktok | TikTok Tamer ElSherif | Postiz |
+| Tamer | yt_host | YouTube Tamer ElSherif | Postiz |
+
+Never post to any other channel (e.g. the COGI YouTube channel) from a Rabet skill. If `integrationList` /
+`accounts_list` shows a Rabet or Tamer channel that isn't in this table, ask which group it belongs to, add its id to
+`~/.rabet-reels.json` and its row here (and in `scripts/plan_slots.py` CHANNELS).
+
+**Zernio queues** (`zernio.queues`: `default`, `ep1`, `ep2`, `ep3`, …): one «Rabet-Episode-N» queue per episode, the
+Default Queue for anything not tied to one episode. A new episode gets its own queue: ask the user to create
+«Rabet-Episode-N» in Zernio, read its id with `queue_list_queue_slots {"profile_id": <zernio.profile_id>, "all":
+"true"}` and save it as `zernio.queues.epN`. Put every Zernio post in its episode's queue **and** give it an explicit
+time: `queued_from_profile` + `queue_id` + `scheduled_for` (+ `is_draft: true` for drafts). With `scheduled_for` the
+post keeps the planned time; without it Zernio moves the post to the queue's next free slot (tested 2026-11-03).
+
+**Tags and mentions on every post:** episode tag (EP1/EP2/EP3…) + featured people (Tamer, Hossam, Haitham, Khaled;
+the Postiz tag for Khaled is «Khaled-NasserEdin»). Postiz tags must already exist by that exact name (create new ones
+in the Postiz dashboard; the API drops unknown names). LinkedIn: `@[profile URL]` mentions of the featured people
+(rabet-mentions memory). Zernio TikTok: @tamerelshereef / @Nasseredin when they feature. Tamer's TikTok (Postiz):
+`‏🎙️ @rabetpodcast` line before the hashtags.
+
 ## Scheduling (Postiz and Zernio)
-1. Build one calendar first and show it: date, time, platform, account, video, post. Default rhythm: full episode day 0,
-   then one reel or mini episode per day, alternating guests so the feed doesn't repeat; LinkedIn on weekday
-   mornings (Cairo time), Facebook/Instagram evenings. Use the tools' best-time data when available
-   (Zernio `analytics_get_best_time_to_post`).
+1. Build one calendar first and show it: date, time, platform, account, video, post. Pick the times with
+   `scripts/plan_slots.py` and the audience rules in `references/timing.md` (Cairo time, Sun–Thu work week, real
+   best-time data only when a slot has 5+ posts behind it). Pass the channels' existing posts as `--busy` so no
+   channel gets two posts on one day.
 2. **Postiz** (already wired, settings in `~/.rabet-reels.json`): `../rabet-reels/scripts/postiz_upload.py` →
    `postiz_payload.py <captions> NN uploads.json <clean> <cover> YYYY-MM-DD payload.json [draft|schedule]` →
    `postiz_drafts.py payload.json NN posts.csv`.
@@ -52,6 +86,15 @@ description: Write humanized social posts for Rabet (رابط) Podcast reels, mi
       EP1 Sub-04 after 3 failures. Large posts can sit in QUEUE for ~10 min before PUBLISHED. Then **always** `tunnel_upload.py stop` (also
       after any error): it closes the tunnel and server and deletes the temp folder (links only, never the originals).
       Confirm nothing is left: no `rabet_tunnel_tmp` folder, no cloudflared process.
+   **Scripted runs (2026-11-01, Ep3 long-form):** call `uploadFromUrlTool` through the Postiz MCP endpoint
+   (`postiz_drafts.rpc`); Cloudflare answers **504 after ~100 s** while Postiz keeps downloading, so after a timeout run
+   `tunnel_upload.py wait`, then take the newest `mediaListTool` item whose Content-Length equals the local size (and
+   check the media list *before* uploading, to reuse a file a timed-out run already delivered). Create posts through the
+   MCP endpoint too: it isn't held to the public API's ~30 calls/hour. Keep the public API for in-place edits (same id +
+   group, see rabet-reels §6) and pace those (PACE=125–150); hitting 429 repeatedly burns the hour, so stop and resume.
+   **Episode link before release:** post the full episode to YouTube as `private` with type `now`; once PUBLISHED, the
+   public API's post list has `releaseURL` (the video link) for the reels' first comments; the user sets the public
+   release in Studio. Reference: `projects/rabet-ep3-reels/reels/campaign_long.py`.
 5. **Nothing goes public without the user's explicit OK**: create drafts by default; schedule only after the user
    approves the calendar; never "publish now" unasked. Report what was created where (post ids, dates).
 6. Replacing an existing post: rebuild from the current server text and tags, create the replacement, then delete the

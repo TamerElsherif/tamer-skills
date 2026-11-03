@@ -42,6 +42,15 @@ cover versions + thumbnails (rabet-thumbnails), tail_check / edge_check every ed
 - rabet-social: humanized posts (humanizer skill) for every video and platform.
 
 ## 6. Schedule (rabet-social)
+**Which channels** (ask once, in the first question if posting is in scope): use the matching posting sub-skill.
+| Sub-skill | Rabet Podcast channels | Tamer ElSherif channels |
+|---|---|---|
+| /rabet-post-rabet | scheduled | not touched |
+| /rabet-tamer-draft | scheduled | Postiz drafts, one day later |
+| /rabet-tamer | not touched | scheduled |
+All three pick each post's day and time from rabet-social `references/timing.md` + `scripts/plan_slots.py`
+(best reach for Rabet's audience) and show the calendar for approval before creating anything.
+
 Uploads: check each file's size first. Over 100 MB (Cloudflare limit in front of Postiz) → tell the user, then use
 rabet-social's temporary-URL route (`scripts/tunnel_upload.py`), and close the tunnel and remove its temp folder
 when done. Full episodes go to the playlist «Full Episodes», mini episodes to «Mini Episodes - Topics»
