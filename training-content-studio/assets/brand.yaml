@@ -1,0 +1,11 @@
+# Brand slots (per client; copy into the run folder and fill). All optional; neutral defaults apply when empty.
+logo: null                 # path to SVG/PNG. EMPTY BY DEFAULT — only set when the client supplies one and asks for it.
+logo_placement: none       # none | title | outro | corner
+theme_preset: neutral      # assets/theme_presets.yaml
+color_overrides: {}        # e.g. {accent: "#0B5FA5"} — re-run assets/scripts/check_contrast.py
+company_name: "Northwind Co."   # fictional default for examples/mock-ups
+mock_domain: "northwind.example"
+intro: null                # path to a ≤ 4 s intro sting (video) or null → `title` scene only
+outro: null                # path to a ≤ 4 s outro sting or null → `outro` scene only
+lower_third_style: clean   # clean | bar (no one-sided thick accent borders)
+evidence_line: null        # e.g. "Completion recorded for ISO/IEC 27001 A.6.3 awareness evidence."

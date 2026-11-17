@@ -1,0 +1,74 @@
+schema_version: '1.0'
+course:
+  id: submit-expenses-in-netsuite
+  title: How to submit expenses in NetSuite
+  domain: software-procedure
+  domain_pack: _template
+  audience:
+    level: beginner
+    roles:
+    - learner
+    - rookie
+    segments:
+    - staff
+  languages:
+    primary: en-US
+  total_minutes: 15
+  verbosity: standard
+  wpm: 130
+  targets:
+  - video
+  - jobaid
+  - video-vertical
+  - scorm
+  aspects:
+  - '16:9'
+  - '9:16'
+  renderer: remotion
+objectives:
+- id: O1
+  text: Identify what you need before you submit expenses in NetSuite
+  bloom: remember
+  type: procedure
+- id: O2
+  text: Complete the steps to submit expenses in NetSuite correctly
+  bloom: apply
+  type: procedure
+- id: O3
+  text: Check your work and fix common errors when you submit expenses in NetSuite
+  bloom: analyze
+  type: procedure
+modules:
+- id: M1
+  title: Module 1
+  lessons:
+  - id: M1L1
+    title: Before you start
+    objective_ids:
+    - O1
+    formats:
+    - screencast-sim
+    - job-aid
+    duration_min: 5
+    status: planned
+  - id: M1L2
+    title: Step by step
+    objective_ids:
+    - O2
+    formats:
+    - screencast-sim
+    - job-aid
+    duration_min: 5
+    status: planned
+  - id: M1L3
+    title: Check and fix
+    objective_ids:
+    - O3
+    formats:
+    - screencast-sim
+    - job-aid
+    duration_min: 5
+    status: planned
+approval:
+  status: auto-approved
+  by: tcs-autopilot

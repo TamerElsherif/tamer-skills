@@ -1,0 +1,215 @@
+{
+ "schema_version": "1.0",
+ "course_id": "northwind-security-basics",
+ "lesson_id": "M5L1",
+ "title": "Data Classification at a Glance",
+ "language": "en-US",
+ "direction": "ltr",
+ "subtitle_languages": [
+  "ar-EG"
+ ],
+ "aspect": "16:9",
+ "fps": 30,
+ "formats": [
+  "mindmap"
+ ],
+ "wpm": 150,
+ "objective_ids": [
+  "O1",
+  "O2"
+ ],
+ "theme": {
+  "preset": "neutral",
+  "logo": null
+ },
+ "voices": {
+  "narrator": {
+   "provider": "openai",
+   "model": "gpt-4o-mini-tts",
+   "voice": "marin",
+   "lang": "en-US",
+   "instructions": "Warm, confident corporate trainer speaking to colleagues. Clear, friendly, natural pace; brief pauses between list items. Never robotic."
+  }
+ },
+ "music": {
+  "bed": "explainer",
+  "volume": 0.12
+ },
+ "scenes": [
+  {
+   "id": "s01_title",
+   "template": "title",
+   "props": {
+    "title": "Data Classification at a Glance",
+    "icon": "layers"
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "Data classification, at a glance."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Intro.",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "s02_map",
+   "template": "mindmap",
+   "props": {
+    "root": "Northwind data",
+    "nodes": [
+     {
+      "id": "pub",
+      "label": "Public",
+      "parent": "root",
+      "cue": 0,
+      "icon": "globe",
+      "tone": "safe"
+     },
+     {
+      "id": "pub1",
+      "label": "Website, brochures",
+      "parent": "pub",
+      "cue": 1
+     },
+     {
+      "id": "int",
+      "label": "Internal",
+      "parent": "root",
+      "cue": 2,
+      "icon": "building",
+      "tone": "info"
+     },
+     {
+      "id": "int1",
+      "label": "Org chart, policies",
+      "parent": "int",
+      "cue": 3
+     },
+     {
+      "id": "con",
+      "label": "Confidential",
+      "parent": "root",
+      "cue": 4,
+      "icon": "lock",
+      "tone": "warn"
+     },
+     {
+      "id": "con1",
+      "label": "Contracts, salaries",
+      "parent": "con",
+      "cue": 5
+     },
+     {
+      "id": "con2",
+      "label": "Customer personal data",
+      "parent": "con",
+      "cue": 6
+     }
+    ],
+    "focus": [
+     {
+      "cue": 4,
+      "node": "con"
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "All our data sits in three levels. ^ Public: ^ things already on our website. ^ Internal: ^ fine to share with colleagues, like the org chart. ^ And Confidential: ^ contracts and salaries, ^ and any personal data about customers."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Three classification levels with examples.",
+     "source_ids": [
+      "S06#c1",
+      "S06#c2"
+     ]
+    }
+   ],
+   "duration_hint_s": 24
+  },
+  {
+   "id": "s03_rule",
+   "template": "definition",
+   "props": {
+    "term": "Confidential",
+    "def": "Share only with people who need it for their job, through approved tools.",
+    "icon": "lock"
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "^ The rule for confidential data: share only with people who need it, using approved tools."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Need-to-know rule.",
+     "source_ids": [
+      "S06#c3"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s04_quiz",
+   "template": "quiz",
+   "props": {
+    "quiz_item": "Q1",
+    "q": "A customer list with phone numbers is…",
+    "options": [
+     "Public",
+     "Internal",
+     "Confidential"
+    ],
+    "answer": 2
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "A customer list with phone numbers. Which level?",
+     "pause": 2.2
+    },
+    {
+     "who": "narrator",
+     "text": "^ Confidential: it's personal data."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Customer personal data is confidential.",
+     "source_ids": [
+      "S06#c2"
+     ]
+    }
+   ],
+   "hold": 3
+  },
+  {
+   "id": "s05_outro",
+   "template": "outro",
+   "props": {
+    "line": "Label it, then share it right."
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "Label it, then share it right."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Closing.",
+     "general_knowledge": true
+    }
+   ]
+  }
+ ]
+}

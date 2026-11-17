@@ -1,0 +1,286 @@
+{
+ "schema_version": "1.0",
+ "lesson_id": "M1L2",
+ "summary": {
+  "total": 24,
+  "supported": 24,
+  "general_knowledge": 0,
+  "unsupported": 0,
+  "conflicting": 0,
+  "outdated": 0,
+  "partial": 0
+ },
+ "claims": [
+  {
+   "scene_id": "j01_header",
+   "text": "Northwind Co. Expense Policy (SOP-FIN-007), version 3.2, effective date 2026-03-01.",
+   "status": "supported",
+   "fact_ids": [
+    "F057"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "j02_check",
+   "text": "A receipt is required for every expense over $25.",
+   "status": "supported",
+   "fact_ids": [
+    "F032"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "j02_check",
+   "text": "Attach the receipt photo to each line and check that the total matches.",
+   "status": "supported",
+   "fact_ids": [
+    "F044"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "j02_check",
+   "text": "Choose the expense category and enter the date, amount and business purpose.",
+   "status": "supported",
+   "fact_ids": [
+    "F043"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "j02_check",
+   "text": "Employees must submit expense claims within 30 days of the expense date.",
+   "status": "supported",
+   "fact_ids": [
+    "F033"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "j02_check",
+   "text": "Do not submit personal costs, such as family meals or private travel upgrades, as business expenses.",
+   "status": "supported",
+   "fact_ids": [
+    "F048"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "j03_limits",
+   "text": "The meal per diem is $60 per day for domestic travel and $85 per day for international travel.",
+   "status": "supported",
+   "fact_ids": [
+    "F035"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "j03_limits",
+   "text": "Hotel costs are capped at $220 per night unless the Travel Desk approves an exception in writing.",
+   "status": "supported",
+   "fact_ids": [
+    "F036"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "j03_limits",
+   "text": "Flights under 6 hours must be booked in economy class.",
+   "status": "supported",
+   "fact_ids": [
+    "F037"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "j03_limits",
+   "text": "Alcohol is not reimbursable, except during client entertainment that the manager approved in advance.",
+   "status": "supported",
+   "fact_ids": [
+    "F038"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "j03_limits",
+   "text": "A manager approves claims up to $1,000, a director up to $5,000, and the CFO any claim above $5,000.",
+   "status": "supported",
+   "fact_ids": [
+    "F039"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "j04_never",
+   "text": "Never split one expense into several claims to stay under an approval limit.",
+   "status": "supported",
+   "fact_ids": [
+    "F047"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "j04_never",
+   "text": "Do not submit personal costs, such as family meals or private travel upgrades, as business expenses.",
+   "status": "supported",
+   "fact_ids": [
+    "F048"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "j04_never",
+   "text": "Submitting a false or inflated claim is treated as misconduct and can lead to disciplinary action, including dismissal.",
+   "status": "supported",
+   "fact_ids": [
+    "F049"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "j04_never",
+   "text": "Contact the Finance Help Desk for any question about this policy.",
+   "status": "supported",
+   "fact_ids": [
+    "F056"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "j05_deadlines",
+   "text": "Keep the itemised receipt for every expense and photograph it on the same day.",
+   "status": "supported",
+   "fact_ids": [
+    "F041"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "j05_deadlines",
+   "text": "Employees must submit expense claims within 30 days of the expense date.",
+   "status": "supported",
+   "fact_ids": [
+    "F033"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "j05_deadlines",
+   "text": "Respond to any approver question within 5 business days, or the claim is returned to you.",
+   "status": "supported",
+   "fact_ids": [
+    "F046"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "j05_deadlines",
+   "text": "Claims older than 90 days are not reimbursed.",
+   "status": "supported",
+   "fact_ids": [
+    "F034"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "j05_deadlines",
+   "text": "Employees must keep original paper receipts for 7 years after the claim date.",
+   "status": "supported",
+   "fact_ids": [
+    "F054"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "j05_deadlines",
+   "text": "Contact the Finance Help Desk through the internal service portal for any question about this policy.",
+   "status": "supported",
+   "fact_ids": [
+    "F056"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "quiz:Q1",
+   "text": "A $1,400 hotel bill would need director approval. A colleague suggests two claims of $700. What do you do? → Submit it as one claim with the real amount",
+   "status": "supported",
+   "fact_ids": [
+    "F047"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "quiz:Q2",
+   "text": "Your approver asked a question about your claim. By when must you answer? → Within 5 business days",
+   "status": "supported",
+   "fact_ids": [
+    "F046"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "quiz:Q3",
+   "text": "A hotel night of $250 is fine without any extra approval. — this is false. Hotel costs are capped at $220 per night unless the Travel Desk approves an exception in writing.",
+   "status": "supported",
+   "fact_ids": [
+    "F036"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  }
+ ],
+ "coverage": {
+  "O2": [
+   "quiz:Q1",
+   "quiz:Q2",
+   "quiz:Q3"
+  ]
+ }
+}

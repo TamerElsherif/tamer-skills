@@ -1,0 +1,192 @@
+# Persona registry: id → kit cast look. Shared contract between assets/ (agent E) and kit/ personas (agent A).
+# kit_cast = the SVG persona id rendered by kit/ (same id). Reference images for each persona are produced by rendering
+# the kit SVG persona (idle pose, neutral) — not by image generation. Domain packs add personas in
+# domains/<pack>/personas.yaml (e.g. security-awareness adds `vex`, the only persona wearing attention #FF6700).
+# display_name is localizable on-screen/bubble text; ids never change.
+schema_version: '1.0'
+personas:
+  host:
+    display_name:
+      en: Lina
+      ar: لينا
+    role: On-screen host / narrator who introduces and wraps up lessons
+    kit_cast: host
+    look: woman in her mid-30s, medium-brown skin, shoulder-length wavy dark-brown hair, small stud earrings, navy blazer over a light-cyan top,
+      charcoal trousers, flat shoes
+    palette:
+      skin: '#A86B4C'
+      hair: '#3B2A22'
+      top: '#6FC7DA'
+      jacket: '#363E77'
+      bottom: '#3A3F55'
+    voice: openai marin (narrator slot) — warm, confident trainer
+    poses:
+    - present
+    - wave
+    - point
+    - pointUp
+    expressions:
+    - happy
+    - neutral
+    sheet: assets/characters/host/character_sheet.md
+    prompt: assets/characters/host/prompt.txt
+  learner:
+    display_name:
+      en: Nour
+      ar: نور
+    role: Everyday employee the audience identifies with; usually makes the right call after thinking
+    kit_cast: learner
+    look: young woman in her 20s, light-olive skin, wears a smooth blue hijab, soft grey cardigan over a white top, dark-blue trousers, white
+      trainers, ID badge on a lanyard
+    palette:
+      skin: '#D9A982'
+      hijab: '#006AB3'
+      cardigan: '#9AA3B5'
+      top: '#FFFFFF'
+      bottom: '#26305C'
+    voice: openai ash — friendly, curious, casual
+    poses:
+    - think
+    - phone
+    - type
+    - point
+    expressions:
+    - think
+    - neutral
+    - happy
+    - worried
+    sheet: assets/characters/learner/character_sheet.md
+    prompt: assets/characters/learner/prompt.txt
+  manager:
+    display_name:
+      en: Karim
+      ar: كريم
+    role: Line manager / approver; source of authority pressure (real or impersonated)
+    kit_cast: manager
+    look: man in his 40s, dark-brown skin, short greying hair, neatly trimmed grey-black beard, white shirt with rolled sleeves, navy waistcoat,
+      grey trousers, wristwatch
+    palette:
+      skin: '#6B4532'
+      hair: '#4A4A4A'
+      shirt: '#FFFFFF'
+      waistcoat: '#363E77'
+      bottom: '#5A6385'
+    voice: openai onyx — brisk, good-humoured
+    poses:
+    - handsHips
+    - point
+    - phone
+    - armsOut
+    expressions:
+    - neutral
+    - happy
+    - worried
+    sheet: assets/characters/manager/character_sheet.md
+    prompt: assets/characters/manager/prompt.txt
+  mentor:
+    display_name:
+      en: Omar
+      ar: عمر
+    role: Subject-matter expert (IT/security/HR/finance) who explains the rule and the why
+    kit_cast: mentor
+    look: man in his 30s, light-brown skin, short black hair, rectangular glasses, short beard, blue polo shirt, khaki trousers, lanyard badge,
+      tablet in hand
+    palette:
+      skin: '#B98563'
+      hair: '#1F1A17'
+      polo: '#006AB3'
+      bottom: '#C9B48A'
+      glasses: '#363E77'
+    voice: openai echo — calm, warm, clear
+    poses:
+    - present
+    - stop
+    - point
+    - pointUp
+    expressions:
+    - happy
+    - neutral
+    - think
+    sheet: assets/characters/mentor/character_sheet.md
+    prompt: assets/characters/mentor/prompt.txt
+  customer:
+    display_name:
+      en: Dana
+      ar: دانة
+    role: Customer, supplier or external partner; requests and payments come from (or are faked as) her
+    kit_cast: customer
+    look: woman in her 50s, fair skin with freckles, short silver bob haircut, green blazer over a cream-white blouse, dark trousers, tote bag
+    palette:
+      skin: '#F0CFB4'
+      hair: '#C8CCD4'
+      blazer: '#1E7F4F'
+      blouse: '#F7F7F2'
+      bottom: '#2E3446'
+    voice: openai coral — polite, slightly impatient under pressure
+    poses:
+    - phone
+    - handsHips
+    - hold
+    - wave
+    expressions:
+    - neutral
+    - worried
+    - happy
+    - angry
+    sheet: assets/characters/customer/character_sheet.md
+    prompt: assets/characters/customer/prompt.txt
+  rookie:
+    display_name:
+      en: Sam
+      ar: سام
+    role: New starter / mistake-maker whose slips drive the story (then gets it right)
+    kit_cast: rookie
+    look: young man in his 20s, tan skin, curly black hair, light-blue shirt half-untucked, dark-grey chinos, white trainers, ID badge on a lanyard,
+      often holding a coffee cup
+    palette:
+      skin: '#C68B5E'
+      hair: '#141414'
+      shirt: '#A9D4F5'
+      bottom: '#4A4F5E'
+      cup: '#FFFFFF'
+    voice: openai ballad — expressive, quick to panic, comic
+    poses:
+    - phone
+    - facepalm
+    - type
+    - cheer
+    - shrug
+    expressions:
+    - worried
+    - shocked
+    - happy
+    - sad
+    sheet: assets/characters/rookie/character_sheet.md
+    prompt: assets/characters/rookie/prompt.txt
+  colleague:
+    display_name:
+      en: Maya
+      ar: مايا
+    role: Supportive co-worker / bystander
+    kit_cast: colleague
+    look: woman in her 30s, deep-brown skin, short natural curls, teal sweater, grey trousers
+    voice: openai sage
+    extra: true
+  exec:
+    display_name:
+      en: Hana
+      ar: هنا
+    role: Senior executive (CEO/CFO), often impersonated
+    kit_cast: exec
+    look: woman in her 50s, light-brown skin, grey streaked hair in a low bun, dark navy suit, pearl studs
+    voice: openai cedar
+    extra: true
+  support:
+    display_name:
+      en: Dina
+      ar: دينا
+    role: Help-desk / service-desk agent
+    kit_cast: support
+    look: woman in her late 20s, medium skin, black ponytail, headset, light-blue company polo
+    voice: openai nova
+    extra: true

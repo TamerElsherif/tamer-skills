@@ -1,0 +1,291 @@
+{
+ "schema_version": "1.0",
+ "lesson_id": "M1L1",
+ "summary": {
+  "total": 24,
+  "supported": 21,
+  "general_knowledge": 3,
+  "unsupported": 0,
+  "conflicting": 0,
+  "outdated": 0,
+  "partial": 0
+ },
+ "claims": [
+  {
+   "scene_id": "s01_title",
+   "text": "CEO fraud tricks employees into sending money by impersonating executives.",
+   "status": "supported",
+   "fact_ids": [
+    "F016"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "s02_request",
+   "text": "Scenario: Sam in Finance receives an urgent, secret payment request that appears to come from the CEO (fictional example).",
+   "status": "general-knowledge"
+  },
+  {
+   "scene_id": "s03_email",
+   "text": "Warning sign: a sender address or reply-to address that does not match the usual one.",
+   "status": "supported",
+   "fact_ids": [
+    "F032"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "s03_email",
+   "text": "Warning sign: urgency or pressure to pay today.",
+   "status": "supported",
+   "fact_ids": [
+    "F028"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "s03_email",
+   "text": "Warning sign: new or changed bank details.",
+   "status": "supported",
+   "fact_ids": [
+    "F030"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "s03_email",
+   "text": "Warning sign: a request to keep the payment secret or to bypass the normal process.",
+   "status": "supported",
+   "fact_ids": [
+    "F029"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "s03_email",
+   "text": "Scenario: the fake email asks for a USD 48,500 payment to a fictional supplier (fictional example).",
+   "status": "general-knowledge"
+  },
+  {
+   "scene_id": "s04_vex",
+   "text": "Attackers use authority and time pressure to rush people past checks.",
+   "status": "general-knowledge"
+  },
+  {
+   "scene_id": "s05_decide",
+   "text": "A request from an executive is verified by calling the executive back on their directory number.",
+   "status": "supported",
+   "fact_ids": [
+    "F022"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "s06_paid",
+   "text": "If you think money has already been sent, report it to IT Security and Finance immediately.",
+   "status": "supported",
+   "fact_ids": [
+    "F035"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "s07_reply",
+   "text": "Never use a phone number, link or contact detail given in the request itself.",
+   "status": "supported",
+   "fact_ids": [
+    "F021"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "s08_callback",
+   "text": "Before acting on a payment or bank-detail request, call the requester back on a number already on file in the company directory.",
+   "status": "supported",
+   "fact_ids": [
+    "F020"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "s08_callback",
+   "text": "Report every suspicious payment request to IT Security straight away.",
+   "status": "supported",
+   "fact_ids": [
+    "F033"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "s09_rule",
+   "text": "Before acting on a request to make a payment or change bank details, call the requester back on a phone number already on file.",
+   "status": "supported",
+   "fact_ids": [
+    "F020"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "s09_rule",
+   "text": "Every payment of USD 10,000 or more needs approval from two authorised people before it is released.",
+   "status": "supported",
+   "fact_ids": [
+    "F025"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ],
+   "note": "llm: §4.1 verbatim; threshold and 'or more' preserved"
+  },
+  {
+   "scene_id": "s09_rule",
+   "text": "Every change to bank details needs a second person to approve it after the callback, whatever the amount.",
+   "status": "supported",
+   "fact_ids": [
+    "F026"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ],
+   "note": "llm: §4.2 verbatim incl. 'whatever the amount'"
+  },
+  {
+   "scene_id": "s09_rule",
+   "text": "Report suspicious payment requests to IT Security with the Report Phishing button in Outlook or the IT Security hotline on extension 4400.",
+   "status": "supported",
+   "fact_ids": [
+    "F033"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ],
+   "note": "llm: §6.1; extension 4400 matches"
+  },
+  {
+   "scene_id": "s10_quiz",
+   "text": "Never use a phone number given in the request itself; call back a number already on file.",
+   "status": "supported",
+   "fact_ids": [
+    "F020"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "s11_outro",
+   "text": "Warning sign: urgency or pressure to pay today.",
+   "status": "supported",
+   "fact_ids": [
+    "F028"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "s11_outro",
+   "text": "No one will be blamed for reporting a request that turns out to be genuine.",
+   "status": "supported",
+   "fact_ids": [
+    "F036"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "quiz:Q1",
+   "text": "Which detail is a warning sign under the payment policy? → The sender address doesn't match the usual one",
+   "status": "supported",
+   "fact_ids": [
+    "F032"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "quiz:Q2",
+   "text": "What should Sam do? → Call Hana on her directory number",
+   "status": "supported",
+   "fact_ids": [
+    "F022"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "quiz:Q3",
+   "text": "The email lists a new phone number so you can \"confirm\". What do you do? → Call a number already on file",
+   "status": "supported",
+   "fact_ids": [
+    "F020"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "quiz:Q4",
+   "text": "You think a fake payment request has just been paid. What is the first thing to do? → Report it to IT Security and Finance immediately",
+   "status": "supported",
+   "fact_ids": [
+    "F035"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  }
+ ],
+ "coverage": {
+  "O1": [
+   "s01_title",
+   "s02_request",
+   "s03_email",
+   "s04_vex",
+   "s11_outro",
+   "quiz:Q1"
+  ],
+  "O2": [
+   "s05_decide",
+   "s07_reply",
+   "s08_callback",
+   "s09_rule",
+   "s10_quiz",
+   "s11_outro",
+   "quiz:Q2",
+   "quiz:Q3"
+  ],
+  "O3": [
+   "s06_paid",
+   "s08_callback",
+   "s09_rule",
+   "s11_outro",
+   "quiz:Q4"
+  ]
+ }
+}

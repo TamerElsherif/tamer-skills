@@ -1,0 +1,10 @@
+{
+  "name": "training-content-studio",
+  "version": "1.0.0",
+  "description": "Produce grounded training content on any subject — intake, approval gate, scripts, storyboards, assessments and renders (OpenMontage/Remotion video, narrated decks, interactive HTML lessons, SCORM 1.2, PDF job aids) in English and Arabic, plus a fully automated /tcs-autopilot mode.",
+  "author": { "name": "Tamer Elsherif" },
+  "homepage": "https://github.com/TamerElsherif/tamer-skills",
+  "repository": "https://github.com/TamerElsherif/tamer-skills",
+  "license": "MIT",
+  "keywords": ["training", "e-learning", "instructional-design", "microlearning", "scorm", "storyboard", "explainer-video", "arabic", "rtl", "openmontage", "remotion", "assessment"]
+}

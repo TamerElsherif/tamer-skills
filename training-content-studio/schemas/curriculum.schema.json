@@ -1,0 +1,493 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://tamer-skills/training-content-studio/schemas/curriculum.schema.json",
+ "title": "curriculum.yaml — course skeleton, objectives, prioritization",
+ "type": "object",
+ "required": [
+  "schema_version",
+  "course",
+  "objectives",
+  "modules",
+  "approval"
+ ],
+ "additionalProperties": false,
+ "properties": {
+  "schema_version": {
+   "const": "1.0"
+  },
+  "course": {
+   "type": "object",
+   "required": [
+    "id",
+    "title",
+    "domain",
+    "audience",
+    "languages",
+    "total_minutes",
+    "targets"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "id": {
+     "type": "string",
+     "pattern": "^[a-z0-9][a-z0-9-]*$"
+    },
+    "title": {
+     "type": "string"
+    },
+    "title_ar": {
+     "type": "string"
+    },
+    "domain": {
+     "type": "string"
+    },
+    "domain_pack": {
+     "type": "string"
+    },
+    "audience": {
+     "type": "object",
+     "required": [
+      "level"
+     ],
+     "properties": {
+      "roles": {
+       "type": "array",
+       "items": {
+        "type": "string"
+       }
+      },
+      "level": {
+       "enum": [
+        "beginner",
+        "intermediate",
+        "advanced",
+        "mixed",
+        "beginner-intermediate"
+       ]
+      },
+      "segments": {
+       "type": "array",
+       "items": {
+        "type": "string"
+       }
+      },
+      "notes": {
+       "type": "string"
+      }
+     }
+    },
+    "languages": {
+     "type": "object",
+     "required": [
+      "primary"
+     ],
+     "properties": {
+      "primary": {
+       "type": "string",
+       "enum": [
+        "en-US",
+        "en-GB",
+        "ar-EG",
+        "ar-MSA"
+       ]
+      },
+      "secondary": {
+       "type": "array",
+       "items": {
+        "type": "string",
+        "enum": [
+         "en-US",
+         "en-GB",
+         "ar-EG",
+         "ar-MSA"
+        ]
+       }
+      },
+      "subtitles": {
+       "type": "array",
+       "items": {
+        "type": "string",
+        "enum": [
+         "en-US",
+         "en-GB",
+         "ar-EG",
+         "ar-MSA"
+        ]
+       }
+      }
+     }
+    },
+    "total_minutes": {
+     "type": "number"
+    },
+    "verbosity": {
+     "enum": [
+      "concise",
+      "standard",
+      "detailed"
+     ]
+    },
+    "wpm": {
+     "type": "integer",
+     "minimum": 90,
+     "maximum": 200
+    },
+    "complexity": {
+     "enum": [
+      "low",
+      "medium",
+      "high"
+     ]
+    },
+    "targets": {
+     "type": "array",
+     "items": {
+      "enum": [
+       "video",
+       "video-vertical",
+       "deck",
+       "lesson",
+       "scorm",
+       "jobaid"
+      ]
+     },
+     "minItems": 1
+    },
+    "aspects": {
+     "type": "array",
+     "items": {
+      "enum": [
+       "16:9",
+       "9:16",
+       "1:1"
+      ]
+     }
+    },
+    "renderer": {
+     "enum": [
+      "openmontage",
+      "remotion",
+      "none"
+     ]
+    },
+    "compliance": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  "objectives": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": [
+     "id",
+     "text",
+     "bloom"
+    ],
+    "additionalProperties": false,
+    "properties": {
+     "id": {
+      "type": "string",
+      "pattern": "^O[0-9]+(\\.[0-9]+)?$"
+     },
+     "text": {
+      "type": "string"
+     },
+     "bloom": {
+      "enum": [
+       "remember",
+       "understand",
+       "apply",
+       "analyze",
+       "evaluate",
+       "create"
+      ]
+     },
+     "verb": {
+      "type": "string"
+     },
+     "type": {
+      "enum": [
+       "concept",
+       "structure",
+       "procedure",
+       "behavior",
+       "policy",
+       "recall",
+       "adoption"
+      ]
+     },
+     "source_ids": {
+      "type": "array",
+      "items": {
+       "type": "string",
+       "pattern": "^S[0-9]{2,}(#[A-Za-z0-9._-]+)?$"
+      }
+     }
+    }
+   },
+   "minItems": 1
+  },
+  "modules": {
+   "type": "array",
+   "minItems": 1,
+   "items": {
+    "type": "object",
+    "required": [
+     "id",
+     "title",
+     "lessons"
+    ],
+    "additionalProperties": false,
+    "properties": {
+     "id": {
+      "type": "string",
+      "pattern": "^M[0-9]+$"
+     },
+     "title": {
+      "type": "string"
+     },
+     "title_ar": {
+      "type": "string"
+     },
+     "lessons": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "required": [
+        "id",
+        "title",
+        "objective_ids",
+        "formats",
+        "duration_min"
+       ],
+       "additionalProperties": false,
+       "properties": {
+        "id": {
+         "type": "string",
+         "pattern": "^M[0-9]+L[0-9]+$"
+        },
+        "title": {
+         "type": "string"
+        },
+        "title_ar": {
+         "type": "string"
+        },
+        "objective_ids": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         },
+         "minItems": 1
+        },
+        "formats": {
+         "type": "array",
+         "items": {
+          "enum": [
+           "explainer",
+           "doodle",
+           "cartoon",
+           "comic",
+           "narrated-deck",
+           "mindmap",
+           "branching",
+           "screencast-sim",
+           "job-aid",
+           "series"
+          ]
+         },
+         "minItems": 1,
+         "maxItems": 2
+        },
+        "duration_min": {
+         "type": "number",
+         "minimum": 0.25,
+         "maximum": 60
+        },
+        "targets": {
+         "type": "array",
+         "items": {
+          "enum": [
+           "video",
+           "video-vertical",
+           "deck",
+           "lesson",
+           "scorm",
+           "jobaid"
+          ]
+         }
+        },
+        "status": {
+         "enum": [
+          "planned",
+          "scripted",
+          "storyboarded",
+          "qa-pass",
+          "needs-human",
+          "rendered",
+          "render-pending"
+         ]
+        },
+        "rationale": {
+         "type": "string"
+        },
+        "source_ids": {
+         "type": "array",
+         "items": {
+          "type": "string",
+          "pattern": "^S[0-9]{2,}(#[A-Za-z0-9._-]+)?$"
+         }
+        }
+       }
+      },
+      "minItems": 1,
+      "maxItems": 12
+     }
+    }
+   }
+  },
+  "prioritization": {
+   "type": "object",
+   "description": "Generalized impact x frequency x gap x urgency x compliance method",
+   "required": [
+    "weights",
+    "items"
+   ],
+   "properties": {
+    "weights": {
+     "type": "object",
+     "required": [
+      "impact",
+      "frequency",
+      "gap",
+      "urgency",
+      "compliance"
+     ],
+     "additionalProperties": {
+      "type": "number"
+     },
+     "properties": {
+      "impact": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 1
+      },
+      "frequency": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 1
+      },
+      "gap": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 1
+      },
+      "urgency": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 1
+      },
+      "compliance": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 1
+      }
+     }
+    },
+    "quotas": {
+     "type": "object",
+     "additionalProperties": {
+      "type": "integer"
+     }
+    },
+    "items": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "required": [
+       "id",
+       "title",
+       "scores",
+       "priority",
+       "decision"
+      ],
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "title": {
+        "type": "string"
+       },
+       "audience": {
+        "type": "string"
+       },
+       "cluster": {
+        "type": "string"
+       },
+       "scores": {
+        "type": "object",
+        "additionalProperties": {
+         "type": "number",
+         "minimum": 0,
+         "maximum": 5
+        }
+       },
+       "priority": {
+        "type": "number"
+       },
+       "tier": {
+        "type": "string"
+       },
+       "rank": {
+        "type": "integer"
+       },
+       "decision": {
+        "enum": [
+         "include",
+         "tier-2",
+         "tier-3",
+         "deprioritised-duplicate",
+         "out-of-scope",
+         "previously-built"
+        ]
+       },
+       "reason": {
+        "type": "string"
+       }
+      }
+     }
+    }
+   }
+  },
+  "approval": {
+   "type": "object",
+   "required": [
+    "status"
+   ],
+   "properties": {
+    "status": {
+     "enum": [
+      "draft",
+      "approved",
+      "auto-approved"
+     ]
+    },
+    "by": {
+     "type": "string"
+    },
+    "at": {
+     "type": "string"
+    },
+    "edits": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,42 @@
+# Caption style spec (burned-in captions, WebVTT/SRT sidecars). Text comes from narration (minus `^`).
+# Accessibility: WCAG 2.x 1.2.2 captions for prerecorded media; contrast ≥ 4.5:1 against the caption box.
+default: boxed
+rules:
+  max_lines: 2
+  max_chars_per_line: {latin: 42, arabic: 38}
+  min_duration_s: 1.0
+  max_duration_s: 6.0
+  max_cps: {latin: 17, arabic: 15}     # characters per second reading speed
+  gap_frames: 2
+  line_break: "at phrase boundaries; never split a name, number or URL"
+  speaker_labels: "only when off-screen or ambiguous: [Mentor]"
+  sfx_tags: "[phone buzzes] — only when meaningful"
+  numerals: {ar-EG: "match on-screen digits (Western 0-9 by default; Arabic-Indic ٠-٩ if brief says)", ar-MSA: same}
+  bidi: "wrap Latin runs (URLs, product names) in LRI…PDI / U+2066…U+2069 inside Arabic captions"
+styles:
+  boxed:
+    font: {latin: Inter, arabic: IBM Plex Sans Arabic}
+    weight: 600
+    size_px: {"16:9": 40, "9:16": 52, "1:1": 44}
+    color: "#FFFFFF"
+    box: {color: "#1E2350", opacity: 0.85, radius: 10, pad_x: 18, pad_y: 8}
+    position: bottom_center
+  outline:            # over busy B-roll
+    font: {latin: Inter, arabic: IBM Plex Sans Arabic}
+    weight: 700
+    size_px: {"16:9": 42, "9:16": 56, "1:1": 46}
+    color: "#FFFFFF"
+    stroke: {color: "#0F1530", width: 4}
+    position: bottom_center
+  social_karaoke:     # 9:16 nudges, silent autoplay; word highlight from word timestamps
+    font: {latin: Poppins, arabic: Cairo}
+    weight: 800
+    size_px: {"9:16": 64}
+    color: "#FFFFFF"
+    highlight: "#6FC7DA"
+    stroke: {color: "#0F1530", width: 6}
+    position: {y: 1380}
+    max_words_per_chunk: 4
+sidecars:
+  formats: [vtt, srt]
+  naming: "<lesson_id>.<lang>.vtt"

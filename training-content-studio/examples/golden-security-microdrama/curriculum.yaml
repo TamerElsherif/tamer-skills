@@ -1,0 +1,37 @@
+# Golden example 1 — approved plan (tcs-orchestrator Step 2). Fictional company: Northwind Co.
+schema_version: "1.0"
+course:
+  id: northwind-bec-microdrama
+  title: "Pay Today? Verify First"
+  domain: security-awareness
+  domain_pack: security-awareness
+  audience: {level: beginner-intermediate, roles: [learner], segments: [staff], notes: "all staff incl. finance and payment approvers"}
+  languages: {primary: en-US}
+  total_minutes: 1.5
+  verbosity: standard
+  wpm: 140
+  complexity: low
+  targets: [video, lesson, scorm]
+  aspects: ["16:9"]
+  renderer: remotion
+objectives:
+  - {id: O1, text: "Spot the warning signs of a fake payment or bank-detail change request", bloom: analyze, type: behavior, source_ids: ["S01#c1"]}
+  - {id: O2, text: "Decide the safe response: call back a known number and keep two-person approval", bloom: evaluate, type: behavior, source_ids: ["S01#c1"]}
+  - {id: O3, text: "Report a suspicious payment request to IT Security", bloom: apply, type: behavior, source_ids: ["S01#c1"]}
+modules:
+  - id: M1
+    title: CEO fraud and fake payment requests
+    lessons:
+      - id: M1L1
+        title: The Friday Wire
+        objective_ids: [O1, O2, O3]
+        formats: [cartoon, branching]
+        duration_min: 1.5
+        source_ids: ["S01#c1"]
+        status: planned
+        rationale: "behaviour under pressure -> cartoon micro-drama; verify-or-comply call -> one branching decision; knowledge check in SCORM"
+approval:
+  status: approved
+  by: user
+  at: "2026-11-17T18:30:00Z"
+  edits: []

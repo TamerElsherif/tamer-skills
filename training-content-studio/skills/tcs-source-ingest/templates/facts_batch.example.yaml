@@ -1,0 +1,25 @@
+# Example LLM output for merge_facts.py --batch (Northwind expense SOP, chunk S01#c1)
+- chunk: S01#c1
+  summary: >-
+    Northwind expense policy v3.2 (effective 2026-03-01): definitions, seven spending rules (receipts over $25,
+    30-day submission, per diems, hotel cap, economy flights, alcohol, approval limits), a six-step claim
+    procedure, warnings, 2025 statistics, a client-dinner example and 7-year receipt retention.
+  facts:
+    - {kind: definition, text: "A receipt is an itemised proof of payment showing vendor, date, items and amount; a card statement alone is not a receipt.", loc: "§3", confidence: 0.9}
+    - {kind: policy, text: "A receipt is required for every expense over $25.", loc: "§4 rule 1", confidence: 0.9}
+    - {kind: policy, text: "Expense claims must be submitted within 30 days of the expense date.", loc: "§4 rule 2", confidence: 0.9}
+    - {kind: policy, text: "Claims older than 90 days are not reimbursed.", loc: "§4 rule 2", confidence: 0.9}
+    - {kind: policy, text: "The meal per diem is $60 per day for domestic travel and $85 per day for international travel.", loc: "§4 rule 3", confidence: 0.9}
+    - {kind: policy, text: "Hotel costs are capped at $220 per night unless the Travel Desk approves an exception in writing.", loc: "§4 rule 4", confidence: 0.9}
+    - {kind: policy, text: "A manager approves claims up to $1,000, a director up to $5,000, and the CFO above $5,000.", loc: "§4 rule 7", confidence: 0.9}
+    - {kind: procedure, text: "Submitting an expense claim in the Northwind Expenses app (six steps).", loc: "§5", confidence: 0.9}
+    - {kind: step, text: "Keep the itemised receipt and photograph it on the same day.", procedure_order: 1, loc: "§5", confidence: 0.9}
+    - {kind: step, text: "Submit the claim to your approver before the 30-day deadline.", procedure_order: 5, loc: "§5", confidence: 0.9}
+    - {kind: warning, text: "Never split one expense into several claims to stay under an approval limit.", loc: "§6", confidence: 0.9}
+    - {kind: statistic, text: "In 2025, 18% of expense claims were returned because a receipt was missing.", date: "2025", loc: "§7", confidence: 0.9}
+    - {kind: example, text: "Mona from Sales was reimbursed in full for a $140 pre-approved client dinner including wine.", loc: "§8", confidence: 0.8}
+    - {kind: policy, text: "Original paper receipts must be kept for 7 years after the claim date.", loc: "§9", confidence: 0.9}
+  glossary:
+    - {term: "Per diem", definition: "Fixed daily allowance for meals and incidental costs on overnight business travel."}
+    - {term: "Approver", definition: "Person who checks and approves a claim, normally the direct manager."}
+  conflicts: []

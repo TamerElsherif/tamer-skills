@@ -1,0 +1,8 @@
+schema_version: "1.0"
+default_formats_by_objective_type: {concept: [explainer], behavior: [cartoon], procedure: [screencast-sim, job-aid], policy: [narrated-deck, job-aid], recall: [series]}
+default_formats_by_audience: {standard: [explainer]}
+blends: [[explainer, job-aid]]
+durations_min: {micro: 1.5, standard: 3.5}
+music_by_format: {explainer: explainer, cartoon: cartoon, doodle: whiteboard, narrated-deck: executive}
+theme: {default: neutral}
+always_include: ["<domain must-haves>"]

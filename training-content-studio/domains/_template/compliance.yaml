@@ -1,0 +1,15 @@
+schema_version: "1.0"
+general_knowledge: true        # confirm with the client's compliance owner
+frameworks:
+  <framework-id>:
+    name: "<standard / regulation>"
+    controls:
+      - {id: "<clause>", title: "<title>", meaning: "<what training evidence it implies>"}
+    evidence_line: "<optional outro line>"
+records_to_keep:
+  - {field: learner_id}
+  - {field: course_id}
+  - {field: content_version}
+  - {field: language}
+  - {field: completed_at}
+  - {field: score}

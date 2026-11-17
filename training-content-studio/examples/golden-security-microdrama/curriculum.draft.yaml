@@ -1,0 +1,62 @@
+schema_version: '1.0'
+course:
+  id: 90-second-security-micro-drama-branching-scenari
+  title: 90-second security micro-drama + branching scenario + knowledge check on BEC / CEO-fraud payment requests, English
+    (en-US), 16:9, incl. finance
+  domain: security-awareness
+  domain_pack: security-awareness
+  audience:
+    level: beginner-intermediate
+    roles:
+    - learner
+    segments:
+    - staff
+  languages:
+    primary: en-US
+  total_minutes: 1.5
+  verbosity: standard
+  wpm: 140
+  targets:
+  - video
+  - lesson
+  - scorm
+  aspects:
+  - '16:9'
+  renderer: remotion
+objectives:
+- id: O1
+  text: Spot the warning signs of 90-second security micro-drama + branching scenario + knowledge check on BEC / CEO-fraud
+    payment requests, English (en-US), 16:9, incl. finance in realistic situations
+  bloom: analyze
+  type: behavior
+  source_ids: &id001
+  - S01#c1
+- id: O2
+  text: Decide the safest response when you meet 90-second security micro-drama + branching scenario + knowledge check on
+    BEC / CEO-fraud payment requests, English (en-US), 16:9, incl. finance
+  bloom: evaluate
+  type: behavior
+- id: O3
+  text: Report suspected 90-second security micro-drama + branching scenario + knowledge check on BEC / CEO-fraud payment
+    requests, English (en-US), 16:9, incl. finance through the right channel
+  bloom: apply
+  type: behavior
+modules:
+- id: M1
+  title: Module 1
+  lessons:
+  - id: M1L1
+    title: Spot the signs
+    objective_ids:
+    - O1
+    - O2
+    - O3
+    formats:
+    - cartoon
+    - branching
+    duration_min: 1.5
+    source_ids: *id001
+    status: planned
+approval:
+  status: auto-approved
+  by: tcs-autopilot

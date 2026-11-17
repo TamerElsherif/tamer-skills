@@ -1,0 +1,4 @@
+# second LLM pass: document metadata needed by the job-aid footer/header
+- chunk: S01#c1
+  facts:
+    - {kind: fact, text: "Northwind Co. Expense Policy SOP-FIN-007 is version 3.2, effective date 2026-03-01, owned by the Finance Department.", loc: "header", confidence: 0.9}

@@ -1,0 +1,98 @@
+S01#c1:
+- kind: policy
+  text: This policy applies to all Northwind Co. employees, contractors and interns
+    in every country where Northwind Co. operates.
+  heading: 2. Scope
+- kind: definition
+  text: 'Business expense: a cost an employee pays personally that is necessary to
+    do Northwind Co. work and is not a personal benefit.'
+  heading: 3. Definitions
+- kind: definition
+  text: 'Receipt: an itemised proof of payment showing the vendor, date, items and
+    amount paid.'
+  heading: 3. Definitions
+- kind: definition
+  text: 'Approver: the person who checks and approves an expense claim, normally the
+    employee''s direct manager.'
+  heading: 3. Definitions
+- kind: definition
+  text: 'Per diem: a fixed daily allowance for meals and incidental costs while travelling
+    overnight on company business.'
+  heading: 3. Definitions
+- kind: policy
+  text: A receipt is required for every expense over $25.
+  heading: 4. Policy rules
+- kind: policy
+  text: Employees must submit expense claims within 30 days of the expense date. Claims
+    older than 90 days are not reimbursed.
+  heading: 4. Policy rules
+- kind: fact
+  text: The meal per diem is $60 per day for domestic travel and $85 per day for international
+    travel.
+  heading: 4. Policy rules
+- kind: fact
+  text: Hotel costs are capped at $220 per night unless the Travel Desk approves an
+    exception in writing.
+  heading: 4. Policy rules
+- kind: policy
+  text: Flights under 6 hours must be booked in economy class.
+  heading: 4. Policy rules
+- kind: definition
+  text: 'Approval limits: a manager approves claims up to $1,000; a director approves
+    claims up to $5,000; the CFO approves any claim above $5,000.'
+  heading: 4. Policy rules
+- kind: step
+  text: Keep the itemised receipt for every expense and photograph it on the same
+    day.
+  heading: '5. Procedure: submitting an expense claim'
+  procedure_order: 1
+- kind: step
+  text: Open the Northwind Expenses app and select New Claim.
+  heading: '5. Procedure: submitting an expense claim'
+  procedure_order: 2
+- kind: step
+  text: Choose the expense category and enter the date, amount and business purpose.
+  heading: '5. Procedure: submitting an expense claim'
+  procedure_order: 3
+- kind: step
+  text: Attach the receipt photo to each line and check that the total matches.
+  heading: '5. Procedure: submitting an expense claim'
+  procedure_order: 4
+- kind: step
+  text: Submit the claim to your approver before the 30-day deadline.
+  heading: '5. Procedure: submitting an expense claim'
+  procedure_order: 5
+- kind: step
+  text: Respond to any approver question within 5 business days, or the claim is returned
+    to you.
+  heading: '5. Procedure: submitting an expense claim'
+  procedure_order: 6
+- kind: warning
+  text: Never split one expense into several claims to stay under an approval limit.
+  heading: 6. Warnings
+- kind: warning
+  text: Do not submit personal costs, such as family meals or private travel upgrades,
+    as business expenses.
+  heading: 6. Warnings
+- kind: warning
+  text: Submitting a false or inflated claim is treated as misconduct and can lead
+    to disciplinary action, including dismissal.
+  heading: 6. Warnings
+- kind: statistic
+  text: In 2025, 18% of expense claims were returned to employees because a receipt
+    was missing.
+  heading: 7. Facts and figures
+  year: 2025
+- kind: statistic
+  text: Claims submitted with all receipts were reimbursed in an average of 6 business
+    days.
+  heading: 7. Facts and figures
+- kind: example
+  text: 'Example: Mona from Sales takes a client to dinner in Alexandria.'
+  heading: 8. Example
+- kind: fact
+  text: The bill is $140, including one bottle of wine.
+  heading: 8. Example
+- kind: policy
+  text: Employees must keep original paper receipts for 7 years after the claim date.
+  heading: 9. Records

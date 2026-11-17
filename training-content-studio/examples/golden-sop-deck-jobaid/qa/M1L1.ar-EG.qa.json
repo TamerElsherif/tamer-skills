@@ -1,0 +1,47 @@
+{
+ "lesson_id": "M1L1",
+ "lang": "ar-EG",
+ "at": "2026-11-17T21:35:30",
+ "checks": {
+  "storyboard": {
+   "exit": 0,
+   "report": {
+    "errors": [],
+    "warnings": [],
+    "stats": {
+     "scenes": 9,
+     "est_seconds": 186.3,
+     "wpm": 117,
+     "cues": 22,
+     "claims": 27,
+     "general_knowledge_claims": 2
+    }
+   }
+  },
+  "quiz": {
+   "exit": 0,
+   "report": {
+    "errors": [],
+    "warnings": [],
+    "stats": {
+     "items": 4,
+     "per_objective": {
+      "O1": 4
+     },
+     "types": {
+      "true_false": 1,
+      "scenario": 1,
+      "mcq": 1,
+      "ordering": 1
+     }
+    }
+   }
+  },
+  "grounding": {
+   "exit": 0,
+   "report": "lessons/M1L1/M1L1.ar-EG.grounding_report.json",
+   "llm_verdicts": false
+  }
+ },
+ "result": "pass"
+}

@@ -1,0 +1,25 @@
+# Music beds + SFX slots. Files are NOT shipped (licensing); drop licensed files at `path` and fill `license`.
+# Missing files → renderer uses assets/placeholders/generated/*.wav (silence/tone) and marks `assets[].status: placeholder`.
+music_beds:
+  explainer:  {path: assets/audio/music/explainer.mp3,  mood: "light corporate, steady pulse, 95–110 bpm, no vocals", loop: true, gain_db: -22, license: null}
+  cartoon:    {path: assets/audio/music/cartoon.mp3,    mood: "playful pizzicato/ukulele, bouncy, 110–125 bpm, no vocals", loop: true, gain_db: -22, license: null}
+  whiteboard: {path: assets/audio/music/whiteboard.mp3, mood: "soft acoustic/piano, gentle, 85–100 bpm, no vocals", loop: true, gain_db: -24, license: null}
+  executive:  {path: assets/audio/music/executive.mp3,  mood: "minimal ambient piano + strings, confident, 70–90 bpm", loop: true, gain_db: -24, license: null}
+mix:
+  ducking: "sidechain the bed under narration (−8 to −12 dB)"
+  loudness: "integrated −16 LUFS (web), true peak ≤ −1 dBTP"
+sfx:                        # names usable in scenes[].sfx[].name and cartoon beats[].sfx
+  beeps:   {use: "alarm / system alert"}
+  chime:   {use: "correct answer / reward"}
+  ding:    {use: "notification arrives"}
+  pop:     {use: "item reveal"}
+  reel:    {use: "rewind / flashback"}
+  ring:    {use: "phone call"}
+  scratch: {use: "record-scratch stop"}
+  sparks:  {use: "malfunction"}
+  whoosh:  {use: "transition / camera move"}
+  womp:    {use: "mistake"}
+  zap:     {use: "attack lands"}
+  zipper:  {use: "data leaving / exfiltration"}
+sfx_path: assets/audio/sfx/<name>.wav
+license_fields: [source, title, author, license, url, retrieved_at, attribution_required]

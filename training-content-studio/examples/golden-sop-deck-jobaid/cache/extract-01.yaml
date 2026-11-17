@@ -1,0 +1,45 @@
+- chunk: S01#c1
+  summary: >-
+    Northwind expense SOP v3.2 (effective 2026-03-01): scope and definitions, seven spending rules (receipts over $25,
+    30/90-day deadlines, per diems, $220 hotel cap, economy flights, alcohol, approval limits), a six-step claim
+    procedure in the Northwind Expenses app, warnings, 2025 statistics, a client-dinner example and 7-year receipt retention.
+  source_date: "2026-03-01"
+  drop: []
+  facts:
+    - {kind: policy, text: "This policy applies to all Northwind Co. employees, contractors and interns in every country where Northwind Co. operates.", loc: "§2", confidence: 0.9}
+    - {kind: fact, text: "The policy covers travel, meals, accommodation, client entertainment, training fees and small office purchases.", loc: "§2", confidence: 0.9}
+    - {kind: definition, text: "A business expense is a cost an employee pays personally that is necessary to do Northwind Co. work and is not a personal benefit.", loc: "§3", confidence: 0.9}
+    - {kind: definition, text: "A receipt is an itemised proof of payment showing the vendor, date, items and amount paid; a card statement alone is not a receipt.", loc: "§3", confidence: 0.9}
+    - {kind: definition, text: "The approver is the person who checks and approves an expense claim, normally the employee's direct manager.", loc: "§3", confidence: 0.9}
+    - {kind: definition, text: "Per diem is a fixed daily allowance for meals and incidental costs while travelling overnight on company business.", loc: "§3", confidence: 0.9}
+    - {kind: policy, text: "A receipt is required for every expense over $25.", loc: "§4 rule 1", confidence: 0.9}
+    - {kind: policy, text: "Employees must submit expense claims within 30 days of the expense date.", loc: "§4 rule 2", confidence: 0.9}
+    - {kind: policy, text: "Claims older than 90 days are not reimbursed.", loc: "§4 rule 2", confidence: 0.9}
+    - {kind: policy, text: "The meal per diem is $60 per day for domestic travel and $85 per day for international travel.", loc: "§4 rule 3", confidence: 0.9}
+    - {kind: policy, text: "Hotel costs are capped at $220 per night unless the Travel Desk approves an exception in writing.", loc: "§4 rule 4", confidence: 0.9}
+    - {kind: policy, text: "Flights under 6 hours must be booked in economy class.", loc: "§4 rule 5", confidence: 0.9}
+    - {kind: policy, text: "Alcohol is not reimbursable, except during client entertainment that the employee's manager approved in advance.", loc: "§4 rule 6", confidence: 0.9}
+    - {kind: policy, text: "A manager approves claims up to $1,000, a director approves claims up to $5,000, and the CFO approves any claim above $5,000.", loc: "§4 rule 7", confidence: 0.9}
+    - {kind: procedure, text: "Submitting an expense claim in the Northwind Expenses app (six steps).", loc: "§5", confidence: 0.9}
+    - {kind: step, text: "Keep the itemised receipt for every expense and photograph it on the same day.", procedure_order: 1, loc: "§5 step 1", confidence: 0.9}
+    - {kind: step, text: "Open the Northwind Expenses app and select New Claim.", procedure_order: 2, loc: "§5 step 2", confidence: 0.9}
+    - {kind: step, text: "Choose the expense category and enter the date, amount and business purpose.", procedure_order: 3, loc: "§5 step 3", confidence: 0.9}
+    - {kind: step, text: "Attach the receipt photo to each line and check that the total matches.", procedure_order: 4, loc: "§5 step 4", confidence: 0.9}
+    - {kind: step, text: "Submit the claim to your approver before the 30-day deadline.", procedure_order: 5, loc: "§5 step 5", confidence: 0.9}
+    - {kind: step, text: "Respond to any approver question within 5 business days, or the claim is returned to you.", procedure_order: 6, loc: "§5 step 6", confidence: 0.9}
+    - {kind: warning, text: "Never split one expense into several claims to stay under an approval limit.", loc: "§6", confidence: 0.9}
+    - {kind: warning, text: "Do not submit personal costs, such as family meals or private travel upgrades, as business expenses.", loc: "§6", confidence: 0.9}
+    - {kind: warning, text: "Submitting a false or inflated claim is treated as misconduct and can lead to disciplinary action, including dismissal.", loc: "§6", confidence: 0.9}
+    - {kind: statistic, text: "In 2025, 18% of expense claims were returned to employees because a receipt was missing.", date: "2025", loc: "§7", confidence: 0.9}
+    - {kind: statistic, text: "In 2025, claims submitted with all receipts were reimbursed in an average of 6 business days.", date: "2025", loc: "§7", confidence: 0.9}
+    - {kind: example, text: "Mona from Sales took a client to dinner in Alexandria after her manager approved the client entertainment in advance; the $140 bill included one bottle of wine.", loc: "§8", confidence: 0.9}
+    - {kind: example, text: "Mona photographed the itemised receipt that evening, submitted the claim the next morning under Client Entertainment, and was reimbursed in full because the entertainment was pre-approved.", loc: "§8", confidence: 0.9}
+    - {kind: policy, text: "Employees must keep original paper receipts for 7 years after the claim date.", loc: "§9", confidence: 0.9}
+    - {kind: fact, text: "Finance stores the scanned receipts in the expense system for 7 years.", loc: "§9", confidence: 0.7}
+    - {kind: fact, text: "Questions about the policy go to the Finance Help Desk through the internal service portal.", loc: "§10", confidence: 0.9}
+  glossary:
+    - {term: "Business expense", definition: "A cost an employee pays personally that is necessary for Northwind Co. work and is not a personal benefit."}
+    - {term: "Receipt", definition: "Itemised proof of payment showing vendor, date, items and amount; a card statement alone is not a receipt."}
+    - {term: "Approver", definition: "Person who checks and approves an expense claim, normally the direct manager."}
+    - {term: "Per diem", definition: "Fixed daily allowance for meals and incidental costs on overnight business travel."}
+  conflicts: []

@@ -1,0 +1,59 @@
+{
+ "run_id": "golden-security-microdrama",
+ "request": "90-second security micro-drama + branching scenario + knowledge check on BEC / CEO-fraud payment requests, English (en-US), 16:9, for all staff incl. finance",
+ "flags": {},
+ "created": "2026-11-17T18:08:01+00:00",
+ "stages": {
+  "ingest": {
+   "status": "done",
+   "at": "2026-11-17T18:08:36+00:00",
+   "outputs": [
+    "sources.yaml"
+   ],
+   "note": "1 source, 21 facts, 0 conflicts"
+  },
+  "decide": {
+   "status": "done",
+   "at": "2026-11-17T18:09:33+00:00",
+   "outputs": [
+    "decisions.json"
+   ],
+   "note": "intake answers recorded (example)"
+  },
+  "plan": {
+   "status": "done",
+   "at": "2026-11-17T18:13:23+00:00",
+   "outputs": [
+    "curriculum.yaml"
+   ],
+   "note": "approved"
+  },
+  "produce": {
+   "status": "done",
+   "at": "2026-11-17T18:13:29+00:00"
+  },
+  "qa": {
+   "status": "done",
+   "at": "2026-11-17T19:32:05+00:00"
+  },
+  "render": {
+   "status": "done",
+   "at": "2026-11-17T19:32:05+00:00"
+  },
+  "report": {
+   "status": "done",
+   "at": "2026-11-17T19:32:24+00:00"
+  }
+ },
+ "lessons": {
+  "M1L1": {
+   "status": "done",
+   "attempts": 0,
+   "qa": "pass"
+  }
+ },
+ "cost": {
+  "tokens": 0,
+  "usd": 0.0
+ }
+}

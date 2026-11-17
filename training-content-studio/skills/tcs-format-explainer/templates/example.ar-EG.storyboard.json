@@ -1,0 +1,146 @@
+{
+ "schema_version": "1.0",
+ "course_id": "northwind-security-basics",
+ "lesson_id": "M1L1",
+ "title": "إزاي تكشف إيميل التصيّد",
+ "language": "ar-EG",
+ "direction": "rtl",
+ "subtitle_languages": [
+  "en-US"
+ ],
+ "aspect": "16:9",
+ "fps": 30,
+ "formats": [
+  "explainer"
+ ],
+ "wpm": 130,
+ "objective_ids": [
+  "O1"
+ ],
+ "theme": {
+  "preset": "neutral",
+  "fonts": {
+   "arabic": "IBM Plex Sans Arabic"
+  },
+  "logo": null
+ },
+ "voices": {
+  "narrator": {
+   "provider": "openai",
+   "model": "gpt-4o-mini-tts",
+   "voice": "marin",
+   "lang": "ar-EG",
+   "instructions": "Speak natural Egyptian Arabic (Cairene colloquial), warm and friendly like a respected colleague explaining to the team. Clear, relaxed pace; pronounce English technical terms the way Egyptian professionals say them."
+  }
+ },
+ "music": {
+  "bed": "explainer",
+  "volume": 0.12
+ },
+ "scenes": [
+  {
+   "id": "s01_title",
+   "template": "title",
+   "props": {
+    "kicker": "أساسيات الأمن",
+    "title": "إزاي تكشف إيميل التصيّد",
+    "sub": "خمس علامات في دقيقتين",
+    "icon": "mail"
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "أهلاً بيك. في الدقايق الجاية هنتعلم إزاي نكشف إيميل التصيّد قبل ما يكلفنا كتير."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Phishing emails try to trick people into clicking, paying or sharing data.",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "s02_email",
+   "template": "email_mock",
+   "props": {
+    "email": {
+     "from": "مكتب الدعم الفني - نورثويند",
+     "from_addr": "it-desk@northwlnd.example",
+     "to": "you@northwind.example",
+     "subject": "عاجل: صندوق بريدك هيتقفل النهارده",
+     "external": true,
+     "body": [
+      "عزيزي المستخدم،",
+      "صندوق بريدك تخطّى الحد وهيتقفل خلال ساعتين.",
+      "اضغط تحت عشان تحافظ على حسابك."
+     ],
+     "button": "حافظ على بريدي"
+    },
+    "callouts": [
+     {
+      "cue": 0,
+      "target": "addr",
+      "label": "دومين شبه الأصلي",
+      "tone": "warn"
+     },
+     {
+      "cue": 1,
+      "target": "b1",
+      "label": "ضغط ومهلة قصيرة",
+      "tone": "warn"
+     },
+     {
+      "cue": 2,
+      "target": "button",
+      "label": "شوف الرابط قبل ما تدوس",
+      "tone": "warn"
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "^ أول حاجة، الدومين: northwlnd بحرف L بدل I. ^ تاني حاجة، الضغط: هيتقفل خلال ساعتين. ^ وأخيراً الزرار: قف عليه بالماوس الأول وشوف رايح فين."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Look-alike domains, urgency and disguised links are phishing red flags.",
+     "source_ids": [
+      "S01#c4"
+     ]
+    }
+   ],
+   "notes": "URL and email addresses stay LTR inside RTL layout (bidi isolates)."
+  },
+  {
+   "id": "s03_recap",
+   "template": "checklist",
+   "props": {
+    "title": "الخلاصة",
+    "items": [
+     "راجع دومين المرسِل",
+     "ماتصدّقش الاستعجال",
+     "قف على الرابط قبل ما تدوس",
+     "بلّغ، ماتردّش"
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "الخلاصة: ^ راجع الدومين، ^ ماتصدّقش الاستعجال، ^ قف على الرابط قبل ما تدوس، ^ وبلّغ بدل ما ترد."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Recap of red flags and reporting.",
+     "source_ids": [
+      "S01#c4",
+      "S02#p2"
+     ]
+    }
+   ]
+  }
+ ]
+}

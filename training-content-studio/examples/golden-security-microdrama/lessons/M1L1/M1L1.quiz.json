@@ -1,0 +1,134 @@
+{
+ "schema_version": "1.0",
+ "quiz_id": "M1L1-kc",
+ "course_id": "northwind-bec-microdrama",
+ "lesson_id": "M1L1",
+ "kind": "knowledge-check",
+ "language": "en-US",
+ "pass_mark": 80,
+ "shuffle": true,
+ "items": [
+  {
+   "id": "Q1",
+   "type": "mcq",
+   "objective_id": "O1",
+   "bloom": "analyze",
+   "difficulty": "easy",
+   "scenario": "An email from \"Hana (CEO)\" asks you to pay a supplier today. It comes from an address you have not seen before.",
+   "stem": "Which detail is a warning sign under the payment policy?",
+   "options": [
+    {
+     "id": "a",
+     "text": "The sender address doesn't match the usual one",
+     "correct": true,
+     "feedback": "Right. A sender or reply-to address that does not match the usual one is a listed warning sign."
+    },
+    {
+     "id": "b",
+     "text": "The email is addressed to you by name",
+     "feedback": "A personal greeting proves nothing either way; attackers use names too."
+    },
+    {
+     "id": "c",
+     "text": "The email is sent during working hours",
+     "feedback": "Timing alone is not a listed sign; look at the address, urgency, bank details and secrecy."
+    }
+   ],
+   "explanation": "A sender address or reply-to address that does not match the usual one is a warning sign of a fake payment request.",
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "id": "Q2",
+   "type": "scenario",
+   "objective_id": "O2",
+   "bloom": "evaluate",
+   "difficulty": "medium",
+   "scenario": "Friday, 4:50 p.m. \"Hana (CEO)\" emails Sam in Finance: pay a supplier today, use new bank details, keep it quiet.",
+   "stem": "What should Sam do?",
+   "options": [
+    {
+     "id": "a",
+     "text": "Pay now. It's the CEO.",
+     "feedback": "Seniority is never a reason to skip verification. Unverified payments must not be made."
+    },
+    {
+     "id": "b",
+     "text": "Reply to the email to check",
+     "feedback": "A reply goes to the sender of the request. Never use contact details given in the request itself."
+    },
+    {
+     "id": "c",
+     "text": "Call Hana on her directory number",
+     "correct": true,
+     "feedback": "Yes. Requests from executives are verified by calling back on their directory number."
+    }
+   ],
+   "explanation": "A request from an executive is verified by calling the executive back on their directory number or confirming in person; never use contact details from the request.",
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "id": "Q3",
+   "type": "mcq",
+   "objective_id": "O2",
+   "bloom": "apply",
+   "difficulty": "easy",
+   "stem": "The email lists a new phone number so you can \"confirm\". What do you do?",
+   "options": [
+    {
+     "id": "a",
+     "text": "Call the new number in the email",
+     "feedback": "That number belongs to whoever sent the request. Never use contact details given in the request."
+    },
+    {
+     "id": "b",
+     "text": "Call a number already on file",
+     "correct": true,
+     "feedback": "Right. Call back on a number already on file in the supplier master or company directory."
+    },
+    {
+     "id": "c",
+     "text": "Text the new number for a quick yes",
+     "feedback": "Any channel the request gives you can reach the attacker. Use a number already on file."
+    }
+   ],
+   "explanation": "Never use a phone number, link or contact detail given in the request itself; call back a number already on file.",
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "id": "Q4",
+   "type": "mcq",
+   "objective_id": "O3",
+   "bloom": "apply",
+   "difficulty": "medium",
+   "stem": "You think a fake payment request has just been paid. What is the first thing to do?",
+   "options": [
+    {
+     "id": "a",
+     "text": "Report it to IT Security and Finance immediately",
+     "correct": true,
+     "feedback": "Yes. Fast reporting gives the bank the best chance to stop the transfer."
+    },
+    {
+     "id": "b",
+     "text": "Delete the email so it can't spread",
+     "feedback": "Don't delete it: report first, so IT Security can investigate."
+    },
+    {
+     "id": "c",
+     "text": "Wait until Monday to be sure",
+     "feedback": "Waiting costs time. Report immediately; fast reporting can stop the transfer."
+    }
+   ],
+   "explanation": "If you think money has already been sent, report it to IT Security and Finance immediately; fast reporting gives the bank the best chance to stop the transfer.",
+   "source_ids": [
+    "S01#c1"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,54 @@
+{
+ "lesson_id": "M1L2",
+ "lang": "primary",
+ "at": "2026-11-17T21:35:25",
+ "checks": {
+  "storyboard": {
+   "exit": 0,
+   "report": {
+    "errors": [],
+    "warnings": [
+     "j01_header: no narration",
+     "j02_check: no narration",
+     "j02_check: 7 revealed items but 0 '^' markers (items will share cues)",
+     "j03_limits: no narration",
+     "j04_never: no narration",
+     "j04_never: 5 revealed items but 0 '^' markers (items will share cues)",
+     "j05_deadlines: no narration"
+    ],
+    "stats": {
+     "scenes": 5,
+     "est_seconds": 5.5,
+     "wpm": 130,
+     "cues": 0,
+     "claims": 21,
+     "general_knowledge_claims": 0
+    }
+   }
+  },
+  "quiz": {
+   "exit": 0,
+   "report": {
+    "errors": [],
+    "warnings": [],
+    "stats": {
+     "items": 3,
+     "per_objective": {
+      "O2": 3
+     },
+     "types": {
+      "mcq": 1,
+      "scenario": 1,
+      "true_false": 1
+     }
+    }
+   }
+  },
+  "grounding": {
+   "exit": 0,
+   "report": "lessons/M1L2/M1L2.grounding_report.json",
+   "llm_verdicts": false
+  }
+ },
+ "result": "pass"
+}

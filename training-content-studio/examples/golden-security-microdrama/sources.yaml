@@ -1,0 +1,187 @@
+schema_version: '1.0'
+sources:
+- id: S01
+  type: markdown
+  uri: sources/northwind-payment-verification-policy.md
+  title: Northwind Co. — Payment Verification Policy
+  retrieved_at: '2026-11-17T20:13:06'
+  language: en-US
+  date: '2026-03-01'
+  authority: 5
+  chunks:
+  - id: c1
+    loc: § Northwind Co. — Payment Verification Policy … § 6. Report it
+    summary: 'Fictional Northwind Co. payment verification policy FIN-SEC-07 v2.1 (effective 2026-03-01), all staff:
+      verify any payment or bank-detail change by calling back a number already on file; two-person approval for
+      payments of USD 10,000 or more and for every bank-detail change; five warning signs; report to IT Security
+      (Report Phishing button or extension 4400), no blame for reporting.'
+    tokens: 677
+    path: cache/S01/c1.md
+facts:
+- id: F016
+  kind: definition
+  text: Business email compromise (BEC) and CEO fraud trick employees into sending money or changing bank details
+    by impersonating executives, colleagues or suppliers.
+  source_id: S01
+  chunk_id: c1
+  loc: §1
+  confidence: 0.9
+- id: F017
+  kind: fact
+  text: The policy applies to all Northwind Co. employees, contractors and temporary staff.
+  source_id: S01
+  chunk_id: c1
+  loc: header
+  confidence: 0.9
+- id: F018
+  kind: fact
+  text: The policy covers requests to make or release a payment, buy gift cards or vouchers, or change bank details,
+    whether they arrive by email, chat, text message, phone call or video call.
+  source_id: S01
+  chunk_id: c1
+  loc: §2
+  confidence: 0.9
+- id: F019
+  kind: procedure
+  text: Verifying a payment or bank-detail change request by callback.
+  source_id: S01
+  chunk_id: c1
+  loc: §3
+  confidence: 0.9
+- id: F020
+  kind: step
+  text: Before acting on a request to make a payment or change bank details, call the requester back on a phone
+    number already on file in the supplier master or the company directory.
+  source_id: S01
+  chunk_id: c1
+  loc: §3.1
+  confidence: 0.9
+  procedure_order: 1
+- id: F021
+  kind: warning
+  text: Never use a phone number, link or contact detail given in the request itself.
+  source_id: S01
+  chunk_id: c1
+  loc: §3.2
+  confidence: 0.9
+- id: F022
+  kind: policy
+  text: 'A request from an executive is verified the same way: call the executive back on their directory number
+    or confirm in person.'
+  source_id: S01
+  chunk_id: c1
+  loc: §3.3
+  confidence: 0.9
+- id: F023
+  kind: warning
+  text: Seniority is never a reason to skip verification.
+  source_id: S01
+  chunk_id: c1
+  loc: §3.3
+  confidence: 0.9
+- id: F024
+  kind: warning
+  text: If you cannot verify the request, do not make the payment or the change.
+  source_id: S01
+  chunk_id: c1
+  loc: §3.4
+  confidence: 0.9
+- id: F025
+  kind: policy
+  text: Every payment of USD 10,000 or more needs approval from two authorised people before it is released.
+  source_id: S01
+  chunk_id: c1
+  loc: §4.1
+  confidence: 0.9
+- id: F026
+  kind: policy
+  text: Every change to bank details needs a second person to approve it after the callback, whatever the amount.
+  source_id: S01
+  chunk_id: c1
+  loc: §4.2
+  confidence: 0.9
+- id: F027
+  kind: warning
+  text: No one may split a payment into smaller amounts to stay below the USD 10,000 threshold.
+  source_id: S01
+  chunk_id: c1
+  loc: §4.3
+  confidence: 0.9
+- id: F028
+  kind: warning
+  text: 'Warning sign: urgency or pressure to pay today.'
+  source_id: S01
+  chunk_id: c1
+  loc: §5
+  confidence: 0.9
+- id: F029
+  kind: warning
+  text: 'Warning sign: a request to keep the payment secret or to bypass the normal process.'
+  source_id: S01
+  chunk_id: c1
+  loc: §5
+  confidence: 0.9
+- id: F030
+  kind: warning
+  text: 'Warning sign: new or changed bank details.'
+  source_id: S01
+  chunk_id: c1
+  loc: §5
+  confidence: 0.9
+- id: F031
+  kind: warning
+  text: 'Warning sign: an unusual payment method, such as gift cards.'
+  source_id: S01
+  chunk_id: c1
+  loc: §5
+  confidence: 0.9
+- id: F032
+  kind: warning
+  text: 'Warning sign: a sender address or reply-to address that does not match the usual one.'
+  source_id: S01
+  chunk_id: c1
+  loc: §5
+  confidence: 0.9
+- id: F033
+  kind: policy
+  text: Report every suspicious payment request to IT Security straight away, using the Report Phishing button in
+    Outlook or by calling the IT Security hotline on extension 4400.
+  source_id: S01
+  chunk_id: c1
+  loc: §6.1
+  confidence: 0.9
+- id: F034
+  kind: warning
+  text: Do not reply to, forward or delete the suspicious message before reporting it.
+  source_id: S01
+  chunk_id: c1
+  loc: §6.2
+  confidence: 0.9
+- id: F035
+  kind: policy
+  text: If you think money has already been sent, report it to IT Security and Finance immediately; fast reporting
+    gives the bank the best chance to stop the transfer.
+  source_id: S01
+  chunk_id: c1
+  loc: §6.3
+  confidence: 0.9
+- id: F036
+  kind: fact
+  text: No one will be blamed for reporting a request that turns out to be genuine.
+  source_id: S01
+  chunk_id: c1
+  loc: §6.4
+  confidence: 0.9
+course_id: northwind-bec-microdrama
+general_knowledge_allowed: true
+glossary:
+- term: Business email compromise (BEC)
+  definition: Fraud that impersonates executives, colleagues or suppliers by email to trick employees into sending
+    money or changing bank details.
+  source_id: S01
+- term: CEO fraud
+  definition: A BEC variant where the attacker impersonates a senior executive to push an urgent or secret payment.
+  source_id: S01
+- term: Callback verification
+  definition: Calling the requester back on a number already on file, never one given in the request.
+  source_id: S01

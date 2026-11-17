@@ -1,0 +1,11 @@
+.venv/
+runs/
+**/node_modules/
+**/__pycache__/
+.DS_Store
+examples/**/*.mp4
+examples/**/*.wav
+examples/**/*.mp3
+examples/**/public/
+kit/out/
+examples/**/work/

@@ -1,0 +1,61 @@
+# Prioritization config for security-awareness catalogues (used by tcs-curriculum when ranking many candidate topics,
+# e.g. remaking a vendor catalogue). Formula: priority = Σ weight_i × score_i (scores 0–5) → filter → dedupe by cluster
+# → audience quotas → rank → tiers. Output goes to curriculum.yaml `prioritization` (weights, quotas, items[]).
+schema_version: "1.0"
+weights: {impact: 0.30, frequency: 0.25, gap: 0.20, urgency: 0.15, compliance: 0.10}
+scoring_anchors:              # 0 = none, 5 = maximum
+  impact: "Severity if staff get it wrong: 5 = direct financial loss / org-wide compromise (BEC, ransomware, help-desk SE); 1 = minor inconvenience"
+  frequency: "How often the threat reaches this audience: 5 = weekly (phishing, passwords, MFA prompts); 1 = rare"
+  gap: "Not already covered by existing training: 5 = no coverage; 0 = already built/covered (mark previously-built)"
+  urgency: "Emerging / rising threat or recent incident: 5 = active trend (deepfakes, AI tools, ClickFix, QR codes)"
+  compliance: "Required for evidence: 5 = annual core course for ISO/IEC 27001 A.6.3 / SOC 2 / policy; 0 = optional"
+quotas:                       # tier-1 picks per audience; rank within each quota
+  standard: 10
+  it: 5
+  exec: 5
+audiences:
+  standard: ["Standard users", "All staff"]
+  it: ["IT Department", "High-risk users", "Developers"]
+  exec: ["Executives", "C-suite", "Senior management"]
+tiers:
+  tier-1: "quota picks (build now)"
+  tier-2: "next 15 by priority (build next)"
+  tier-3: "remaining in-scope items (backlog)"
+filters_out_of_scope:         # decision: out-of-scope (record reason)
+  - "Health & safety, HR conduct, harassment (not security)"
+  - "Regional laws for markets the client does not operate in"
+  - "Retired / blog-only items with no teachable content"
+dedupe:
+  rule: "Keep one item per cluster for the general audience; keep specialised variants only if they add a distinct objective or audience. Prefer the richest original (video > blog, longer, story/cartoon available)."
+  decision_for_dropped: deprioritised-duplicate
+validate_sources: "Before production confirm each kept item's source actually matches its title (catalogue folders can contain the wrong video); substitute a sibling if not."
+clusters:                     # derived from the vendor catalogue topic groups used in the worked example
+  phishing-email: {label: "Phishing & email threats", members: [phishing, preventing phishing, CEO fraud, email thread hijacking, callback phishing, fake website scams, chat-app phishing, search-engine phishing, typosquatting]}
+  bec: {label: "Business email compromise & payment fraud", members: [business email compromise, invoice scams, gift card scams]}
+  smishing-quishing: {label: "SMS & QR phishing", members: [smishing, quishing]}
+  social-engineering: {label: "Social engineering & scams", members: [social engineering, preventing social engineering, vishing, tech-support scams, ClickFix scams, SIM hijacking, types of hackers]}
+  help-desk-se: {label: "Help-desk social engineering", members: [help desk social engineering]}
+  insider: {label: "Insider threat", members: [insider threat, minimising insider threat]}
+  passwords-mfa: {label: "Passwords, MFA & accounts", members: [secure passwords, strong passwords, password managers, passkeys, MFA fatigue]}
+  ai-threats: {label: "AI & emerging threats", members: [AI-driven phishing, deepfakes, staying safe from AI attacks]}
+  ai-tools: {label: "Safe use of AI tools", members: [safe use of AI tools, LLM data exposure, LLM hallucinations, AI agents, AI notetakers]}
+  malware: {label: "Malware & ransomware", members: [malware, ransomware, spyware & adware, denial of service]}
+  devices: {label: "Mobile, devices & patching", members: [patching & updating, mobile device security, removable media, BYOD]}
+  data-handling: {label: "Data handling & classification", members: [data loss, protecting information, data breaches]}
+  physical: {label: "Physical security", members: [physical security, clear desk, tailgating]}
+  remote-work: {label: "Remote work & home security", members: [working remotely, public Wi-Fi, videoconferencing, home network, IoT]}
+  hygiene: {label: "Email, social media & cloud hygiene", members: [secure email use, social media, supply chain, file sharing]}
+  leadership: {label: "Leadership & high-risk users", members: [C-suite intro, C-suite social engineering, secure culture, travel security, least privilege, effective security communication]}
+  resilience: {label: "Business resilience", members: [disaster recovery, business continuity]}
+  secure-dev: {label: "Secure development", members: [secure coding]}
+  privacy: {label: "Data protection & privacy", members: [GDPR essentials, local data-protection law]}
+  compliance-awareness: {label: "Standards awareness", members: [ISO 27001 awareness]}
+example_item:                 # shape of curriculum.yaml prioritization.items[]
+  id: bec
+  title: "Business Email Compromise"
+  audience: standard
+  cluster: bec
+  scores: {impact: 5, frequency: 4, gap: 4, urgency: 3, compliance: 3}
+  priority: 4.05              # .30*5 + .25*4 + .20*4 + .15*3 + .10*3
+  decision: include
+  reason: "High financial impact; finance and assistants targeted weekly; no current coverage."

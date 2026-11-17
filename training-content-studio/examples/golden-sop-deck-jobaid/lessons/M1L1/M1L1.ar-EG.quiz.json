@@ -1,0 +1,153 @@
+{
+ "schema_version": "1.0",
+ "quiz_id": "M1L1-kc-ar-EG",
+ "course_id": "northwind-expenses",
+ "lesson_id": "M1L1",
+ "kind": "knowledge-check",
+ "language": "ar-EG",
+ "pass_mark": 80,
+ "shuffle": true,
+ "items": [
+  {
+   "id": "Q1",
+   "type": "scenario",
+   "objective_id": "O1",
+   "bloom": "apply",
+   "difficulty": "medium",
+   "stem": "Your conference trip comes to $3,200. Who approves the claim?",
+   "options": [
+    {
+     "id": "a",
+     "text": "Your manager",
+     "feedback": "المدير المباشر بيوافق لحد $1,000 بس.",
+     "text_ar": "مديرك المباشر"
+    },
+    {
+     "id": "b",
+     "text": "A director",
+     "correct": true,
+     "feedback": "صح: المدير الأعلى بيوافق لحد $5,000.",
+     "text_ar": "المدير الأعلى"
+    },
+    {
+     "id": "c",
+     "text": "The CFO",
+     "feedback": "المدير المالي للمطالبات فوق $5,000، و$3,200 أقل من كده.",
+     "text_ar": "المدير المالي (CFO)"
+    }
+   ],
+   "explanation": "Manager up to $1,000, director up to $5,000, CFO above $5,000 (Expense Policy §4.7).",
+   "source_ids": [
+    "S01#c1"
+   ],
+   "scenario": "لسه راجع من مؤتمر يومين. الطيران والفندق والأكل مجموعهم $3,200.",
+   "stem_ar": "رحلة المؤتمر بتاعتك كلّفت $3,200. مين يوافق على المطالبة؟"
+  },
+  {
+   "id": "Q2",
+   "type": "mcq",
+   "objective_id": "O1",
+   "bloom": "apply",
+   "difficulty": "easy",
+   "stem": "You paid $48 for a work lunch with a client and only have your card statement. Can you claim it as it is?",
+   "options": [
+    {
+     "id": "a",
+     "text": "Yes, the card statement proves the payment",
+     "feedback": "كشف حساب الكارت لوحده مش إيصال.",
+     "text_ar": "أيوه، الكشف بيثبت الدفع"
+    },
+    {
+     "id": "b",
+     "text": "No, you need the itemised receipt",
+     "correct": true,
+     "feedback": "صح: أي مصروف فوق $25 محتاج إيصال مفصّل.",
+     "text_ar": "لأ، لازم الإيصال المفصّل"
+    },
+    {
+     "id": "c",
+     "text": "Yes, receipts are only needed over $100",
+     "feedback": "الحد $25 مش $100.",
+     "text_ar": "أيوه، الإيصال مطلوب فوق $100 بس"
+    }
+   ],
+   "explanation": "A receipt is required for every expense over $25, and a card statement alone is not a receipt (§3, §4.1).",
+   "source_ids": [
+    "S01#c1"
+   ],
+   "stem_ar": "دفعت $48 في غدا شغل مع عميل، ومعاك كشف حساب الكارت بس. ينفع تقدّمها كده؟"
+  },
+  {
+   "id": "Q3",
+   "type": "ordering",
+   "objective_id": "O1",
+   "bloom": "understand",
+   "difficulty": "medium",
+   "stem": "Put the claim steps in order.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Photograph the receipt the same day",
+     "order": 1,
+     "text_ar": "صوّر الإيصال في نفس اليوم"
+    },
+    {
+     "id": "b",
+     "text": "Open Northwind Expenses and select New Claim",
+     "order": 2,
+     "text_ar": "افتح Northwind Expenses واختار New Claim"
+    },
+    {
+     "id": "c",
+     "text": "Enter category, date, amount and purpose",
+     "order": 3,
+     "text_ar": "دخّل الفئة والتاريخ والمبلغ والغرض"
+    },
+    {
+     "id": "d",
+     "text": "Attach the receipt photo and check the total",
+     "order": 4,
+     "text_ar": "ارفع صورة الإيصال وراجع الإجمالي"
+    },
+    {
+     "id": "e",
+     "text": "Submit the claim to your approver",
+     "order": 5,
+     "text_ar": "ابعت المطالبة للمسؤول عن الموافقة"
+    }
+   ],
+   "explanation": "This is the order of the claim procedure in the Expense Policy.",
+   "source_ids": [
+    "S01#c1"
+   ],
+   "stem_ar": "رتّب خطوات المطالبة."
+  },
+  {
+   "id": "Q4",
+   "type": "true_false",
+   "objective_id": "O1",
+   "bloom": "remember",
+   "difficulty": "easy",
+   "stem": "A claim submitted 100 days after the expense will still be reimbursed.",
+   "options": [
+    {
+     "id": "t",
+     "text": "True",
+     "feedback": "لأ: المطالبات اللي عدّى عليها أكتر من 90 يوم مش بتتصرف.",
+     "text_ar": "صح"
+    },
+    {
+     "id": "f",
+     "text": "False",
+     "correct": true,
+     "feedback": "مظبوط: قدّم خلال 30 يوم، وبعد 90 يوم مفيش صرف.",
+     "text_ar": "غلط"
+    }
+   ],
+   "source_ids": [
+    "S01#c1"
+   ],
+   "stem_ar": "المطالبة اللي تتقدّم بعد 100 يوم من المصروف هتتصرف عادي."
+  }
+ ]
+}

@@ -1,0 +1,17 @@
+# Domain pack manifest — security-awareness
+schema_version: "1.0"
+id: security-awareness
+title: "Security awareness"
+version: "1.0.0"
+languages: [en-US, en-GB, ar-EG, ar-MSA]
+audiences: [standard, it, exec]
+files:
+  glossary: glossary.yaml           # EN + AR terms
+  personas: personas.yaml           # adds vex (attacker) + role mapping
+  scenarios: scenarios.md           # red-flag scenarios + micro-drama premises
+  prioritization: prioritization.yaml   # weights, quotas, clusters
+  compliance: compliance.yaml       # ISO/IEC 27001:2022 A.6.3, SOC 2 CC1.4/CC2.2 evidence
+  format_defaults: format_defaults.yaml
+  mockups: mockups.yaml             # email / sms / mfa / browser / popup presets
+detect_keywords: [phishing, smishing, vishing, quishing, BEC, MFA, password, malware, ransomware, deepfake, social engineering, tailgating, USB, security awareness, cyber, ISO 27001, SOC 2]
+facts_policy: "Threat descriptions and red flags may be general_knowledge; report channels, thresholds, contacts and policy rules must come from client sources."

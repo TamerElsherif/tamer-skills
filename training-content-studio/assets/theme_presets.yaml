@@ -1,0 +1,87 @@
+# Theme presets → storyboard.json `theme.preset` (+ optional `theme.colors` overrides).
+# Rules: neutral is the default. Never cream/beige paper or terracotta ("Claude-like") palettes.
+# `attention` (#FF6700) is ~2.9:1 on white: use it ONLY for fills, strokes, icons and the antagonist's outfit — never as
+# text colour on light backgrounds (use `attention_text`) and never white text on an orange fill (use dark ink).
+# Contrast is checked by: .venv/bin/python assets/scripts/check_contrast.py  (pairs in `text_pairs`, WCAG AA 4.5:1;
+# `large_pairs` need 3:1 = text ≥ 24 px bold / ≥ 32 px regular at 1080p).
+default: neutral
+fonts:                      # shared by all presets unless overridden
+  latin: Poppins            # headings; body may use Inter
+  latin_body: Inter
+  arabic: IBM Plex Sans Arabic   # alternates: Cairo (friendly, rounded), Noto Kufi Arabic (display/headings)
+  mono: IBM Plex Mono
+  hand: Caveat              # whiteboard notes (Latin); Arabic handwriting falls back to Cairo
+presets:
+  neutral:
+    description: "Default corporate-neutral: navy ink, blue→cyan accents, one orange attention colour."
+    colors:
+      bg: "#F4F7FB"
+      surface: "#FFFFFF"
+      ink: "#363E77"          # headings + body text
+      ink_strong: "#1E2350"
+      muted: "#5A6385"
+      accent: "#006AB3"
+      accent_2: "#6FC7DA"     # gradient end (accent → accent_2); decorative, not for text on light bg
+      attention: "#FF6700"
+      attention_text: "#B34700"
+      safe: "#1E7F4F"
+      line: "#D5DCE8"
+    gradient: ["#006AB3", "#6FC7DA"]
+    text_pairs: [[ink, bg], [ink, surface], [muted, surface], [accent, surface], [attention_text, surface], [safe, surface], [surface, accent], [surface, ink]]
+    large_pairs: [[ink_strong, attention]]   # text ON an orange fill (callout chips) must be dark ink, never white
+  whiteboard:
+    description: "Doodle format: pure white board, navy marker ink, orange attention marker, green ticks."
+    colors:
+      bg: "#FFFFFF"
+      surface: "#FFFFFF"
+      ink: "#1F2A5A"
+      muted: "#5A6385"
+      accent: "#006AB3"
+      attention: "#FF6700"
+      attention_text: "#B34700"
+      safe: "#1E7F4F"
+      line: "#1F2A5A"
+    text_pairs: [[ink, bg], [muted, bg], [accent, bg], [attention_text, bg], [safe, bg]]
+    large_pairs: [[ink, attention]]
+  midnight:
+    description: "Dark variant for executive/leadership or night-scene series; cyan accents on deep navy."
+    colors:
+      bg: "#0F1530"
+      surface: "#1A2246"
+      ink: "#F4F7FB"
+      muted: "#B9C2DD"
+      accent: "#6FC7DA"
+      attention: "#FF8A3D"
+      attention_text: "#FF8A3D"
+      safe: "#5BD39A"
+      line: "#2C3866"
+    text_pairs: [[ink, bg], [ink, surface], [muted, surface], [accent, surface], [attention_text, surface], [safe, surface]]
+    large_pairs: []
+  executive:
+    description: "Leadership audiences: more white space, navy-dominant, restrained accent use."
+    colors:
+      bg: "#FFFFFF"
+      surface: "#F2F4F8"
+      ink: "#1E2350"
+      muted: "#4F587A"
+      accent: "#006AB3"
+      attention: "#FF6700"
+      attention_text: "#A84300"
+      safe: "#1E7F4F"
+      line: "#D5DCE8"
+    text_pairs: [[ink, bg], [ink, surface], [muted, bg], [accent, bg], [attention_text, bg], [safe, bg]]
+    large_pairs: [[ink, attention]]
+  high_contrast:
+    description: "Accessibility preset (low vision / projectors): black on white, saturated darker accents."
+    colors:
+      bg: "#FFFFFF"
+      surface: "#FFFFFF"
+      ink: "#000000"
+      muted: "#2B2B2B"
+      accent: "#0047AB"
+      attention: "#C2410C"
+      attention_text: "#A33608"
+      safe: "#0B6B3A"
+      line: "#000000"
+    text_pairs: [[ink, bg], [muted, bg], [accent, bg], [attention, bg], [attention_text, bg], [safe, bg]]
+    large_pairs: []

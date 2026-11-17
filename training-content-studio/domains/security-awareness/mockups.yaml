@@ -1,0 +1,99 @@
+# Mock-up presets: paste `props` into a scene with the given `template`. Shapes follow schemas/storyboard.schema.json.
+# Callout `cue`s assume narration names the flags in the listed order (one ^ per callout).
+# Fictional only: Northwind Co., *.example domains. Translate every string for Arabic (keep URLs/addresses LTR).
+schema_version: "1.0"
+presets:
+  phish-mailbox:
+    template: email_mock
+    props:
+      email:
+        from: "Northwind IT Service Desk"
+        from_addr: "it-desk@northwlnd.example"
+        to: "you@northwind.example"
+        subject: "URGENT: Your mailbox will be closed today"
+        external: true
+        body: ["Dear user,", "Your mailbox exceeded its limit and will be closed in 2 hours.", "Click below to keep your account active."]
+        button: "Keep my mailbox"
+      callouts:
+        - {cue: 0, target: addr, label: "Look-alike domain", tone: warn}
+        - {cue: 1, target: b0, label: "Generic greeting", tone: warn}
+        - {cue: 2, target: b1, label: "Pressure and a deadline", tone: warn}
+        - {cue: 3, target: button, label: "Hover before you click", tone: warn}
+  bec-bank-change:
+    template: email_mock
+    props:
+      email:
+        from: "Dana Wells — Brightline Supplies"
+        from_addr: "dana.wells@brightline-supplies.example"
+        to: "accounts@northwind.example"
+        subject: "Updated bank details for invoice 4471"
+        external: true
+        body: ["Hi team,", "Our bank has changed. Please use the new account below for today's payment.", "Please keep this between us until our audit is finished."]
+        attachment: "New_bank_details.pdf"
+        signature: ["Dana Wells", "Accounts Receivable"]
+      callouts:
+        - {cue: 0, target: b1, label: "New bank details", tone: warn}
+        - {cue: 1, target: b1, label: "Pay today", tone: warn}
+        - {cue: 2, target: b2, label: "Keep it secret", tone: warn}
+        - {cue: 3, target: addr, label: "Check the domain", tone: warn}
+  ceo-giftcards:
+    template: chat_mock
+    props:
+      device: phone
+      title: "Hana (CEO)"
+      messages:
+        - {text: "Are you at your desk? I need a quick favour.", cue: 0}
+        - {me: true, text: "Yes, what do you need?"}
+        - {text: "Buy six gift cards for a client. Keep it confidential, I'm in a meeting.", warn: true, cue: 1}
+      callouts:
+        - {cue: 1, label: "Unusual payment method", tone: warn}
+        - {cue: 2, label: "Secrecy + authority", tone: warn}
+  mfa-storm:
+    template: mfa_prompt
+    props: {app: "Northwind Sign-in", place: "Unknown location", count_to: 12, caption: "Prompts you didn't start"}
+  smish-parcel:
+    template: chat_mock
+    props:
+      device: phone
+      title: "Messages"
+      messages:
+        - {text: "NorthPost: your parcel is on hold. Pay 1.99 to release it: npost-delivery.example/pay", warn: true, cue: 0}
+      callouts:
+        - {cue: 1, label: "Short, odd link", tone: warn}
+        - {cue: 2, label: "Small fee, big hurry", tone: warn}
+  quish-parking:
+    template: browser_mock
+    props:
+      url: "park-northwind.example/pay"
+      bad: true
+      page: checkout
+      brand: "City Parking"
+      heading: "Pay for parking"
+      lines: ["Enter card details to continue"]
+      callouts:
+        - {cue: 0, target: url, label: "Check the URL preview", tone: warn}
+        - {cue: 1, target: form, label: "Card details? Stop.", tone: warn}
+  fake-login:
+    template: browser_mock
+    props:
+      url: "northwind-login.example/secure"
+      bad: true
+      page: login
+      brand: "Northwind"
+      heading: "Sign in to continue"
+      callouts:
+        - {cue: 0, target: url, label: "Not our real domain", tone: warn}
+  ai-paste:
+    template: browser_mock
+    props:
+      url: "free-ai-chat.example"
+      bad: true
+      page: article
+      heading: "Ask me anything"
+      lines: ["Summarise this customer contract: …"]
+      callouts:
+        - {cue: 0, target: url, label: "Unapproved AI tool", tone: warn}
+        - {cue: 1, target: body, label: "Confidential data, public tool", tone: warn}
+  fake-download:
+    template: popup
+    props: {title: "Free AI assistant!", body: "Finish a month of work in one click. Download now.", cta: "Download", tone: bad, icon: download}

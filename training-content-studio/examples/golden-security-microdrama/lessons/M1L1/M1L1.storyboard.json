@@ -1,0 +1,757 @@
+{
+ "schema_version": "1.0",
+ "course_id": "northwind-bec-microdrama",
+ "lesson_id": "M1L1",
+ "title": "The Friday Wire",
+ "language": "en-US",
+ "direction": "ltr",
+ "aspect": "16:9",
+ "fps": 30,
+ "formats": [
+  "cartoon",
+  "branching"
+ ],
+ "wpm": 135,
+ "objective_ids": [
+  "O1",
+  "O2",
+  "O3"
+ ],
+ "theme": {
+  "preset": "neutral",
+  "logo": null
+ },
+ "voices": {
+  "narrator": {
+   "provider": "openai",
+   "voice": "marin",
+   "model": "gpt-4o-mini-tts",
+   "instructions": "Warm, confident corporate trainer speaking American English to colleagues. Clear, friendly, professional; natural conversational pace, brief pauses between list items. Never robotic.",
+   "lang": "en-US"
+  },
+  "exec": {
+   "provider": "openai",
+   "voice": "cedar",
+   "model": "gpt-4o-mini-tts",
+   "instructions": "Speak American English. Senior executive; composed, low and confident.",
+   "lang": "en-US"
+  },
+  "mentor": {
+   "provider": "openai",
+   "voice": "echo",
+   "model": "gpt-4o-mini-tts",
+   "instructions": "Speak American English. Calm, friendly expert; warm, clear, a touch of dry humour.",
+   "lang": "en-US"
+  },
+  "rookie": {
+   "provider": "openai",
+   "voice": "ballad",
+   "model": "gpt-4o-mini-tts",
+   "instructions": "Speak American English. Good-natured, over-eager new starter; expressive, quick to panic, comic.",
+   "lang": "en-US"
+  },
+  "vex": {
+   "provider": "openai",
+   "voice": "verse",
+   "model": "gpt-4o-mini-tts",
+   "instructions": "Speak American English. Smug, theatrical cartoon con-artist, playful not scary. Savouring every word.",
+   "lang": "en-US"
+  }
+ },
+ "cast": [
+  "rookie",
+  "exec",
+  "vex",
+  "mentor"
+ ],
+ "scenes": [
+  {
+   "id": "s01_title",
+   "template": "title",
+   "props": {
+    "kicker": "A security micro-drama",
+    "title": "The Friday Wire",
+    "sub": "CEO fraud and fake payment requests",
+    "icon": "mail"
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "One urgent email from the boss. One big decision."
+    }
+   ],
+   "claims": [
+    {
+     "text": "CEO fraud tricks employees into sending money by impersonating executives.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    }
+   ],
+   "objective_ids": [
+    "O1"
+   ],
+   "visual": "Title card \"The Friday Wire\", kicker \"A security micro-drama\", mail icon.",
+   "on_screen_text": [
+    "A security micro-drama",
+    "The Friday Wire",
+    "CEO fraud and fake payment requests"
+   ]
+  },
+  {
+   "id": "s02_request",
+   "template": "cartoon",
+   "props": {
+    "set": "office",
+    "desk": true,
+    "people": [
+     {
+      "cast": "rookie",
+      "x": 960,
+      "y": 1060,
+      "s": 1.35,
+      "pose": "type",
+      "expr": "neutral",
+      "lowerHidden": true
+     }
+    ],
+    "beats": [
+     {
+      "cue": 0,
+      "cast": "rookie",
+      "pose": "type",
+      "expr": "worried",
+      "sfx": "ding"
+     },
+     {
+      "cue": 1,
+      "cast": "rookie",
+      "pose": "think",
+      "expr": "worried",
+      "camera": {
+       "zoom": 1.35,
+       "x": 960,
+       "y": 560
+      }
+     }
+    ],
+    "bubbles": [
+     {
+      "cue": 1,
+      "who": "rookie",
+      "text": "Pay today... and keep it quiet?",
+      "think": true
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "Friday, four fifty. ^ Sam in Finance gets an email from Hana, the C E O."
+    },
+    {
+     "who": "rookie",
+     "text": "^ Pay a supplier today, and keep it quiet?",
+     "instr": "nervous, eager to please, comic"
+    }
+   ],
+   "claims": [
+    {
+     "text": "Scenario: Sam in Finance receives an urgent, secret payment request that appears to come from the CEO (fictional example).",
+     "general_knowledge": true
+    }
+   ],
+   "duration_hint_s": 11.9,
+   "objective_ids": [
+    "O1"
+   ],
+   "visual": "office, Sam (rookie, Finance) at the desk; worried when the email lands; camera pushes in.",
+   "on_screen_text": [
+    "Pay today... and keep it quiet?"
+   ]
+  },
+  {
+   "id": "s03_email",
+   "template": "email_mock",
+   "props": {
+    "email": {
+     "from": "Hana (CEO)",
+     "from_addr": "hana.ceo@northwind-mail.example",
+     "to": "sam@northwind.example",
+     "subject": "Confidential: supplier payment today",
+     "external": true,
+     "body": [
+      "Sam,",
+      "Please pay the Brightline Supplies invoice of USD 48,500 today.",
+      "They changed banks, so use the new account details attached.",
+      "Keep this between us until the deal is announced."
+     ],
+     "attachment": "New_bank_details.pdf",
+     "signature": [
+      "Hana",
+      "Sent from my phone"
+     ]
+    },
+    "callouts": [
+     {
+      "cue": 0,
+      "target": "addr",
+      "label": "Not her usual address",
+      "tone": "warn"
+     },
+     {
+      "cue": 1,
+      "target": "b1",
+      "label": "Pay today",
+      "tone": "warn"
+     },
+     {
+      "cue": 2,
+      "target": "b2",
+      "label": "New bank details",
+      "tone": "warn"
+     },
+     {
+      "cue": 3,
+      "target": "b3",
+      "label": "Keep it secret",
+      "tone": "warn"
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "Spot the signs. ^ It's not Hana's usual address. ^ It says pay today. ^ The bank details are new. ^ And it asks for secrecy."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Warning sign: a sender address or reply-to address that does not match the usual one.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Warning sign: urgency or pressure to pay today.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Warning sign: new or changed bank details.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Warning sign: a request to keep the payment secret or to bypass the normal process.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Scenario: the fake email asks for a USD 48,500 payment to a fictional supplier (fictional example).",
+     "general_knowledge": true
+    }
+   ],
+   "objective_ids": [
+    "O1"
+   ],
+   "visual": "The fake CEO email with four numbered red-flag call-outs, revealed in narration order.",
+   "on_screen_text": [
+    "Hana (CEO)",
+    "hana.ceo@northwind-mail.example",
+    "sam@northwind.example",
+    "Confidential: supplier payment today",
+    "Sam,",
+    "Please pay the Brightline Supplies invoice of USD 48,500 today.",
+    "They changed banks, so use the new account details attached.",
+    "Keep this between us until the deal is announced.",
+    "New_bank_details.pdf",
+    "Hana",
+    "Sent from my phone",
+    "Not her usual address",
+    "Pay today",
+    "New bank details",
+    "Keep it secret"
+   ]
+  },
+  {
+   "id": "s04_vex",
+   "template": "cartoon",
+   "props": {
+    "set": "den",
+    "night": true,
+    "people": [
+     {
+      "cast": "vex",
+      "x": 960,
+      "y": 1060,
+      "s": 1.3,
+      "pose": "cross",
+      "expr": "neutral",
+      "holding": "laptop"
+     }
+    ],
+    "beats": [
+     {
+      "cue": 0,
+      "cast": "vex",
+      "pose": "rub",
+      "expr": "sly"
+     }
+    ],
+    "bubbles": [
+     {
+      "cue": 0,
+      "who": "vex",
+      "text": "Nobody questions the boss on a Friday.",
+      "tone": "villain"
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "vex",
+     "text": "^ Heh. Nobody questions the boss on a Friday afternoon.",
+     "instr": "smug, theatrical, playful"
+    }
+   ],
+   "claims": [
+    {
+     "text": "Attackers use authority and time pressure to rush people past checks.",
+     "general_knowledge": true
+    }
+   ],
+   "duration_hint_s": 5.4,
+   "objective_ids": [
+    "O1"
+   ],
+   "visual": "den, Vex rubbing his hands, sly; villain bubble.",
+   "on_screen_text": [
+    "Nobody questions the boss on a Friday."
+   ]
+  },
+  {
+   "id": "s05_decide",
+   "template": "decision",
+   "props": {
+    "prompt": "What should Sam do?",
+    "choices": [
+     {
+      "id": "a",
+      "label": "Pay now. It's the CEO.",
+      "next": "n_paid",
+      "correct": false
+     },
+     {
+      "id": "b",
+      "label": "Reply to the email to check",
+      "next": "n_reply",
+      "correct": false
+     },
+     {
+      "id": "c",
+      "label": "Call Hana on her directory number",
+      "next": "n_good",
+      "correct": true
+     }
+    ],
+    "video_choice": "c"
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "What should Sam do?",
+     "pause": 0.5
+    },
+    {
+     "who": "narrator",
+     "text": "Pay now, reply to the email, ^ or call Hana back on her directory number?"
+    }
+   ],
+   "claims": [
+    {
+     "text": "A request from an executive is verified by calling the executive back on their directory number.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    }
+   ],
+   "objective_ids": [
+    "O2"
+   ],
+   "visual": "Three choices; the video highlights the callback.",
+   "on_screen_text": [
+    "What should Sam do?",
+    "Pay now. It's the CEO.",
+    "Reply to the email to check",
+    "Call Hana on her directory number"
+   ]
+  },
+  {
+   "id": "s06_paid",
+   "template": "statement",
+   "props": {
+    "text": "That money went to the attacker.",
+    "sub": "Already paid? Report to IT Security and Finance immediately.",
+    "icon": "alert",
+    "accent": "attacker"
+   },
+   "narration": [
+    {
+     "who": "mentor",
+     "text": "^ That money went to the attacker. If money has already been sent, report it to I T Security and Finance immediately."
+    }
+   ],
+   "claims": [
+    {
+     "text": "If you think money has already been sent, report it to IT Security and Finance immediately.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    }
+   ],
+   "objective_ids": [
+    "O3"
+   ],
+   "visual": "Alert statement; mentor voice.",
+   "on_screen_text": [
+    "That money went to the attacker.",
+    "Already paid? Report to IT Security and Finance immediately."
+   ]
+  },
+  {
+   "id": "s07_reply",
+   "template": "statement",
+   "props": {
+    "text": "Your reply went to the attacker.",
+    "sub": "Never use contact details from the request itself.",
+    "icon": "alert",
+    "accent": "attacker"
+   },
+   "narration": [
+    {
+     "who": "mentor",
+     "text": "^ Your reply went straight to the attacker. Never use a contact detail given in the request itself."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Never use a phone number, link or contact detail given in the request itself.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    }
+   ],
+   "objective_ids": [
+    "O2"
+   ],
+   "visual": "Alert statement; mentor voice.",
+   "on_screen_text": [
+    "Your reply went to the attacker.",
+    "Never use contact details from the request itself."
+   ]
+  },
+  {
+   "id": "s08_callback",
+   "template": "cartoon",
+   "props": {
+    "set": "office",
+    "people": [
+     {
+      "cast": "rookie",
+      "x": 680,
+      "y": 1060,
+      "s": 1.25,
+      "pose": "phone",
+      "expr": "neutral",
+      "holding": "phone"
+     },
+     {
+      "cast": "exec",
+      "x": 1260,
+      "y": 1060,
+      "s": 1.25,
+      "pose": "phone",
+      "expr": "neutral",
+      "holding": "phone",
+      "flip": true
+     }
+    ],
+    "beats": [
+     {
+      "cue": 0,
+      "cast": "exec",
+      "pose": "stop",
+      "expr": "angry"
+     },
+     {
+      "cue": 0,
+      "cast": "rookie",
+      "expr": "shocked"
+     },
+     {
+      "cue": 1,
+      "cast": "rookie",
+      "pose": "phone",
+      "expr": "happy"
+     },
+     {
+      "cue": 1,
+      "cast": "exec",
+      "pose": "idle",
+      "expr": "happy"
+     }
+    ],
+    "bubbles": [
+     {
+      "cue": 0,
+      "out_cue": 1,
+      "who": "exec",
+      "text": "I never sent that. Don't pay it!"
+     },
+     {
+      "cue": 1,
+      "who": "rookie",
+      "text": "Reporting it to IT Security now."
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "Sam calls Hana back on her number in the company directory."
+    },
+    {
+     "who": "exec",
+     "text": "^ I never sent that. Don't pay it!",
+     "instr": "composed but firm"
+    },
+    {
+     "who": "rookie",
+     "text": "^ Reporting it to I T Security now.",
+     "instr": "relieved, determined"
+    }
+   ],
+   "claims": [
+    {
+     "text": "Before acting on a payment or bank-detail request, call the requester back on a number already on file in the company directory.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Report every suspicious payment request to IT Security straight away.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    }
+   ],
+   "duration_hint_s": 13.1,
+   "objective_ids": [
+    "O2",
+    "O3"
+   ],
+   "visual": "office two-shot on the phone: Sam at the desk (left), the real Hana (right); Sam shocked, then relieved.",
+   "on_screen_text": [
+    "I never sent that. Don't pay it!",
+    "Reporting it to IT Security now."
+   ]
+  },
+  {
+   "id": "s09_rule",
+   "template": "steps",
+   "props": {
+    "title": "Every payment request",
+    "steps": [
+     {
+      "icon": "phone",
+      "label": "Call back a known number",
+      "sub": "Never one from the request"
+     },
+     {
+      "icon": "users",
+      "label": "Two people approve",
+      "sub": "Bank changes and USD 10,000+"
+     },
+     {
+      "icon": "flag",
+      "label": "Report to IT Security",
+      "sub": "Report Phishing or ext. 4400"
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "mentor",
+     "text": "The rule: ^ call back a number you already have. ^ Bank changes, and payments of ten thousand dollars or more, need two approvers. ^ And report it to I T Security."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Before acting on a request to make a payment or change bank details, call the requester back on a phone number already on file.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Every payment of USD 10,000 or more needs approval from two authorised people before it is released.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Every change to bank details needs a second person to approve it after the callback, whatever the amount.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Report suspicious payment requests to IT Security with the Report Phishing button in Outlook or the IT Security hotline on extension 4400.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    }
+   ],
+   "objective_ids": [
+    "O2",
+    "O3"
+   ],
+   "visual": "Three steps: call back, two-person approval, report.",
+   "on_screen_text": [
+    "Every payment request",
+    "Call back a known number",
+    "Never one from the request",
+    "Two people approve",
+    "Bank changes and USD 10,000+",
+    "Report to IT Security",
+    "Report Phishing or ext. 4400"
+   ]
+  },
+  {
+   "id": "s10_quiz",
+   "template": "quiz",
+   "props": {
+    "quiz_item": "Q3"
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "Quick check. The email lists a new number to confirm. Call it?",
+     "pause": 2.2
+    },
+    {
+     "who": "narrator",
+     "text": "^ No. Only call a number that's already on file."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Never use a phone number given in the request itself; call back a number already on file.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    }
+   ],
+   "objective_ids": [
+    "O2"
+   ],
+   "visual": "Quiz Q3 (new number in the email).",
+   "on_screen_text": []
+  },
+  {
+   "id": "s11_outro",
+   "template": "outro",
+   "props": {
+    "line": "Pressure is the red flag. Verify first.",
+    "title": "The Friday Wire",
+    "tips": [
+     "Call back a known number",
+     "Two people approve",
+     "Report to IT Security"
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "^ Pressure is the red flag. Verify first, and report. No one is blamed for reporting."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Warning sign: urgency or pressure to pay today.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "No one will be blamed for reporting a request that turns out to be genuine.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    }
+   ],
+   "objective_ids": [
+    "O1",
+    "O2",
+    "O3"
+   ],
+   "visual": "Outro line + three tips.",
+   "on_screen_text": [
+    "Pressure is the red flag. Verify first.",
+    "The Friday Wire",
+    "Call back a known number",
+    "Two people approve",
+    "Report to IT Security"
+   ]
+  }
+ ],
+ "music": {
+  "bed": "cartoon",
+  "volume": 0.12
+ },
+ "branching": {
+  "start": "n_intro",
+  "nodes": [
+   {
+    "id": "n_intro",
+    "scenes": [
+     "s02_request",
+     "s03_email",
+     "s04_vex",
+     "s05_decide"
+    ],
+    "outcome": "continue"
+   },
+   {
+    "id": "n_paid",
+    "scenes": [
+     "s06_paid"
+    ],
+    "outcome": "bad",
+    "score": 0,
+    "feedback": "You paid on an unverified email. Urgency, new bank details and secrecy were the red flags. Call back a known number, and if money has gone, report it to IT Security and Finance at once."
+   },
+   {
+    "id": "n_reply",
+    "scenes": [
+     "s07_reply"
+    ],
+    "outcome": "bad",
+    "score": 2,
+    "feedback": "Checking was right, but replying reaches the attacker. Use a number already on file, never contact details from the request."
+   },
+   {
+    "id": "n_good",
+    "scenes": [
+     "s08_callback"
+    ],
+    "outcome": "good",
+    "score": 10,
+    "feedback": "You verified by calling back on the directory number and reported it. Attack stopped."
+   }
+  ]
+ }
+}

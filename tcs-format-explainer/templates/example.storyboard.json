@@ -1,0 +1,411 @@
+{
+ "schema_version": "1.0",
+ "course_id": "northwind-security-basics",
+ "lesson_id": "M1L1",
+ "title": "Spot a Phishing Email",
+ "language": "en-US",
+ "direction": "ltr",
+ "subtitle_languages": [
+  "ar-EG"
+ ],
+ "aspect": "16:9",
+ "fps": 30,
+ "formats": [
+  "explainer"
+ ],
+ "wpm": 150,
+ "objective_ids": [
+  "O1",
+  "O2"
+ ],
+ "theme": {
+  "preset": "neutral",
+  "logo": null
+ },
+ "voices": {
+  "narrator": {
+   "provider": "openai",
+   "model": "gpt-4o-mini-tts",
+   "voice": "marin",
+   "lang": "en-US",
+   "instructions": "Warm, confident corporate trainer speaking to colleagues. Clear, friendly, natural pace; brief pauses between list items. Never robotic."
+  }
+ },
+ "music": {
+  "bed": "explainer",
+  "volume": 0.12
+ },
+ "broll_shots": [
+  {
+   "id": "hook",
+   "query": "person reading email on laptop in office",
+   "provider": "pexels",
+   "min_s": 12
+  },
+  {
+   "id": "inbox",
+   "query": "hands typing on laptop keyboard close up",
+   "provider": "pexels",
+   "min_s": 12
+  },
+  {
+   "id": "team",
+   "query": "colleagues talking at office desk",
+   "provider": "pexels",
+   "min_s": 12
+  }
+ ],
+ "scenes": [
+  {
+   "id": "s01_title",
+   "template": "title",
+   "props": {
+    "kicker": "Security essentials",
+    "title": "Spot a Phishing Email",
+    "sub": "Five red flags in two minutes",
+    "icon": "mail"
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "Welcome. In the next few minutes you'll learn to spot a phishing email before it costs you."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Phishing emails try to trick people into clicking, paying or sharing data.",
+     "general_knowledge": true
+    }
+   ],
+   "duration_hint_s": 6
+  },
+  {
+   "id": "s02_hook",
+   "template": "broll",
+   "props": {
+    "shot": "hook",
+    "chips": [
+     "Phishing",
+     "Email"
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "Most attacks on companies start with a single email. ^ It looks routine, it feels urgent, and it only needs one click."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Phishing email is the most common way attacks reach our staff.",
+     "source_ids": [
+      "S01#c2"
+     ]
+    }
+   ],
+   "duration_hint_s": 12
+  },
+  {
+   "id": "s03_what",
+   "template": "definition",
+   "props": {
+    "term": "Phishing",
+    "def": "A fake message that pretends to be someone you trust, to make you click, pay or share data.",
+    "note": "It can arrive by email, text, phone or chat.",
+    "icon": "mail"
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "^ Phishing is a fake message that pretends to come from someone you trust. ^ And it isn't only email: texts, calls and chat messages count too."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Phishing impersonates a trusted sender to obtain clicks, payments or data.",
+     "general_knowledge": true
+    },
+    {
+     "text": "Phishing also arrives by SMS, voice and chat.",
+     "general_knowledge": true
+    }
+   ],
+   "duration_hint_s": 14
+  },
+  {
+   "id": "s04_flow",
+   "template": "steps",
+   "props": {
+    "title": "How the attack unfolds",
+    "steps": [
+     {
+      "icon": "mail",
+      "label": "Bait",
+      "sub": "An urgent email arrives"
+     },
+     {
+      "icon": "link",
+      "label": "Hook",
+      "sub": "A link or attachment"
+     },
+     {
+      "icon": "key",
+      "label": "Catch",
+      "sub": "Login page steals your password"
+     },
+     {
+      "icon": "alert",
+      "label": "Damage",
+      "sub": "Account takeover or malware"
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "Here's how it unfolds. ^ The bait: an urgent email. ^ The hook: a link or an attachment. ^ The catch: a fake login page takes your password. ^ And then the damage: account takeover or malware."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Typical phishing flow: email, link, credential page, account takeover.",
+     "source_ids": [
+      "S01#c3"
+     ]
+    }
+   ],
+   "duration_hint_s": 18
+  },
+  {
+   "id": "s05_email",
+   "template": "email_mock",
+   "props": {
+    "email": {
+     "from": "Northwind IT Service Desk",
+     "from_addr": "it-desk@northwlnd.example",
+     "to": "you@northwind.example",
+     "subject": "URGENT: Your mailbox will be closed today",
+     "external": true,
+     "body": [
+      "Dear user,",
+      "Your mailbox exceeded its limit and will be closed in 2 hours.",
+      "Click below to keep your account active."
+     ],
+     "button": "Keep my mailbox"
+    },
+    "callouts": [
+     {
+      "cue": 0,
+      "target": "addr",
+      "label": "Look-alike domain",
+      "tone": "warn"
+     },
+     {
+      "cue": 1,
+      "target": "b0",
+      "label": "Generic greeting",
+      "tone": "warn"
+     },
+     {
+      "cue": 2,
+      "target": "b1",
+      "label": "Pressure and a deadline",
+      "tone": "warn"
+     },
+     {
+      "cue": 3,
+      "target": "button",
+      "label": "Hover before you click",
+      "tone": "warn"
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "Let's check a real-looking example. ^ First, the sender's domain: northwlnd, with an L instead of an I."
+    },
+    {
+     "who": "narrator",
+     "text": "^ Second, a generic greeting instead of your name. ^ Third, pressure: closed in two hours."
+    },
+    {
+     "who": "narrator",
+     "text": "^ And finally, the button. Hover over it first and check where it really goes."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Look-alike domains, generic greetings, urgency and disguised links are phishing red flags.",
+     "source_ids": [
+      "S01#c4"
+     ]
+    }
+   ],
+   "visual": "Mock email from a look-alike domain with four orange callouts",
+   "duration_hint_s": 26
+  },
+  {
+   "id": "s06_signs",
+   "template": "broll_panel",
+   "props": {
+    "shot": "inbox",
+    "kicker": "Red flags",
+    "title": "Pause if you see",
+    "side": "right",
+    "items": [
+     {
+      "text": "Unexpected attachment",
+      "icon": "file",
+      "tone": "warn"
+     },
+     {
+      "text": "Request for passwords or codes",
+      "icon": "key",
+      "tone": "warn"
+     },
+     {
+      "text": "Payment or bank-detail change",
+      "icon": "money",
+      "tone": "warn"
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "A few more signs to pause for: ^ an attachment you didn't expect, ^ any request for a password or a code, ^ and any change to payment or bank details."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Unexpected attachments, credential requests and payment changes are red flags.",
+     "source_ids": [
+      "S01#c4",
+      "S02#p1"
+     ]
+    }
+   ],
+   "duration_hint_s": 15
+  },
+  {
+   "id": "s07_dodont",
+   "template": "do_dont",
+   "props": {
+    "title": "What to do",
+    "dont_head": "Don't",
+    "do_head": "Do",
+    "dont": [
+     "Click links in unexpected emails",
+     "Reply to ask if it's real"
+    ],
+    "do": [
+     "Verify using a contact you already know",
+     "Press Report Phishing"
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "So what do you do? ^ Don't click the link, ^ and don't reply to ask if it's real. ^ Instead, verify using a contact you already know, ^ and press the Report Phishing button."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Staff must report suspicious email with the Report Phishing button.",
+     "source_ids": [
+      "S02#p2"
+     ]
+    }
+   ],
+   "duration_hint_s": 16
+  },
+  {
+   "id": "s08_quiz",
+   "template": "quiz",
+   "props": {
+    "quiz_item": "Q1",
+    "q": "An urgent email asks you to log in to keep your mailbox. What do you do?",
+    "options": [
+     "Click the button quickly",
+     "Reply and ask",
+     "Report it, then check via the known portal"
+    ],
+    "answer": 2,
+    "why": "Never use the email's own link; report it and verify independently."
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "Quick check. An urgent email asks you to log in to keep your mailbox. What do you do?",
+     "pause": 2.2
+    },
+    {
+     "who": "narrator",
+     "text": "^ The answer is C. Report it, then check through the portal you already know."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Report suspicious email; verify independently.",
+     "source_ids": [
+      "S02#p2"
+     ]
+    }
+   ],
+   "hold": 3,
+   "duration_hint_s": 14
+  },
+  {
+   "id": "s09_recap",
+   "template": "checklist",
+   "props": {
+    "title": "Recap",
+    "items": [
+     "Check the sender's domain",
+     "Distrust urgency",
+     "Hover before you click",
+     "Report, don't reply"
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "Let's recap. ^ Check the domain. ^ Distrust urgency. ^ Hover before you click. ^ And report, don't reply."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Recap of red flags and reporting.",
+     "source_ids": [
+      "S01#c4",
+      "S02#p2"
+     ]
+    }
+   ],
+   "duration_hint_s": 12
+  },
+  {
+   "id": "s10_outro",
+   "template": "outro",
+   "props": {
+    "title": "Thanks for watching",
+    "line": "Pause. Check. Report.",
+    "evidence_line": "Completion recorded for ISO/IEC 27001 A.6.3 awareness evidence."
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "Thanks for watching. Pause, check, report."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Closing line.",
+     "general_knowledge": true
+    }
+   ],
+   "duration_hint_s": 5
+  }
+ ]
+}

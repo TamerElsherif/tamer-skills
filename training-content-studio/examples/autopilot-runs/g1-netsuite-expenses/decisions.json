@@ -1,0 +1,312 @@
+{
+ "schema_version": "1.0",
+ "run_id": "g1-netsuite-expenses",
+ "request": "Teach new hires how to submit expenses in NetSuite",
+ "decisions": [
+  {
+   "key": "language",
+   "value": {
+    "primary": "en-US",
+    "subtitles": []
+   },
+   "signal": "request written in English, no MENA cue",
+   "confidence": 0.85,
+   "source": "request",
+   "alternative_rejected": "Arabic primary + English subtitles"
+  },
+  {
+   "key": "audience",
+   "value": {
+    "id": "new-hires",
+    "roles": [
+     "learner",
+     "rookie"
+    ],
+    "segment": "staff"
+   },
+   "signal": "wording 'new hires'",
+   "confidence": 0.8,
+   "source": "request",
+   "alternative_rejected": "general staff",
+   "critical": true
+  },
+  {
+   "key": "level",
+   "value": "beginner",
+   "signal": "audience cue 'new hires'",
+   "confidence": 0.8,
+   "source": "request",
+   "alternative_rejected": "intermediate"
+  },
+  {
+   "key": "other",
+   "value": "procedure",
+   "signal": "procedure: 'how to', 'submit'",
+   "confidence": 0.95,
+   "source": "request",
+   "name": "objective_type",
+   "alternative_rejected": "concept (default)"
+  },
+  {
+   "key": "domain",
+   "value": "software-procedure",
+   "signal": "no pack keyword; inferred from objective type 'procedure'",
+   "confidence": 0.6,
+   "source": "rule",
+   "alternative_rejected": "a specific domain pack",
+   "critical": true
+  },
+  {
+   "key": "domain_pack",
+   "value": "_template",
+   "signal": "no domain pack matched",
+   "confidence": 0.7,
+   "source": "default",
+   "alternative_rejected": "closest pack"
+  },
+  {
+   "key": "objectives",
+   "value": [
+    {
+     "id": "O1",
+     "text": "Identify what you need before you submit expenses in NetSuite",
+     "bloom": "remember"
+    },
+    {
+     "id": "O2",
+     "text": "Complete the steps to submit expenses in NetSuite correctly",
+     "bloom": "apply"
+    },
+    {
+     "id": "O3",
+     "text": "Check your work and fix common errors when you submit expenses in NetSuite",
+     "bloom": "analyze"
+    }
+   ],
+   "signal": "type=procedure (Bloom matched: know->remember/understand, do->apply, decide->analyze/evaluate); no sources/count wording -> default objective set for type",
+   "confidence": 0.55,
+   "source": "default",
+   "alternative_rejected": "single broad objective",
+   "critical": true
+  },
+  {
+   "key": "formats",
+   "value": [
+    "screencast-sim",
+    "job-aid"
+   ],
+   "signal": "procedure + software cue 'NetSuite' -> ['screencast-sim', 'job-aid']",
+   "confidence": 0.75,
+   "source": "rule",
+   "alternative_rejected": "['explainer'] (concept rule)"
+  },
+  {
+   "key": "other",
+   "value": {
+    "assessment": "scenario",
+    "evidence": false,
+    "broll": false
+   },
+   "signal": "assessment for procedure",
+   "confidence": 0.8,
+   "source": "rule",
+   "name": "assessment",
+   "alternative_rejected": "no assessment"
+  },
+  {
+   "key": "blend",
+   "value": [
+    "screencast-sim",
+    "job-aid"
+   ],
+   "signal": "primary screencast-sim + secondary job-aid (max 2/lesson, 3/course)",
+   "confidence": 0.8,
+   "source": "rule",
+   "alternative_rejected": "single format"
+  },
+  {
+   "key": "length",
+   "value": {
+    "lessons": 3,
+    "minutes_per_lesson": 5,
+    "total_minutes": 15
+   },
+   "signal": "microlearning: 1 objective/lesson, 5 min for procedure (band 3-7), <= 6 lessons/module",
+   "confidence": 0.75,
+   "source": "rule",
+   "alternative_rejected": "one long lesson"
+  },
+  {
+   "key": "wpm",
+   "value": 130,
+   "signal": "beginner 130 wpm",
+   "confidence": 0.8,
+   "source": "rule",
+   "alternative_rejected": "145 wpm"
+  },
+  {
+   "key": "verbosity",
+   "value": "standard",
+   "signal": "new-hires / beginner",
+   "confidence": 0.7,
+   "source": "rule",
+   "alternative_rejected": "detailed"
+  },
+  {
+   "key": "targets",
+   "value": [
+    "video",
+    "jobaid",
+    "video-vertical",
+    "scorm"
+   ],
+   "signal": "screencast-sim->video; job-aid->jobaid; video format -> + 9:16 nudge cut; 3 lessons -> + SCORM",
+   "confidence": 0.8,
+   "source": "rule",
+   "alternative_rejected": "video only"
+  },
+  {
+   "key": "aspect",
+   "value": [
+    "16:9",
+    "9:16"
+   ],
+   "signal": "16:9 master + 9:16 nudge cut",
+   "confidence": 0.8,
+   "source": "rule",
+   "alternative_rejected": "9:16 only"
+  },
+  {
+   "key": "renderer",
+   "value": "remotion",
+   "signal": "standalone kit (tcs-render-remotion); no OPENMONTAGE_ROOT",
+   "confidence": 0.6,
+   "source": "rule",
+   "alternative_rejected": "openmontage"
+  }
+ ],
+ "flags": {
+  "request": "Teach new hires how to submit expenses in NetSuite",
+  "sources": [
+   "./sop/expenses.pdf"
+  ],
+  "review": "none"
+ },
+ "summary": {
+  "course_id": "submit-expenses-in-netsuite",
+  "title": "How to submit expenses in NetSuite",
+  "topic": "submit expenses in NetSuite",
+  "objective_type": "procedure",
+  "domain": "software-procedure",
+  "domain_pack": "_template",
+  "audience": {
+   "id": "new-hires",
+   "segment": "staff",
+   "roles": [
+    "learner",
+    "rookie"
+   ],
+   "level": "beginner"
+  },
+  "language": {
+   "primary": "en-US",
+   "subtitles": []
+  },
+  "formats": [
+   "screencast-sim",
+   "job-aid"
+  ],
+  "assessment": "scenario",
+  "evidence": false,
+  "targets": [
+   "video",
+   "jobaid",
+   "video-vertical",
+   "scorm"
+  ],
+  "aspects": [
+   "16:9",
+   "9:16"
+  ],
+  "wpm": 130,
+  "verbosity": "standard",
+  "renderer": "remotion",
+  "has_sources": true
+ },
+ "plan": {
+  "objectives": [
+   {
+    "id": "O1",
+    "text": "Identify what you need before you submit expenses in NetSuite",
+    "bloom": "remember",
+    "type": "procedure",
+    "lesson_title": "Before you start"
+   },
+   {
+    "id": "O2",
+    "text": "Complete the steps to submit expenses in NetSuite correctly",
+    "bloom": "apply",
+    "type": "procedure",
+    "lesson_title": "Step by step"
+   },
+   {
+    "id": "O3",
+    "text": "Check your work and fix common errors when you submit expenses in NetSuite",
+    "bloom": "analyze",
+    "type": "procedure",
+    "lesson_title": "Check and fix"
+   }
+  ],
+  "lessons": [
+   {
+    "module": "M1",
+    "id": "M1L1",
+    "title": "Before you start",
+    "objective_ids": [
+     "O1"
+    ],
+    "formats": [
+     "screencast-sim",
+     "job-aid"
+    ],
+    "duration_min": 5
+   },
+   {
+    "module": "M1",
+    "id": "M1L2",
+    "title": "Step by step",
+    "objective_ids": [
+     "O2"
+    ],
+    "formats": [
+     "screencast-sim",
+     "job-aid"
+    ],
+    "duration_min": 5
+   },
+   {
+    "module": "M1",
+    "id": "M1L3",
+    "title": "Check and fix",
+    "objective_ids": [
+     "O3"
+    ],
+    "formats": [
+     "screencast-sim",
+     "job-aid"
+    ],
+    "duration_min": 5
+   }
+  ]
+ },
+ "estimate": {
+  "tokens": 84000,
+  "usd": 0.98,
+  "tts_minutes": 15.0,
+  "images": 0
+ },
+ "scope": "full",
+ "pause_after": null,
+ "warnings": [],
+ "flagged_top": []
+}

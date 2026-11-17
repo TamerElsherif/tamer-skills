@@ -1,0 +1,19 @@
+{
+ "lesson_id": "M1L1",
+ "output": "examples/golden-sop-deck-jobaid/renders/M1L1/video/M1L1_16x9.mp4",
+ "aspect": "16:9",
+ "duration_s": 151.8,
+ "audio": true,
+ "render_s": 47,
+ "draft": false,
+ "target": "video",
+ "engine": "remotion",
+ "missing_assets": [
+  {
+   "kind": "music",
+   "id": "executive",
+   "reason": "music bed not found (assets/music, TCS_MUSIC_DIR or --music-dir); rendering without music",
+   "placeholder": true
+  }
+ ]
+}

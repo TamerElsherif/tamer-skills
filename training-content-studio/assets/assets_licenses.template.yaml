@@ -1,0 +1,15 @@
+# Copy to runs/<run-id>/assets_licenses.yaml and fill one entry per shipped asset (see MANIFEST.md → Licence recording).
+schema_version: "1.0"
+assets:
+  - slot: music.explainer
+    source: "<library / provider>"
+    title: "<track title or id>"
+    url: "<url>"
+    author: "<creator or AI-generated>"
+    license: "<licence name>"
+    attribution_required: false
+    attribution_text: null
+    commercial_use: true
+    retrieved_at: "YYYY-MM-DD"
+    consent: null            # voices/likeness: talent release ref, term, territory
+    restrictions: null

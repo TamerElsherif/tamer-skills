@@ -1,0 +1,42 @@
+# Layout presets per aspect (px at the reference resolution). Renderers scale proportionally for other resolutions.
+# Minimum on-screen text: 24 px at 1080p short side (body), captions per caption_styles.yaml.
+"16:9":
+  size: [1920, 1080]
+  safe_margin: 96            # title/action safe; nothing important outside
+  caption_zone: {y: 900, h: 140}          # bottom band reserved when captions are burned in
+  title: {size: 64, weight: 700, max_lines: 2}
+  body: {size: 36, min: 24, max_lines_per_item: 2}
+  grid: {cols: 12, gutter: 32}
+  max_bullets: 6
+  person_feet_y: 1060
+  broll_panel_width: 760     # frosted panel beside footage
+  lower_third: {x: 96, y: 820, w: 900, h: 120}
+"9:16":
+  size: [1080, 1920]
+  safe_margin: 80
+  top_unsafe: 220            # platform UI (status bar, account name)
+  bottom_unsafe: 380         # platform UI (captions, buttons) — keep key content above
+  caption_zone: {y: 1380, h: 180}
+  title: {size: 72, weight: 700, max_lines: 3}
+  body: {size: 44, min: 32, max_lines_per_item: 2}
+  grid: {cols: 6, gutter: 24}
+  max_bullets: 4
+  person_feet_y: 1700
+  lower_third: {x: 80, y: 1200, w: 920, h: 140}
+"1:1":
+  size: [1080, 1080]
+  safe_margin: 72
+  caption_zone: {y: 900, h: 120}
+  title: {size: 60, weight: 700, max_lines: 2}
+  body: {size: 36, min: 28, max_lines_per_item: 2}
+  grid: {cols: 6, gutter: 24}
+  max_bullets: 4
+  person_feet_y: 1020
+  lower_third: {x: 72, y: 800, w: 820, h: 110}
+rtl:
+  mirror: [grid, lower_third, broll_panel, callout_side, panel_order, mindmap_growth]
+  keep_ltr: [code_mock, url bars, email addresses, phone numbers, illustration SVG text anchoring]
+print:                        # job-aid target
+  A4: {size_mm: [210, 297], margin_mm: 15, body_pt: 11, title_pt: 22}
+  Letter: {size_in: [8.5, 11], margin_in: 0.6, body_pt: 11, title_pt: 22}
+  desk_card: {size_mm: [148, 105], margin_mm: 8, body_pt: 12}

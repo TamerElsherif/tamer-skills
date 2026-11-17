@@ -1,0 +1,116 @@
+# Security-awareness prioritization profile (worked example: 216-course catalogue -> 20 picks, 10/5/5).
+# Intended home: domains/security-awareness/prioritization.yaml (domain pack). Copied here as the reference profile.
+weights: {impact: 0.30, frequency: 0.25, gap: 0.20, urgency: 0.15, compliance: 0.10}
+
+quotas: {standard: 10, it: 5, executives: 5}
+tiers: {tier2: 15}
+family_cap: 2                   # soft cap on top picks per subject family; relaxed if a quota would stay empty
+
+segments:
+  # matched against "<audience> | <title>"; preferred segment = default if the audience starts with a default
+  # token, else the first specialised segment found; other matches are fallbacks when a quota is full.
+  - {id: executives, match: ["executive / top", "top management", "c-suite", "board", "senior management", "senior staff"]}
+  - {id: it, match: ["it & security", "privileged", "software developer", "help desk", "high risk user"]}
+  - {id: standard, default: true, match: ["all staff", "everyone"]}
+
+filters:
+  exclude_topics: ["health & safety", "conduct & ethics", "new starter onboarding", "regional privacy", "simulation follow-up", "seasonal"]
+  exclude_labels: ["retired", "not relevant", "regional only", "auto-assigned", "campaign", "optional (hr"]
+  allowed_regions: ["global", "uk-sourced"]
+  require_media: true
+
+scoring:
+  default: {impact: 2.5, frequency: 2.5, gap: 3, urgency: 2, compliance: 2}
+  topic_penalty: 1.5            # a keyword found only in the topic column scores 1.5 lower than in the title
+  specialisation_penalty: 1.0   # items with a prerequisite reach fewer people: frequency -1
+  foundation_bonus: {3: 1.0, 1: 0.5}   # prerequisite of >=3 items: frequency +1; of >=1: +0.5
+  label_compliance:
+    core: 5
+    role-specific: 3
+    onboarding: 3
+    recommended: 2.5
+    optional: 1
+  audience_frequency: {"all staff": 4}
+  keywords:
+    impact:
+      "business email compromise": 5
+      "ransomware": 5
+      "help desk": 5
+      "least privilege": 5
+      "malware": 4.5
+      "phishing": 4.5
+      "social engineering": 4.5
+      "password": 4.5
+      "insider": 4.5
+      "disaster recovery": 4.5
+      "business continuity": 4.5
+      "data loss": 4.5
+      "deepfake": 4
+      "mfa": 4
+      "ai tools": 4
+      "introduction to cyber": 4.5
+      "secure culture": 4
+      "travel": 4
+      "patching": 4
+      "physical security": 4
+      "supply chain": 3.5
+    frequency:
+      "phishing": 5
+      "password": 5
+      "social engineering": 5
+      "mfa": 4.5
+      "email": 4
+      "malware": 4.5
+      "ai tools": 4.5
+      "physical security": 4
+      "data loss": 4
+      "patching": 4
+      "c-suite": 3.5
+      "high risk user": 3.5
+      "help desk": 3.5
+    urgency:
+      "deepfake": 5
+      "mfa fatigue": 5
+      "clickfix": 5
+      "help desk": 4.5
+      "ai": 4
+      "llm": 4
+      "quishing": 4
+      "qr code": 4
+      "business email compromise": 4
+      "ransomware": 4
+      "passkey": 3
+    compliance:
+      "iso 27001": 5
+      "pci": 4
+      "gdpr": 4
+      "business continuity": 4
+      "disaster recovery": 4
+      "least privilege": 4
+      "introduction to cyber": 4
+  richness_format: {cartoon: 3, whiteboard: 3, explainer: 2, mixed: 2, blog: 0}
+
+clusters:
+  phishing-core: ["^phishing$", "preventing phishing", "defending yourself against phishing"]
+  data-protection-core: ["^data loss$", "information & data"]
+  clear-desk: ["clear desk"]
+  ai-phishing: ["ai-driven", "ai threats: staying safe from ai attacks"]
+
+families:            # subject families for the soft family cap (longest match wins; pack clusters add more)
+  passwords: {match: ["password", "passwords", "passkeys"], cap: 1}
+  mfa: {match: ["mfa", "multi-factor"], cap: 1}
+  phishing: {match: ["phishing", "smishing", "quishing", "vishing", "qr code"], cap: 1}
+  social-engineering: {match: ["social engineering"], cap: 2}
+  ai-tools: {match: ["ai tools", "llm", "ai agents", "ai notetakers"], cap: 1}
+  malware: {match: ["malware", "ransomware", "spyware", "denial of service"], cap: 2}
+
+title_noise:
+  - "\\(.*?\\)"
+  - "^(protecting|preventing|avoiding|securing|keeping up|keeping|staying safe from|staying safe on|staying safe when|staying secure (on|with|at)|how to|the importance of)\\s+"
+  - "\\b(micro ?training|microtraining|essentials|awareness)\\b"
+  - "\\b(your|yourself|the|a|an|with|from|in|of|and|&)\\b"
+
+existing: ["AI-Driven Spear Phishing", "ISO 27001: Awareness"]
+
+format_map: {cartoon: cartoon, whiteboard: doodle, explainer: explainer, mixed: explainer, blog: narrated-deck, default: explainer}
+minutes_per_lesson: 5

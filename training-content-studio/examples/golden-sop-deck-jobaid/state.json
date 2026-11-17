@@ -1,0 +1,55 @@
+{
+ "run_id": "golden-sop-deck-jobaid",
+ "request": "Narrated deck + job aid from the Northwind Co. expense SOP for new employees (EN + Egyptian Arabic)",
+ "flags": {},
+ "created": "2026-11-17T18:07:41+00:00",
+ "stages": {
+  "ingest": {
+   "status": "done",
+   "at": "2026-11-17T18:08:11+00:00",
+   "note": "1 source, 31 facts"
+  },
+  "decide": {
+   "status": "done",
+   "at": "2026-11-17T18:09:15+00:00",
+   "note": "intake answers recorded"
+  },
+  "plan": {
+   "status": "done",
+   "at": "2026-11-17T18:09:38+00:00",
+   "note": "approved"
+  },
+  "produce": {
+   "status": "done",
+   "at": "2026-11-17T19:33:56+00:00"
+  },
+  "qa": {
+   "status": "done",
+   "at": "2026-11-17T19:33:56+00:00"
+  },
+  "render": {
+   "status": "done",
+   "at": "2026-11-17T19:33:56+00:00"
+  },
+  "report": {
+   "status": "done",
+   "at": "2026-11-17T19:34:15+00:00"
+  }
+ },
+ "lessons": {
+  "M1L1": {
+   "status": "rendered",
+   "attempts": 0,
+   "qa": "pass"
+  },
+  "M1L2": {
+   "status": "rendered",
+   "attempts": 0,
+   "qa": "pass"
+  }
+ },
+ "cost": {
+  "tokens": 0,
+  "usd": 0.0
+ }
+}

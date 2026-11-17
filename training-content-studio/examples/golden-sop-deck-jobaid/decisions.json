@@ -1,0 +1,348 @@
+{
+ "schema_version": "1.0",
+ "run_id": "golden-sop-deck-jobaid",
+ "request": "Create a narrated deck and a one-page job aid from our expense SOP for new employees (beginners), English with an Egyptian Arabic version of the deck",
+ "decisions": [
+  {
+   "key": "language",
+   "value": {
+    "primary": "en-US",
+    "secondary": [
+     "ar-EG"
+    ],
+    "subtitles": [
+     "ar-EG"
+    ]
+   },
+   "signal": "--lang both; request script Latin (0% Arabic letters)",
+   "confidence": 1.0,
+   "source": "flag",
+   "alternative_rejected": "single language"
+  },
+  {
+   "key": "audience",
+   "value": {
+    "id": "new-hires",
+    "roles": [
+     "learner"
+    ],
+    "segment": "staff"
+   },
+   "signal": "wording 'new employees'",
+   "confidence": 0.8,
+   "source": "request",
+   "alternative_rejected": "general staff",
+   "critical": true
+  },
+  {
+   "key": "level",
+   "value": "beginner",
+   "signal": "wording 'beginners'",
+   "confidence": 0.95,
+   "source": "request",
+   "alternative_rejected": "intermediate"
+  },
+  {
+   "key": "other",
+   "value": "procedure",
+   "signal": "procedure: 'SOP', 'sources:procedurex1', 'sources:stepx6'",
+   "confidence": 0.71,
+   "source": "sources",
+   "name": "objective_type",
+   "alternative_rejected": "policy=0.967742, behavior=0.290323, concept=0.580645"
+  },
+  {
+   "key": "domain",
+   "value": "_template",
+   "signal": "--domain _template",
+   "confidence": 1.0,
+   "source": "flag",
+   "critical": true
+  },
+  {
+   "key": "domain_pack",
+   "value": "_template",
+   "signal": "--domain flag",
+   "confidence": 1.0,
+   "source": "flag",
+   "alternative_rejected": "_template"
+  },
+  {
+   "key": "objectives",
+   "value": [
+    {
+     "id": "O1",
+     "text": "Submit an expense claim in the Northwind Expenses app that meets the receipt, deadline and approval rules",
+     "bloom": "apply",
+     "type": "procedure"
+    },
+    {
+     "id": "O2",
+     "text": "Check a claim against the pre-submit checklist and avoid the three warning-level mistakes",
+     "bloom": "apply",
+     "type": "procedure"
+    }
+   ],
+   "signal": "proposed from SOP §4-§6 at intake; user accepted the 2 proposed objectives",
+   "confidence": 1.0,
+   "source": "user",
+   "alternative_rejected": "decide.py draft (3 objectives with mis-parsed topic)",
+   "critical": true
+  },
+  {
+   "key": "formats",
+   "value": [
+    "narrated-deck",
+    "job-aid"
+   ],
+   "signal": "user: narrated deck for the procedure, separate one-page job aid",
+   "confidence": 1.0,
+   "source": "user",
+   "alternative_rejected": "['explainer', 'job-aid'] (rule)"
+  },
+  {
+   "key": "other",
+   "value": {
+    "assessment": "scenario",
+    "evidence": false,
+    "broll": false
+   },
+   "signal": "assessment for procedure",
+   "confidence": 0.8,
+   "source": "rule",
+   "name": "assessment",
+   "alternative_rejected": "no assessment"
+  },
+  {
+   "key": "blend",
+   "value": {
+    "M1L1": [
+     "narrated-deck"
+    ],
+    "M1L2": [
+     "job-aid"
+    ]
+   },
+   "signal": "user: deck lesson + separate job-aid lesson",
+   "confidence": 1.0,
+   "source": "user",
+   "alternative_rejected": "narrated-deck + job-aid blend in every lesson"
+  },
+  {
+   "key": "length",
+   "value": {
+    "lessons": 2,
+    "minutes_per_lesson": {
+     "M1L1": 3,
+     "M1L2": 2
+    },
+    "total_minutes": 5
+   },
+   "signal": "user: 'keep the deck 2-3 min'; job aid = 1 A4 page (~2 min read)",
+   "confidence": 1.0,
+   "source": "user",
+   "alternative_rejected": "3 x 5 min lessons"
+  },
+  {
+   "key": "wpm",
+   "value": 130,
+   "signal": "beginner 130 wpm",
+   "confidence": 0.8,
+   "source": "rule",
+   "alternative_rejected": "145 wpm"
+  },
+  {
+   "key": "verbosity",
+   "value": "standard",
+   "signal": "new-hires / beginner",
+   "confidence": 0.7,
+   "source": "rule",
+   "alternative_rejected": "detailed"
+  },
+  {
+   "key": "targets",
+   "value": [
+    "video",
+    "deck",
+    "lesson",
+    "scorm",
+    "jobaid"
+   ],
+   "signal": "--targets video,deck,lesson,scorm,jobaid",
+   "confidence": 1.0,
+   "source": "flag",
+   "alternative_rejected": "derived from formats"
+  },
+  {
+   "key": "aspect",
+   "value": [
+    "16:9"
+   ],
+   "signal": "--aspect 16:9",
+   "confidence": 1.0,
+   "source": "flag",
+   "alternative_rejected": "16:9 primary"
+  },
+  {
+   "key": "renderer",
+   "value": "remotion",
+   "signal": "--renderer",
+   "confidence": 1.0,
+   "source": "flag",
+   "alternative_rejected": "openmontage"
+  },
+  {
+   "key": "other",
+   "name": "localization",
+   "value": {
+    "M1L1": [
+     "ar-EG"
+    ]
+   },
+   "signal": "user: Egyptian Arabic version of the deck",
+   "confidence": 1.0,
+   "source": "user",
+   "alternative_rejected": "ar-EG subtitles only"
+  },
+  {
+   "key": "other",
+   "name": "grounding",
+   "value": "SOP only; general knowledge only for titles/intros, labelled",
+   "signal": "intake Q2",
+   "confidence": 1.0,
+   "source": "user",
+   "alternative_rejected": "general knowledge allowed"
+  },
+  {
+   "key": "other",
+   "name": "approval",
+   "value": {
+    "status": "approved",
+    "edits": []
+   },
+   "signal": "approval gate shown (approved_skeleton.md); user pre-authorised",
+   "confidence": 1.0,
+   "source": "user",
+   "alternative_rejected": "edit and re-show gate"
+  }
+ ],
+ "flags": {
+  "request": "Create a narrated deck and a one-page job aid from our expense SOP for new employees (beginners), English with an Egyptian Arabic version of the deck",
+  "sources": [
+   "examples/_shared/sop/expenses.pdf"
+  ],
+  "lang": "both",
+  "targets": "video,deck,lesson,scorm,jobaid",
+  "aspect": "16:9",
+  "review": "skeleton",
+  "domain": "_template",
+  "renderer": "remotion",
+  "sources_summary": "examples/golden-sop-deck-jobaid/sources.yaml"
+ },
+ "summary": {
+  "course_id": "northwind-expenses",
+  "title": "Expense claims at Northwind Co.",
+  "topic": "submitting expense claims at Northwind Co.",
+  "objective_type": "procedure",
+  "domain": "_template",
+  "domain_pack": "_template",
+  "audience": {
+   "id": "new-hires",
+   "segment": "staff",
+   "roles": [
+    "learner",
+    "rookie"
+   ],
+   "level": "beginner"
+  },
+  "language": {
+   "primary": "en-US",
+   "secondary": [
+    "ar-EG"
+   ],
+   "subtitles": [
+    "ar-EG"
+   ]
+  },
+  "formats": [
+   "narrated-deck",
+   "job-aid"
+  ],
+  "assessment": "scenario",
+  "evidence": false,
+  "targets": [
+   "video",
+   "deck",
+   "lesson",
+   "scorm",
+   "jobaid"
+  ],
+  "aspects": [
+   "16:9"
+  ],
+  "wpm": 130,
+  "verbosity": "standard",
+  "renderer": "remotion",
+  "has_sources": true
+ },
+ "plan": {
+  "objectives": [
+   {
+    "id": "O1",
+    "text": "Submit an expense claim in the Northwind Expenses app that meets the receipt, deadline and approval rules",
+    "bloom": "apply",
+    "type": "procedure"
+   },
+   {
+    "id": "O2",
+    "text": "Check a claim against the pre-submit checklist and avoid the three warning-level mistakes",
+    "bloom": "apply",
+    "type": "procedure"
+   }
+  ],
+  "lessons": [
+   {
+    "module": "M1",
+    "id": "M1L1",
+    "title": "Submitting an expense claim",
+    "objective_ids": [
+     "O1"
+    ],
+    "formats": [
+     "narrated-deck"
+    ],
+    "duration_min": 3,
+    "source_ids": [
+     "S01#c1"
+    ]
+   },
+   {
+    "module": "M1",
+    "id": "M1L2",
+    "title": "Expense claim checklist",
+    "objective_ids": [
+     "O2"
+    ],
+    "formats": [
+     "job-aid"
+    ],
+    "duration_min": 2,
+    "source_ids": [
+     "S01#c1"
+    ]
+   }
+  ]
+ },
+ "estimate": {
+  "tokens": 117000,
+  "usd": 1.74,
+  "tts_minutes": 30.0,
+  "images": 6
+ },
+ "scope": "full",
+ "pause_after": "plan",
+ "warnings": [
+  "decide.py mis-parsed the topic from the request wording (format words kept); objectives replaced at intake"
+ ],
+ "flagged_top": []
+}

@@ -1,0 +1,145 @@
+{
+ "schema_version": "1.0",
+ "quiz_id": "M1L1-kc",
+ "course_id": "northwind-expenses",
+ "lesson_id": "M1L1",
+ "kind": "knowledge-check",
+ "language": "en-US",
+ "pass_mark": 80,
+ "shuffle": true,
+ "items": [
+  {
+   "id": "Q1",
+   "type": "mcq",
+   "objective_id": "O1",
+   "bloom": "apply",
+   "difficulty": "easy",
+   "stem": "You took a $12 taxi ride for work. Do you need a receipt to claim it?",
+   "stem_ar": "ركبت تاكسي للشغل بـ 12 دولار. محتاج إيصال عشان تطلب المبلغ؟",
+   "options": [
+    {
+     "id": "a",
+     "text": "Yes, every expense needs a receipt",
+     "text_ar": "أيوه، أي مصروف لازم له إيصال",
+     "feedback": "Not quite: receipts are required only for expenses over $25."
+    },
+    {
+     "id": "b",
+     "text": "No, receipts are required over $25",
+     "text_ar": "لأ، الإيصال مطلوب فوق 25 دولار",
+     "correct": true,
+     "feedback": "Right. The policy requires a receipt for every expense over $25."
+    },
+    {
+     "id": "c",
+     "text": "Only if your manager asks for it",
+     "text_ar": "بس لو مديرك طلبه",
+     "feedback": "The rule is a fixed $25 threshold, not the manager's choice."
+    }
+   ],
+   "explanation": "Receipts are required for every expense over $25 (Expense Policy §4.1).",
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "id": "Q2",
+   "type": "true_false",
+   "objective_id": "O1",
+   "bloom": "remember",
+   "difficulty": "easy",
+   "stem": "A claim submitted 100 days after the expense will still be reimbursed.",
+   "options": [
+    {
+     "id": "t",
+     "text": "True",
+     "feedback": "No: claims older than 90 days are not reimbursed."
+    },
+    {
+     "id": "f",
+     "text": "False",
+     "correct": true,
+     "feedback": "Correct: after 90 days claims are not reimbursed."
+    }
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "id": "Q3",
+   "type": "ordering",
+   "objective_id": "O2",
+   "bloom": "understand",
+   "difficulty": "medium",
+   "stem": "Put the claim steps in order.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Photograph the receipt",
+     "order": 1
+    },
+    {
+     "id": "b",
+     "text": "Open Northwind Expenses and select New Claim",
+     "order": 2
+    },
+    {
+     "id": "c",
+     "text": "Enter category, date, amount and purpose",
+     "order": 3
+    },
+    {
+     "id": "d",
+     "text": "Attach the receipt and submit",
+     "order": 4
+    }
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "id": "Q4",
+   "type": "scenario",
+   "objective_id": "O3",
+   "bloom": "evaluate",
+   "difficulty": "medium",
+   "scenario": "Your hotel bill is $260 for one night. Your colleague suggests splitting it into two claims of $130.",
+   "stem": "What should you do?",
+   "options": [
+    {
+     "id": "a",
+     "text": "Split it as suggested",
+     "feedback": "Splitting one expense to stay under a limit is never allowed."
+    },
+    {
+     "id": "b",
+     "text": "Submit one claim and ask the Travel Desk about the cap",
+     "correct": true,
+     "feedback": "Yes: one expense, one claim; the Travel Desk can approve an exception to the $220 cap."
+    },
+    {
+     "id": "c",
+     "text": "Pay the difference yourself and claim $220 twice",
+     "feedback": "That is still splitting and inflating the claim."
+    }
+   ],
+   "source_ids": [
+    "S01#c1"
+   ],
+   "explanation": "Never split one expense into several claims to stay under an approval limit; hotel costs above $220 per night need a Travel Desk exception."
+  },
+  {
+   "id": "Q5",
+   "type": "flashcard",
+   "objective_id": "O1",
+   "bloom": "remember",
+   "stem": "Per diem",
+   "back": "A fixed daily allowance for meals and incidentals on overnight business travel.",
+   "source_ids": [
+    "S01#c1"
+   ]
+  }
+ ]
+}

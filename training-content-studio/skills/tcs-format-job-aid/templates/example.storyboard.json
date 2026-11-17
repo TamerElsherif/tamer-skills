@@ -1,0 +1,166 @@
+{
+ "schema_version": "1.0",
+ "course_id": "northwind-security-basics",
+ "lesson_id": "M1L1-jobaid",
+ "title": "Phishing Red-Flag Card",
+ "language": "en-US",
+ "direction": "ltr",
+ "subtitle_languages": [
+  "ar-EG"
+ ],
+ "aspect": "16:9",
+ "fps": 30,
+ "formats": [
+  "job-aid"
+ ],
+ "wpm": 150,
+ "objective_ids": [
+  "O1",
+  "O2"
+ ],
+ "theme": {
+  "preset": "neutral",
+  "logo": null
+ },
+ "voices": {
+  "narrator": {
+   "provider": "openai",
+   "model": "gpt-4o-mini-tts",
+   "voice": "marin",
+   "lang": "en-US",
+   "instructions": "Warm, confident corporate trainer speaking to colleagues. Clear, friendly, natural pace; brief pauses between list items. Never robotic."
+  }
+ },
+ "music": {
+  "bed": "explainer",
+  "volume": 0.12
+ },
+ "scenes": [
+  {
+   "id": "j01_header",
+   "template": "title",
+   "props": {
+    "kicker": "Job aid · keep at your desk",
+    "title": "Phishing Red-Flag Card",
+    "icon": "shieldAlert"
+   },
+   "narration": [],
+   "claims": [
+    {
+     "text": "Header.",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "j02_flags",
+   "template": "checklist",
+   "props": {
+    "title": "Pause if you see",
+    "items": [
+     "Look-alike sender domain",
+     "Urgency or a deadline",
+     "Generic greeting",
+     "Unexpected attachment or link",
+     "Request for passwords or codes",
+     "Change of bank details"
+    ]
+   },
+   "narration": [],
+   "claims": [
+    {
+     "text": "Red flags.",
+     "source_ids": [
+      "S01#c4",
+      "S02#p1"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "j03_do",
+   "template": "do_dont",
+   "props": {
+    "title": "Then",
+    "dont": [
+     "Click, reply or forward"
+    ],
+    "do": [
+     "Press Report Phishing",
+     "Verify via a known contact"
+    ]
+   },
+   "narration": [],
+   "claims": [
+    {
+     "text": "Reporting rule.",
+     "source_ids": [
+      "S02#p2"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "j04_clicked",
+   "template": "steps",
+   "props": {
+    "title": "Clicked already?",
+    "danger": true,
+    "steps": [
+     {
+      "icon": "wifi",
+      "label": "Disconnect"
+     },
+     {
+      "icon": "phone",
+      "label": "Call the service desk"
+     },
+     {
+      "icon": "key",
+      "label": "Change your password"
+     }
+    ]
+   },
+   "narration": [],
+   "claims": [
+    {
+     "text": "If you clicked: disconnect, call, change password.",
+     "source_ids": [
+      "S02#p3"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "j05_contacts",
+   "template": "table",
+   "props": {
+    "title": "Who to contact",
+    "columns": [
+     "What",
+     "Where"
+    ],
+    "rows": [
+     [
+      "Suspicious email",
+      "Report Phishing button"
+     ],
+     [
+      "Clicked a link",
+      "Service desk, ext. 4400"
+     ]
+    ]
+   },
+   "narration": [],
+   "claims": [
+    {
+     "text": "Contacts.",
+     "source_ids": [
+      "S02#p3"
+     ]
+    }
+   ],
+   "notes": "Extension numbers are fictional placeholders; replace from the client's policy."
+  }
+ ]
+}

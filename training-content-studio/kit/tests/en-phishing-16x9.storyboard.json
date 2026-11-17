@@ -1,0 +1,754 @@
+{
+ "schema_version": "1.0",
+ "course_id": "kit-tests",
+ "lesson_id": "en-phishing-16x9",
+ "title": "Spot the Phish",
+ "language": "en-US",
+ "aspect": "16:9",
+ "fps": 30,
+ "formats": [
+  "explainer",
+  "cartoon"
+ ],
+ "theme": {
+  "preset": "neutral",
+  "logo": null,
+  "evidence_line": "Northwind Co. · Security awareness · kit test"
+ },
+ "voices": {
+  "narrator": {
+   "provider": "openai",
+   "voice": "marin",
+   "instructions": "Warm, confident workplace trainer speaking American English to colleagues. Clear and friendly, natural pace, brief pauses between list items."
+  },
+  "learner": {
+   "provider": "openai",
+   "voice": "ash",
+   "instructions": "Busy, well-meaning office worker, slightly rushed, light comic tone."
+  },
+  "colleague": {
+   "provider": "openai",
+   "voice": "coral",
+   "instructions": "Calm, sharp-eyed colleague, friendly and reassuring."
+  }
+ },
+ "cast": [
+  "learner",
+  "colleague",
+  "mentor",
+  "vex"
+ ],
+ "broll_shots": [
+  {
+   "id": "inbox",
+   "query": "person reading email on laptop office",
+   "provider": "pexels",
+   "min_s": 10
+  },
+  {
+   "id": "team",
+   "query": "colleagues talking in modern office",
+   "provider": "pexels",
+   "min_s": 10
+  }
+ ],
+ "scenes": [
+  {
+   "id": "s01_title",
+   "template": "title",
+   "props": {
+    "kicker": "Security awareness",
+    "title": "Spot the Phish",
+    "sub": "Five signs that an email is not what it seems",
+    "icon": "mail"
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "Phishing emails are the most common way attackers get in. Let's learn to spot them."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Phishing is a leading initial access vector.",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "s02_why",
+   "template": "bullets",
+   "props": {
+    "kicker": "Why it matters",
+    "title": "One click can open the door",
+    "side_broll": "inbox",
+    "items": [
+     {
+      "text": "Stolen passwords",
+      "icon": "key",
+      "tone": "warn"
+     },
+     {
+      "text": "Malware on your laptop",
+      "icon": "bug",
+      "tone": "warn"
+     },
+     {
+      "text": "Fake payment requests",
+      "icon": "money",
+      "tone": "warn"
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "A single click can lead to ^stolen passwords, ^malware on your laptop, or ^fake payment requests that cost real money."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Phishing leads to credential theft, malware and payment fraud.",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "s03_email",
+   "template": "email_mock",
+   "props": {
+    "email": {
+     "from": "IT Service Desk",
+     "from_addr": "it-support@northwind-helpdesk.example",
+     "subject": "URGENT: Your mailbox will be closed today",
+     "external": true,
+     "body": [
+      "Dear user,",
+      "We detected unusual activity. Verify your account within 2 hours or it will be permanently closed."
+     ],
+     "button": "Verify account now"
+    },
+    "callouts": [
+     {
+      "cue": 0,
+      "target": "addr",
+      "label": "Look-alike sender domain",
+      "tone": "warn"
+     },
+     {
+      "cue": 1,
+      "target": "subject",
+      "label": "Pressure and urgency",
+      "tone": "warn"
+     },
+     {
+      "cue": 2,
+      "target": "button",
+      "label": "Link to a fake login page",
+      "tone": "warn"
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "Here's a typical example. ^The sender's domain only looks like ours. ^The subject piles on pressure. ^And the button leads to a fake sign-in page."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Look-alike domains, urgency and credential-harvesting links are common phishing signs.",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "s04_story",
+   "template": "cartoon",
+   "props": {
+    "set": "office",
+    "desk": false,
+    "people": [
+     {
+      "cast": "learner",
+      "x": 620,
+      "pose": "phone",
+      "expr": "worried",
+      "holding": "phone"
+     },
+     {
+      "cast": "colleague",
+      "x": 1320,
+      "pose": "idle",
+      "expr": "neutral"
+     }
+    ],
+    "beats": [
+     {
+      "cue": 1,
+      "cast": "colleague",
+      "pose": "point",
+      "expr": "think"
+     },
+     {
+      "cue": 2,
+      "cast": "learner",
+      "pose": "facepalm",
+      "expr": "shocked"
+     },
+     {
+      "cue": 2,
+      "camera": {
+       "zoom": 1.25,
+       "x": 800,
+       "y": 560
+      }
+     },
+     {
+      "cue": 3,
+      "cast": "learner",
+      "pose": "cheer",
+      "expr": "happy"
+     },
+     {
+      "cue": 3,
+      "cast": "colleague",
+      "pose": "present",
+      "expr": "happy"
+     },
+     {
+      "cue": 3,
+      "camera": {
+       "zoom": 1,
+       "x": 960,
+       "y": 540
+      }
+     }
+    ],
+    "bubbles": [
+     {
+      "cue": 0,
+      "who": "learner",
+      "text": "IT says my mailbox closes today!"
+     },
+     {
+      "cue": 1,
+      "who": "colleague",
+      "text": "Check who really sent it."
+     },
+     {
+      "cue": 2,
+      "who": "learner",
+      "text": "Wait... that's not our domain!",
+      "tone": "warn"
+     },
+     {
+      "cue": 3,
+      "who": "colleague",
+      "text": "Report it, then delete."
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "learner",
+     "text": "^IT says my mailbox closes today. I'd better click."
+    },
+    {
+     "who": "colleague",
+     "text": "^Hold on, check who really sent it."
+    },
+    {
+     "who": "learner",
+     "text": "^Wait, that's not even our domain!"
+    },
+    {
+     "who": "colleague",
+     "text": "^Exactly. Report it, then delete it."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Checking the sender and reporting suspicious mail are recommended actions.",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "s05_board",
+   "template": "whiteboard",
+   "props": {
+    "title": "Think before you click",
+    "items": [
+     {
+      "cue": 0,
+      "kind": "person",
+      "cast": "learner",
+      "pose": "think",
+      "expr": "think"
+     },
+     {
+      "cue": 1,
+      "kind": "icon",
+      "icon": "mail"
+     },
+     {
+      "cue": 1,
+      "kind": "arrow"
+     },
+     {
+      "cue": 2,
+      "kind": "note",
+      "text": "Pause. Check. Report."
+     },
+     {
+      "cue": 3,
+      "kind": "circle",
+      "color": "attention"
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "^When a message arrives, ^stop for a moment. ^Pause, check the details, and report anything odd. ^That habit beats any filter."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Pausing to verify reduces phishing risk.",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "s06_map",
+   "template": "mindmap",
+   "props": {
+    "root": "Red flags",
+    "nodes": [
+     {
+      "id": "a",
+      "label": "Urgency",
+      "parent": "root",
+      "cue": 0,
+      "icon": "clock",
+      "tone": "warn"
+     },
+     {
+      "id": "b",
+      "label": "Odd sender",
+      "parent": "root",
+      "cue": 1,
+      "icon": "user"
+     },
+     {
+      "id": "c",
+      "label": "Strange links",
+      "parent": "root",
+      "cue": 2,
+      "icon": "link"
+     },
+     {
+      "id": "d",
+      "label": "Requests for secrets",
+      "parent": "root",
+      "cue": 3,
+      "icon": "key",
+      "tone": "warn"
+     },
+     {
+      "id": "c1",
+      "label": "Hover first",
+      "parent": "c",
+      "cue": 4,
+      "tone": "safe"
+     }
+    ],
+    "focus": [
+     {
+      "cue": 4,
+      "node": "c"
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "Most phishing shows the same red flags: ^urgency, ^an odd sender, ^strange links, and ^requests for passwords or codes. For links, ^always hover before you click."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Common phishing indicators include urgency, unusual senders, suspicious links and credential requests.",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "s07_report",
+   "template": "screencast",
+   "props": {
+    "app": {
+     "kind": "form",
+     "title": "Northwind Service Portal",
+     "fields": [
+      {
+       "id": "subject",
+       "label": "Subject",
+       "value": "Suspicious email from IT Service Desk",
+       "kind": "text"
+      },
+      {
+       "id": "type",
+       "label": "Category",
+       "value": "Phishing",
+       "kind": "select"
+      },
+      {
+       "id": "attach",
+       "label": "Original email",
+       "value": "urgent-mailbox.eml",
+       "kind": "file"
+      },
+      {
+       "id": "send",
+       "label": "Submit report",
+       "kind": "button"
+      }
+     ]
+    },
+    "actions": [
+     {
+      "cue": 0,
+      "do": "type",
+      "target": "subject"
+     },
+     {
+      "cue": 1,
+      "do": "select",
+      "target": "type"
+     },
+     {
+      "cue": 2,
+      "do": "callout",
+      "target": "attach",
+      "label": "Attach the original email"
+     },
+     {
+      "cue": 3,
+      "do": "click",
+      "target": "send"
+     },
+     {
+      "cue": 3,
+      "do": "toast",
+      "label": "Report sent",
+      "value": "Security team notified"
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "Reporting takes seconds. ^Add a short subject, ^choose phishing as the category, ^attach the original email, ^and submit. The security team takes it from there."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Reporting suspected phishing helps the security team respond.",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "s08_comic",
+   "template": "comic",
+   "props": {
+    "layout": "3",
+    "panels": [
+     {
+      "set": "office",
+      "people": [
+       {
+        "cast": "vex",
+        "pose": "rub",
+        "expr": "sly"
+       }
+      ],
+      "caption": "Monday, 9:02",
+      "bubbles": [
+       {
+        "who": "vex",
+        "text": "One urgent email should do it."
+       }
+      ]
+     },
+     {
+      "set": "openOffice",
+      "people": [
+       {
+        "cast": "rookie",
+        "pose": "phone",
+        "expr": "think",
+        "holding": "phone"
+       }
+      ],
+      "bubbles": [
+       {
+        "who": "rookie",
+        "text": "Hmm, that link looks odd.",
+        "think": true
+       }
+      ]
+     },
+     {
+      "set": "office",
+      "people": [
+       {
+        "cast": "rookie",
+        "pose": "cheer",
+        "expr": "happy"
+       }
+      ],
+      "caption": "Reported!",
+      "sfx_word": "BLOCKED"
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "^The attacker sends one urgent email. ^Our new starter notices the odd link, ^and reports it. Attack blocked."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Early reporting can stop an attack.",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "s09_flow",
+   "template": "process_flow",
+   "props": {
+    "title": "What to do with a suspicious email",
+    "nodes": [
+     {
+      "id": "n1",
+      "label": "Email arrives",
+      "kind": "start"
+     },
+     {
+      "id": "n2",
+      "label": "Any red flags?",
+      "kind": "decision"
+     },
+     {
+      "id": "n3",
+      "label": "Report it",
+      "kind": "step"
+     },
+     {
+      "id": "n4",
+      "label": "Carry on",
+      "kind": "end"
+     }
+    ],
+    "edges": [
+     {
+      "from": "n1",
+      "to": "n2"
+     },
+     {
+      "from": "n2",
+      "to": "n3",
+      "label": "Yes"
+     },
+     {
+      "from": "n2",
+      "to": "n4",
+      "label": "No"
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "^When an email arrives, ^ask: any red flags? ^If yes, report it. ^If not, carry on."
+    }
+   ],
+   "claims": [
+    {
+     "text": "A simple triage flow helps staff decide quickly.",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "s10_team",
+   "template": "broll_panel",
+   "props": {
+    "shot": "team",
+    "kicker": "Culture",
+    "title": "Reporting is never a nuisance",
+    "side": "right",
+    "items": [
+     {
+      "text": "No blame for honest mistakes",
+      "icon": "heart",
+      "tone": "safe"
+     },
+     {
+      "text": "Fast reports limit damage",
+      "icon": "zap"
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "Reporting is never a nuisance. ^There's no blame for honest mistakes, ^and the faster we hear, the less damage is done."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Blame-free reporting cultures speed up incident response.",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "s11_stat",
+   "template": "stat",
+   "props": {
+    "value": 3,
+    "suffix": " in 4",
+    "label": "phishing attempts that a quick sender check would catch (illustrative)",
+    "icon": "search"
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "In this example, a quick sender check alone would ^catch three in four attempts."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Illustrative figure for test purposes.",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "s12_quiz",
+   "template": "quiz",
+   "props": {
+    "quiz_item": "Q1",
+    "q": "An email asks you to verify your password within 2 hours. What should you do?",
+    "options": [
+     "Click the link quickly",
+     "Reply with your password",
+     "Report it as phishing",
+     "Forward it to colleagues"
+    ],
+    "answer": 2,
+    "why": "Urgent requests for credentials are classic phishing."
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "Quick check. An email asks you to verify your password within two hours. What should you do?"
+    },
+    {
+     "who": "narrator",
+     "text": "^Report it as phishing. Urgent requests for credentials are a classic sign."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Urgent credential requests should be reported.",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "s13_dodont",
+   "template": "do_dont",
+   "props": {
+    "title": "Habits that keep you safe",
+    "dont": [
+     "Click links under pressure",
+     "Share codes or passwords"
+    ],
+    "do": [
+     "Check the real sender",
+     "Report anything odd"
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "So: don't ^click links under pressure, and ^never share codes or passwords. Do ^check the real sender, and ^report anything odd."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Recommended phishing hygiene habits.",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "s14_recap",
+   "template": "checklist",
+   "props": {
+    "title": "Spot the phish",
+    "items": [
+     "Slow down when a message feels urgent",
+     "Check the sender's real address",
+     "Hover before you click",
+     "Report it, then delete it"
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "To recap: ^slow down, ^check the real sender, ^hover before you click, ^and report it."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Summary of the lesson.",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "s15_outro",
+   "template": "outro",
+   "props": {
+    "title": "Thanks for watching",
+    "line": "When in doubt, report it.",
+    "tips": [
+     "Pause",
+     "Check",
+     "Report"
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "When in doubt, report it. Thanks for keeping Northwind safe."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Closing message.",
+     "general_knowledge": true
+    }
+   ]
+  }
+ ]
+}

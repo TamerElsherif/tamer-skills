@@ -1,0 +1,136 @@
+{
+ "schema_version": "1.0",
+ "quiz_id": "M1L1-kc",
+ "course_id": "northwind-expenses",
+ "lesson_id": "M1L1",
+ "kind": "knowledge-check",
+ "language": "en-US",
+ "pass_mark": 80,
+ "shuffle": true,
+ "items": [
+  {
+   "id": "Q1",
+   "type": "scenario",
+   "objective_id": "O1",
+   "bloom": "apply",
+   "difficulty": "medium",
+   "stem": "Your conference trip comes to $3,200. Who approves the claim?",
+   "options": [
+    {
+     "id": "a",
+     "text": "Your manager",
+     "feedback": "A manager approves claims up to $1,000 only."
+    },
+    {
+     "id": "b",
+     "text": "A director",
+     "correct": true,
+     "feedback": "Right: directors approve claims up to $5,000."
+    },
+    {
+     "id": "c",
+     "text": "The CFO",
+     "feedback": "The CFO approves claims above $5,000; $3,200 is below that."
+    }
+   ],
+   "explanation": "Manager up to $1,000, director up to $5,000, CFO above $5,000 (Expense Policy §4.7).",
+   "source_ids": [
+    "S01#c1"
+   ],
+   "scenario": "You just came back from a two-day conference. Flights, hotel and meals add up to $3,200."
+  },
+  {
+   "id": "Q2",
+   "type": "mcq",
+   "objective_id": "O1",
+   "bloom": "apply",
+   "difficulty": "easy",
+   "stem": "You paid $48 for a work lunch with a client and only have your card statement. Can you claim it as it is?",
+   "options": [
+    {
+     "id": "a",
+     "text": "Yes, the card statement proves the payment",
+     "feedback": "A card statement alone is not a receipt."
+    },
+    {
+     "id": "b",
+     "text": "No, you need the itemised receipt",
+     "correct": true,
+     "feedback": "Correct: expenses over $25 need an itemised receipt."
+    },
+    {
+     "id": "c",
+     "text": "Yes, receipts are only needed over $100",
+     "feedback": "The threshold is $25, not $100."
+    }
+   ],
+   "explanation": "A receipt is required for every expense over $25, and a card statement alone is not a receipt (§3, §4.1).",
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "id": "Q3",
+   "type": "ordering",
+   "objective_id": "O1",
+   "bloom": "understand",
+   "difficulty": "medium",
+   "stem": "Put the claim steps in order.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Photograph the receipt the same day",
+     "order": 1
+    },
+    {
+     "id": "b",
+     "text": "Open Northwind Expenses and select New Claim",
+     "order": 2
+    },
+    {
+     "id": "c",
+     "text": "Enter category, date, amount and purpose",
+     "order": 3
+    },
+    {
+     "id": "d",
+     "text": "Attach the receipt photo and check the total",
+     "order": 4
+    },
+    {
+     "id": "e",
+     "text": "Submit the claim to your approver",
+     "order": 5
+    }
+   ],
+   "explanation": "This is the order of the claim procedure in the Expense Policy.",
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "id": "Q4",
+   "type": "true_false",
+   "objective_id": "O1",
+   "bloom": "remember",
+   "difficulty": "easy",
+   "stem": "A claim submitted 100 days after the expense will still be reimbursed.",
+   "options": [
+    {
+     "id": "t",
+     "text": "True",
+     "feedback": "No: claims older than 90 days are not reimbursed."
+    },
+    {
+     "id": "f",
+     "text": "False",
+     "correct": true,
+     "feedback": "Correct: submit within 30 days; after 90 days claims are not paid."
+    }
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,86 @@
+{
+ "lesson_id": "M1L1",
+ "language": "en-US",
+ "lines": [
+  {
+   "scene_id": "s01_title",
+   "idx": 0,
+   "start": 0.35,
+   "end": 8.414,
+   "who": "narrator",
+   "text": "Welcome to Northwind. In the next three minutes, you'll learn how to submit an expense claim that gets paid the first time."
+  },
+  {
+   "scene_id": "s02_why",
+   "idx": 0,
+   "start": 9.517,
+   "end": 20.269,
+   "who": "narrator",
+   "text": "Here's why it matters. In twenty twenty-five, eighteen percent of expense claims were sent back, because a receipt was missing. Claims with every receipt were paid in about six business days."
+  },
+  {
+   "scene_id": "s03_rules",
+   "idx": 0,
+   "start": 21.383,
+   "end": 40.199,
+   "who": "narrator",
+   "text": "Four rules come before anything else. Keep an itemised receipt for every expense over twenty-five dollars. A card statement alone doesn't count. Submit within thirty days of the expense. After ninety days, a claim isn't paid at all. And personal costs, like family meals, are never business expenses."
+  },
+  {
+   "scene_id": "s04_limits",
+   "idx": 0,
+   "start": 41.283,
+   "end": 62.835,
+   "who": "narrator",
+   "text": "When you travel, these limits apply. Meals are sixty dollars a day at home, and eighty-five dollars abroad. Hotels are capped at two hundred and twenty dollars a night, unless the Travel Desk approves an exception in writing. Flights under six hours are economy. And alcohol is only paid for client entertainment your manager approved in advance."
+  },
+  {
+   "scene_id": "s05_steps",
+   "idx": 0,
+   "start": 63.95,
+   "end": 87.566,
+   "who": "narrator",
+   "text": "Now, the claim itself, in six steps. Photograph the receipt on the same day. Open the Northwind Expenses app and select New Claim. Choose the category, then enter the date, amount and business purpose. Attach the receipt photo to each line, and check the total. Submit it to your approver within thirty days. And answer any question from your approver within five business days."
+  },
+  {
+   "scene_id": "s06_approval",
+   "idx": 0,
+   "start": 88.65,
+   "end": 102.954,
+   "who": "narrator",
+   "text": "Who approves depends on the amount. You submit. Your manager approves claims up to one thousand dollars. A director approves up to five thousand. And anything above five thousand goes to the C F O."
+  },
+  {
+   "scene_id": "s07_check",
+   "idx": 0,
+   "start": 104.05,
+   "end": 110.002,
+   "who": "narrator",
+   "text": "Quick check. Your conference trip comes to three thousand two hundred dollars. Who approves the claim?"
+  },
+  {
+   "scene_id": "s07_check",
+   "idx": 1,
+   "start": 112.202,
+   "end": 117.266,
+   "who": "narrator",
+   "text": "A director. It's above one thousand dollars, but not above five thousand."
+  },
+  {
+   "scene_id": "s08_dont",
+   "idx": 0,
+   "start": 119.617,
+   "end": 139.177,
+   "who": "narrator",
+   "text": "Three things you must never do. Never split one expense into several claims to stay under a limit. Never submit personal costs or private upgrades. And never inflate a claim. False claims are treated as misconduct, and can lead to dismissal. Instead, submit each expense once, with its real amount, and ask Finance when you're unsure."
+  },
+  {
+   "scene_id": "s09_outro",
+   "idx": 0,
+   "start": 140.283,
+   "end": 150.939,
+   "who": "narrator",
+   "text": "That's it. Keep the receipt, submit within thirty days, and use the expense checklist in the next lesson. Questions? Contact the Finance Help Desk through the service portal."
+  }
+ ]
+}

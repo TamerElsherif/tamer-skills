@@ -1,0 +1,350 @@
+{
+ "schema_version": "1.0",
+ "course_id": "northwind-expenses",
+ "lesson_id": "M1L2",
+ "title": "Expense claim checklist",
+ "language": "en-US",
+ "direction": "ltr",
+ "aspect": "16:9",
+ "fps": 30,
+ "formats": [
+  "job-aid"
+ ],
+ "wpm": 130,
+ "objective_ids": [
+  "O2"
+ ],
+ "theme": {
+  "preset": "neutral",
+  "logo": null
+ },
+ "voices": {
+  "narrator": {
+   "provider": "openai",
+   "model": "gpt-4o-mini-tts",
+   "voice": "marin",
+   "lang": "en-US",
+   "instructions": "Warm, confident corporate trainer. Clear, friendly, natural pace."
+  }
+ },
+ "scenes": [
+  {
+   "id": "j01_header",
+   "template": "title",
+   "props": {
+    "kicker": "Job aid · keep it next to your screen",
+    "title": "Expense claim checklist",
+    "sub": "Northwind Co. Expense Policy SOP-FIN-007 v3.2 · effective 2026-03-01",
+    "icon": "invoice"
+   },
+   "narration": [],
+   "claims": [
+    {
+     "text": "Northwind Co. Expense Policy (SOP-FIN-007), version 3.2, effective date 2026-03-01.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    }
+   ],
+   "visual": "Page header.",
+   "on_screen_text": [
+    "Job aid · keep it next to your screen",
+    "Expense claim checklist",
+    "Northwind Co. Expense Policy SOP-FIN-007 v3.2 · effective 2026-03-01"
+   ]
+  },
+  {
+   "id": "j02_check",
+   "template": "checklist",
+   "props": {
+    "title": "Before you press Submit",
+    "items": [
+     "Itemised receipt for every expense over $25",
+     "Receipt photo attached to each line",
+     "Total matches the receipts",
+     "Category, date, amount and purpose entered",
+     "Submitted within 30 days of the expense",
+     "Within meal and hotel limits",
+     "No personal costs included"
+    ]
+   },
+   "narration": [],
+   "claims": [
+    {
+     "text": "A receipt is required for every expense over $25.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Attach the receipt photo to each line and check that the total matches.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Choose the expense category and enter the date, amount and business purpose.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Employees must submit expense claims within 30 days of the expense date.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Do not submit personal costs, such as family meals or private travel upgrades, as business expenses.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    }
+   ],
+   "visual": "Tick-box checklist.",
+   "on_screen_text": [
+    "Before you press Submit",
+    "Itemised receipt for every expense over $25",
+    "Receipt photo attached to each line",
+    "Total matches the receipts",
+    "Category, date, amount and purpose entered",
+    "Submitted within 30 days of the expense",
+    "Within meal and hotel limits",
+    "No personal costs included"
+   ]
+  },
+  {
+   "id": "j03_limits",
+   "template": "table",
+   "props": {
+    "title": "Limits and approvers",
+    "columns": [
+     "Item",
+     "Rule"
+    ],
+    "rows": [
+     [
+      "Meals (per diem)",
+      "$60/day domestic · $85/day international"
+     ],
+     [
+      "Hotel",
+      "Max $220/night (Travel Desk exception in writing)"
+     ],
+     [
+      "Flights under 6 h",
+      "Economy class"
+     ],
+     [
+      "Alcohol",
+      "Only pre-approved client entertainment"
+     ],
+     [
+      "Approver",
+      "Manager ≤ $1,000 · Director ≤ $5,000 · CFO > $5,000"
+     ]
+    ]
+   },
+   "narration": [],
+   "claims": [
+    {
+     "text": "The meal per diem is $60 per day for domestic travel and $85 per day for international travel.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Hotel costs are capped at $220 per night unless the Travel Desk approves an exception in writing.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Flights under 6 hours must be booked in economy class.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Alcohol is not reimbursable, except during client entertainment that the manager approved in advance.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "A manager approves claims up to $1,000, a director up to $5,000, and the CFO any claim above $5,000.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    }
+   ],
+   "visual": "Two-column lookup table.",
+   "on_screen_text": [
+    "Limits and approvers",
+    "Item",
+    "Rule",
+    "Meals (per diem)",
+    "$60/day domestic · $85/day international",
+    "Hotel",
+    "Max $220/night (Travel Desk exception in writing)",
+    "Flights under 6 h",
+    "Economy class",
+    "Alcohol",
+    "Only pre-approved client entertainment",
+    "Approver",
+    "Manager ≤ $1,000 · Director ≤ $5,000 · CFO > $5,000"
+   ]
+  },
+  {
+   "id": "j04_never",
+   "template": "do_dont",
+   "props": {
+    "title": "Never / instead",
+    "dont_head": "Never",
+    "do_head": "Instead",
+    "dont": [
+     "Split one expense to stay under a limit",
+     "Claim family meals or private upgrades",
+     "Inflate a claim: it is misconduct"
+    ],
+    "do": [
+     "One expense, one claim, real amount",
+     "Unsure? Ask before you submit"
+    ]
+   },
+   "narration": [],
+   "claims": [
+    {
+     "text": "Never split one expense into several claims to stay under an approval limit.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Do not submit personal costs, such as family meals or private travel upgrades, as business expenses.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Submitting a false or inflated claim is treated as misconduct and can lead to disciplinary action, including dismissal.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Contact the Finance Help Desk for any question about this policy.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    }
+   ],
+   "visual": "Never / instead columns.",
+   "on_screen_text": [
+    "Never / instead",
+    "Never",
+    "Instead",
+    "Split one expense to stay under a limit",
+    "Claim family meals or private upgrades",
+    "Inflate a claim: it is misconduct",
+    "One expense, one claim, real amount",
+    "Unsure? Ask before you submit"
+   ]
+  },
+  {
+   "id": "j05_deadlines",
+   "template": "table",
+   "props": {
+    "title": "Deadlines and help",
+    "columns": [
+     "When",
+     "What"
+    ],
+    "rows": [
+     [
+      "Same day",
+      "Photograph the receipt"
+     ],
+     [
+      "30 days",
+      "Submit the claim"
+     ],
+     [
+      "5 business days",
+      "Answer your approver's questions"
+     ],
+     [
+      "After 90 days",
+      "Claim is not reimbursed"
+     ],
+     [
+      "7 years",
+      "Keep original paper receipts"
+     ],
+     [
+      "Questions",
+      "Finance Help Desk via the service portal"
+     ]
+    ]
+   },
+   "narration": [],
+   "claims": [
+    {
+     "text": "Keep the itemised receipt for every expense and photograph it on the same day.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Employees must submit expense claims within 30 days of the expense date.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Respond to any approver question within 5 business days, or the claim is returned to you.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Claims older than 90 days are not reimbursed.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Employees must keep original paper receipts for 7 years after the claim date.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Contact the Finance Help Desk through the internal service portal for any question about this policy.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    }
+   ],
+   "visual": "Deadline lookup table.",
+   "notes": "Client-specific: replace 'service portal' with the real Help Desk link when adapting this example.",
+   "on_screen_text": [
+    "Deadlines and help",
+    "When",
+    "What",
+    "Same day",
+    "Photograph the receipt",
+    "30 days",
+    "Submit the claim",
+    "5 business days",
+    "Answer your approver's questions",
+    "After 90 days",
+    "Claim is not reimbursed",
+    "7 years",
+    "Keep original paper receipts",
+    "Questions",
+    "Finance Help Desk via the service portal"
+   ]
+  }
+ ]
+}

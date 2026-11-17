@@ -1,0 +1,247 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://tamer-skills/training-content-studio/schemas/sources.schema.json",
+ "title": "sources.yaml — ingested, chunked, citable source material",
+ "type": "object",
+ "required": [
+  "schema_version",
+  "sources",
+  "facts"
+ ],
+ "additionalProperties": false,
+ "properties": {
+  "schema_version": {
+   "const": "1.0"
+  },
+  "course_id": {
+   "type": "string"
+  },
+  "general_knowledge_allowed": {
+   "type": "boolean",
+   "default": true
+  },
+  "sources": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": [
+     "id",
+     "type",
+     "title"
+    ],
+    "additionalProperties": false,
+    "properties": {
+     "id": {
+      "type": "string",
+      "pattern": "^S[0-9]{2,}$"
+     },
+     "type": {
+      "enum": [
+       "pdf",
+       "docx",
+       "pptx",
+       "xlsx",
+       "markdown",
+       "text",
+       "html",
+       "url",
+       "youtube",
+       "vimeo",
+       "video",
+       "audio",
+       "image",
+       "drive",
+       "onedrive",
+       "pasted"
+      ]
+     },
+     "uri": {
+      "type": "string"
+     },
+     "title": {
+      "type": "string"
+     },
+     "owner": {
+      "type": "string"
+     },
+     "date": {
+      "type": "string",
+      "description": "Publication/effective date (ISO 8601) if known"
+     },
+     "retrieved_at": {
+      "type": "string"
+     },
+     "language": {
+      "type": "string",
+      "enum": [
+       "en-US",
+       "en-GB",
+       "ar-EG",
+       "ar-MSA"
+      ]
+     },
+     "authority": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "5 = official policy/standard, 1 = informal"
+     },
+     "license": {
+      "type": "string"
+     },
+     "pages_or_duration": {
+      "type": "string"
+     },
+     "chunks": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "required": [
+        "id",
+        "loc",
+        "summary"
+       ],
+       "additionalProperties": false,
+       "properties": {
+        "id": {
+         "type": "string"
+        },
+        "loc": {
+         "type": "string",
+         "description": "page, section or mm:ss range"
+        },
+        "summary": {
+         "type": "string"
+        },
+        "tokens": {
+         "type": "integer"
+        },
+        "path": {
+         "type": "string",
+         "description": "cached full-text chunk file"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "facts": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": [
+     "id",
+     "kind",
+     "text",
+     "source_id"
+    ],
+    "additionalProperties": false,
+    "properties": {
+     "id": {
+      "type": "string",
+      "pattern": "^F[0-9]{3,}$"
+     },
+     "kind": {
+      "enum": [
+       "fact",
+       "definition",
+       "procedure",
+       "step",
+       "example",
+       "policy",
+       "statistic",
+       "warning",
+       "term",
+       "case",
+       "quote"
+      ]
+     },
+     "text": {
+      "type": "string"
+     },
+     "source_id": {
+      "type": "string",
+      "pattern": "^S[0-9]{2,}$"
+     },
+     "chunk_id": {
+      "type": "string"
+     },
+     "loc": {
+      "type": "string"
+     },
+     "date": {
+      "type": "string"
+     },
+     "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+     },
+     "procedure_order": {
+      "type": "integer"
+     },
+     "tags": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    }
+   }
+  },
+  "glossary": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": [
+     "term"
+    ],
+    "properties": {
+     "term": {
+      "type": "string"
+     },
+     "ar": {
+      "type": "string"
+     },
+     "en": {
+      "type": "string"
+     },
+     "definition": {
+      "type": "string"
+     },
+     "source_id": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  "conflicts": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": [
+     "fact_ids",
+     "note"
+    ],
+    "properties": {
+     "fact_ids": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "note": {
+      "type": "string"
+     },
+     "resolution": {
+      "type": "string"
+     },
+     "chosen_fact": {
+      "type": "string"
+     }
+    }
+   }
+  }
+ }
+}

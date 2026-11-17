@@ -1,0 +1,17 @@
+{
+ "lesson_id": "M1L1",
+ "course_id": "northwind-bec-microdrama",
+ "title": "The Friday Wire",
+ "language": "en-US",
+ "direction": "ltr",
+ "entry": "index.html",
+ "scenes": 11,
+ "has_quiz": true,
+ "pass_mark": 80,
+ "quiz_items": 4,
+ "branching": true,
+ "files": [
+  "index.html"
+ ],
+ "missing_media": []
+}

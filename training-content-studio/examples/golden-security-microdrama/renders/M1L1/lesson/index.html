@@ -1,0 +1,793 @@
+<!doctype html>
+<html lang="en-US" dir="ltr" class="no-js">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Friday Wire</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600&family=Cairo:wght@400;600;700&family=IBM+Plex+Sans+Arabic:wght@400;600&family=IBM+Plex+Mono:wght@400;600&family=Caveat:wght@500;700&display=swap">
+<style>:root{--navy:#363E77;--blue:#006AB3;--cyan:#6FC7DA;--attention:#FF6700;--bg:#F4F7FB;--card:#FFFFFF;--ink:#363E77;--muted:#5A6385;--safe:#1E7F4F;--line:#D5DCE8;--ink-strong:#1E2350;--attention-text:#B34700;--font-head:'Poppins', 'Inter', system-ui, sans-serif;--font-body:'Inter', 'Inter', system-ui, sans-serif;--font-mono:'IBM Plex Mono', ui-monospace, monospace;--font-hand:'Caveat', 'Comic Sans MS', cursive;}
+/* tcs-render-lesson — shared styles for lesson.html, deck.html and job aids.
+   Colours/fonts come from CSS variables injected per storyboard theme (see _common.css_vars). */
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.55 var(--font-body)}
+h1,h2,h3,.big,.num,.kicker{font-family:var(--font-head)}
+h1{font-size:clamp(28px,4.4vw,48px);line-height:1.15;margin:.2em 0}
+h2{font-size:clamp(22px,3vw,34px);line-height:1.2;margin:.2em 0 .6em}
+h3{font-size:20px;margin:.2em 0 .5em}
+a{color:var(--blue)}
+:focus-visible{outline:3px solid var(--attention);outline-offset:2px;border-radius:4px}
+.ico{flex:none;vertical-align:middle}
+[dir=rtl] .flip-rtl{transform:scaleX(-1)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;inset-inline-start:8px;top:-60px;background:var(--navy);color:#fff;padding:8px 14px;border-radius:8px;z-index:20}
+.skip:focus{top:8px}
+.btn{font:600 15px/1 var(--font-body);border-radius:10px;border:2px solid var(--blue);background:var(--card);color:var(--blue);
+  padding:10px 16px;cursor:pointer;display:inline-flex;gap:6px;align-items:center;min-height:44px}
+.btn.primary{background:var(--blue);color:#fff}
+.btn.ghost{border-color:var(--line);color:var(--ink)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.kicker{color:var(--blue);font-weight:600;letter-spacing:.04em;text-transform:uppercase;font-size:14px;margin:0 0 .3em;display:flex;gap:6px;align-items:center}
+[dir=rtl] .kicker{letter-spacing:0}
+.lead{font-size:clamp(17px,2vw,22px);color:var(--muted);max-width:46ch;margin-inline:auto}
+.sub{display:block;color:var(--muted);font-size:15px;font-weight:400}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 2px 10px rgba(27,33,64,.06)}
+.tone-warn{--tone:var(--attention);--on-tone:var(--ink-strong)} .tone-safe{--tone:var(--safe);--on-tone:#fff} .tone-info{--tone:var(--blue);--on-tone:#fff} .tone-bad{--tone:var(--attention);--on-tone:var(--ink-strong)}
+/* orange is a fill/stroke colour only: text on light backgrounds uses --attention-text, text on orange uses dark ink */
+
+/* ---------- app shell ---------- */
+.topbar{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:12px;padding:10px 16px;
+  background:linear-gradient(90deg,var(--navy),var(--blue));color:#fff}
+.topbar h1{font-size:17px;margin:0;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar .btn{border-color:rgba(255,255,255,.5);background:transparent;color:#fff;min-height:38px;padding:6px 10px}
+.progress{height:6px;background:rgba(255,255,255,.25);position:absolute;inset-inline:0;bottom:0}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),#fff);transition:width .3s}
+.menu{position:fixed;inset-block:0;inset-inline-start:0;width:min(340px,90vw);background:var(--card);z-index:30;padding:16px;overflow:auto;
+  box-shadow:0 0 40px rgba(0,0,0,.25)}
+.menu ol{padding-inline-start:22px} .menu button{all:unset;cursor:pointer;color:var(--blue);padding:4px 0;display:block}
+.menu button:focus-visible{outline:3px solid var(--attention)}
+main{max-width:1180px;margin:0 auto;padding:20px 16px 110px}
+.scene{background:var(--card);border-radius:20px;border:1px solid var(--line);padding:clamp(18px,3.4vw,44px);min-height:min(68vh,640px);
+  display:flex;flex-direction:column;gap:14px;box-shadow:0 8px 30px rgba(27,33,64,.07)}
+.js .scene{display:none} .js .scene.active{display:flex}
+.scene{scroll-margin-top:80px}
+.scene .stage{flex:1;display:flex;flex-direction:column;justify-content:center}
+.navbar{position:fixed;bottom:0;inset-inline:0;background:rgba(255,255,255,.96);border-top:1px solid var(--line);z-index:10;
+  display:flex;gap:10px;align-items:center;justify-content:space-between;padding:10px 16px}
+.navbar .pos{color:var(--muted);font-size:14px}
+.no-js .navbar,.no-js .topbar .btn{display:none}
+audio{width:100%;max-width:520px}
+.transcript{border-top:1px dashed var(--line);padding-top:8px;font-size:15px}
+.transcript summary{cursor:pointer;color:var(--blue);font-weight:600;display:flex;gap:6px;align-items:center;min-height:32px}
+.transcript .who{font-weight:600;color:var(--navy);text-transform:capitalize}
+.narr{display:flex;flex-direction:column;gap:8px}
+
+/* ---------- hero templates ---------- */
+.hero{text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px}
+.hero-ico{width:96px;height:96px;border-radius:50%;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--blue),var(--cyan))}
+.part{color:var(--muted);font-weight:600}
+.sec-n{font:700 64px/1 var(--font-head);color:var(--cyan)}
+.stat .num{font-size:clamp(56px,9vw,104px);font-weight:700;color:var(--blue);margin:0;line-height:1}
+.src{color:var(--muted);font-size:14px}
+.statement .big{font-size:clamp(24px,3.6vw,40px);line-height:1.3;max-width:28ch;font-weight:600;margin:0}
+.statement mark{background:none;color:var(--attention-text)}
+.outro .big{font-size:clamp(22px,3vw,32px);font-weight:600;max-width:32ch}
+.tips{list-style:none;padding:0;display:grid;gap:8px;text-align:start}
+.tips li{display:flex;gap:8px;align-items:flex-start}.tips .ico{color:var(--safe)}
+.evidence{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:8px}
+
+/* ---------- lists ---------- */
+.bul{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.bul li{display:flex;gap:12px;align-items:flex-start;font-size:19px;background:var(--bg);border-radius:12px;padding:12px 14px}
+.bi{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;color:var(--tone);background:color-mix(in srgb,var(--tone) 14%,#fff);flex:none}
+.split{display:grid;grid-template-columns:1.1fr .9fr;gap:22px;align-items:center}
+.split.rev>:first-child{order:2}
+.grid{list-style:none;padding:0;margin:0;display:grid;gap:14px;grid-template-columns:repeat(var(--cols),minmax(0,1fr))}
+.grid .card{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.gi{width:56px;height:56px;border-radius:14px;display:grid;place-items:center;color:var(--tone);background:color-mix(in srgb,var(--tone) 12%,#fff)}
+.steps{list-style:none;padding:0;margin:0;display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));counter-reset:s}
+.steps li{display:flex;flex-direction:column;gap:8px;position:relative}
+.st-n{width:44px;height:44px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font:700 20px var(--font-head)}
+.steps.danger .st-n{background:var(--attention);color:var(--ink-strong)}
+.st-b{display:flex;flex-direction:column;gap:2px;font-size:17px}.st-ico{color:var(--blue)}
+.timeline{list-style:none;padding:24px 0 0;margin:0;display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:16px;position:relative}
+.timeline:before{content:"";position:absolute;inset-inline:0;top:31px;height:3px;background:linear-gradient(90deg,var(--blue),var(--cyan))}
+.timeline li{display:flex;flex-direction:column;gap:4px;position:relative;padding-top:22px}
+.timeline .dot{position:absolute;top:0;inset-inline-start:0;width:18px;height:18px;border-radius:50%;background:var(--card);border:4px solid var(--blue)}
+.when{font-weight:700;color:var(--blue);font-size:14px}
+.dd{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.dd-col{border-radius:16px;padding:16px;background:var(--bg)}
+.dd-col h3{display:flex;gap:8px;align-items:center}
+.dd-col.dont h3{color:var(--attention-text)}.dd-col.dont li .ico{color:var(--attention)} .dd-col.do h3,.dd-col.do li .ico{color:var(--safe)}
+.dd-col ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.dd-col li{display:flex;gap:8px;align-items:flex-start}
+.dd-col.dont{background:color-mix(in srgb,var(--attention) 8%,#fff)} .dd-col.do{background:color-mix(in srgb,var(--safe) 8%,#fff)}
+.cmp{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:stretch}
+.cmp-col{background:var(--bg);border-radius:16px;padding:16px}.cmp-col.r{background:color-mix(in srgb,var(--cyan) 18%,#fff)}
+.cmp-col ul{padding-inline-start:20px;margin:0}.vs{align-self:center;color:var(--blue)}
+[dir=rtl] .vs svg{transform:scaleX(-1)}
+.def{max-width:760px;margin:0 auto;text-align:start;display:grid;gap:6px}
+.def .term{color:var(--blue);margin:0}.def-t{font-size:21px;margin:0}
+.def-ico{color:var(--blue)}
+.note{display:flex;gap:8px;color:var(--muted);font-size:15px;margin:0}
+.tbl-wrap{overflow-x:auto}
+.tbl{border-collapse:collapse;width:100%;font-size:16px}
+.tbl caption{font:600 clamp(20px,2.6vw,28px) var(--font-head);text-align:start;margin-bottom:10px}
+.tbl th,.tbl td{border-bottom:1px solid var(--line);padding:10px 12px;text-align:start;vertical-align:top}
+.tbl thead th{background:var(--navy);color:#fff}
+.tbl tbody tr:nth-child(even){background:var(--bg)}
+.checklist{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.checklist li{display:flex;gap:12px;align-items:center;font-size:18px;background:var(--bg);border-radius:12px;padding:10px 14px}
+.checklist input{width:24px;height:24px;accent-color:var(--safe);flex:none}
+.checklist .box{width:20px;height:20px;border:2px solid var(--navy);border-radius:5px;flex:none}
+
+/* ---------- media ---------- */
+.media{margin:0;position:relative;border-radius:16px;overflow:hidden;background:var(--navy);aspect-ratio:16/9}
+.media img,.media video{width:100%;height:100%;object-fit:cover;display:block}
+.media.full{width:100%}
+.ph{width:100%;height:100%;min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:#fff;
+  background:linear-gradient(135deg,var(--navy),var(--blue));padding:16px;text-align:center;font-size:15px}
+.chips{position:absolute;bottom:12px;inset-inline-start:12px;display:flex;gap:8px;flex-wrap:wrap}
+.chip{background:rgba(255,255,255,.94);color:var(--ink);border-radius:999px;padding:6px 12px;font-weight:600;font-size:15px}
+.caption{color:var(--muted);text-align:center;margin:.4em 0 0}
+
+/* ---------- mock-ups ---------- */
+.mock{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 10px 30px rgba(27,33,64,.12);overflow:hidden;max-width:820px;margin:0 auto;width:100%}
+.mock-bar,.br-bar{display:flex;gap:6px;align-items:center;padding:8px 12px;background:#EEF2F8;border-bottom:1px solid var(--line);color:var(--muted)}
+.mock-bar i,.br-bar i{width:11px;height:11px;border-radius:50%;background:#C9D2E0;display:inline-block}
+.mock-bar .ico,.mock-bar .fn{margin-inline-start:auto}
+.em-head{padding:14px 18px;border-bottom:1px solid var(--line)}
+.em-subj{font-size:21px;margin:0 0 6px}
+.em-from{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.addr{color:var(--muted);font-size:15px;direction:ltr;unicode-bidi:isolate}
+.em-to{color:var(--muted);font-size:14px;margin-top:4px}
+.em-body{padding:14px 18px;font-size:16px}.em-body p{margin:.3em 0}
+.em-att{display:inline-flex;gap:6px;align-items:center;border:1px solid var(--line);border-radius:8px;padding:6px 10px;margin:6px 0}
+.em-btn{display:inline-block;background:var(--blue);color:#fff;border-radius:8px;padding:8px 16px;font-weight:600;margin:6px 0}
+.em-sig{display:flex;flex-direction:column;color:var(--muted);font-size:14px;margin-top:8px}
+.badge.warn{color:var(--attention)}
+.pin{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--tone,var(--attention));color:var(--on-tone,var(--ink-strong));font:700 13px var(--font-body);
+  margin-inline:4px;vertical-align:middle;flex:none}
+.js .mock .pin[data-co]{opacity:0;transform:scale(.4);transition:.25s}
+.js .mock .pin[data-co].on{opacity:1;transform:none}
+.callouts{max-width:820px;margin:12px auto 0;width:100%}
+.callouts ol{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:8px}
+.co{display:flex;gap:8px;align-items:center;background:var(--bg);border-radius:10px;padding:8px 12px}
+.js .callouts.js-hide .co{display:none}.js .callouts .co.on{display:flex}
+.chat{max-width:420px;border-radius:28px;padding:10px;background:#1B2140}
+.chat.desktop{max-width:720px;border-radius:14px;background:#fff}
+.chat-title{display:flex;gap:8px;align-items:center;color:#fff;padding:8px 10px}.chat.desktop .chat-title{color:var(--ink)}
+.msgs{list-style:none;margin:0;padding:12px;background:#F2F5FA;border-radius:20px;display:flex;flex-direction:column;gap:8px;min-height:300px}
+.msg{max-width:80%;background:#fff;border:1px solid var(--line);border-radius:16px;padding:8px 12px;align-self:flex-start}
+.msg.me{align-self:flex-end;background:var(--blue);color:#fff;border-color:var(--blue)}
+.msg.warn{border:2px solid var(--attention)}
+.br-bar .url{flex:1;display:flex;gap:6px;align-items:center;background:#fff;border-radius:999px;padding:5px 12px;font:15px var(--font-mono);color:var(--ink);overflow:hidden;white-space:nowrap}
+.browser.bad .url{color:var(--attention-text)}
+.br-page{padding:22px;min-height:260px;display:flex;flex-direction:column;gap:8px;align-items:center;text-align:center}
+.br-brand{display:flex;gap:8px;align-items:center;font:700 20px var(--font-head);color:var(--navy)}
+.br-h{margin:0}.br-form{display:grid;gap:10px;width:min(320px,100%)}
+.fld{height:44px;border:1px solid var(--line);border-radius:8px;display:flex;align-items:center;padding:0 12px;color:var(--muted)}
+.fld.btnf{background:var(--blue);color:#fff;justify-content:center;border-color:var(--blue)}
+.br-err{color:var(--attention)}
+.phone{max-width:340px;border-radius:36px;background:#1B2140;padding:22px 14px;position:relative}
+.mock.mfa{overflow:visible}.mfa-stack{display:grid;gap:10px}
+.mfa-card{background:#fff;border-radius:16px;padding:12px 14px;display:grid;gap:4px;box-shadow:0 4px 12px rgba(0,0,0,.2)}
+.mfa-app{font-weight:700;display:flex;gap:6px;align-items:center}.mfa-place{color:var(--muted);font-size:14px;display:flex;gap:6px;align-items:center}
+.mfa-btns{display:flex;gap:8px;justify-content:flex-end}
+.mfa-btns span{width:40px;height:32px;border-radius:8px;display:grid;place-items:center;color:#fff}
+.mfa-btns .deny{background:var(--attention);color:var(--ink-strong)}.mfa-btns .ok{background:var(--safe)}
+.mfa-count{position:absolute;top:-10px;inset-inline-end:-10px;background:var(--attention);color:var(--ink-strong);font:700 18px var(--font-body);width:40px;height:40px;border-radius:50%;display:grid;place-items:center}
+.popup-bg{background:rgba(27,33,64,.65);border-radius:16px;padding:clamp(18px,6vw,60px);display:grid;place-items:center}
+.popup{background:#fff;border-radius:16px;max-width:460px;padding:22px;text-align:center;border-top:6px solid var(--tone)}
+.pop-ico{color:var(--tone)}.pop-cta{display:inline-block;background:var(--tone);color:var(--on-tone,#fff);border-radius:8px;padding:10px 18px;font-weight:700}
+.code{background:#1B2140;color:#E4E9F5;max-width:900px}.code .mock-bar{background:#141833;border-color:#2B3260;color:#B9C3DD}
+.code-lines{margin:0;padding:10px 0;font:15px/1.6 var(--font-mono);counter-reset:l;list-style:none;overflow-x:auto}
+.code-lines li{counter-increment:l;display:flex;gap:12px;padding:0 14px;align-items:center;flex-wrap:wrap}
+.code-lines li:before{content:counter(l);color:#6E7AA0;width:24px;text-align:end}
+.code-lines code{white-space:pre;font:inherit}
+.code-lines .hl{background:color-mix(in srgb,var(--tone) 28%,transparent)}
+.hl-l{background:var(--tone);color:var(--on-tone,#fff);border-radius:6px;padding:0 8px;font:600 13px var(--font-body)}
+
+/* ---------- screencast sim ---------- */
+.screencast{display:grid;grid-template-columns:1.4fr .9fr;gap:18px;align-items:start}
+.app{max-width:none}.app-title{display:flex;gap:8px;align-items:center;padding:10px 14px;background:var(--navy);color:#fff;font-weight:600}
+.app-body{position:relative;padding:18px}
+.app-body img{width:100%;border-radius:8px}
+.sc-fields{display:grid;gap:12px}
+.sc-f{display:grid;gap:4px;border-radius:10px;padding:6px;transition:box-shadow .2s}
+.sc-l{font-size:14px;color:var(--muted)}
+.sc-in{min-height:42px;border:1px solid var(--line);border-radius:8px;padding:8px 12px;display:flex;justify-content:space-between;align-items:center;background:#fff}
+.sc-btn{display:inline-block;background:var(--blue);color:#fff;border-radius:8px;padding:10px 18px;font-weight:600;justify-self:start}
+.sc-cb{width:22px;height:22px;border:2px solid var(--navy);border-radius:5px;display:inline-block;vertical-align:middle;margin-inline-end:8px}
+.sc-cb.on{background:var(--safe);border-color:var(--safe)}
+.sc-f.hot{box-shadow:0 0 0 3px var(--attention)}
+.sc-f.done .sc-in{border-color:var(--safe)}
+.hotspot{position:absolute;border:3px solid var(--attention);border-radius:10px;background:color-mix(in srgb,var(--attention) 10%,transparent);cursor:pointer;
+  animation:pulse 1.4s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 8px color-mix(in srgb,var(--attention) 20%,transparent)}}
+.toast{position:absolute;bottom:12px;inset-inline:12px;background:var(--navy);color:#fff;border-radius:10px;padding:10px 14px}
+.sc-ctrl{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+.sc-steps{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.sc-steps li{display:flex;gap:8px;align-items:center;padding:8px 10px;border-radius:10px;background:var(--bg);opacity:.6}
+.sc-steps li.cur{opacity:1;box-shadow:inset 0 0 0 2px var(--attention)}.sc-steps li.done{opacity:1}
+.sc-steps li.done .pin{background:var(--safe)}
+.sc-status{font-size:14px;color:var(--muted)}
+
+/* ---------- cartoon / comic / whiteboard ---------- */
+.panel{position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#E8EEF7}
+.setbg{position:absolute;inset:0;width:100%;height:100%}
+.ppl{position:absolute;bottom:2%;left:var(--x);width:calc(18% * var(--s));transform:translateX(-50%)}
+.ppl svg{width:100%;height:auto;display:block}
+.bubbles{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:8px}
+.bub{background:#fff;border:2px solid var(--navy);border-radius:18px;padding:8px 14px;max-width:640px;position:relative}
+.bub .who{display:block;font-size:12px;font-weight:700;color:var(--blue);text-transform:capitalize}
+.bub.think{border-style:dashed}.bub.tone-warn,.bub.tone-villain{border-color:var(--attention)}
+.overlay{max-width:640px;margin:10px auto 0;width:100%}
+.comic{display:grid;gap:14px}
+.comic.l-2{grid-template-columns:1fr 1fr}.comic.l-3{grid-template-columns:repeat(3,1fr)}.comic.l-2x2{grid-template-columns:1fr 1fr}
+.comic.l-1p2{grid-template-columns:1fr 1fr}.comic.l-1p2 .cpanel:first-child{grid-column:1/-1}
+.cpanel{margin:0;border:3px solid var(--ink);border-radius:12px;padding:8px;background:#fff}
+.cpanel figcaption{font:600 15px var(--font-body);background:var(--bg);border-radius:8px;padding:6px 10px;margin-top:8px}
+.cpanel .bub{font-size:15px}
+.sfx-word{position:absolute;top:8%;inset-inline-end:6%;font:700 34px var(--font-hand);color:var(--attention-text);transform:rotate(-8deg)}
+.wb .board{position:relative;aspect-ratio:16/9;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;font-family:var(--font-hand)}
+.wb-svg{position:absolute;inset:0;width:100%;height:100%}
+.wb-i{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:4px;max-width:30%;text-align:center}
+.wb-i .persona{width:clamp(60px,10vw,120px);height:auto}
+.wb-t{font:700 clamp(18px,2.6vw,32px)/1.1 var(--font-hand)}
+.wb-ico{width:clamp(36px,6vw,64px);height:auto}
+.wb-title{font-family:var(--font-hand);font-size:clamp(26px,3.4vw,40px)}
+[dir=rtl] .wb .board,[dir=rtl] .wb-title,[dir=rtl] .wb-t{font-family:var(--font-body)}
+.js [data-reveal-scope] [data-reveal]{opacity:0;transition:opacity .35s}
+.js [data-reveal-scope] [data-reveal].on{opacity:1}
+.reveal-ctrl{display:flex;gap:8px;justify-content:center;margin-top:10px}
+
+/* ---------- mindmap ---------- */
+.mm-board{position:relative;aspect-ratio:5/3;background:radial-gradient(circle at 50% 50%,color-mix(in srgb,var(--cyan) 20%,#fff),#fff 60%);border-radius:16px;border:1px solid var(--line)}
+.mm-board>svg{position:absolute;inset:0;width:100%;height:100%}
+.mm-l{stroke:var(--cyan);stroke-width:.5}
+.mm-root{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);margin:0;background:var(--navy);color:#fff;border-radius:999px;padding:12px 22px;font-size:clamp(16px,2.2vw,24px);max-width:34%;text-align:center}
+.mm-list{list-style:none;margin:0;padding:0}
+.mm-n{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);background:#fff;border:2px solid var(--tone);border-radius:12px;padding:6px 10px;
+  display:flex;gap:6px;align-items:center;font-size:clamp(12px,1.5vw,16px);max-width:24%;color:var(--ink);box-shadow:0 2px 8px rgba(27,33,64,.08)}
+.mm-n .ico{color:var(--tone)}
+.mm-n.focus{background:var(--tone);color:var(--on-tone,#fff)}.mm-n.focus .ico{color:var(--on-tone,#fff)}
+
+/* ---------- process flow ---------- */
+.flow{position:relative;display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr));gap:34px 40px;align-items:center;padding:8px}
+.flow-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.fnode{position:relative;z-index:1;background:#fff;border:2px solid var(--blue);border-radius:12px;padding:12px;text-align:center;font-weight:600;font-size:16px}
+.fnode.k-start,.fnode.k-end{border-radius:999px;background:var(--navy);color:#fff;border-color:var(--navy)}
+.fnode.k-decision{border-color:var(--attention);background:color-mix(in srgb,var(--attention) 8%,#fff)}
+.elabel{position:absolute;z-index:2;background:var(--bg);border-radius:6px;padding:0 6px;font-size:13px;color:var(--muted);transform:translate(-50%,-50%)}
+.flow.vertical{grid-template-columns:1fr !important}
+.flow.vertical .fnode{grid-column:auto !important;grid-row:auto !important}
+
+/* ---------- quiz / decision / flashcard ---------- */
+.qitem fieldset{border:0;padding:0;margin:0}
+.q-stem{font:600 clamp(19px,2.4vw,24px)/1.35 var(--font-head);margin-bottom:12px;padding:0}
+.q-scen{background:var(--bg);border-radius:12px;padding:10px 14px}
+.q-opts{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.q-opts li{display:flex;gap:10px;align-items:center;border:2px solid var(--line);border-radius:12px;padding:10px 14px;background:#fff}
+.q-opts input{width:22px;height:22px;flex:none;accent-color:var(--blue)}
+.q-opts label{flex:1;cursor:pointer}
+.q-opts li.ok{border-color:var(--safe);background:color-mix(in srgb,var(--safe) 8%,#fff)}
+.q-opts li.bad{border-color:var(--attention);background:color-mix(in srgb,var(--attention) 8%,#fff)}
+.q-rows{display:grid;gap:10px;padding-inline-start:20px}.q-rows label{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.q-rows select{min-height:40px;border-radius:8px;border:1px solid var(--line);font:inherit;padding:4px 8px}
+.q-rows li.ok select{border-color:var(--safe)}.q-rows li.bad select{border-color:var(--attention)}
+.hint{color:var(--muted);font-size:14px}
+.q-actions{margin-top:12px}
+.q-fb{margin-top:10px;border-radius:12px}
+.q-fb:not(:empty){padding:12px 14px;background:var(--bg)}
+.q-fb .res{font-weight:700;display:flex;gap:6px;align-items:center}
+.q-fb .res.ok{color:var(--safe)}.q-fb .res.bad{color:var(--attention-text)}
+.qstatic ol{margin:.4em 0}.qstatic .ok{font-weight:700}
+.choices{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.choice{width:100%;text-align:start;display:flex;gap:10px;align-items:center;font:600 18px var(--font-body);background:#fff;border:2px solid var(--blue);
+  border-radius:14px;padding:14px 16px;cursor:pointer;color:var(--ink);min-height:56px}
+.choice:hover{background:color-mix(in srgb,var(--blue) 6%,#fff)}
+.choice.static{cursor:default}.choice.picked{background:var(--blue);color:#fff}
+.flash-card{all:unset;box-sizing:border-box;display:grid;width:min(560px,100%);min-height:260px;margin:0 auto;border-radius:20px;cursor:pointer;
+  background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;padding:24px;text-align:center;place-items:center;font:600 22px/1.35 var(--font-head)}
+.flash-card:focus-visible{outline:3px solid var(--attention)}
+.flash-card small{display:block;font:500 13px var(--font-body);opacity:.8;margin-top:8px}
+.flash-card .f-back{display:none}.flash-card[aria-pressed=true]{background:#fff;color:var(--ink);border:2px solid var(--blue)}
+.flash-card[aria-pressed=true] .f-front{display:none}.flash-card[aria-pressed=true] .f-back{display:block}
+.outcome{border-radius:16px;padding:20px;text-align:center;background:var(--bg)}
+.outcome.good{background:color-mix(in srgb,var(--safe) 12%,#fff)}.outcome.bad{background:color-mix(in srgb,var(--attention) 12%,#fff)}
+.outcome .ico{width:56px;height:56px}
+.outcome.good .ico{color:var(--safe)}.outcome.bad .ico{color:var(--attention)}
+.results{display:grid;gap:12px;text-align:center;justify-items:center}
+.ring{font:700 48px var(--font-head);color:var(--blue)}
+
+/* keep 16:9 boards inside the viewport */
+.cartoon .panel,.wb .board,.media.full,.cartoon .bubbles{width:min(100%,calc((100vh - 280px) * 16 / 9));margin-inline:auto}
+.mm-board{width:min(100%,calc((100vh - 260px) * 5 / 3));margin-inline:auto}
+/* ---------- responsive ---------- */
+@media (max-width:760px){
+  body{font-size:16px}
+  .split,.dd,.cmp,.screencast{grid-template-columns:1fr}.vs{display:none}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .timeline{grid-auto-flow:row;padding:0 0 0 0}.timeline:before{top:0;bottom:0;inset-inline-start:8px;width:3px;height:auto;inset-inline-end:auto}
+  .timeline li{padding:0;padding-inline-start:34px}.timeline .dot{top:2px}
+  .comic.l-2,.comic.l-3,.comic.l-2x2,.comic.l-1p2{grid-template-columns:1fr}
+  .mm-board{aspect-ratio:3/4}.mm-n{max-width:40%}
+  .navbar .pos{display:none}
+  .bul li{font-size:17px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none !important;animation:none !important}}
+
+/* ---------- print: every scene, expanded transcripts, no chrome ---------- */
+@media print{
+  body{background:#fff;font-size:12pt}
+  .topbar,.navbar,.menu,.skip,.reveal-ctrl,.sc-ctrl,.q-actions,[data-reveal-co],audio,.hotspot{display:none !important}
+  main{padding:0;max-width:none}
+  .js .scene,.scene{display:flex !important;break-after:page;box-shadow:none;border:0;min-height:0;padding:0}
+  .js [data-reveal-scope] [data-reveal],.js .mock .pin[data-co]{opacity:1 !important;transform:none !important}
+  .js .callouts.js-hide .co{display:flex}
+  .transcript .tx{display:block}
+  details.transcript>summary{list-style:none}
+  details.transcript:not([open])>.tx{display:block}
+  .media video{display:none}
+}
+
+/* whiteboard text in the attention colour must stay readable */
+.wb-i[data-tone=attention] .wb-t{color:var(--attention-text)}
+/* sim (guided / practice / assess) */
+.sim-task{display:flex;gap:8px;align-items:flex-start;background:var(--bg);border-radius:12px;padding:10px 14px;font-weight:600}
+.sim-msg{min-height:24px;font-size:15px}.sim-msg .bad{color:var(--attention-text)}.sim-msg .ok{color:var(--safe)}
+.sc-f input,.sc-f select{font:inherit;min-height:42px;border:1px solid var(--line);border-radius:8px;padding:6px 10px;width:100%;background:#fff}
+.sc-f button.sc-btn{border:0;cursor:pointer;font:600 16px var(--font-body)}
+.sc-f.hint-on{box-shadow:0 0 0 3px var(--cyan)}
+.sim-mode{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--blue);font-weight:700}
+</style>
+<!--TCS_LMS-->
+</head>
+<body>
+<a class="skip" href="#main">Skip to lesson content</a>
+<header class="topbar"><button class="btn" id="menu-btn" aria-expanded="false" aria-controls="menu"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18"/></svg><span class="sr-only">Lesson menu</span></button>
+<h1>The Friday Wire</h1><div class="progress" role="presentation"><i></i></div></header>
+<nav id="menu" class="menu" hidden aria-label="Lesson menu"><h2>Lesson menu</h2><ol><li><button data-jump="s01_title">The Friday Wire</button></li><li><button data-jump="s02_request">office, Sam (rookie, Finance) at the desk; worried when the email lands; camera pushes in.</button></li><li><button data-jump="s03_email">Confidential: supplier payment today</button></li><li><button data-jump="s04_vex">den, Vex rubbing his hands, sly; villain bubble.</button></li><li><button data-jump="s05_decide">What should Sam do?</button></li><li><button data-jump="s06_paid">That money went to the attacker.</button></li><li><button data-jump="s07_reply">Your reply went to the attacker.</button></li><li><button data-jump="s08_callback">office two-shot on the phone: Sam at the desk (left), the real Hana (right); Sam shocked, then relieved.</button></li><li><button data-jump="s09_rule">Every payment request</button></li><li><button data-jump="s10_quiz">Quiz Q3 (new number in the email).</button></li><li><button data-jump="s11_outro">The Friday Wire</button></li></ol></nav>
+<main id="main" tabindex="-1">
+<section class="scene t-title" id="s-s01_title" data-scene="s01_title" data-template="title" aria-label="Scene 1 of 13: The Friday Wire"><div class="stage"><div class="hero"><div class="hero-ico"><svg class="ico" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></div><p class="kicker">A security micro-drama</p><h1 class="scene-title" tabindex="-1">The Friday Wire</h1><p class="lead">CEO fraud and fake payment requests</p></div></div><div class="narr"><details class="transcript"><summary><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h8"/></svg> Transcript</summary><div class="tx"><p><span class="who">Narrator</span> One urgent email from the boss. One big decision.</p></div></details></div></section><section class="scene t-cartoon" id="s-s02_request" data-scene="s02_request" data-template="cartoon" aria-label="Scene 2 of 13: office, Sam (rookie, Finance) at the desk; worried when the email lands; camera pushes in."><div class="stage"><div class="cartoon" data-reveal-scope><div class="panel"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" class="setbg" aria-hidden="true" focusable="false"><rect width="1600" height="900" fill="#E8EEF7"/><rect y="680" width="1600" height="220" fill="#C9D4E5"/><rect x="1060" y="120" width="380" height="260" rx="8" fill="#BFE3EE" opacity=".8"/><path d="M1250 120v260M1060 250h380" stroke="#fff" stroke-width="10"/><rect x="420" y="640" width="760" height="40" rx="6" fill="#8A9BB5"/><rect x="460" y="680" width="24" height="160" fill="#7A8AA3"/><rect x="1116" y="680" width="24" height="160" fill="#7A8AA3"/></svg><div class="ppl" style="--x:50.0%;--s:1.35" data-cast="rookie"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-200 -560 400 580" width="400" height="580"><g><g transform="translate(0,0) scale(1,1) rotate(0)" opacity="1"><g><g transform="rotate(0,-26,-200)"><path d="M-28,-200 L-30,-30" stroke="#1E2448" stroke-width="58" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path d="M-28,-200 L-30,-30" stroke="#4A4F5E" stroke-width="44" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><ellipse cx="-36" cy="-16" rx="34" ry="17" fill="#F4F7FB" stroke="#1E2448" stroke-width="6"></ellipse></g><g transform="rotate(0,26,-200)"><path d="M28,-200 L30,-30" stroke="#1E2448" stroke-width="58" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path d="M28,-200 L30,-30" stroke="#4A4F5E" stroke-width="44" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><ellipse cx="36" cy="-16" rx="34" ry="17" fill="#F4F7FB" stroke="#1E2448" stroke-width="6"></ellipse></g></g><g transform="translate(0,-1.035134549177249)"><g><circle cx="-58" cy="-470" r="26" fill="#141414" stroke="#1E2448" stroke-width="6" stroke-linejoin="round"></circle><circle cx="-40" cy="-500" r="26" fill="#141414" stroke="#1E2448" stroke-width="6" stroke-linejoin="round"></circle><circle cx="-10" cy="-512" r="26" fill="#141414" stroke="#1E2448" stroke-width="6" stroke-linejoin="round"></circle><circle cx="22" cy="-508" r="26" fill="#141414" stroke="#1E2448" stroke-width="6" stroke-linejoin="round"></circle><circle cx="50" cy="-488" r="26" fill="#141414" stroke="#1E2448" stroke-width="6" stroke-linejoin="round"></circle><circle cx="62" cy="-455" r="26" fill="#141414" stroke="#1E2448" stroke-width="6" stroke-linejoin="round"></circle><circle cx="-66" cy="-438" r="26" fill="#141414" stroke="#1E2448" stroke-width="6" stroke-linejoin="round"></circle><circle cx="66" cy="-425" r="26" fill="#141414" stroke="#1E2448" stroke-width="6" stroke-linejoin="round"></circle><circle cx="-64" cy="-405" r="26" fill="#141414" stroke="#1E2448" stroke-width="6" stroke-linejoin="round"></circle><circle cx="64" cy="-395" r="26" fill="#141414" stroke="#1E2448" stroke-width="6" stroke-linejoin="round"></circle></g><g><path d="M-66,-350 L-81.14424296503694,-259.25501719094365" stroke="#1E2448" stroke-width="48" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path d="M-81.14424296503694,-259.25501719094365 L-87.53930690232498,-173.49311914036412" stroke="#1E2448" stroke-width="44" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path d="M-81.14424296503694,-259.25501719094365 L-87.53930690232498,-173.49311914036412" stroke="#A9D4F5" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path d="M-66,-350 L-81.14424296503694,-259.25501719094365" stroke="#A9D4F5" stroke-width="34" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><circle cx="-87.53930690232498" cy="-173.49311914036412" r="19" fill="#C68B5E" stroke="#1E2448" stroke-width="6"></circle></g><path d="M-66,-362 Q-76,-260 -64,-192 L64,-192 Q76,-260 66,-362 Q0,-380 -66,-362Z" fill="#A9D4F5" stroke="#1E2448" stroke-width="7" stroke-linejoin="round"></path><path d="M-24,-368 L0,-346 L24,-368" fill="none" stroke="#1E2448" stroke-width="4" stroke-linejoin="round"></path><g><path d="M-26,-364 L-6,-290 M26,-364 L6,-290" stroke="#006AB3" stroke-width="6"></path><rect x="-18" y="-292" width="36" height="46" rx="6" fill="#fff" stroke="#1E2448" stroke-width="4"></rect><rect x="-10" y="-282" width="20" height="14" rx="3" fill="#006AB3"></rect></g><path d="M-64,-200 L64,-200" stroke="#1E2448" stroke-width="0"></path><g transform="rotate(0,0,-360)"><rect x="-17" y="-384" width="34" height="30" fill="#C68B5E" stroke="#1E2448" stroke-width="5"></rect><ellipse cx="-58" cy="-424" rx="11" ry="15" fill="#C68B5E" stroke="#1E2448" stroke-width="5"></ellipse><ellipse cx="58" cy="-424" rx="11" ry="15" fill="#C68B5E" stroke="#1E2448" stroke-width="5"></ellipse><ellipse cx="0" cy="-432" rx="58" ry="66" fill="#C68B5E" stroke="#1E2448" stroke-width="7"></ellipse><path d="M-54,-458 Q-30,-486 0,-470 Q30,-490 56,-458 Q30,-472 0,-462 Q-30,-474 -54,-458Z" fill="#141414"></path><g><g transform="translate(-22,-432) scale(1,1)"><ellipse cx="0" cy="0" rx="12" ry="14" fill="#fff" stroke="#1E2448" stroke-width="3.5"></ellipse><circle cx="0" cy="1" r="6.5" fill="#1E2448"></circle><circle cx="2" cy="-2" r="1.8" fill="#fff"></circle></g><g transform="translate(22,-432) scale(1,1)"><ellipse cx="0" cy="0" rx="12" ry="14" fill="#fff" stroke="#1E2448" stroke-width="3.5"></ellipse><circle cx="0" cy="1" r="6.5" fill="#1E2448"></circle><circle cx="2" cy="-2" r="1.8" fill="#fff"></circle></g><path d="M-10,-458 L-36,-458" stroke="#1E2448" stroke-width="6.5" stroke-linecap="round"></path><path d="M10,-458 L36,-458" stroke="#1E2448" stroke-width="6.5" stroke-linecap="round"></path><path d="M-2,-420 Q6,-408 -4,-404" stroke="#1E2448" stroke-width="4" fill="none" stroke-linecap="round"></path><path d="M-14,-392 Q0,-388 14,-392" stroke="#1E2448" stroke-width="5.5" stroke-linecap="round" fill="none"></path></g></g><g><path d="M66,-350 L82.80567866480467,-259.54797313152494" stroke="#1E2448" stroke-width="48" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path d="M82.80567866480467,-259.54797313152494 L91.40016742809483,-173.97849981949807" stroke="#1E2448" stroke-width="44" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path d="M82.80567866480467,-259.54797313152494 L91.40016742809483,-173.97849981949807" stroke="#A9D4F5" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path d="M66,-350 L82.80567866480467,-259.54797313152494" stroke="#A9D4F5" stroke-width="34" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><circle cx="91.40016742809483" cy="-173.97849981949807" r="19" fill="#C68B5E" stroke="#1E2448" stroke-width="6"></circle></g></g></g></g></svg></div></div><ol class="bubbles"><li class="bub think tone-plain" data-reveal="1"><span class="who">Sam</span>Pay today... and keep it quiet?</li></ol><div class="reveal-ctrl"><button class="btn primary" data-reveal-next><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg> Reveal next</button><button class="btn ghost" data-reveal-all>Show all</button></div></div></div><div class="narr"><details class="transcript"><summary><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h8"/></svg> Transcript</summary><div class="tx"><p><span class="who">Narrator</span> Friday, four fifty. Sam in Finance gets an email from Hana, the C E O.</p><p><span class="who">Sam</span> Pay a supplier today, and keep it quiet?</p></div></details></div></section><section class="scene t-email_mock" id="s-s03_email" data-scene="s03_email" data-template="email_mock" aria-label="Scene 3 of 13: Confidential: supplier payment today"><div class="stage"><div class="mock email" role="group" aria-label="Confidential: supplier payment today"><div class="mock-bar"><i></i><i></i><i></i><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></div><div class="em-head"><h3 class="em-subj scene-title" tabindex="-1">Confidential: supplier payment today</h3><div class="em-from"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><strong>Hana (CEO)</strong> <span class="addr">&lt;hana.ceo@northwind-mail.example&gt;<span class="pin tone-warn" data-co="0" aria-hidden="true">1</span></span> <span class="badge warn"><svg class="ico" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></span></div><div class="em-to"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg> sam@northwind.example</div></div><div class="em-body"><p>Sam,</p><p>Please pay the Brightline Supplies invoice of USD 48,500 today.<span class="pin tone-warn" data-co="1" aria-hidden="true">2</span></p><p>They changed banks, so use the new account details attached.<span class="pin tone-warn" data-co="2" aria-hidden="true">3</span></p><p>Keep this between us until the deal is announced.<span class="pin tone-warn" data-co="3" aria-hidden="true">4</span></p><div class="em-att"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 11-8.5 8.5a5.5 5.5 0 0 1-7.8-7.8l9-9a3.7 3.7 0 0 1 5.2 5.2l-9 9a1.8 1.8 0 0 1-2.6-2.6L15.5 6"/></svg> New_bank_details.pdf</div><div class="em-sig"><span>Hana</span><span>Sent from my phone</span></div></div></div><div class="callouts js-hide"><button class="btn ghost" data-reveal-co><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 22V4M4 4h13l-2 4 2 4H4"/></svg> Show red flags</button><ol><li class="co tone-warn" data-co="0"><span class="pin">1</span>Not her usual address</li><li class="co tone-warn" data-co="1"><span class="pin">2</span>Pay today</li><li class="co tone-warn" data-co="2"><span class="pin">3</span>New bank details</li><li class="co tone-warn" data-co="3"><span class="pin">4</span>Keep it secret</li></ol></div></div><div class="narr"><details class="transcript"><summary><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h8"/></svg> Transcript</summary><div class="tx"><p><span class="who">Narrator</span> Spot the signs. It&#x27;s not Hana&#x27;s usual address. It says pay today. The bank details are new. And it asks for secrecy.</p></div></details></div></section><section class="scene t-cartoon" id="s-s04_vex" data-scene="s04_vex" data-template="cartoon" aria-label="Scene 4 of 13: den, Vex rubbing his hands, sly; villain bubble."><div class="stage"><div class="cartoon" data-reveal-scope><div class="panel"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" class="setbg" aria-hidden="true" focusable="false"><rect width="1600" height="900" fill="#232A4D"/><rect y="680" width="1600" height="220" fill="#171C38"/><rect x="600" y="300" width="400" height="240" rx="10" fill="#3B3363"/><rect x="630" y="330" width="340" height="180" fill="#6FC7DA" opacity=".35"/></svg><div class="ppl" style="--x:50.0%;--s:1.3" data-cast="vex"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-200 -560 400 580" width="400" height="580"><g><g transform="translate(0,0) scale(1,1) rotate(0)" opacity="1"><g><g transform="rotate(0,-26,-200)"><path d="M-28,-200 L-30,-30" stroke="#1E2448" stroke-width="58" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path d="M-28,-200 L-30,-30" stroke="#2E3446" stroke-width="44" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><ellipse cx="-36" cy="-16" rx="34" ry="17" fill="#15172A" stroke="#1E2448" stroke-width="6"></ellipse></g><g transform="rotate(0,26,-200)"><path d="M28,-200 L30,-30" stroke="#1E2448" stroke-width="58" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path d="M28,-200 L30,-30" stroke="#2E3446" stroke-width="44" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><ellipse cx="36" cy="-16" rx="34" ry="17" fill="#15172A" stroke="#1E2448" stroke-width="6"></ellipse></g></g><g transform="translate(0,0.3238870164993574)"><g><path d="M-66,-350 L-84.23331284827792,-259.8249130714207" stroke="#1E2448" stroke-width="48" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path d="M-84.23331284827792,-259.8249130714207 L-94.71920189007153,-174.46657351983856" stroke="#1E2448" stroke-width="44" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path d="M-84.23331284827792,-259.8249130714207 L-94.71920189007153,-174.46657351983856" stroke="#FF6700" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path d="M-66,-350 L-84.23331284827792,-259.8249130714207" stroke="#FF6700" stroke-width="34" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><circle cx="-94.71920189007153" cy="-174.46657351983856" r="19" fill="#D8B08C" stroke="#1E2448" stroke-width="6"></circle></g><path d="M-66,-362 Q-76,-260 -64,-192 L64,-192 Q76,-260 66,-362 Q0,-380 -66,-362Z" fill="#FF6700" stroke="#1E2448" stroke-width="7" stroke-linejoin="round"></path><g><path d="M-22,-366 L0,-300 L22,-366 Z" fill="#3A3F55" stroke="#1E2448" stroke-width="4"></path><path d="M-22,-366 L-8,-318 L-30,-300Z M22,-366 L8,-318 L30,-300Z" fill="#FF6700" stroke="#1E2448" stroke-width="4" stroke-linejoin="round"></path><path d="M0,-300 L0,-196" stroke="#1E2448" stroke-width="3"></path></g><path d="M-64,-200 L64,-200" stroke="#1E2448" stroke-width="0"></path><g transform="rotate(0,0,-360)"><rect x="-17" y="-384" width="34" height="30" fill="#D8B08C" stroke="#1E2448" stroke-width="5"></rect><ellipse cx="-58" cy="-424" rx="11" ry="15" fill="#D8B08C" stroke="#1E2448" stroke-width="5"></ellipse><ellipse cx="58" cy="-424" rx="11" ry="15" fill="#D8B08C" stroke="#1E2448" stroke-width="5"></ellipse><ellipse cx="0" cy="-432" rx="58" ry="66" fill="#D8B08C" stroke="#1E2448" stroke-width="7"></ellipse><path d="M-60,-440 Q-66,-506 6,-508 Q70,-500 62,-440 Q56,-470 30,-478 Q64,-486 20,-492 Q-30,-492 -52,-466 Q-58,-456 -60,-440Z" fill="#1B1B1B" stroke="#1E2448" stroke-width="6" stroke-linejoin="round"></path><g><g transform="translate(-22,-432) scale(1,1)"><ellipse cx="0" cy="0" rx="12" ry="14" fill="#fff" stroke="#1E2448" stroke-width="3.5"></ellipse><circle cx="0" cy="1" r="6.5" fill="#1E2448"></circle><circle cx="2" cy="-2" r="1.8" fill="#fff"></circle></g><g transform="translate(22,-432) scale(1,1)"><ellipse cx="0" cy="0" rx="12" ry="14" fill="#fff" stroke="#1E2448" stroke-width="3.5"></ellipse><circle cx="0" cy="1" r="6.5" fill="#1E2448"></circle><circle cx="2" cy="-2" r="1.8" fill="#fff"></circle></g><path d="M-10,-458 L-36,-458" stroke="#1E2448" stroke-width="6.5" stroke-linecap="round"></path><path d="M10,-458 L36,-458" stroke="#1E2448" stroke-width="6.5" stroke-linecap="round"></path><path d="M-2,-420 Q6,-408 -4,-404" stroke="#1E2448" stroke-width="4" fill="none" stroke-linecap="round"></path><path d="M-26,-400 Q-12,-412 0,-404 Q12,-412 26,-400 Q14,-398 0,-399 Q-14,-398 -26,-400Z" fill="#1B1B1B" stroke="#1E2448" stroke-width="4"></path><path d="M-14,-392 Q0,-388 14,-392" stroke="#1E2448" stroke-width="5.5" stroke-linecap="round" fill="none"></path></g></g><g><path d="M66,-350 L79.70798661970966,-259.02697596081646" stroke="#1E2448" stroke-width="48" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path d="M79.70798661970966,-259.02697596081646 L84.20372190593285,-173.14456586284467" stroke="#1E2448" stroke-width="44" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path d="M79.70798661970966,-259.02697596081646 L84.20372190593285,-173.14456586284467" stroke="#FF6700" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path d="M66,-350 L79.70798661970966,-259.02697596081646" stroke="#FF6700" stroke-width="34" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><circle cx="84.20372190593285" cy="-173.14456586284467" r="19" fill="#D8B08C" stroke="#1E2448" stroke-width="6"></circle></g></g></g></g></svg></div></div><ol class="bubbles"><li class="bub tone-villain" data-reveal="0"><span class="who">Vex</span>Nobody questions the boss on a Friday.</li></ol><div class="reveal-ctrl"><button class="btn primary" data-reveal-next><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg> Reveal next</button><button class="btn ghost" data-reveal-all>Show all</button></div></div></div><div class="narr"><details class="transcript"><summary><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h8"/></svg> Transcript</summary><div class="tx"><p><span class="who">Vex</span> Heh. Nobody questions the boss on a Friday afternoon.</p></div></details></div></section><section class="scene t-decision" id="s-s05_decide" data-scene="s05_decide" data-template="decision" aria-label="Scene 5 of 13: What should Sam do?"><div class="stage"><div class="decision"><p class="kicker"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/></svg> Choose one</p><h2 class="scene-title" tabindex="-1">What should Sam do?</h2><ul class="choices"><li><button class="choice" data-choice="a" data-next="n_paid" data-correct="0"><svg class="ico flip-rtl" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span>Pay now. It&#x27;s the CEO.</span></button></li><li><button class="choice" data-choice="b" data-next="n_reply" data-correct="0"><svg class="ico flip-rtl" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span>Reply to the email to check</span></button></li><li><button class="choice" data-choice="c" data-next="n_good" data-correct="1"><svg class="ico flip-rtl" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span>Call Hana on her directory number</span></button></li></ul><div class="dec-fb" role="status" aria-live="polite"></div></div></div><div class="narr"><details class="transcript"><summary><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h8"/></svg> Transcript</summary><div class="tx"><p><span class="who">Narrator</span> What should Sam do?</p><p><span class="who">Narrator</span> Pay now, reply to the email, or call Hana back on her directory number?</p></div></details></div></section><section class="scene t-statement" id="s-s06_paid" data-scene="s06_paid" data-template="statement" aria-label="Scene 6 of 13: That money went to the attacker."><div class="stage"><div class="hero statement"><div class="hero-ico"><svg class="ico" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></div><p class="big scene-title" tabindex="-1">That money went to the <mark>attacker</mark>.</p><p class="lead">Already paid? Report to IT Security and Finance immediately.</p></div></div><div class="narr"><details class="transcript"><summary><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h8"/></svg> Transcript</summary><div class="tx"><p><span class="who">Omar</span> That money went to the attacker. If money has already been sent, report it to I T Security and Finance immediately.</p></div></details></div></section><section class="scene t-statement" id="s-s07_reply" data-scene="s07_reply" data-template="statement" aria-label="Scene 7 of 13: Your reply went to the attacker."><div class="stage"><div class="hero statement"><div class="hero-ico"><svg class="ico" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></div><p class="big scene-title" tabindex="-1">Your reply went to the <mark>attacker</mark>.</p><p class="lead">Never use contact details from the request itself.</p></div></div><div class="narr"><details class="transcript"><summary><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h8"/></svg> Transcript</summary><div class="tx"><p><span class="who">Omar</span> Your reply went straight to the attacker. Never use a contact detail given in the request itself.</p></div></details></div></section><section class="scene t-cartoon" id="s-s08_callback" data-scene="s08_callback" data-template="cartoon" aria-label="Scene 8 of 13: office two-shot on the phone: Sam at the desk (left), the real Hana (right); Sam shocked, then relieved."><div class="stage"><div class="cartoon" data-reveal-scope><div class="panel"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" class="setbg" aria-hidden="true" focusable="false"><rect width="1600" height="900" fill="#E8EEF7"/><rect y="680" width="1600" height="220" fill="#C9D4E5"/><rect x="1060" y="120" width="380" height="260" rx="8" fill="#BFE3EE" opacity=".8"/><path d="M1250 120v260M1060 250h380" stroke="#fff" stroke-width="10"/><rect x="420" y="640" width="760" height="40" rx="6" fill="#8A9BB5"/><rect x="460" y="680" width="24" height="160" fill="#7A8AA3"/><rect x="1116" y="680" width="24" height="160" fill="#7A8AA3"/></svg><div class="ppl" style="--x:35.4%;--s:1.25" data-cast="rookie"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-200 -560 400 580" width="400" height="580"><g><g transform="translate(0,0) scale(1,1) rotate(0)" opacity="1"><g><g transform="rotate(0,-26,-200)"><path d="M-28,-200 L-30,-30" stroke="#1E2448" stroke-width="58" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path d="M-28,-200 L-30,-30" stroke="#4A4F5E" stroke-width="44" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><ellipse cx="-36" cy="-16" rx="34" ry="17" fill="#F4F7FB" stroke="#1E2448" stroke-width="6"></ellipse></g><g transform="rotate(0,26,-200)"><path d="M28,-200 L30,-30" stroke="#1E2448" stroke-width="58" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path d="M28,-200 L30,-30" stroke="#4A4F5E" stroke-width="44" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><ellipse cx="36" cy="-16" rx="34" ry="17" fill="#F4F7FB" stroke="#1E2448" stroke-width="6"></ellipse></g></g><g transform="translate(0,-1.035134549177249)"><g><circle cx="-58" cy="-470" r="26" fill="#141414" stroke="#1E2448" stroke-width="6" stroke-linejoin="round"></circle><circle cx="-40" cy="-500" r="26" fill="#141414" stroke="#1E2448" stroke-width="6" stroke-linejoin="round"></circle><circle cx="-10" cy="-512" r="26" fill="#141414" stroke="#1E2448" stroke-width="6" stroke-linejoin="round"></circle><circle cx="22" cy="-508" r="26" fill="#141414" stroke="#1E2448" stroke-width="6" stroke-linejoin="round"></circle><circle cx="50" cy="-488" r="26" fill="#141414" stroke="#1E2448" stroke-width="6" stroke-linejoin="round"></circle><circle cx="62" cy="-455" r="26" fill="#141414" stroke="#1E2448" stroke-width="6" stroke-linejoin="round"></circle><circle cx="-66" cy="-438" r="26" fill="#141414" stroke="#1E2448" stroke-width="6" stroke-linejoin="round"></circle><circle cx="66" cy="-425" r="26" fill="#141414" stroke="#1E2448" stroke-width="6" stroke-linejoin="round"></circle><circle cx="-64" cy="-405" r="26" fill="#141414" stroke="#1E2448" stroke-width="6" stroke-linejoin="round"></circle><circle cx="64" cy="-395" r="26" fill="#141414" stroke="#1E2448" stroke-width="6" stroke-linejoin="round"></circle></g><g><path d="M-66,-350 L-81.14424296503694,-259.25501719094365" stroke="#1E2448" stroke-width="48" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path d="M-81.14424296503694,-259.25501719094365 L-87.53930690232498,-173.49311914036412" stroke="#1E2448" stroke-width="44" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path d="M-81.14424296503694,-259.25501719094365 L-87.53930690232498,-173.49311914036412" stroke="#A9D4F5" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path d="M-66,-350 L-81.14424296503694,-259.25501719094365" stroke="#A9D4F5" stroke-width="34" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><circle cx="-87.53930690232498" cy="-173.49311914036412" r="19" fill="#C68B5E" stroke="#1E2448" stroke-width="6"></circle></g><path d="M-66,-362 Q-76,-260 -64,-192 L64,-192 Q76,-260 66,-362 Q0,-380 -66,-362Z" fill="#A9D4F5" stroke="#1E2448" stroke-width="7" stroke-linejoin="round"></path><path d="M-24,-368 L0,-346 L24,-368" fill="none" stroke="#1E2448" stroke-width="4" stroke-linejoin="round"></path><g><path d="M-26,-364 L-6,-290 M26,-364 L6,-290" stroke="#006AB3" stroke-width="6"></path><rect x="-18" y="-292" width="36" height="46" rx="6" fill="#fff" stroke="#1E2448" stroke-width="4"></rect><rect x="-10" y="-282" width="20" height="14" rx="3" fill="#006AB3"></rect></g><path d="M-64,-200 L64,-200" stroke="#1E2448" stroke-width="0"></path><g transform="rotate(0,0,-360)"><rect x="-17" y="-384" width="34" height="30" fill="#C68B5E" stroke="#1E2448" stroke-width="5"></rect><ellipse cx="-58" cy="-424" rx="11" ry="15" fill="#C68B5E" stroke="#1E2448" stroke-width="5"></ellipse><ellipse cx="58" cy="-424" rx="11" ry="15" fill="#C68B5E" stroke="#1E2448" stroke-width="5"></ellipse><ellipse cx="0" cy="-432" rx="58" ry="66" fill="#C68B5E" stroke="#1E2448" stroke-width="7"></ellipse><path d="M-54,-458 Q-30,-486 0,-470 Q30,-490 56,-458 Q30,-472 0,-462 Q-30,-474 -54,-458Z" fill="#141414"></path><g><g transform="translate(-22,-432) scale(1,1)"><ellipse cx="0" cy="0" rx="12" ry="14" fill="#fff" stroke="#1E2448" stroke-width="3.5"></ellipse><circle cx="0" cy="1" r="6.5" fill="#1E2448"></circle><circle cx="2" cy="-2" r="1.8" fill="#fff"></circle></g><g transform="translate(22,-432) scale(1,1)"><ellipse cx="0" cy="0" rx="12" ry="14" fill="#fff" stroke="#1E2448" stroke-width="3.5"></ellipse><circle cx="0" cy="1" r="6.5" fill="#1E2448"></circle><circle cx="2" cy="-2" r="1.8" fill="#fff"></circle></g><path d="M-10,-458 L-36,-458" stroke="#1E2448" stroke-width="6.5" stroke-linecap="round"></path><path d="M10,-458 L36,-458" stroke="#1E2448" stroke-width="6.5" stroke-linecap="round"></path><path d="M-2,-420 Q6,-408 -4,-404" stroke="#1E2448" stroke-width="4" fill="none" stroke-linecap="round"></path><path d="M-14,-392 Q0,-388 14,-392" stroke="#1E2448" stroke-width="5.5" stroke-linecap="round" fill="none"></path></g></g><g><path d="M66,-350 L82.80567866480467,-259.54797313152494" stroke="#1E2448" stroke-width="48" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path d="M82.80567866480467,-259.54797313152494 L91.40016742809483,-173.97849981949807" stroke="#1E2448" stroke-width="44" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path d="M82.80567866480467,-259.54797313152494 L91.40016742809483,-173.97849981949807" stroke="#A9D4F5" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path d="M66,-350 L82.80567866480467,-259.54797313152494" stroke="#A9D4F5" stroke-width="34" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><circle cx="91.40016742809483" cy="-173.97849981949807" r="19" fill="#C68B5E" stroke="#1E2448" stroke-width="6"></circle></g></g></g></g></svg></div><div class="ppl" style="--x:65.6%;--s:1.25" data-cast="exec"><g transform="scale(-1,1) translate(-110,0)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-200 -560 400 580" width="400" height="580"><g><g transform="translate(0,0) scale(1,1) rotate(0)" opacity="1"><g><g transform="rotate(0,-26,-200)"><path d="M-28,-200 L-30,-30" stroke="#1E2448" stroke-width="58" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path d="M-28,-200 L-30,-30" stroke="#232957" stroke-width="44" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><ellipse cx="-36" cy="-16" rx="34" ry="17" fill="#1E2448" stroke="#1E2448" stroke-width="6"></ellipse></g><g transform="rotate(0,26,-200)"><path d="M28,-200 L30,-30" stroke="#1E2448" stroke-width="58" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path d="M28,-200 L30,-30" stroke="#232957" stroke-width="44" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><ellipse cx="36" cy="-16" rx="34" ry="17" fill="#1E2448" stroke="#1E2448" stroke-width="6"></ellipse></g></g><g transform="translate(0,0.3111809641150923)"><circle cx="0" cy="-510" r="30" fill="#7A7A80" stroke="#1E2448" stroke-width="6" stroke-linejoin="round"></circle><g><path d="M-66,-350 L-79.61129535548905,-259.01245888174776" stroke="#1E2448" stroke-width="48" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path d="M-79.61129535548905,-259.01245888174776 L-83.97924297870122,-173.12345473359807" stroke="#1E2448" stroke-width="44" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path d="M-79.61129535548905,-259.01245888174776 L-83.97924297870122,-173.12345473359807" stroke="#232957" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path d="M-66,-350 L-79.61129535548905,-259.01245888174776" stroke="#232957" stroke-width="34" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><circle cx="-83.97924297870122" cy="-173.12345473359807" r="19" fill="#C9906B" stroke="#1E2448" stroke-width="6"></circle></g><path d="M-66,-362 Q-76,-260 -64,-192 L64,-192 Q76,-260 66,-362 Q0,-380 -66,-362Z" fill="#232957" stroke="#1E2448" stroke-width="7" stroke-linejoin="round"></path><g><path d="M-22,-366 L0,-300 L22,-366 Z" fill="#FFFFFF" stroke="#1E2448" stroke-width="4"></path><path d="M-22,-366 L-8,-318 L-30,-300Z M22,-366 L8,-318 L30,-300Z" fill="#232957" stroke="#1E2448" stroke-width="4" stroke-linejoin="round"></path><path d="M0,-300 L0,-196" stroke="#1E2448" stroke-width="3"></path></g><path d="M-64,-200 L64,-200" stroke="#1E2448" stroke-width="0"></path><g transform="rotate(0,0,-360)"><rect x="-17" y="-384" width="34" height="30" fill="#C9906B" stroke="#1E2448" stroke-width="5"></rect><ellipse cx="-58" cy="-424" rx="11" ry="15" fill="#C9906B" stroke="#1E2448" stroke-width="5"></ellipse><ellipse cx="58" cy="-424" rx="11" ry="15" fill="#C9906B" stroke="#1E2448" stroke-width="5"></ellipse><ellipse cx="0" cy="-432" rx="58" ry="66" fill="#C9906B" stroke="#1E2448" stroke-width="7"></ellipse><path d="M-60,-446 Q-56,-500 0,-500 Q56,-500 60,-446 Q40,-470 0,-472 Q-40,-470 -60,-446Z" fill="#7A7A80" stroke="#1E2448" stroke-width="6" stroke-linejoin="round"></path><g><g transform="translate(-22,-432) scale(1,1)"><ellipse cx="0" cy="0" rx="12" ry="14" fill="#fff" stroke="#1E2448" stroke-width="3.5"></ellipse><circle cx="0" cy="1" r="6.5" fill="#1E2448"></circle><circle cx="2" cy="-2" r="1.8" fill="#fff"></circle></g><g transform="translate(22,-432) scale(1,1)"><ellipse cx="0" cy="0" rx="12" ry="14" fill="#fff" stroke="#1E2448" stroke-width="3.5"></ellipse><circle cx="0" cy="1" r="6.5" fill="#1E2448"></circle><circle cx="2" cy="-2" r="1.8" fill="#fff"></circle></g><path d="M-10,-458 L-36,-458" stroke="#1E2448" stroke-width="6.5" stroke-linecap="round"></path><path d="M10,-458 L36,-458" stroke="#1E2448" stroke-width="6.5" stroke-linecap="round"></path><path d="M-2,-420 Q6,-408 -4,-404" stroke="#1E2448" stroke-width="4" fill="none" stroke-linecap="round"></path><path d="M-14,-392 Q0,-388 14,-392" stroke="#1E2448" stroke-width="5.5" stroke-linecap="round" fill="none"></path></g></g><g><path d="M66,-350 L84.32913804922424,-259.8443418393916" stroke="#1E2448" stroke-width="48" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path d="M84.32913804922424,-259.8443418393916 L94.94201841708727,-174.50169851088066" stroke="#1E2448" stroke-width="44" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path d="M84.32913804922424,-259.8443418393916 L94.94201841708727,-174.50169851088066" stroke="#232957" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path d="M66,-350 L84.32913804922424,-259.8443418393916" stroke="#232957" stroke-width="34" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><circle cx="94.94201841708727" cy="-174.50169851088066" r="19" fill="#C9906B" stroke="#1E2448" stroke-width="6"></circle></g></g></g></g></svg></g></div></div><ol class="bubbles"><li class="bub tone-plain" data-reveal="0"><span class="who">Hana</span>I never sent that. Don&#x27;t pay it!</li><li class="bub tone-plain" data-reveal="1"><span class="who">Sam</span>Reporting it to IT Security now.</li></ol><div class="reveal-ctrl"><button class="btn primary" data-reveal-next><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg> Reveal next</button><button class="btn ghost" data-reveal-all>Show all</button></div></div></div><div class="narr"><details class="transcript"><summary><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h8"/></svg> Transcript</summary><div class="tx"><p><span class="who">Narrator</span> Sam calls Hana back on her number in the company directory.</p><p><span class="who">Hana</span> I never sent that. Don&#x27;t pay it!</p><p><span class="who">Sam</span> Reporting it to I T Security now.</p></div></details></div></section><section class="scene t-steps" id="s-s09_rule" data-scene="s09_rule" data-template="steps" aria-label="Scene 9 of 13: Every payment request"><div class="stage"><h2 class="scene-title" tabindex="-1">Every payment request</h2><ol class="steps"><li><span class="st-n" aria-hidden="true">1</span><div class="st-b"><span class="st-ico"><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg></span><strong>Call back a known number</strong><span class="sub">Never one from the request</span></div></li><li><span class="st-n" aria-hidden="true">2</span><div class="st-b"><span class="st-ico"><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="4"/><path d="M1 21a8 8 0 0 1 16 0"/><path d="M16 4a4 4 0 0 1 0 8M19 21a8 8 0 0 0-3-6.3"/></svg></span><strong>Two people approve</strong><span class="sub">Bank changes and USD 10,000+</span></div></li><li><span class="st-n" aria-hidden="true">3</span><div class="st-b"><span class="st-ico"><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 22V4M4 4h13l-2 4 2 4H4"/></svg></span><strong>Report to IT Security</strong><span class="sub">Report Phishing or ext. 4400</span></div></li></ol></div><div class="narr"><details class="transcript"><summary><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h8"/></svg> Transcript</summary><div class="tx"><p><span class="who">Omar</span> The rule: call back a number you already have. Bank changes, and payments of ten thousand dollars or more, need two approvers. And report it to I T Security.</p></div></details></div></section><section class="scene t-quiz" id="s-s10_quiz" data-scene="s10_quiz" data-template="quiz" aria-label="Scene 10 of 13: Quiz Q3 (new number in the email)."><div class="stage"><p class="kicker"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/></svg> Knowledge check</p><form class="qitem" data-q="Q3" data-type="mcq" data-points="1" data-fb="{&quot;a&quot;: &quot;That number belongs to whoever sent the request. Never use contact details given in the request.&quot;, &quot;b&quot;: &quot;Right. Call back on a number already on file in the supplier master or company directory.&quot;, &quot;c&quot;: &quot;Any channel the request gives you can reach the attacker. Use a number already on file.&quot;}" data-expl="Never use a phone number, link or contact detail given in the request itself; call back a number already on file." novalidate><fieldset><legend class="q-stem">The email lists a new phone number so you can &quot;confirm&quot;. What do you do?</legend><ul class="q-opts"><li><input type="radio" name="s10_quiz-Q3" id="s10_quiz-Q3-a" value="a" data-correct="0"><label for="s10_quiz-Q3-a">Call the new number in the email</label></li><li><input type="radio" name="s10_quiz-Q3" id="s10_quiz-Q3-b" value="b" data-correct="1"><label for="s10_quiz-Q3-b">Call a number already on file</label></li><li><input type="radio" name="s10_quiz-Q3" id="s10_quiz-Q3-c" value="c" data-correct="0"><label for="s10_quiz-Q3-c">Text the new number for a quick yes</label></li></ul></fieldset><div class="q-actions"><button type="submit" class="btn primary">Check answer</button></div><div class="q-fb" role="status" aria-live="polite"></div></form></div><div class="narr"><details class="transcript"><summary><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h8"/></svg> Transcript</summary><div class="tx"><p><span class="who">Narrator</span> Quick check. The email lists a new number to confirm. Call it?</p><p><span class="who">Narrator</span> No. Only call a number that&#x27;s already on file.</p></div></details></div></section><section class="scene t-outro" id="s-s11_outro" data-scene="s11_outro" data-template="outro" aria-label="Scene 11 of 13: The Friday Wire"><div class="stage"><div class="hero outro"><h2 class="scene-title" tabindex="-1">The Friday Wire</h2><p class="big">Pressure is the red flag. Verify first.</p><ul class="tips"><li><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg><span>Call back a known number</span></li><li><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg><span>Two people approve</span></li><li><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg><span>Report to IT Security</span></li></ul></div></div><div class="narr"><details class="transcript"><summary><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h8"/></svg> Transcript</summary><div class="tx"><p><span class="who">Narrator</span> Pressure is the red flag. Verify first, and report. No one is blamed for reporting.</p></div></details></div></section><section class="scene" id="s-__outcome" data-scene="__outcome" aria-label="Outcome"><div class="stage"><div class="outcome" role="status"><p class="oc-ico" aria-hidden="true"></p><h2 class="scene-title" tabindex="-1">Outcome</h2><p class="oc-fb"></p><p class="oc-score"></p><button class="btn ghost" data-branch-replay><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12a9 9 0 0 1-15.4 6.4L3 16M3 12a9 9 0 0 1 15.4-6.4L21 8"/><path d="M21 3v5h-5M3 21v-5h5"/></svg> Replay scenario</button></div></div></section><section class="scene" id="s-__check" data-scene="__check" aria-label="Knowledge check"><div class="stage"><h2 class="scene-title" tabindex="-1">Knowledge check</h2><div class="final-items" style="display:grid;gap:16px"><div class="card"><form class="qitem" data-q="Q1" data-type="mcq" data-points="1" data-fb="{&quot;a&quot;: &quot;Right. A sender or reply-to address that does not match the usual one is a listed warning sign.&quot;, &quot;b&quot;: &quot;A personal greeting proves nothing either way; attackers use names too.&quot;, &quot;c&quot;: &quot;Timing alone is not a listed sign; look at the address, urgency, bank details and secrecy.&quot;}" data-expl="A sender address or reply-to address that does not match the usual one is a warning sign of a fake payment request." novalidate><fieldset><legend class="q-stem">Which detail is a warning sign under the payment policy?</legend><p class="q-scen">An email from &quot;Hana (CEO)&quot; asks you to pay a supplier today. It comes from an address you have not seen before.</p><ul class="q-opts"><li><input type="radio" name="final-Q1" id="final-Q1-a" value="a" data-correct="1"><label for="final-Q1-a">The sender address doesn&#x27;t match the usual one</label></li><li><input type="radio" name="final-Q1" id="final-Q1-b" value="b" data-correct="0"><label for="final-Q1-b">The email is addressed to you by name</label></li><li><input type="radio" name="final-Q1" id="final-Q1-c" value="c" data-correct="0"><label for="final-Q1-c">The email is sent during working hours</label></li></ul></fieldset><div class="q-actions"><button type="submit" class="btn primary">Check answer</button></div><div class="q-fb" role="status" aria-live="polite"></div></form></div><div class="card"><form class="qitem" data-q="Q2" data-type="scenario" data-points="1" data-fb="{&quot;a&quot;: &quot;Seniority is never a reason to skip verification. Unverified payments must not be made.&quot;, &quot;b&quot;: &quot;A reply goes to the sender of the request. Never use contact details given in the request itself.&quot;, &quot;c&quot;: &quot;Yes. Requests from executives are verified by calling back on their directory number.&quot;}" data-expl="A request from an executive is verified by calling the executive back on their directory number or confirming in person; never use contact details from the request." novalidate><fieldset><legend class="q-stem">What should Sam do?</legend><p class="q-scen">Friday, 4:50 p.m. &quot;Hana (CEO)&quot; emails Sam in Finance: pay a supplier today, use new bank details, keep it quiet.</p><ul class="q-opts"><li><input type="radio" name="final-Q2" id="final-Q2-a" value="a" data-correct="0"><label for="final-Q2-a">Pay now. It&#x27;s the CEO.</label></li><li><input type="radio" name="final-Q2" id="final-Q2-b" value="b" data-correct="0"><label for="final-Q2-b">Reply to the email to check</label></li><li><input type="radio" name="final-Q2" id="final-Q2-c" value="c" data-correct="1"><label for="final-Q2-c">Call Hana on her directory number</label></li></ul></fieldset><div class="q-actions"><button type="submit" class="btn primary">Check answer</button></div><div class="q-fb" role="status" aria-live="polite"></div></form></div><div class="card"><form class="qitem" data-q="Q4" data-type="mcq" data-points="1" data-fb="{&quot;a&quot;: &quot;Yes. Fast reporting gives the bank the best chance to stop the transfer.&quot;, &quot;b&quot;: &quot;Don&#x27;t delete it: report first, so IT Security can investigate.&quot;, &quot;c&quot;: &quot;Waiting costs time. Report immediately; fast reporting can stop the transfer.&quot;}" data-expl="If you think money has already been sent, report it to IT Security and Finance immediately; fast reporting gives the bank the best chance to stop the transfer." novalidate><fieldset><legend class="q-stem">You think a fake payment request has just been paid. What is the first thing to do?</legend><ul class="q-opts"><li><input type="radio" name="final-Q4" id="final-Q4-a" value="a" data-correct="1"><label for="final-Q4-a">Report it to IT Security and Finance immediately</label></li><li><input type="radio" name="final-Q4" id="final-Q4-b" value="b" data-correct="0"><label for="final-Q4-b">Delete the email so it can&#x27;t spread</label></li><li><input type="radio" name="final-Q4" id="final-Q4-c" value="c" data-correct="0"><label for="final-Q4-c">Wait until Monday to be sure</label></li></ul></fieldset><div class="q-actions"><button type="submit" class="btn primary">Check answer</button></div><div class="q-fb" role="status" aria-live="polite"></div></form></div></div><p><button class="btn primary" data-submit-all><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg> Your results</button></p></div></section><section class="scene" id="s-__end" data-scene="__end" aria-label="Lesson complete"><div class="stage"><div class="results"><div class="hero-ico"><svg class="ico" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg></div><h2 class="scene-title" tabindex="-1">Lesson complete</h2><h3>The Friday Wire</h3><div id="end-score" role="status"></div><button class="btn ghost" data-retry><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12a9 9 0 0 1-15.4 6.4L3 16M3 12a9 9 0 0 1 15.4-6.4L21 8"/><path d="M21 3v5h-5M3 21v-5h5"/></svg> Try again</button></div></div></section>
+</main>
+<nav class="navbar" aria-label="Progress">
+<button class="btn ghost" id="nav-back"><svg class="ico flip-rtl" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Back</button>
+<span class="pos" id="nav-pos" aria-hidden="true"></span>
+<button class="btn primary" id="nav-next">Next <svg class="ico flip-rtl" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+</nav>
+<div id="live" class="sr-only" aria-live="polite"></div>
+<script type="application/json" id="tcs-data">{"lesson_id": "M1L1", "course_id": "northwind-bec-microdrama", "title": "The Friday Wire", "lang": "en-US", "rtl": false, "order": ["s01_title", "s02_request", "s03_email", "s04_vex", "s05_decide", "s06_paid", "s07_reply", "s08_callback", "s09_rule", "s10_quiz", "s11_outro", "__check", "__end"], "branching": {"start": "n_intro", "nodes": [{"id": "n_intro", "scenes": ["s02_request", "s03_email", "s04_vex", "s05_decide"], "outcome": "continue"}, {"id": "n_paid", "scenes": ["s06_paid"], "outcome": "bad", "score": 0, "feedback": "You paid on an unverified email. Urgency, new bank details and secrecy were the red flags. Call back a known number, and if money has gone, report it to IT Security and Finance at once."}, {"id": "n_reply", "scenes": ["s07_reply"], "outcome": "bad", "score": 2, "feedback": "Checking was right, but replying reaches the attacker. Use a number already on file, never contact details from the request."}, {"id": "n_good", "scenes": ["s08_callback"], "outcome": "good", "score": 10, "feedback": "You verified by calling back on the directory number and reported it. Attack stopped."}]}, "ui": {"next": "Next", "back": "Back", "start": "Start", "restart": "Restart", "of": "of", "transcript": "Transcript", "show_transcript": "Show transcript", "scene": "Scene", "check": "Check answer", "correct": "Correct", "incorrect": "Not quite", "try_again": "Try again", "continue": "Continue", "reveal": "Reveal next", "reveal_all": "Show all", "flip": "Flip card", "score": "Score", "pass": "Passed", "fail": "Not passed yet", "pass_mark": "Pass mark", "final_check": "Knowledge check", "results": "Your results", "dont": "Don't", "do": "Do", "skip": "Skip to lesson content", "step": "Step", "next_step": "Next step", "done": "Done", "red_flags": "Show red flags", "your_choice": "Your choice", "outcome": "Outcome", "choose": "Choose one", "order_hint": "Set the position of each item", "match_hint": "Pick the matching item", "position": "Position", "select": "Select…", "complete": "Lesson complete", "progress": "Progress", "audio": "Narration audio", "notes": "Speaker notes", "image_missing": "Visual placeholder", "menu": "Lesson menu", "jump": "Go to scene", "print": "Print", "branch_restart": "Replay scenario", "true": "True", "false": "False", "front": "Front", "back_side": "Back", "answered": "answered", "sim_wrong": "Not that step.", "sim_done": "Task complete.", "sim_fail": "Out of attempts — review the demo and try again."}, "hasQuiz": true, "passMark": 80, "quiz": [{"id": "Q1", "points": 1}, {"id": "Q2", "points": 1}, {"id": "Q3", "points": 1}, {"id": "Q4", "points": 1}]}</script>
+<script>/* tcs-render-lesson player: navigation, branching, knowledge checks, reveals, screencast sim, bookmarking.
+   Optional LMS adapter: window.TCS_LMS = {init()->stateString|null, save(state, location), score(raw,min,max),
+   status('completed'|'passed'|'failed'|'incomplete'), finish()} — provided by scorm12.js in SCORM packages. */
+(function () {
+  "use strict";
+  var D = JSON.parse(document.getElementById("tcs-data").textContent);
+  var T = D.ui, RTL = D.rtl;
+  document.documentElement.classList.remove("no-js");
+  document.documentElement.classList.add("js");
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var LMS = window.TCS_LMS || null;
+  var KEY = "tcs:" + D.lesson_id;
+
+  // ---------------------------------------------------------------- state
+  var branchScenes = {};
+  (D.branching ? D.branching.nodes : []).forEach(function (n) { n.scenes.forEach(function (s) { branchScenes[s] = n.id; }); });
+  var linear = D.order.slice(); // includes virtual __check / __end
+  var firstBranchIdx = -1, lastBranchIdx = -1;
+  linear.forEach(function (id, i) { if (branchScenes[id]) { if (firstBranchIdx < 0) firstBranchIdx = i; lastBranchIdx = i; } });
+  var S = { cur: null, hist: [], ans: {}, chk: {}, path: [], bscore: 0, bdone: false, visited: {}, done: false };
+
+  function nodeById(id) { return D.branching && D.branching.nodes.filter(function (n) { return n.id === id; })[0]; }
+  function save() {
+    var st = JSON.stringify({ c: S.cur, a: S.ans, k: S.chk, p: S.path, b: S.bscore, d: S.bdone, v: Object.keys(S.visited), x: S.done });
+    try { if (LMS) LMS.save(st, sceneOf(S.cur)); else localStorage.setItem(KEY, st); } catch (e) {}
+  }
+  function load() {
+    var st = null;
+    try { st = LMS ? LMS.init() : localStorage.getItem(KEY); } catch (e) {}
+    if (!st) return;
+    try {
+      var o = JSON.parse(st);
+      S.cur = o.c; S.ans = o.a || {}; S.chk = o.k || {}; S.path = o.p || []; S.bscore = o.b || 0; S.bdone = !!o.d; S.done = !!o.x;
+      (o.v || []).forEach(function (v) { S.visited[v] = 1; });
+    } catch (e) {}
+  }
+
+  // cursor: {m:'l', i} linear  |  {m:'b', n:nodeId, k}  branch  |  {m:'o', n:nodeId} outcome card
+  function sceneOf(c) {
+    if (!c) return linear[0];
+    if (c.m === "l") return linear[c.i];
+    if (c.m === "b") return nodeById(c.n).scenes[c.k];
+    return "__outcome";
+  }
+  function enterBranch(peek) { if (!peek) { S.path = []; S.bscore = 0; } return goNode(D.branching.start, peek); }
+  function goNode(id, peek) {
+    var n = nodeById(id);
+    if (!n) return null;
+    if (!peek) { S.path.push(id); S.bscore += n.score || 0; }
+    if (!n.scenes.length) return { m: "o", n: id };
+    return { m: "b", n: id, k: 0 };
+  }
+  function linearAfterBranch() { var i = lastBranchIdx + 1; return { m: "l", i: Math.min(i, linear.length - 1) }; }
+  function nextOf(c, peek) {
+    if (c.m === "l") {
+      var i = c.i + 1;
+      while (i < linear.length && branchScenes[linear[i]]) {
+        if (D.branching && !S.bdone && i === firstBranchIdx) return enterBranch(peek);
+        i++;
+      }
+      return i < linear.length ? { m: "l", i: i } : null;
+    }
+    if (c.m === "b") {
+      var n = nodeById(c.n);
+      if (c.k + 1 < n.scenes.length) return { m: "b", n: c.n, k: c.k + 1 };
+      if (n.outcome && n.outcome !== "continue") return { m: "o", n: c.n };
+      var idx = D.branching.nodes.indexOf(n);
+      var nx = D.branching.nodes[idx + 1];
+      return nx ? goNode(nx.id, peek) : { m: "o", n: c.n };
+    }
+    if (!peek) S.bdone = true;
+    return linearAfterBranch();
+  }
+
+  // ---------------------------------------------------------------- rendering
+  var scenes = {};
+  $$(".scene").forEach(function (el) { scenes[el.getAttribute("data-scene")] = el; });
+  var outcomeEl = scenes.__outcome;
+  var btnNext = $("#nav-next"), btnBack = $("#nav-back"), pos = $("#nav-pos"), bar = $(".progress i"), live = $("#live");
+
+  function show(c, focus) {
+    S.cur = c;
+    var id = sceneOf(c);
+    Object.keys(scenes).forEach(function (k) { scenes[k].classList.toggle("active", k === id); });
+    var el = scenes[id];
+    if (id === "__outcome") renderOutcome(nodeById(c.n));
+    if (id === "__end") renderEnd();
+    S.visited[id] = 1;
+    $$("audio, video", document).forEach(function (m) { if (!el.contains(m) && m.tagName === "AUDIO") m.pause(); });
+    var isDecision = el && el.getAttribute("data-template") === "decision" && c.m === "b";
+    btnNext.disabled = !nextOf(c, true) || isDecision;
+    btnBack.disabled = !S.hist.length;
+    var total = Object.keys(scenes).length - 1, seen = Object.keys(S.visited).length;
+    bar.style.width = Math.min(100, Math.round(100 * seen / total)) + "%";
+    var label = (el && el.getAttribute("aria-label")) || "";
+    pos.textContent = label;
+    live.textContent = label;
+    $$("[data-count]", el).forEach(countUp);
+    layoutFlows(el);
+    if (focus !== false) { var h = $(".scene-title", el) || el; h.setAttribute("tabindex", "-1"); h.focus({ preventScroll: true }); window.scrollTo(0, 0); }
+    if (id === "__end" || (!nextOf(c, true) && !D.hasQuiz)) complete();
+    save();
+  }
+  function go(c) { if (!c) return; S.hist.push(S.cur); show(c); }
+  btnNext.addEventListener("click", function () { go(nextOf(S.cur, false)); });
+  btnBack.addEventListener("click", function () { if (S.hist.length) show(S.hist.pop()); });
+  document.addEventListener("keydown", function (e) {
+    if (e.target.closest("input,select,textarea,button,summary,[contenteditable]") || e.altKey || e.ctrlKey || e.metaKey) return;
+    var fwd = RTL ? "ArrowLeft" : "ArrowRight", bwd = RTL ? "ArrowRight" : "ArrowLeft";
+    if (e.key === fwd && !btnNext.disabled) btnNext.click();
+    if (e.key === bwd && !btnBack.disabled) btnBack.click();
+  });
+
+  // menu
+  var menu = $("#menu"), menuBtn = $("#menu-btn");
+  menuBtn.addEventListener("click", function () { var o = menu.hidden; menu.hidden = !o; menuBtn.setAttribute("aria-expanded", String(o)); if (o) $("button", menu).focus(); });
+  $$("[data-jump]", menu).forEach(function (b) {
+    b.addEventListener("click", function () {
+      var id = b.getAttribute("data-jump"), i = linear.indexOf(id);
+      menu.hidden = true; menuBtn.setAttribute("aria-expanded", "false");
+      if (branchScenes[id]) go(enterBranch()); else if (i >= 0) go({ m: "l", i: i });
+    });
+  });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !menu.hidden) { menu.hidden = true; menuBtn.focus(); } });
+
+  // ---------------------------------------------------------------- decisions (branching)
+  $$(".choice[data-choice]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var sc = b.closest(".scene"), fb = $(".dec-fb", sc), nx = b.getAttribute("data-next"), ok = b.getAttribute("data-correct") === "1";
+      $$(".choice", sc).forEach(function (x) { x.classList.remove("picked"); x.setAttribute("aria-pressed", "false"); });
+      b.classList.add("picked"); b.setAttribute("aria-pressed", "true");
+      if (D.branching && S.cur.m === "b") {
+        if (nodeById(nx)) return go(goNode(nx));
+        var nid = branchScenes[nx];
+        if (nid) { S.path.push(nid); return go({ m: "b", n: nid, k: nodeById(nid).scenes.indexOf(nx) }); }
+        var li = linear.indexOf(nx); if (li >= 0) { S.bdone = true; return go({ m: "l", i: li }); }
+      }
+      fb.innerHTML = '<p class="res ' + (ok ? "ok" : "bad") + '">' + (ok ? T.correct : T.incorrect) + "</p>";
+      var li2 = linear.indexOf(nx); if (li2 >= 0 && !branchScenes[nx]) setTimeout(function () { go({ m: "l", i: li2 }); }, 900);
+    });
+  });
+  function renderOutcome(n) {
+    var o = n.outcome || "neutral", icon = o === "good" ? "✓" : o === "bad" ? "!" : "•";
+    $(".outcome", outcomeEl).className = "outcome " + o;
+    $(".oc-ico", outcomeEl).textContent = icon;
+    $(".oc-fb", outcomeEl).textContent = n.feedback || "";
+    $(".oc-score", outcomeEl).textContent = T.score + ": " + S.bscore;
+  }
+  var replay = $("[data-branch-replay]");
+  if (replay) replay.addEventListener("click", function () { S.bdone = false; go(enterBranch()); });
+
+  // ---------------------------------------------------------------- quiz
+  function grade(form) {
+    var type = form.getAttribute("data-type"), ok = true, picked = [];
+    if (type === "ordering" || type === "matching") {
+      $$("select", form).forEach(function (s) {
+        var good = s.value !== "" && s.value === s.getAttribute("data-key");
+        s.closest("li").classList.toggle("ok", good); s.closest("li").classList.toggle("bad", !good);
+        if (!good) ok = false;
+      });
+      return { ok: ok, picked: picked };
+    }
+    var inputs = $$("input", form);
+    if (!inputs.some(function (i) { return i.checked; })) return null;
+    inputs.forEach(function (i) {
+      var c = i.getAttribute("data-correct") === "1";
+      if (i.checked) picked.push(i.value);
+      if (i.checked !== c) ok = false;
+      i.closest("li").classList.toggle("ok", c);
+      i.closest("li").classList.toggle("bad", i.checked && !c);
+    });
+    return { ok: ok, picked: picked };
+  }
+  $$("form.qitem").forEach(function (f) {
+    f.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var r = grade(f), out = $(".q-fb", f);
+      if (!r) { out.textContent = T.choose; return; }
+      var q = f.getAttribute("data-q"), fbm = JSON.parse(f.getAttribute("data-fb") || "{}");
+      if (!(q in S.ans)) S.ans[q] = r.ok ? 1 : 0; // first attempt counts
+      var msg = '<p class="res ' + (r.ok ? "ok" : "bad") + '">' + (r.ok ? T.correct : T.incorrect) + "</p>";
+      r.picked.forEach(function (p) { if (fbm[p]) msg += "<p>" + esc(fbm[p]) + "</p>"; });
+      if (f.getAttribute("data-expl")) msg += "<p>" + esc(f.getAttribute("data-expl")) + "</p>";
+      out.innerHTML = msg;
+      syncQuiz(); save(); updateScore();
+    });
+  });
+  function esc(s) { var d = document.createElement("div"); d.textContent = s; return d.innerHTML; }
+  function syncQuiz() { $$("form.qitem").forEach(function (f) { var q = f.getAttribute("data-q"); if (q in S.ans) f.classList.add("answered"); }); }
+  function scoreNow() {
+    var tot = 0, got = 0, n = 0;
+    D.quiz.forEach(function (q) { tot += q.points; if (q.id in S.ans) { n++; got += S.ans[q.id] * q.points; } });
+    return { raw: tot ? Math.round(100 * got / tot) : 0, all: n === D.quiz.length, tot: tot };
+  }
+  function updateScore() {
+    if (!D.hasQuiz) return;
+    var s = scoreNow();
+    if (s.all && LMS) { LMS.score(s.raw, 0, 100); LMS.status(s.raw >= D.passMark ? "passed" : "failed"); }
+  }
+  var submitAll = $("[data-submit-all]");
+  if (submitAll) submitAll.addEventListener("click", function () {
+    $$("#s-__check form.qitem").forEach(function (f) { var q = f.getAttribute("data-q"); if (!(q in S.ans)) { if (grade(f)) f.requestSubmit(); else S.ans[q] = 0; } });
+    updateScore(); save(); go({ m: "l", i: linear.indexOf("__end") });
+  });
+  function renderEnd() {
+    var box = $("#end-score");
+    if (!box) return;
+    var html = "";
+    if (D.hasQuiz) {
+      var s = scoreNow(), pass = s.raw >= D.passMark;
+      html += '<p class="ring">' + s.raw + "%</p><p><strong>" + (pass ? T.pass : T.fail) + "</strong> · " + T.pass_mark + " " + D.passMark + "%</p>";
+    }
+    if (D.branching && S.path.length) html += "<p>" + T.outcome + ": " + T.score + " " + S.bscore + "</p>";
+    box.innerHTML = html;
+  }
+  var retry = $("[data-retry]");
+  if (retry) retry.addEventListener("click", function () {
+    S.ans = {}; $$("form.qitem").forEach(function (f) { f.reset(); f.classList.remove("answered"); $(".q-fb", f).innerHTML = ""; $$("li", f).forEach(function (l) { l.classList.remove("ok", "bad"); }); });
+    if (LMS) LMS.status("incomplete");
+    save(); go({ m: "l", i: Math.max(0, linear.indexOf("__check")) });
+  });
+  function complete() {
+    if (S.done && !D.hasQuiz) return;
+    S.done = true;
+    if (!LMS) return;
+    if (D.hasQuiz) { var s = scoreNow(); if (s.all) { LMS.score(s.raw, 0, 100); LMS.status(s.raw >= D.passMark ? "passed" : "failed"); } }
+    else LMS.status("completed");
+  }
+
+  // ---------------------------------------------------------------- checklists, flashcards, reveals, callouts
+  $$("[data-check]").forEach(function (c) {
+    var k = c.getAttribute("data-check");
+    c.addEventListener("change", function () { S.chk[k] = c.checked ? 1 : 0; save(); });
+  });
+  $$("[data-flip]").forEach(function (b) { b.addEventListener("click", function () { b.setAttribute("aria-pressed", String(b.getAttribute("aria-pressed") !== "true")); }); });
+  $$("[data-reveal-scope]").forEach(function (sc) {
+    var els = $$("[data-reveal]", sc), cues = [];
+    els.forEach(function (e) { var c = +e.getAttribute("data-reveal"); if (cues.indexOf(c) < 0) cues.push(c); });
+    cues.sort(function (a, b) { return a - b; });
+    var step = 0, next = $("[data-reveal-next]", sc), all = $("[data-reveal-all]", sc);
+    var focus = JSON.parse(sc.getAttribute("data-focus") || "[]");
+    function apply() {
+      var upto = cues[step - 1];
+      els.forEach(function (e) { e.classList.toggle("on", step > 0 && +e.getAttribute("data-reveal") <= upto); });
+      $$(".mm-n", sc).forEach(function (n) { n.classList.remove("focus"); });
+      focus.forEach(function (f) { if (f.cue === upto) { var n = $('[data-node="' + f.node + '"]', sc); if (n) n.classList.add("focus"); } });
+      if (next) next.disabled = step >= cues.length;
+    }
+    if (next) next.addEventListener("click", function () { step = Math.min(cues.length, step + 1); apply(); });
+    if (all) all.addEventListener("click", function () { step = cues.length; apply(); });
+    if (!next) step = cues.length;
+    else step = Math.min(1, cues.length);
+    apply();
+  });
+  $$("[data-reveal-co]").forEach(function (b) {
+    var sc = b.closest(".scene"), n = 0, items = $$(".co", sc);
+    b.addEventListener("click", function () {
+      if (n >= items.length) return;
+      items[n].classList.add("on");
+      $$('.mock .pin[data-co="' + n + '"]', sc).forEach(function (p) { p.classList.add("on"); });
+      n++; if (n >= items.length) b.disabled = true;
+    });
+  });
+
+  // ---------------------------------------------------------------- screencast simulation
+  $$("[data-screencast]").forEach(function (root) {
+    var acts = $$(".sc-steps li", root), hs = $(".hotspot", root), toast = $(".toast", root), body = $(".app-body", root);
+    var status = $(".sc-status", root), i = 0;
+    function target(a) { var t = a.getAttribute("data-target"); return t ? $('.sc-f[data-target="' + t + '"]', root) : null; }
+    function place() {
+      acts.forEach(function (a, k) { a.classList.toggle("cur", k === i); a.classList.toggle("done", k < i); });
+      $$(".sc-f", root).forEach(function (f) { f.classList.remove("hot"); });
+      hs.hidden = true;
+      if (i >= acts.length) { status.textContent = T.done; return; }
+      status.textContent = T.step + " " + (i + 1) + " " + T.of + " " + acts.length;
+      var tg = target(acts[i]);
+      if (tg) {
+        tg.classList.add("hot");
+        var br = body.getBoundingClientRect(), r = tg.getBoundingClientRect();
+        if (r.width) {
+          hs.style.left = (r.left - br.left - 4) + "px"; hs.style.top = (r.top - br.top - 4) + "px";
+          hs.style.width = (r.width + 8) + "px"; hs.style.height = (r.height + 8) + "px"; hs.hidden = false;
+          hs.setAttribute("aria-label", T.next_step + ": " + acts[i].textContent.trim());
+        }
+      }
+    }
+    function perform() {
+      if (i >= acts.length) return;
+      var a = acts[i], tg = target(a), d = a.getAttribute("data-do"), v = a.getAttribute("data-value");
+      if (tg) {
+        var val = $("[data-val]", tg);
+        if ((d === "type" || d === "select") && val && v) val.firstChild ? (val.firstChild.nodeType === 3 ? val.firstChild.nodeValue = v : val.insertBefore(document.createTextNode(v), val.firstChild)) : (val.textContent = v);
+        if (d === "click" && val && val.classList.contains("sc-cb")) val.classList.add("on");
+        tg.classList.add("done");
+      }
+      var lbl = a.textContent.replace(/^\d+/, "").trim();
+      if (d === "toast" || d === "callout" || d === "highlight") { toast.textContent = lbl; toast.hidden = !lbl; }
+      i++; place();
+    }
+    hs.addEventListener("click", perform);
+    var nb = $("[data-sc-next]", root), rb = $("[data-sc-reset]", root);
+    if (nb) nb.addEventListener("click", perform);
+    if (rb) rb.addEventListener("click", function () { i = 0; toast.hidden = true; $$(".sc-f", root).forEach(function (f) { f.classList.remove("done"); }); place(); });
+    root._place = place;
+  });
+
+  // ---------------------------------------------------------------- interactive sim (guided / practice / assess)
+  $$("[data-sim]").forEach(function (root) {
+    var C = JSON.parse(root.getAttribute("data-sim")), msg = $(".sim-msg", root), toast = $(".toast", root);
+    var k = 0, tries = 0, failed = false, done = false, demoing = false;
+    function fld(t) { return $('.sc-f[data-target="' + t + '"]', root); }
+    function say(cls, text) { msg.innerHTML = '<span class="' + cls + '">' + esc(text) + "</span>"; }
+    function guide() {
+      $$(".sc-f", root).forEach(function (f) { f.classList.remove("hot", "hint-on"); });
+      if (done || k >= C.expect.length) return;
+      var t = C.expect[k].target, f = fld(t);
+      if (C.mode === "guided" && f) { f.classList.add("hot"); if (C.hints[t]) say("", C.hints[t]); }
+    }
+    function finish(ok) {
+      done = true; guide();
+      say(ok ? "ok" : "bad", ok ? T.sim_done : T.sim_fail);
+      if (C.mode === "assess" && !(C.item in S.ans)) { S.ans[C.item] = ok ? 1 : 0; save(); updateScore(); }
+    }
+    function fail(t) {
+      tries++;
+      var hint = C.mode !== "assess" ? (C.hints[t] || C.hints[C.expect[k].target] || "") : "";
+      say("bad", T.sim_wrong + (hint ? " " + hint : "") + " (" + tries + "/" + C.max + ")");
+      if (tries < C.max) return;
+      failed = true;
+      if (C.mode === "assess") return finish(false);
+      if (C.on_fail === "replay_demo") return demo();
+      if (C.on_fail === "continue") return finish(false);
+      var f = fld(C.expect[k].target); if (f) f.classList.add("hint-on");
+    }
+    function value(el) { return el.type === "checkbox" ? (el.checked ? "on" : "") : el.hasAttribute("data-file") ? "attached" : (el.value || "").trim(); }
+    function act(el) {
+      if (done || demoing) return;
+      var t = el.getAttribute("data-sim-field"), e = C.expect[k];
+      if (!e) return;
+      var v = value(el), isBtn = el.tagName === "BUTTON";
+      if (t !== e.target) { if (isBtn || v) fail(t); return; }
+      var want = e.value;
+      var ok = want == null ? true : want === "*" ? !!v : v.replace(",", ".").toLowerCase() === String(want).replace(",", ".").toLowerCase();
+      if (!ok) return fail(t);
+      fld(t).classList.add("done"); k++;
+      say("ok", T.correct + (k < C.expect.length ? " · " + T.step + " " + (k + 1) + " " + T.of + " " + C.expect.length : ""));
+      if (k >= C.expect.length) finish(!failed); else guide();
+    }
+    function reset(keepFail) {
+      k = 0; tries = 0; done = false; if (!keepFail) failed = false;
+      $$("[data-sim-field]", root).forEach(function (el) { if (el.type === "checkbox") el.checked = false; else if (el.tagName !== "BUTTON") el.value = ""; });
+      $$(".sc-f", root).forEach(function (f) { f.classList.remove("done", "hot", "hint-on"); });
+      msg.textContent = ""; toast.hidden = true; guide();
+    }
+    function demo() {
+      demoing = true; reset(true);
+      var i = 0;
+      (function nx() {
+        if (i >= C.demo.length) { demoing = false; reset(true); say("", T.try_again); return; }
+        var a = C.demo[i++], f = a.target && fld(a.target);
+        $$(".sc-f", root).forEach(function (x) { x.classList.remove("hot"); });
+        if (f) { f.classList.add("hot"); var el = $("[data-sim-field]", f); if (el && a.value && el.tagName !== "BUTTON") el.value = a.value; }
+        setTimeout(nx, 900);
+      })();
+    }
+    $$("[data-sim-field]", root).forEach(function (el) {
+      el.addEventListener(el.tagName === "BUTTON" ? "click" : "change", function () { act(el); });
+      if (el.tagName === "INPUT" && el.type === "text") el.addEventListener("keydown", function (e) { if (e.key === "Enter") act(el); });
+    });
+    $("[data-sim-reset]", root).addEventListener("click", function () { reset(false); });
+    guide();
+  });
+
+  // ---------------------------------------------------------------- process flow edges
+  function layoutFlows(scope) {
+    $$(".flow", scope).forEach(function (fl) {
+      fl.classList.toggle("vertical", fl.clientWidth < 620);
+      var svg = $(".flow-svg", fl), edges = JSON.parse(fl.getAttribute("data-edges") || "[]"), fr = fl.getBoundingClientRect();
+      if (!fr.width) return;
+      var ns = "http://www.w3.org/2000/svg", out = "";
+      out += '<defs><marker id="fa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#5B6385"/></marker></defs>';
+      edges.forEach(function (e, k) {
+        var a = $('[data-node="' + e.from + '"]', fl), b = $('[data-node="' + e.to + '"]', fl);
+        if (!a || !b) return;
+        var ra = a.getBoundingClientRect(), rb = b.getBoundingClientRect();
+        var ax = ra.left + ra.width / 2 - fr.left, ay = ra.top + ra.height / 2 - fr.top, bx = rb.left + rb.width / 2 - fr.left, by = rb.top + rb.height / 2 - fr.top;
+        // clip to box edges
+        function clip(x, y, tx, ty, r) { var dx = tx - x, dy = ty - y, sx = Math.abs(dx) ? (r.width / 2 + 2) / Math.abs(dx) : 1e9, sy = Math.abs(dy) ? (r.height / 2 + 2) / Math.abs(dy) : 1e9, s = Math.min(sx, sy); return [x + dx * s, y + dy * s]; }
+        var p1 = clip(ax, ay, bx, by, ra), p2 = clip(bx, by, ax, ay, rb);
+        out += '<line x1="' + p1[0] + '" y1="' + p1[1] + '" x2="' + p2[0] + '" y2="' + p2[1] + '" stroke="#5B6385" stroke-width="2" marker-end="url(#fa)"/>';
+        var lab = $('.elabel[data-e="' + k + '"]', fl);
+        if (lab) { lab.style.left = (p1[0] + p2[0]) / 2 + "px"; lab.style.top = (p1[1] + p2[1]) / 2 + "px"; }
+      });
+      svg.innerHTML = out;
+    });
+    $$("[data-screencast]", scope).forEach(function (r) { if (r._place) r._place(); });
+  }
+  window.addEventListener("resize", function () { var el = scenes[sceneOf(S.cur)]; if (el) layoutFlows(el); });
+  function countUp(el) {
+    var n = $(".n", el), to = parseFloat(el.getAttribute("data-count"));
+    if (!n || isNaN(to) || window.matchMedia("(prefers-reduced-motion: reduce)").matches || el._done) return;
+    el._done = 1; var t0 = performance.now(), dec = (String(to).split(".")[1] || "").length;
+    (function f(t) { var k = Math.min(1, (t - t0) / 900); n.textContent = (to * k).toLocaleString(D.lang, { minimumFractionDigits: dec, maximumFractionDigits: dec }); if (k < 1) requestAnimationFrame(f); })(t0);
+  }
+
+  // print: open transcripts + reveal everything
+  function finalCounts() { $$("[data-count]").forEach(function (el) { el._done = 1; var n = $(".n", el); if (n) n.textContent = parseFloat(el.getAttribute("data-count")).toLocaleString(D.lang); }); }
+  window.addEventListener("beforeprint", function () {
+    finalCounts();
+    $$("details.transcript").forEach(function (d) { d.setAttribute("open", ""); });
+    Object.keys(scenes).forEach(function (k) { layoutFlows(scenes[k]); });
+  });
+  window.addEventListener("pagehide", function () { save(); if (LMS && LMS.finish) LMS.finish(); });
+
+  // ---------------------------------------------------------------- boot
+  load();
+  $$("[data-check]").forEach(function (c) { if (S.chk[c.getAttribute("data-check")]) c.checked = true; });
+  syncQuiz();
+  var hashScene = location.hash.replace(/^#s-/, "");
+  if (/[?&]all=1/.test(location.search)) { finalCounts(); $$("details.transcript").forEach(function (d) { d.setAttribute("open", ""); }); document.documentElement.classList.remove("js"); $$("[data-reveal-scope] [data-reveal]").forEach(function (e) { e.classList.add("on"); }); Object.keys(scenes).forEach(function (k) { layoutFlows(scenes[k]); }); return; }
+  var start = { m: "l", i: 0 };
+  if (hashScene && linear.indexOf(hashScene) >= 0) start = branchScenes[hashScene] ? { m: "b", n: branchScenes[hashScene], k: nodeById(branchScenes[hashScene]).scenes.indexOf(hashScene) } : { m: "l", i: linear.indexOf(hashScene) };
+  else if (S.cur && sceneOf(S.cur) && scenes[sceneOf(S.cur)]) start = S.cur;
+  if (start.m === "l" && branchScenes[linear[start.i]] && D.branching) start = enterBranch();
+  show(start, false);
+  if (/[?&]reveal=1/.test(location.search)) { // QA: reveal every progressive element
+    $$("[data-reveal-all]").forEach(function (b) { b.click(); });
+    $$("[data-reveal-co]").forEach(function (b) { for (var k = 0; k < 8; k++) b.click(); });
+  }
+  setTimeout(function () { window.scrollTo(0, 0); }, 0);
+})();
+</script>
+</body></html>

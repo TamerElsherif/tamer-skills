@@ -1,0 +1,62 @@
+# Northwind Co. Expense Policy (SOP-FIN-007)
+
+Version: 3.2
+Effective date: 2026-03-01
+Owner: Finance Department
+Last reviewed: 2026-02-15
+
+## 1. Purpose
+
+This policy explains how Northwind Co. employees spend company money on business travel and other work expenses, and how they get reimbursed. It protects employees and the company by making spending fair, transparent and auditable.
+
+## 2. Scope
+
+This policy applies to all Northwind Co. employees, contractors and interns in every country where Northwind Co. operates. It covers travel, meals, accommodation, client entertainment, training fees and small office purchases.
+
+## 3. Definitions
+
+- **Business expense**: a cost an employee pays personally that is necessary to do Northwind Co. work and is not a personal benefit.
+- **Receipt**: an itemised proof of payment showing the vendor, date, items and amount paid. A card statement alone is not a receipt.
+- **Approver**: the person who checks and approves an expense claim, normally the employee's direct manager.
+- **Per diem**: a fixed daily allowance for meals and incidental costs while travelling overnight on company business.
+
+## 4. Policy rules
+
+1. A receipt is required for every expense over $25.
+2. Employees must submit expense claims within 30 days of the expense date. Claims older than 90 days are not reimbursed.
+3. The meal per diem is $60 per day for domestic travel and $85 per day for international travel.
+4. Hotel costs are capped at $220 per night unless the Travel Desk approves an exception in writing.
+5. Flights under 6 hours must be booked in economy class.
+6. Alcohol is not reimbursable, except during client entertainment that the employee's manager approved in advance.
+7. Approval limits: a manager approves claims up to $1,000; a director approves claims up to $5,000; the CFO approves any claim above $5,000.
+
+## 5. Procedure: submitting an expense claim
+
+1. Keep the itemised receipt for every expense and photograph it on the same day.
+2. Open the Northwind Expenses app and select New Claim.
+3. Choose the expense category and enter the date, amount and business purpose.
+4. Attach the receipt photo to each line and check that the total matches.
+5. Submit the claim to your approver before the 30-day deadline.
+6. Respond to any approver question within 5 business days, or the claim is returned to you.
+
+## 6. Warnings
+
+- Never split one expense into several claims to stay under an approval limit.
+- Do not submit personal costs, such as family meals or private travel upgrades, as business expenses.
+- Submitting a false or inflated claim is treated as misconduct and can lead to disciplinary action, including dismissal.
+
+## 7. Facts and figures
+
+In 2025, 18% of expense claims were returned to employees because a receipt was missing. Claims submitted with all receipts were reimbursed in an average of 6 business days.
+
+## 8. Example
+
+Example: Mona from Sales takes a client to dinner in Alexandria. Her manager approved the client entertainment in advance. The bill is $140, including one bottle of wine. Mona photographs the itemised receipt that evening, submits the claim the next morning under Client Entertainment, and is reimbursed in full because the entertainment was pre-approved.
+
+## 9. Records
+
+Employees must keep original paper receipts for 7 years after the claim date. Finance stores the scanned receipts in the expense system for the same period.
+
+## 10. Questions
+
+Contact the Finance Help Desk through the internal service portal for any question about this policy.

@@ -1,0 +1,47 @@
+{
+ "lesson_id": "M1L1",
+ "lang": "primary",
+ "at": "2026-11-17T21:35:25",
+ "checks": {
+  "storyboard": {
+   "exit": 0,
+   "report": {
+    "errors": [],
+    "warnings": [],
+    "stats": {
+     "scenes": 9,
+     "est_seconds": 186.1,
+     "wpm": 130,
+     "cues": 22,
+     "claims": 27,
+     "general_knowledge_claims": 2
+    }
+   }
+  },
+  "quiz": {
+   "exit": 0,
+   "report": {
+    "errors": [],
+    "warnings": [],
+    "stats": {
+     "items": 4,
+     "per_objective": {
+      "O1": 4
+     },
+     "types": {
+      "ordering": 1,
+      "scenario": 1,
+      "mcq": 1,
+      "true_false": 1
+     }
+    }
+   }
+  },
+  "grounding": {
+   "exit": 0,
+   "report": "lessons/M1L1/M1L1.grounding_report.json",
+   "llm_verdicts": false
+  }
+ },
+ "result": "pass"
+}

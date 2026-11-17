@@ -1,0 +1,502 @@
+{
+ "schema_version": "1.0",
+ "course_id": "kit-tests",
+ "lesson_id": "gallery",
+ "title": "Template gallery",
+ "language": "en-US",
+ "aspect": "16:9",
+ "formats": [
+  "explainer"
+ ],
+ "voices": {
+  "narrator": {
+   "provider": "placeholder",
+   "voice": "none"
+  }
+ },
+ "broll_shots": [
+  {
+   "id": "none",
+   "query": "x",
+   "provider": "local",
+   "path": "missing.mp4"
+  }
+ ],
+ "generated_images": [
+  {
+   "id": "img1",
+   "prompt": "office desk, no text, no letters, no numbers, no signage, no logos"
+  }
+ ],
+ "scenes": [
+  {
+   "id": "g01_section",
+   "template": "section",
+   "props": {
+    "n": 2,
+    "title": "How attackers get in",
+    "sub": "Three common routes",
+    "icon": "door"
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "Section two. How attackers get in."
+    }
+   ],
+   "claims": [
+    {
+     "text": "test",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "g02_icon_grid",
+   "template": "icon_grid",
+   "props": {
+    "title": "Warning signs",
+    "items": [
+     {
+      "icon": "clock",
+      "label": "Urgency",
+      "sub": "Act now or else",
+      "tone": "warn"
+     },
+     {
+      "icon": "user",
+      "label": "Unknown sender"
+     },
+     {
+      "icon": "link",
+      "label": "Odd links",
+      "tone": "warn"
+     },
+     {
+      "icon": "gift",
+      "label": "Too good to be true"
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "^Urgency, ^unknown senders, ^odd links and ^offers too good to be true."
+    }
+   ],
+   "claims": [
+    {
+     "text": "test",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "g03_steps",
+   "template": "steps",
+   "props": {
+    "title": "Report in three steps",
+    "steps": [
+     {
+      "icon": "eye",
+      "label": "Spot it"
+     },
+     {
+      "icon": "flag",
+      "label": "Report it",
+      "sub": "Use the portal"
+     },
+     {
+      "icon": "trash",
+      "label": "Delete it"
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "^Spot it, ^report it, ^delete it."
+    }
+   ],
+   "claims": [
+    {
+     "text": "test",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "g04_timeline",
+   "template": "timeline",
+   "props": {
+    "title": "Anatomy of an attack",
+    "events": [
+     {
+      "when": "09:02",
+      "label": "Email sent"
+     },
+     {
+      "when": "09:10",
+      "label": "Link clicked"
+     },
+     {
+      "when": "09:15",
+      "label": "Password stolen"
+     },
+     {
+      "when": "11:00",
+      "label": "Invoice fraud"
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "^Email sent, ^clicked, ^password stolen, ^fraud."
+    }
+   ],
+   "claims": [
+    {
+     "text": "test",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "g05_comparison",
+   "template": "comparison",
+   "props": {
+    "title": "Real or fake?",
+    "left": {
+     "head": "Real IT request",
+     "items": [
+      "Uses ticket number",
+      "Never asks for password"
+     ]
+    },
+    "right": {
+     "head": "Fake request",
+     "items": [
+      "Pressure to act now",
+      "Asks for your code"
+     ]
+    }
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "^One ^two ^three ^four."
+    }
+   ],
+   "claims": [
+    {
+     "text": "test",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "g06_definition",
+   "template": "definition",
+   "props": {
+    "term": "Phishing",
+    "def": "A message that pretends to be from someone you trust to trick you into clicking, paying or sharing secrets.",
+    "note": "Also by SMS (smishing) and voice (vishing).",
+    "icon": "mail"
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "^Phishing is a trick message. ^It also comes by text and voice."
+    }
+   ],
+   "claims": [
+    {
+     "text": "test",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "g07_statement",
+   "template": "statement",
+   "props": {
+    "text": "Attackers target people, not computers.",
+    "accent": "people",
+    "sub": "That's why habits matter.",
+    "icon": "users"
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "Attackers target people. ^That's why habits matter."
+    }
+   ],
+   "claims": [
+    {
+     "text": "test",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "g08_table",
+   "template": "table",
+   "props": {
+    "title": "Who to call",
+    "columns": [
+     "Situation",
+     "Contact",
+     "Within"
+    ],
+    "rows": [
+     [
+      "Suspicious email",
+      "Security team",
+      "1 hour"
+     ],
+     [
+      "Lost laptop",
+      "Service desk",
+      "Immediately"
+     ],
+     [
+      "Data sent by mistake",
+      "Privacy officer",
+      "24 hours"
+     ]
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "^One ^two ^three."
+    }
+   ],
+   "claims": [
+    {
+     "text": "test",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "g09_broll",
+   "template": "broll",
+   "props": {
+    "shot": "none",
+    "chips": [
+     "Spot the Phish",
+     "Why it matters"
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "B-roll placeholder test."
+    }
+   ],
+   "claims": [
+    {
+     "text": "test",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "g10_image",
+   "template": "image",
+   "props": {
+    "image": "img1",
+    "caption": "Attackers study public profiles first",
+    "chips": [
+     "Recon"
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "Image placeholder test."
+    }
+   ],
+   "claims": [
+    {
+     "text": "test",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "g11_browser_mock",
+   "template": "browser_mock",
+   "props": {
+    "url": "https://northwind-login.example.co/verify",
+    "bad": true,
+    "page": "login",
+    "brand": "Northwind Sign-in",
+    "callouts": [
+     {
+      "cue": 0,
+      "label": "Not our real domain",
+      "target": "url"
+     },
+     {
+      "cue": 1,
+      "label": "Asks for your password",
+      "target": "form"
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "^Look at the address. ^And the form."
+    }
+   ],
+   "claims": [
+    {
+     "text": "test",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "g12_mfa_prompt",
+   "template": "mfa_prompt",
+   "props": {
+    "app": "Northwind Sign-in",
+    "place": "Unknown location",
+    "count_to": 5,
+    "caption": "Never approve a prompt you didn't start"
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "^Prompts keep coming ^again and again."
+    }
+   ],
+   "claims": [
+    {
+     "text": "test",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "g13_popup",
+   "template": "popup",
+   "props": {
+    "title": "Your computer is infected!",
+    "body": "Call support now at the number below to remove 5 viruses.",
+    "cta": "Call now",
+    "tone": "bad"
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "^A scary pop-up appears."
+    }
+   ],
+   "claims": [
+    {
+     "text": "test",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "g14_code_mock",
+   "template": "code_mock",
+   "props": {
+    "title": "Never hard-code secrets",
+    "filename": "config.py",
+    "lines": [
+     "import os",
+     "",
+     "API_KEY = \"sk-live-123456\"  # bad",
+     "DB_PASS = os.environ[\"DB_PASS\"]  # good",
+     "print('ready')"
+    ],
+    "highlight": [
+     {
+      "cue": 0,
+      "line": 3,
+      "tone": "warn",
+      "label": "Secret in source code"
+     },
+     {
+      "cue": 1,
+      "line": 4,
+      "tone": "safe",
+      "label": "Read from the environment"
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "^This line leaks a key. ^This one reads it safely."
+    }
+   ],
+   "claims": [
+    {
+     "text": "test",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "g15_decision",
+   "template": "decision",
+   "props": {
+    "prompt": "A caller says he's from IT and needs your MFA code. What do you do?",
+    "choices": [
+     {
+      "id": "a",
+      "label": "Read out the code",
+      "next": "g16_flashcard"
+     },
+     {
+      "id": "b",
+      "label": "Hang up and call IT back on the known number",
+      "next": "g16_flashcard",
+      "correct": true
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "What would you do? ^Hang up and call back."
+    }
+   ],
+   "claims": [
+    {
+     "text": "test",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "g16_flashcard",
+   "template": "flashcard",
+   "props": {
+    "front": "What is vishing?",
+    "back": "Phishing by phone call or voicemail, often impersonating IT or a bank.",
+    "icon": "phone"
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "What is vishing? ^Phishing by phone."
+    }
+   ],
+   "claims": [
+    {
+     "text": "test",
+     "general_knowledge": true
+    }
+   ]
+  }
+ ]
+}

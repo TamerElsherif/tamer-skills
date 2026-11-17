@@ -1,0 +1,17 @@
+{
+ "lesson_id": "M1L2",
+ "course_id": "northwind-expenses",
+ "title": "Expense claim checklist",
+ "language": "en-US",
+ "direction": "ltr",
+ "entry": "index.html",
+ "scenes": 5,
+ "has_quiz": true,
+ "pass_mark": 80,
+ "quiz_items": 3,
+ "branching": false,
+ "files": [
+  "index.html"
+ ],
+ "missing_media": []
+}

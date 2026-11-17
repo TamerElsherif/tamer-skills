@@ -1,0 +1,393 @@
+<!doctype html><html lang="ar-EG" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>إزاي تقدّم مطالبة مصاريف</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600&family=Cairo:wght@400;600;700&family=IBM+Plex+Sans+Arabic:wght@400;600&family=IBM+Plex+Mono:wght@400;600&family=Caveat:wght@500;700&display=swap"><style>:root{--navy:#363E77;--blue:#006AB3;--cyan:#6FC7DA;--attention:#FF6700;--bg:#F4F7FB;--card:#FFFFFF;--ink:#363E77;--muted:#5A6385;--safe:#1E7F4F;--line:#D5DCE8;--ink-strong:#1E2350;--attention-text:#B34700;--font-head:'Cairo', 'IBM Plex Sans Arabic', 'Noto Kufi Arabic', sans-serif;--font-body:'Cairo', 'IBM Plex Sans Arabic', 'Noto Kufi Arabic', sans-serif;--font-mono:'IBM Plex Mono', ui-monospace, monospace;--font-hand:'Caveat', 'Comic Sans MS', cursive;}/* tcs-render-lesson — shared styles for lesson.html, deck.html and job aids.
+   Colours/fonts come from CSS variables injected per storyboard theme (see _common.css_vars). */
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.55 var(--font-body)}
+h1,h2,h3,.big,.num,.kicker{font-family:var(--font-head)}
+h1{font-size:clamp(28px,4.4vw,48px);line-height:1.15;margin:.2em 0}
+h2{font-size:clamp(22px,3vw,34px);line-height:1.2;margin:.2em 0 .6em}
+h3{font-size:20px;margin:.2em 0 .5em}
+a{color:var(--blue)}
+:focus-visible{outline:3px solid var(--attention);outline-offset:2px;border-radius:4px}
+.ico{flex:none;vertical-align:middle}
+[dir=rtl] .flip-rtl{transform:scaleX(-1)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;inset-inline-start:8px;top:-60px;background:var(--navy);color:#fff;padding:8px 14px;border-radius:8px;z-index:20}
+.skip:focus{top:8px}
+.btn{font:600 15px/1 var(--font-body);border-radius:10px;border:2px solid var(--blue);background:var(--card);color:var(--blue);
+  padding:10px 16px;cursor:pointer;display:inline-flex;gap:6px;align-items:center;min-height:44px}
+.btn.primary{background:var(--blue);color:#fff}
+.btn.ghost{border-color:var(--line);color:var(--ink)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.kicker{color:var(--blue);font-weight:600;letter-spacing:.04em;text-transform:uppercase;font-size:14px;margin:0 0 .3em;display:flex;gap:6px;align-items:center}
+[dir=rtl] .kicker{letter-spacing:0}
+.lead{font-size:clamp(17px,2vw,22px);color:var(--muted);max-width:46ch;margin-inline:auto}
+.sub{display:block;color:var(--muted);font-size:15px;font-weight:400}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 2px 10px rgba(27,33,64,.06)}
+.tone-warn{--tone:var(--attention);--on-tone:var(--ink-strong)} .tone-safe{--tone:var(--safe);--on-tone:#fff} .tone-info{--tone:var(--blue);--on-tone:#fff} .tone-bad{--tone:var(--attention);--on-tone:var(--ink-strong)}
+/* orange is a fill/stroke colour only: text on light backgrounds uses --attention-text, text on orange uses dark ink */
+
+/* ---------- app shell ---------- */
+.topbar{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:12px;padding:10px 16px;
+  background:linear-gradient(90deg,var(--navy),var(--blue));color:#fff}
+.topbar h1{font-size:17px;margin:0;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar .btn{border-color:rgba(255,255,255,.5);background:transparent;color:#fff;min-height:38px;padding:6px 10px}
+.progress{height:6px;background:rgba(255,255,255,.25);position:absolute;inset-inline:0;bottom:0}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),#fff);transition:width .3s}
+.menu{position:fixed;inset-block:0;inset-inline-start:0;width:min(340px,90vw);background:var(--card);z-index:30;padding:16px;overflow:auto;
+  box-shadow:0 0 40px rgba(0,0,0,.25)}
+.menu ol{padding-inline-start:22px} .menu button{all:unset;cursor:pointer;color:var(--blue);padding:4px 0;display:block}
+.menu button:focus-visible{outline:3px solid var(--attention)}
+main{max-width:1180px;margin:0 auto;padding:20px 16px 110px}
+.scene{background:var(--card);border-radius:20px;border:1px solid var(--line);padding:clamp(18px,3.4vw,44px);min-height:min(68vh,640px);
+  display:flex;flex-direction:column;gap:14px;box-shadow:0 8px 30px rgba(27,33,64,.07)}
+.js .scene{display:none} .js .scene.active{display:flex}
+.scene{scroll-margin-top:80px}
+.scene .stage{flex:1;display:flex;flex-direction:column;justify-content:center}
+.navbar{position:fixed;bottom:0;inset-inline:0;background:rgba(255,255,255,.96);border-top:1px solid var(--line);z-index:10;
+  display:flex;gap:10px;align-items:center;justify-content:space-between;padding:10px 16px}
+.navbar .pos{color:var(--muted);font-size:14px}
+.no-js .navbar,.no-js .topbar .btn{display:none}
+audio{width:100%;max-width:520px}
+.transcript{border-top:1px dashed var(--line);padding-top:8px;font-size:15px}
+.transcript summary{cursor:pointer;color:var(--blue);font-weight:600;display:flex;gap:6px;align-items:center;min-height:32px}
+.transcript .who{font-weight:600;color:var(--navy);text-transform:capitalize}
+.narr{display:flex;flex-direction:column;gap:8px}
+
+/* ---------- hero templates ---------- */
+.hero{text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px}
+.hero-ico{width:96px;height:96px;border-radius:50%;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--blue),var(--cyan))}
+.part{color:var(--muted);font-weight:600}
+.sec-n{font:700 64px/1 var(--font-head);color:var(--cyan)}
+.stat .num{font-size:clamp(56px,9vw,104px);font-weight:700;color:var(--blue);margin:0;line-height:1}
+.src{color:var(--muted);font-size:14px}
+.statement .big{font-size:clamp(24px,3.6vw,40px);line-height:1.3;max-width:28ch;font-weight:600;margin:0}
+.statement mark{background:none;color:var(--attention-text)}
+.outro .big{font-size:clamp(22px,3vw,32px);font-weight:600;max-width:32ch}
+.tips{list-style:none;padding:0;display:grid;gap:8px;text-align:start}
+.tips li{display:flex;gap:8px;align-items:flex-start}.tips .ico{color:var(--safe)}
+.evidence{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:8px}
+
+/* ---------- lists ---------- */
+.bul{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.bul li{display:flex;gap:12px;align-items:flex-start;font-size:19px;background:var(--bg);border-radius:12px;padding:12px 14px}
+.bi{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;color:var(--tone);background:color-mix(in srgb,var(--tone) 14%,#fff);flex:none}
+.split{display:grid;grid-template-columns:1.1fr .9fr;gap:22px;align-items:center}
+.split.rev>:first-child{order:2}
+.grid{list-style:none;padding:0;margin:0;display:grid;gap:14px;grid-template-columns:repeat(var(--cols),minmax(0,1fr))}
+.grid .card{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.gi{width:56px;height:56px;border-radius:14px;display:grid;place-items:center;color:var(--tone);background:color-mix(in srgb,var(--tone) 12%,#fff)}
+.steps{list-style:none;padding:0;margin:0;display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));counter-reset:s}
+.steps li{display:flex;flex-direction:column;gap:8px;position:relative}
+.st-n{width:44px;height:44px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font:700 20px var(--font-head)}
+.steps.danger .st-n{background:var(--attention);color:var(--ink-strong)}
+.st-b{display:flex;flex-direction:column;gap:2px;font-size:17px}.st-ico{color:var(--blue)}
+.timeline{list-style:none;padding:24px 0 0;margin:0;display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:16px;position:relative}
+.timeline:before{content:"";position:absolute;inset-inline:0;top:31px;height:3px;background:linear-gradient(90deg,var(--blue),var(--cyan))}
+.timeline li{display:flex;flex-direction:column;gap:4px;position:relative;padding-top:22px}
+.timeline .dot{position:absolute;top:0;inset-inline-start:0;width:18px;height:18px;border-radius:50%;background:var(--card);border:4px solid var(--blue)}
+.when{font-weight:700;color:var(--blue);font-size:14px}
+.dd{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.dd-col{border-radius:16px;padding:16px;background:var(--bg)}
+.dd-col h3{display:flex;gap:8px;align-items:center}
+.dd-col.dont h3{color:var(--attention-text)}.dd-col.dont li .ico{color:var(--attention)} .dd-col.do h3,.dd-col.do li .ico{color:var(--safe)}
+.dd-col ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.dd-col li{display:flex;gap:8px;align-items:flex-start}
+.dd-col.dont{background:color-mix(in srgb,var(--attention) 8%,#fff)} .dd-col.do{background:color-mix(in srgb,var(--safe) 8%,#fff)}
+.cmp{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:stretch}
+.cmp-col{background:var(--bg);border-radius:16px;padding:16px}.cmp-col.r{background:color-mix(in srgb,var(--cyan) 18%,#fff)}
+.cmp-col ul{padding-inline-start:20px;margin:0}.vs{align-self:center;color:var(--blue)}
+[dir=rtl] .vs svg{transform:scaleX(-1)}
+.def{max-width:760px;margin:0 auto;text-align:start;display:grid;gap:6px}
+.def .term{color:var(--blue);margin:0}.def-t{font-size:21px;margin:0}
+.def-ico{color:var(--blue)}
+.note{display:flex;gap:8px;color:var(--muted);font-size:15px;margin:0}
+.tbl-wrap{overflow-x:auto}
+.tbl{border-collapse:collapse;width:100%;font-size:16px}
+.tbl caption{font:600 clamp(20px,2.6vw,28px) var(--font-head);text-align:start;margin-bottom:10px}
+.tbl th,.tbl td{border-bottom:1px solid var(--line);padding:10px 12px;text-align:start;vertical-align:top}
+.tbl thead th{background:var(--navy);color:#fff}
+.tbl tbody tr:nth-child(even){background:var(--bg)}
+.checklist{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.checklist li{display:flex;gap:12px;align-items:center;font-size:18px;background:var(--bg);border-radius:12px;padding:10px 14px}
+.checklist input{width:24px;height:24px;accent-color:var(--safe);flex:none}
+.checklist .box{width:20px;height:20px;border:2px solid var(--navy);border-radius:5px;flex:none}
+
+/* ---------- media ---------- */
+.media{margin:0;position:relative;border-radius:16px;overflow:hidden;background:var(--navy);aspect-ratio:16/9}
+.media img,.media video{width:100%;height:100%;object-fit:cover;display:block}
+.media.full{width:100%}
+.ph{width:100%;height:100%;min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:#fff;
+  background:linear-gradient(135deg,var(--navy),var(--blue));padding:16px;text-align:center;font-size:15px}
+.chips{position:absolute;bottom:12px;inset-inline-start:12px;display:flex;gap:8px;flex-wrap:wrap}
+.chip{background:rgba(255,255,255,.94);color:var(--ink);border-radius:999px;padding:6px 12px;font-weight:600;font-size:15px}
+.caption{color:var(--muted);text-align:center;margin:.4em 0 0}
+
+/* ---------- mock-ups ---------- */
+.mock{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 10px 30px rgba(27,33,64,.12);overflow:hidden;max-width:820px;margin:0 auto;width:100%}
+.mock-bar,.br-bar{display:flex;gap:6px;align-items:center;padding:8px 12px;background:#EEF2F8;border-bottom:1px solid var(--line);color:var(--muted)}
+.mock-bar i,.br-bar i{width:11px;height:11px;border-radius:50%;background:#C9D2E0;display:inline-block}
+.mock-bar .ico,.mock-bar .fn{margin-inline-start:auto}
+.em-head{padding:14px 18px;border-bottom:1px solid var(--line)}
+.em-subj{font-size:21px;margin:0 0 6px}
+.em-from{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.addr{color:var(--muted);font-size:15px;direction:ltr;unicode-bidi:isolate}
+.em-to{color:var(--muted);font-size:14px;margin-top:4px}
+.em-body{padding:14px 18px;font-size:16px}.em-body p{margin:.3em 0}
+.em-att{display:inline-flex;gap:6px;align-items:center;border:1px solid var(--line);border-radius:8px;padding:6px 10px;margin:6px 0}
+.em-btn{display:inline-block;background:var(--blue);color:#fff;border-radius:8px;padding:8px 16px;font-weight:600;margin:6px 0}
+.em-sig{display:flex;flex-direction:column;color:var(--muted);font-size:14px;margin-top:8px}
+.badge.warn{color:var(--attention)}
+.pin{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--tone,var(--attention));color:var(--on-tone,var(--ink-strong));font:700 13px var(--font-body);
+  margin-inline:4px;vertical-align:middle;flex:none}
+.js .mock .pin[data-co]{opacity:0;transform:scale(.4);transition:.25s}
+.js .mock .pin[data-co].on{opacity:1;transform:none}
+.callouts{max-width:820px;margin:12px auto 0;width:100%}
+.callouts ol{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:8px}
+.co{display:flex;gap:8px;align-items:center;background:var(--bg);border-radius:10px;padding:8px 12px}
+.js .callouts.js-hide .co{display:none}.js .callouts .co.on{display:flex}
+.chat{max-width:420px;border-radius:28px;padding:10px;background:#1B2140}
+.chat.desktop{max-width:720px;border-radius:14px;background:#fff}
+.chat-title{display:flex;gap:8px;align-items:center;color:#fff;padding:8px 10px}.chat.desktop .chat-title{color:var(--ink)}
+.msgs{list-style:none;margin:0;padding:12px;background:#F2F5FA;border-radius:20px;display:flex;flex-direction:column;gap:8px;min-height:300px}
+.msg{max-width:80%;background:#fff;border:1px solid var(--line);border-radius:16px;padding:8px 12px;align-self:flex-start}
+.msg.me{align-self:flex-end;background:var(--blue);color:#fff;border-color:var(--blue)}
+.msg.warn{border:2px solid var(--attention)}
+.br-bar .url{flex:1;display:flex;gap:6px;align-items:center;background:#fff;border-radius:999px;padding:5px 12px;font:15px var(--font-mono);color:var(--ink);overflow:hidden;white-space:nowrap}
+.browser.bad .url{color:var(--attention-text)}
+.br-page{padding:22px;min-height:260px;display:flex;flex-direction:column;gap:8px;align-items:center;text-align:center}
+.br-brand{display:flex;gap:8px;align-items:center;font:700 20px var(--font-head);color:var(--navy)}
+.br-h{margin:0}.br-form{display:grid;gap:10px;width:min(320px,100%)}
+.fld{height:44px;border:1px solid var(--line);border-radius:8px;display:flex;align-items:center;padding:0 12px;color:var(--muted)}
+.fld.btnf{background:var(--blue);color:#fff;justify-content:center;border-color:var(--blue)}
+.br-err{color:var(--attention)}
+.phone{max-width:340px;border-radius:36px;background:#1B2140;padding:22px 14px;position:relative}
+.mock.mfa{overflow:visible}.mfa-stack{display:grid;gap:10px}
+.mfa-card{background:#fff;border-radius:16px;padding:12px 14px;display:grid;gap:4px;box-shadow:0 4px 12px rgba(0,0,0,.2)}
+.mfa-app{font-weight:700;display:flex;gap:6px;align-items:center}.mfa-place{color:var(--muted);font-size:14px;display:flex;gap:6px;align-items:center}
+.mfa-btns{display:flex;gap:8px;justify-content:flex-end}
+.mfa-btns span{width:40px;height:32px;border-radius:8px;display:grid;place-items:center;color:#fff}
+.mfa-btns .deny{background:var(--attention);color:var(--ink-strong)}.mfa-btns .ok{background:var(--safe)}
+.mfa-count{position:absolute;top:-10px;inset-inline-end:-10px;background:var(--attention);color:var(--ink-strong);font:700 18px var(--font-body);width:40px;height:40px;border-radius:50%;display:grid;place-items:center}
+.popup-bg{background:rgba(27,33,64,.65);border-radius:16px;padding:clamp(18px,6vw,60px);display:grid;place-items:center}
+.popup{background:#fff;border-radius:16px;max-width:460px;padding:22px;text-align:center;border-top:6px solid var(--tone)}
+.pop-ico{color:var(--tone)}.pop-cta{display:inline-block;background:var(--tone);color:var(--on-tone,#fff);border-radius:8px;padding:10px 18px;font-weight:700}
+.code{background:#1B2140;color:#E4E9F5;max-width:900px}.code .mock-bar{background:#141833;border-color:#2B3260;color:#B9C3DD}
+.code-lines{margin:0;padding:10px 0;font:15px/1.6 var(--font-mono);counter-reset:l;list-style:none;overflow-x:auto}
+.code-lines li{counter-increment:l;display:flex;gap:12px;padding:0 14px;align-items:center;flex-wrap:wrap}
+.code-lines li:before{content:counter(l);color:#6E7AA0;width:24px;text-align:end}
+.code-lines code{white-space:pre;font:inherit}
+.code-lines .hl{background:color-mix(in srgb,var(--tone) 28%,transparent)}
+.hl-l{background:var(--tone);color:var(--on-tone,#fff);border-radius:6px;padding:0 8px;font:600 13px var(--font-body)}
+
+/* ---------- screencast sim ---------- */
+.screencast{display:grid;grid-template-columns:1.4fr .9fr;gap:18px;align-items:start}
+.app{max-width:none}.app-title{display:flex;gap:8px;align-items:center;padding:10px 14px;background:var(--navy);color:#fff;font-weight:600}
+.app-body{position:relative;padding:18px}
+.app-body img{width:100%;border-radius:8px}
+.sc-fields{display:grid;gap:12px}
+.sc-f{display:grid;gap:4px;border-radius:10px;padding:6px;transition:box-shadow .2s}
+.sc-l{font-size:14px;color:var(--muted)}
+.sc-in{min-height:42px;border:1px solid var(--line);border-radius:8px;padding:8px 12px;display:flex;justify-content:space-between;align-items:center;background:#fff}
+.sc-btn{display:inline-block;background:var(--blue);color:#fff;border-radius:8px;padding:10px 18px;font-weight:600;justify-self:start}
+.sc-cb{width:22px;height:22px;border:2px solid var(--navy);border-radius:5px;display:inline-block;vertical-align:middle;margin-inline-end:8px}
+.sc-cb.on{background:var(--safe);border-color:var(--safe)}
+.sc-f.hot{box-shadow:0 0 0 3px var(--attention)}
+.sc-f.done .sc-in{border-color:var(--safe)}
+.hotspot{position:absolute;border:3px solid var(--attention);border-radius:10px;background:color-mix(in srgb,var(--attention) 10%,transparent);cursor:pointer;
+  animation:pulse 1.4s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 8px color-mix(in srgb,var(--attention) 20%,transparent)}}
+.toast{position:absolute;bottom:12px;inset-inline:12px;background:var(--navy);color:#fff;border-radius:10px;padding:10px 14px}
+.sc-ctrl{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+.sc-steps{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.sc-steps li{display:flex;gap:8px;align-items:center;padding:8px 10px;border-radius:10px;background:var(--bg);opacity:.6}
+.sc-steps li.cur{opacity:1;box-shadow:inset 0 0 0 2px var(--attention)}.sc-steps li.done{opacity:1}
+.sc-steps li.done .pin{background:var(--safe)}
+.sc-status{font-size:14px;color:var(--muted)}
+
+/* ---------- cartoon / comic / whiteboard ---------- */
+.panel{position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#E8EEF7}
+.setbg{position:absolute;inset:0;width:100%;height:100%}
+.ppl{position:absolute;bottom:2%;left:var(--x);width:calc(18% * var(--s));transform:translateX(-50%)}
+.ppl svg{width:100%;height:auto;display:block}
+.bubbles{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:8px}
+.bub{background:#fff;border:2px solid var(--navy);border-radius:18px;padding:8px 14px;max-width:640px;position:relative}
+.bub .who{display:block;font-size:12px;font-weight:700;color:var(--blue);text-transform:capitalize}
+.bub.think{border-style:dashed}.bub.tone-warn,.bub.tone-villain{border-color:var(--attention)}
+.overlay{max-width:640px;margin:10px auto 0;width:100%}
+.comic{display:grid;gap:14px}
+.comic.l-2{grid-template-columns:1fr 1fr}.comic.l-3{grid-template-columns:repeat(3,1fr)}.comic.l-2x2{grid-template-columns:1fr 1fr}
+.comic.l-1p2{grid-template-columns:1fr 1fr}.comic.l-1p2 .cpanel:first-child{grid-column:1/-1}
+.cpanel{margin:0;border:3px solid var(--ink);border-radius:12px;padding:8px;background:#fff}
+.cpanel figcaption{font:600 15px var(--font-body);background:var(--bg);border-radius:8px;padding:6px 10px;margin-top:8px}
+.cpanel .bub{font-size:15px}
+.sfx-word{position:absolute;top:8%;inset-inline-end:6%;font:700 34px var(--font-hand);color:var(--attention-text);transform:rotate(-8deg)}
+.wb .board{position:relative;aspect-ratio:16/9;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;font-family:var(--font-hand)}
+.wb-svg{position:absolute;inset:0;width:100%;height:100%}
+.wb-i{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:4px;max-width:30%;text-align:center}
+.wb-i .persona{width:clamp(60px,10vw,120px);height:auto}
+.wb-t{font:700 clamp(18px,2.6vw,32px)/1.1 var(--font-hand)}
+.wb-ico{width:clamp(36px,6vw,64px);height:auto}
+.wb-title{font-family:var(--font-hand);font-size:clamp(26px,3.4vw,40px)}
+[dir=rtl] .wb .board,[dir=rtl] .wb-title,[dir=rtl] .wb-t{font-family:var(--font-body)}
+.js [data-reveal-scope] [data-reveal]{opacity:0;transition:opacity .35s}
+.js [data-reveal-scope] [data-reveal].on{opacity:1}
+.reveal-ctrl{display:flex;gap:8px;justify-content:center;margin-top:10px}
+
+/* ---------- mindmap ---------- */
+.mm-board{position:relative;aspect-ratio:5/3;background:radial-gradient(circle at 50% 50%,color-mix(in srgb,var(--cyan) 20%,#fff),#fff 60%);border-radius:16px;border:1px solid var(--line)}
+.mm-board>svg{position:absolute;inset:0;width:100%;height:100%}
+.mm-l{stroke:var(--cyan);stroke-width:.5}
+.mm-root{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);margin:0;background:var(--navy);color:#fff;border-radius:999px;padding:12px 22px;font-size:clamp(16px,2.2vw,24px);max-width:34%;text-align:center}
+.mm-list{list-style:none;margin:0;padding:0}
+.mm-n{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);background:#fff;border:2px solid var(--tone);border-radius:12px;padding:6px 10px;
+  display:flex;gap:6px;align-items:center;font-size:clamp(12px,1.5vw,16px);max-width:24%;color:var(--ink);box-shadow:0 2px 8px rgba(27,33,64,.08)}
+.mm-n .ico{color:var(--tone)}
+.mm-n.focus{background:var(--tone);color:var(--on-tone,#fff)}.mm-n.focus .ico{color:var(--on-tone,#fff)}
+
+/* ---------- process flow ---------- */
+.flow{position:relative;display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr));gap:34px 40px;align-items:center;padding:8px}
+.flow-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.fnode{position:relative;z-index:1;background:#fff;border:2px solid var(--blue);border-radius:12px;padding:12px;text-align:center;font-weight:600;font-size:16px}
+.fnode.k-start,.fnode.k-end{border-radius:999px;background:var(--navy);color:#fff;border-color:var(--navy)}
+.fnode.k-decision{border-color:var(--attention);background:color-mix(in srgb,var(--attention) 8%,#fff)}
+.elabel{position:absolute;z-index:2;background:var(--bg);border-radius:6px;padding:0 6px;font-size:13px;color:var(--muted);transform:translate(-50%,-50%)}
+.flow.vertical{grid-template-columns:1fr !important}
+.flow.vertical .fnode{grid-column:auto !important;grid-row:auto !important}
+
+/* ---------- quiz / decision / flashcard ---------- */
+.qitem fieldset{border:0;padding:0;margin:0}
+.q-stem{font:600 clamp(19px,2.4vw,24px)/1.35 var(--font-head);margin-bottom:12px;padding:0}
+.q-scen{background:var(--bg);border-radius:12px;padding:10px 14px}
+.q-opts{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.q-opts li{display:flex;gap:10px;align-items:center;border:2px solid var(--line);border-radius:12px;padding:10px 14px;background:#fff}
+.q-opts input{width:22px;height:22px;flex:none;accent-color:var(--blue)}
+.q-opts label{flex:1;cursor:pointer}
+.q-opts li.ok{border-color:var(--safe);background:color-mix(in srgb,var(--safe) 8%,#fff)}
+.q-opts li.bad{border-color:var(--attention);background:color-mix(in srgb,var(--attention) 8%,#fff)}
+.q-rows{display:grid;gap:10px;padding-inline-start:20px}.q-rows label{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.q-rows select{min-height:40px;border-radius:8px;border:1px solid var(--line);font:inherit;padding:4px 8px}
+.q-rows li.ok select{border-color:var(--safe)}.q-rows li.bad select{border-color:var(--attention)}
+.hint{color:var(--muted);font-size:14px}
+.q-actions{margin-top:12px}
+.q-fb{margin-top:10px;border-radius:12px}
+.q-fb:not(:empty){padding:12px 14px;background:var(--bg)}
+.q-fb .res{font-weight:700;display:flex;gap:6px;align-items:center}
+.q-fb .res.ok{color:var(--safe)}.q-fb .res.bad{color:var(--attention-text)}
+.qstatic ol{margin:.4em 0}.qstatic .ok{font-weight:700}
+.choices{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.choice{width:100%;text-align:start;display:flex;gap:10px;align-items:center;font:600 18px var(--font-body);background:#fff;border:2px solid var(--blue);
+  border-radius:14px;padding:14px 16px;cursor:pointer;color:var(--ink);min-height:56px}
+.choice:hover{background:color-mix(in srgb,var(--blue) 6%,#fff)}
+.choice.static{cursor:default}.choice.picked{background:var(--blue);color:#fff}
+.flash-card{all:unset;box-sizing:border-box;display:grid;width:min(560px,100%);min-height:260px;margin:0 auto;border-radius:20px;cursor:pointer;
+  background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;padding:24px;text-align:center;place-items:center;font:600 22px/1.35 var(--font-head)}
+.flash-card:focus-visible{outline:3px solid var(--attention)}
+.flash-card small{display:block;font:500 13px var(--font-body);opacity:.8;margin-top:8px}
+.flash-card .f-back{display:none}.flash-card[aria-pressed=true]{background:#fff;color:var(--ink);border:2px solid var(--blue)}
+.flash-card[aria-pressed=true] .f-front{display:none}.flash-card[aria-pressed=true] .f-back{display:block}
+.outcome{border-radius:16px;padding:20px;text-align:center;background:var(--bg)}
+.outcome.good{background:color-mix(in srgb,var(--safe) 12%,#fff)}.outcome.bad{background:color-mix(in srgb,var(--attention) 12%,#fff)}
+.outcome .ico{width:56px;height:56px}
+.outcome.good .ico{color:var(--safe)}.outcome.bad .ico{color:var(--attention)}
+.results{display:grid;gap:12px;text-align:center;justify-items:center}
+.ring{font:700 48px var(--font-head);color:var(--blue)}
+
+/* keep 16:9 boards inside the viewport */
+.cartoon .panel,.wb .board,.media.full,.cartoon .bubbles{width:min(100%,calc((100vh - 280px) * 16 / 9));margin-inline:auto}
+.mm-board{width:min(100%,calc((100vh - 260px) * 5 / 3));margin-inline:auto}
+/* ---------- responsive ---------- */
+@media (max-width:760px){
+  body{font-size:16px}
+  .split,.dd,.cmp,.screencast{grid-template-columns:1fr}.vs{display:none}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .timeline{grid-auto-flow:row;padding:0 0 0 0}.timeline:before{top:0;bottom:0;inset-inline-start:8px;width:3px;height:auto;inset-inline-end:auto}
+  .timeline li{padding:0;padding-inline-start:34px}.timeline .dot{top:2px}
+  .comic.l-2,.comic.l-3,.comic.l-2x2,.comic.l-1p2{grid-template-columns:1fr}
+  .mm-board{aspect-ratio:3/4}.mm-n{max-width:40%}
+  .navbar .pos{display:none}
+  .bul li{font-size:17px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none !important;animation:none !important}}
+
+/* ---------- print: every scene, expanded transcripts, no chrome ---------- */
+@media print{
+  body{background:#fff;font-size:12pt}
+  .topbar,.navbar,.menu,.skip,.reveal-ctrl,.sc-ctrl,.q-actions,[data-reveal-co],audio,.hotspot{display:none !important}
+  main{padding:0;max-width:none}
+  .js .scene,.scene{display:flex !important;break-after:page;box-shadow:none;border:0;min-height:0;padding:0}
+  .js [data-reveal-scope] [data-reveal],.js .mock .pin[data-co]{opacity:1 !important;transform:none !important}
+  .js .callouts.js-hide .co{display:flex}
+  .transcript .tx{display:block}
+  details.transcript>summary{list-style:none}
+  details.transcript:not([open])>.tx{display:block}
+  .media video{display:none}
+}
+
+/* whiteboard text in the attention colour must stay readable */
+.wb-i[data-tone=attention] .wb-t{color:var(--attention-text)}
+/* sim (guided / practice / assess) */
+.sim-task{display:flex;gap:8px;align-items:flex-start;background:var(--bg);border-radius:12px;padding:10px 14px;font-weight:600}
+.sim-msg{min-height:24px;font-size:15px}.sim-msg .bad{color:var(--attention-text)}.sim-msg .ok{color:var(--safe)}
+.sc-f input,.sc-f select{font:inherit;min-height:42px;border:1px solid var(--line);border-radius:8px;padding:6px 10px;width:100%;background:#fff}
+.sc-f button.sc-btn{border:0;cursor:pointer;font:600 16px var(--font-body)}
+.sc-f.hint-on{box-shadow:0 0 0 3px var(--cyan)}
+.sim-mode{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--blue);font-weight:700}
+
+/* ---------- deck.html (appended after lesson.css) ---------- */
+body.deckbody{background:#1B2140;margin:0;overflow:hidden}
+.deck{display:flex;justify-content:center;align-items:flex-start;padding:4px 0 0;gap:16px;max-width:none;margin:0}
+.frame{position:relative;display:flex;gap:16px}
+.frame[hidden]{display:none}
+.slide{position:relative;transform-origin:top left;border-radius:0;box-shadow:none;border:0;padding:64px 80px;font-size:24px;
+  display:flex !important;flex-direction:column;overflow:hidden;background:var(--card)}
+.slide .stage{justify-content:center}
+.slide h1{font-size:64px}.slide h2{font-size:44px}.slide .lead{font-size:28px}
+.slide .bul li,.slide .checklist li{font-size:26px}.slide .q-stem{font-size:30px}
+.slide .cartoon .panel,.slide .wb .board,.slide .media.full,.slide .cartoon .bubbles,.slide .mm-board{width:100%}
+.slide .mm-board{max-height:100%}
+.slide.t-cartoon .panel,.slide.t-whiteboard .board{max-height:560px;width:auto;aspect-ratio:16/9}
+.slide.t-title,.slide.t-section{background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff}
+.slide.t-title .scene-title,.slide.t-section .scene-title,.slide.t-title .lead,.slide.t-section .lead{color:#fff}
+.slide.t-title .kicker,.slide.t-section .kicker{color:var(--cyan)}
+.notes{display:none;width:360px;background:#fff;border-radius:12px;padding:16px;font-size:15px;overflow:auto;max-height:calc(100vh - 70px)}
+.show-notes .notes{display:block}
+.notes h2{font-size:16px;margin:0 0 8px;color:var(--blue)}
+.deck-nav{position:fixed;bottom:0;inset-inline:0;height:52px;display:flex;gap:10px;align-items:center;justify-content:center;background:rgba(27,33,64,.92);color:#fff}
+.deck-nav .btn{min-height:38px}.deck-nav .btn.ghost{color:#fff;background:transparent;border-color:rgba(255,255,255,.4)}
+@media print{
+  body.deckbody{background:#fff;overflow:visible}
+  .deck{display:block;padding:0}.deck-nav{display:none}
+  .frame{display:block !important;break-after:page}
+  .slide{transform:none !important}
+  .show-notes .notes{display:block;width:auto;max-height:none;break-before:page}
+}
+
+@page{size:1600px 900px;margin:0} .slide{width:1600px;height:900px}</style></head>
+<body class="deckbody"><main class="deck" data-w="1600" data-h="900"><div class="frame" id="slide-1"><section class="slide scene active t-title" aria-roledescription="slide" aria-label="1 / 9"><div class="stage"><div class="hero"><div class="hero-ico"><svg class="ico" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/></svg></div><p class="kicker">نورثويند · تأهيل الموظفين الجدد في المالية</p><h1 class="scene-title" tabindex="-1">إزاي تقدّم مطالبة مصاريف</h1><p class="lead">الوحدة 1 · الدرس 1 · 3 دقايق</p></div></div></section><aside class="notes" aria-label="ملاحظات المتحدث"><h2>ملاحظات المتحدث</h2><p><b>Narrator</b> أهلاً بيك في نورثويند. في التلات دقايق الجايين، هتتعلم إزاي تقدّم مطالبة مصاريف تتصرف لك من أول مرة.</p><p><i>Presenter: ask who has already paid for something work-related out of pocket. Time: 30 s. · localized from en-US</i></p></aside></div><div class="frame" id="slide-2"><section class="slide scene active t-stat" aria-roledescription="slide" aria-label="2 / 9"><div class="stage"><div class="hero stat"><div class="hero-ico"><svg class="ico" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div><p class="num" data-count="18"><span></span><span class="n">18</span><span>%</span></p><h2 class="scene-title" tabindex="-1">من مطالبات 2025 رجعت بسبب إيصال ناقص</h2><p class="src">Northwind Expense Policy SOP-FIN-007 §7</p></div></div></section><aside class="notes" aria-label="ملاحظات المتحدث"><h2>ملاحظات المتحدث</h2><p><b>Narrator</b> خلّيني أقولك ليه ده مهم. في سنة ألفين خمسة وعشرين، تمنتاشر في المية من المطالبات رجعت لأصحابها، عشان الإيصال كان ناقص. والمطالبات اللي كانت كاملة الإيصالات اتصرفت في حوالي ست أيام شغل.</p><p><i>Ask: why do you think receipts go missing? Complete claims were paid in about 6 business days (§7). · localized from en-US</i></p></aside></div><div class="frame" id="slide-3"><section class="slide scene active t-bullets" aria-roledescription="slide" aria-label="3 / 9"><div class="stage"><h2 class="scene-title" tabindex="-1">أربع قواعد قبل ما تبدأ</h2><ul class="bul"><li class="tone-info"><span class="bi"><svg class="ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span><span><strong>إيصال مفصّل لأي مصروف فوق $25</strong><span class="sub">كشف حساب الكارت لوحده مش إيصال</span></span></li><li class="tone-info"><span class="bi"><svg class="ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span><span><strong>قدّم خلال 30 يوم</strong></span></li><li class="tone-warn"><span class="bi"><svg class="ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span><span><strong>بعد 90 يوم: مفيش صرف</strong></span></li><li class="tone-warn"><span class="bi"><svg class="ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18M6 6l12 12"/></svg></span><span><strong>المصاريف الشخصية مش مصاريف شغل</strong></span></li></ul></div></section><aside class="notes" aria-label="ملاحظات المتحدث"><h2>ملاحظات المتحدث</h2><p><b>Narrator</b> فيه أربع قواعد قبل أي حاجة. أي مصروف فوق خمسة وعشرين دولار لازم له إيصال مفصّل، وكشف حساب الكارت لوحده مش بيتحسب إيصال. قدّم المطالبة خلال تلاتين يوم من تاريخ المصروف. وبعد تسعين يوم، المطالبة مش بتتصرف خالص. والمصاريف الشخصية، زي أكل العيلة، عمرها ما تبقى مصاريف شغل.</p><p><i>If asked about small items: no receipt needed at $25 or less, but keeping one never hurts. · localized from en-US</i></p></aside></div><div class="frame" id="slide-4"><section class="slide scene active t-table" aria-roledescription="slide" aria-label="4 / 9"><div class="stage"><div class="tbl-wrap"><table class="tbl"><caption class="scene-title" tabindex="-1">حدود السفر</caption><thead><tr><th scope="col">البند</th><th scope="col">الحد</th><th scope="col">الاستثناء</th></tr></thead><tbody><tr><th scope="row">الأكل (بدل يومي)</th><td>في اليوم: $60 داخلي · $85 خارجي</td><td>—</td></tr><tr><th scope="row">الفندق</th><td>لحد $220 في الليلة</td><td>مكتب السفر، بموافقة مكتوبة</td></tr><tr><th scope="row">رحلات طيران أقل من 6 ساعات</th><td>درجة سياحية</td><td>—</td></tr><tr><th scope="row">الكحول</th><td>مش بيتصرف</td><td>ضيافة عميل متوافق عليها مسبقاً</td></tr></tbody></table></div></div></section><aside class="notes" aria-label="ملاحظات المتحدث"><h2>ملاحظات المتحدث</h2><p><b>Narrator</b> لما تسافر، دي الحدود اللي ماشية عليك. الأكل ستين دولار في اليوم جوّه البلد، وخمسة وتمانين دولار برّه. الفندق حدّه الأقصى متين وعشرين دولار في الليلة، إلا لو مكتب السفر وافق على استثناء كتابةً. الطيران أقل من ست ساعات يبقى درجة سياحية. والكحول مش بيتصرف غير في ضيافة عميل مديرك وافق عليها مسبقاً.</p><p><i>Example (SOP §8): Mona&#x27;s pre-approved $140 client dinner incl. wine was reimbursed in full. · localized from en-US</i></p></aside></div><div class="frame" id="slide-5"><section class="slide scene active t-steps" aria-roledescription="slide" aria-label="5 / 9"><div class="stage"><h2 class="scene-title" tabindex="-1">ست خطوات في تطبيق Northwind Expenses</h2><ol class="steps"><li><span class="st-n" aria-hidden="true">1</span><div class="st-b"><span class="st-ico"><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/></svg></span><strong>صوّر الإيصال</strong><span class="sub">في نفس اليوم</span></div></li><li><span class="st-n" aria-hidden="true">2</span><div class="st-b"><span class="st-ico"><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg></span><strong>افتح التطبيق · New Claim</strong></div></li><li><span class="st-n" aria-hidden="true">3</span><div class="st-b"><span class="st-ico"><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/></svg></span><strong>الفئة والتاريخ والمبلغ والغرض</strong></div></li><li><span class="st-n" aria-hidden="true">4</span><div class="st-b"><span class="st-ico"><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21V9M7 14l5-5 5 5M4 3h16"/></svg></span><strong>ارفع الإيصال على كل سطر</strong><span class="sub">راجع الإجمالي</span></div></li><li><span class="st-n" aria-hidden="true">5</span><div class="st-b"><span class="st-ico"><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span><strong>ابعت للمسؤول عن الموافقة</strong><span class="sub">خلال 30 يوم</span></div></li><li><span class="st-n" aria-hidden="true">6</span><div class="st-b"><span class="st-ico"><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span><strong>رد على الأسئلة</strong><span class="sub">خلال 5 أيام شغل</span></div></li></ol></div></section><aside class="notes" aria-label="ملاحظات المتحدث"><h2>ملاحظات المتحدث</h2><p><b>Narrator</b> دلوقتي، المطالبة نفسها في ست خطوات. صوّر الإيصال في نفس اليوم. افتح تطبيق Northwind Expenses واختار New Claim. اختار الفئة، وبعدين دخّل التاريخ والمبلغ والغرض من المصروف. ارفع صورة الإيصال على كل سطر، واتأكد من الإجمالي. ابعت المطالبة للمسؤول عن الموافقة خلال تلاتين يوم. ولو سألك أي سؤال، رد عليه خلال خمس أيام شغل.</p><p><i>Live session: demo the app here if available. Time: 1 min. · localized from en-US</i></p></aside></div><div class="frame" id="slide-6"><section class="slide scene active t-process_flow" aria-roledescription="slide" aria-label="6 / 9"><div class="stage"><h2 class="scene-title" tabindex="-1">مين بيوافق على مطالبتك</h2><div class="flow" data-edges="[{&quot;from&quot;: &quot;a&quot;, &quot;to&quot;: &quot;b&quot;, &quot;label&quot;: &quot;&quot;}, {&quot;from&quot;: &quot;b&quot;, &quot;to&quot;: &quot;c&quot;, &quot;label&quot;: &quot;&quot;}, {&quot;from&quot;: &quot;c&quot;, &quot;to&quot;: &quot;d&quot;, &quot;label&quot;: &quot;&quot;}]" style="--cols:4"><svg class="flow-svg" aria-hidden="true"></svg><div class="fnode k-start" data-node="a" style="grid-column:1;grid-row:1"><span>إنت بتقدّم</span></div><div class="fnode k-step" data-node="b" style="grid-column:2;grid-row:1"><span>المدير المباشر: لحد $1,000</span></div><div class="fnode k-step" data-node="c" style="grid-column:3;grid-row:1"><span>المدير الأعلى: لحد $5,000</span></div><div class="fnode k-end" data-node="d" style="grid-column:4;grid-row:1"><span>المدير المالي (CFO): فوق $5,000</span></div></div></div></section><aside class="notes" aria-label="ملاحظات المتحدث"><h2>ملاحظات المتحدث</h2><p><b>Narrator</b> مين اللي يوافق؟ ده بيعتمد على المبلغ. إنت بتقدّم المطالبة. مديرك المباشر بيوافق لحد ألف دولار. المدير الأعلى بيوافق لحد خمس تلاف. وأي حاجة فوق خمس تلاف بتروح للمدير المالي، الـ CFO.</p><p><i>localized from en-US</i></p></aside></div><div class="frame" id="slide-7"><section class="slide scene active t-quiz" aria-roledescription="slide" aria-label="7 / 9"><div class="stage"><p class="kicker"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/></svg> اختبار المعرفة</p><div class="qstatic"><p class="q-stem">رحلة المؤتمر بتاعتك كلّفت $3,200. مين يوافق على المطالبة؟</p><p class="q-scen">لسه راجع من مؤتمر يومين. الطيران والفندق والأكل مجموعهم $3,200.</p><ol type="A"><li class="">مديرك المباشر</li><li class="ok">المدير الأعلى</li><li class="">المدير المالي (CFO)</li></ol></div></div></section><aside class="notes" aria-label="ملاحظات المتحدث"><h2>ملاحظات المتحدث</h2><p><b>Narrator</b> سؤال سريع. رحلة المؤتمر بتاعتك كلّفت تلات تلاف ومتين دولار. مين يوافق على المطالبة؟</p><p><b>Narrator</b> المدير الأعلى. لأنها فوق الألف دولار، بس مش فوق الخمس تلاف.</p><p><i>localized from en-US</i></p></aside></div><div class="frame" id="slide-8"><section class="slide scene active t-do_dont" aria-roledescription="slide" aria-label="8 / 9"><div class="stage"><h2 class="scene-title" tabindex="-1">عمرك ما تعمل كده</h2><div class="dd"><div class="dd-col dont"><h3><svg class="ico" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></svg>ممنوع</h3><ul><li><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18M6 6l12 12"/></svg><span>تقسيم مصروف عشان تفضل تحت الحد</span></li><li><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18M6 6l12 12"/></svg><span>مصاريف شخصية أو ترقيات خاصة</span></li><li><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18M6 6l12 12"/></svg><span>تزويد المبلغ (مخالفة جسيمة)</span></li></ul></div><div class="dd-col do"><h3><svg class="ico" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg>بدل كده</h3><ul><li><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg><span>مصروف واحد، مطالبة واحدة، بالمبلغ الحقيقي</span></li><li><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg><span>مش متأكد؟ اسأل مكتب مساعدة المالية</span></li></ul></div></div></div></section><aside class="notes" aria-label="ملاحظات المتحدث"><h2>ملاحظات المتحدث</h2><p><b>Narrator</b> فيه تلات حاجات عمرك ما تعملها. متقسّمش مصروف واحد على كذا مطالبة عشان تفضل تحت الحد. متقدّمش مصاريف شخصية أو ترقيات خاصة. ومتزوّدش أي مطالبة. المطالبة الكدب بتتعتبر مخالفة جسيمة، وممكن توصل للفصل. بدل كده، قدّم كل مصروف مرة واحدة بمبلغه الحقيقي، ولو مش متأكد، اسأل المالية.</p><p><i>Stress: false or inflated claims can lead to dismissal (§6). · localized from en-US</i></p></aside></div><div class="frame" id="slide-9"><section class="slide scene active t-outro" aria-roledescription="slide" aria-label="9 / 9"><div class="stage"><div class="hero outro"><h2 class="scene-title" tabindex="-1">الجاي: قايمة مراجعة المطالبة</h2><p class="big">الإيصال · 30 يوم · المسؤول الصح</p><ul class="tips"><li><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg><span>مكتب مساعدة المالية: بوابة الخدمات الداخلية</span></li></ul></div></div></section><aside class="notes" aria-label="ملاحظات المتحدث"><h2>ملاحظات المتحدث</h2><p><b>Narrator</b> كده خلصنا. احتفظ بالإيصال، قدّم خلال تلاتين يوم، واستخدم قايمة المراجعة في الدرس الجاي. عندك سؤال؟ كلّم مكتب مساعدة المالية من بوابة الخدمات.</p><p><i>localized from en-US</i></p></aside></div></main>
+<nav class="deck-nav"><button class="btn ghost" id="prev">السابق</button><span id="cnt" aria-live="polite"></span>
+<button class="btn ghost" id="notes-btn" aria-pressed="false">ملاحظات المتحدث (N)</button><button class="btn primary" id="next">التالي</button></nav>
+<script>(function(){var s=[].slice.call(document.querySelectorAll('.slide')),i=0,rtl=document.dir==='rtl',
+cnt=document.getElementById('cnt'),nb=document.getElementById('notes-btn');
+function fit(){var st=document.querySelector('.deck');var W=st.dataset.w,H=st.dataset.h;var k=Math.min(innerWidth/W,(innerHeight-56)/H);
+s.forEach(function(e){e.style.transform='scale('+k+')';e.parentNode.style.width=W*k+'px';e.parentNode.style.height=H*k+'px';});}
+function go(n){i=Math.max(0,Math.min(s.length-1,n));s.forEach(function(e,k){e.parentNode.hidden=k!==i;});cnt.textContent=(i+1)+' / '+s.length;
+location.hash='slide-'+(i+1);flows(s[i]);var h=s[i].querySelector('.scene-title');if(h)h.focus({preventScroll:true});}
+function flows(sc){[].slice.call(sc.querySelectorAll('.flow')).forEach(function(fl){var svg=fl.querySelector('.flow-svg'),E=JSON.parse(fl.dataset.edges||'[]'),
+k=fl.getBoundingClientRect().width/fl.offsetWidth||1,fr=fl.getBoundingClientRect(),o='<defs><marker id="fa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#5B6385"/></marker></defs>';
+E.forEach(function(e,j){var a=fl.querySelector('[data-node="'+e.from+'"]'),b=fl.querySelector('[data-node="'+e.to+'"]');if(!a||!b)return;
+var ra=a.getBoundingClientRect(),rb=b.getBoundingClientRect(),ax=(ra.left+ra.width/2-fr.left)/k,ay=(ra.top+ra.height/2-fr.top)/k,bx=(rb.left+rb.width/2-fr.left)/k,by=(rb.top+rb.height/2-fr.top)/k;
+function c(x,y,tx,ty,r){var dx=tx-x,dy=ty-y,sx=Math.abs(dx)?(r.width/k/2+2)/Math.abs(dx):1e9,sy=Math.abs(dy)?(r.height/k/2+2)/Math.abs(dy):1e9,q=Math.min(sx,sy);return[x+dx*q,y+dy*q];}
+var p1=c(ax,ay,bx,by,ra),p2=c(bx,by,ax,ay,rb);o+='<line x1="'+p1[0]+'" y1="'+p1[1]+'" x2="'+p2[0]+'" y2="'+p2[1]+'" stroke="#5B6385" stroke-width="2" marker-end="url(#fa)"/>';
+var l=fl.querySelector('.elabel[data-e="'+j+'"]');if(l){l.style.left=(p1[0]+p2[0])/2+'px';l.style.top=(p1[1]+p2[1])/2+'px';}});svg.innerHTML=o;});}
+document.addEventListener('keydown',function(e){var f=rtl?'ArrowLeft':'ArrowRight',b=rtl?'ArrowRight':'ArrowLeft';
+if(e.key===f||e.key===' '||e.key==='PageDown'){e.preventDefault();go(i+1);}if(e.key===b||e.key==='PageUp'){e.preventDefault();go(i-1);}
+if(e.key==='Home')go(0);if(e.key==='End')go(s.length-1);if(e.key==='n'||e.key==='N'||e.key==='s'||e.key==='S')toggle();});
+function toggle(){var on=document.body.classList.toggle('show-notes');nb.setAttribute('aria-pressed',String(on));fit();}
+nb.addEventListener('click',toggle);document.getElementById('prev').addEventListener('click',function(){go(i-1);});
+document.getElementById('next').addEventListener('click',function(){go(i+1);});
+window.addEventListener('resize',fit);window.addEventListener('beforeprint',function(){s.forEach(function(e){e.parentNode.hidden=false;e.style.transform='none';e.parentNode.style.width='';e.parentNode.style.height='';flows(e);});});
+window.addEventListener('afterprint',function(){fit();go(i);});
+if(/[?&]notes=1/.test(location.search))document.body.classList.add('show-notes');
+var m=/slide-(\d+)/.exec(location.hash);fit();go(m?+m[1]-1:0);})();</script></body></html>

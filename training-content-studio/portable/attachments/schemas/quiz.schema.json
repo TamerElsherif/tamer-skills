@@ -1,0 +1,181 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://tamer-skills/training-content-studio/schemas/quiz.schema.json",
+ "title": "quiz.json — assessment mapped to objectives",
+ "type": "object",
+ "required": [
+  "schema_version",
+  "quiz_id",
+  "course_id",
+  "language",
+  "items"
+ ],
+ "additionalProperties": false,
+ "properties": {
+  "schema_version": {
+   "const": "1.0"
+  },
+  "quiz_id": {
+   "type": "string"
+  },
+  "course_id": {
+   "type": "string"
+  },
+  "lesson_id": {
+   "type": "string"
+  },
+  "kind": {
+   "enum": [
+    "knowledge-check",
+    "pre-test",
+    "post-test",
+    "flashcards",
+    "scenario"
+   ]
+  },
+  "language": {
+   "type": "string",
+   "enum": [
+    "en-US",
+    "en-GB",
+    "ar-EG",
+    "ar-MSA"
+   ]
+  },
+  "pass_mark": {
+   "type": "number",
+   "minimum": 0,
+   "maximum": 100,
+   "default": 80
+  },
+  "shuffle": {
+   "type": "boolean"
+  },
+  "items": {
+   "type": "array",
+   "minItems": 1,
+   "items": {
+    "type": "object",
+    "required": [
+     "id",
+     "type",
+     "objective_id",
+     "stem"
+    ],
+    "additionalProperties": false,
+    "properties": {
+     "id": {
+      "type": "string",
+      "pattern": "^Q[0-9A-Za-z_.-]+$"
+     },
+     "type": {
+      "enum": [
+       "mcq",
+       "multi",
+       "true_false",
+       "scenario",
+       "ordering",
+       "matching",
+       "flashcard"
+      ]
+     },
+     "objective_id": {
+      "type": "string"
+     },
+     "bloom": {
+      "enum": [
+       "remember",
+       "understand",
+       "apply",
+       "analyze",
+       "evaluate",
+       "create"
+      ]
+     },
+     "difficulty": {
+      "enum": [
+       "easy",
+       "medium",
+       "hard"
+      ]
+     },
+     "stem": {
+      "type": "string"
+     },
+     "stem_ar": {
+      "type": "string"
+     },
+     "scenario": {
+      "type": "string"
+     },
+     "options": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "required": [
+        "id",
+        "text"
+       ],
+       "properties": {
+        "id": {
+         "type": "string"
+        },
+        "text": {
+         "type": "string"
+        },
+        "text_ar": {
+         "type": "string"
+        },
+        "correct": {
+         "type": "boolean"
+        },
+        "feedback": {
+         "type": "string"
+        },
+        "match": {
+         "type": "string"
+        },
+        "order": {
+         "type": "integer"
+        }
+       }
+      }
+     },
+     "back": {
+      "type": "string",
+      "description": "flashcard back"
+     },
+     "explanation": {
+      "type": "string"
+     },
+     "source_ids": {
+      "type": "array",
+      "items": {
+       "type": "string",
+       "pattern": "^S[0-9]{2,}(#[A-Za-z0-9._-]+)?$"
+      }
+     },
+     "general_knowledge": {
+      "type": "boolean"
+     },
+     "points": {
+      "type": "integer",
+      "default": 1
+     }
+    },
+    "anyOf": [
+     {
+      "required": [
+       "source_ids"
+      ]
+     },
+     {
+      "required": [
+       "general_knowledge"
+      ]
+     }
+    ]
+   }
+  }
+ }
+}

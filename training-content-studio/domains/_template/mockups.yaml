@@ -1,0 +1,5 @@
+schema_version: "1.0"
+presets: {}
+#  <preset-id>:
+#    template: email_mock | chat_mock | browser_mock | mfa_prompt | popup | code_mock | screencast
+#    props: { … exactly as in schemas/storyboard.schema.json for that template … }

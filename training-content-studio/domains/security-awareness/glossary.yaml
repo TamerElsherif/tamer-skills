@@ -1,0 +1,41 @@
+# Security-awareness glossary (EN + AR). Use the same term everywhere (scripts, props, captions, quiz).
+# ar = Modern Standard Arabic term; ar_eg = how Egyptian professionals usually say it in speech (often the English word);
+# keep_en_in_ar: show the English term in brackets after the Arabic on first use.
+# All entries are general knowledge (general_knowledge: true) unless a client source overrides the definition.
+schema_version: "1.0"
+general_knowledge: true
+terms:
+  - {term: phishing, en: "Phishing", ar: "التصيّد الاحتيالي", ar_eg: "فيشينج", keep_en_in_ar: true, definition: "A fake message that impersonates someone trusted to make you click, pay or share information."}
+  - {term: spear-phishing, en: "Spear phishing", ar: "التصيّد الموجّه", ar_eg: "فيشينج موجّه", keep_en_in_ar: true, definition: "Phishing tailored to a specific person or role using researched details."}
+  - {term: smishing, en: "Smishing", ar: "التصيّد عبر الرسائل النصية", ar_eg: "رسايل SMS نصب", keep_en_in_ar: true, definition: "Phishing by SMS or messaging apps."}
+  - {term: vishing, en: "Vishing", ar: "التصيّد الصوتي", ar_eg: "مكالمات نصب", keep_en_in_ar: true, definition: "Phishing by phone or voice call."}
+  - {term: quishing, en: "Quishing", ar: "التصيّد عبر رمز QR", ar_eg: "QR مضروب", keep_en_in_ar: true, definition: "Phishing that hides a malicious link in a QR code."}
+  - {term: bec, en: "Business email compromise (BEC)", ar: "اختراق البريد الإلكتروني للأعمال", ar_eg: "اختراق إيميل الشغل", keep_en_in_ar: true, definition: "Fraud that uses a compromised or spoofed business email account to redirect payments or obtain data."}
+  - {term: ceo-fraud, en: "CEO fraud", ar: "احتيال انتحال صفة المدير التنفيذي", ar_eg: "نصب باسم المدير", keep_en_in_ar: false, definition: "An attacker impersonates a senior leader to request an urgent payment or data."}
+  - {term: social-engineering, en: "Social engineering", ar: "الهندسة الاجتماعية", ar_eg: "هندسة اجتماعية", keep_en_in_ar: true, definition: "Manipulating people into revealing information or granting access."}
+  - {term: pretexting, en: "Pretexting", ar: "انتحال الذريعة", ar_eg: "حجة مفبركة", keep_en_in_ar: true, definition: "Inventing a believable story or role to obtain information."}
+  - {term: tailgating, en: "Tailgating", ar: "الدخول خلف شخص مصرّح له", ar_eg: "الدخول ورا حد معاه كارت", keep_en_in_ar: true, definition: "Following an authorised person through a secure door without using your own access."}
+  - {term: mfa, en: "Multi-factor authentication (MFA)", ar: "المصادقة متعددة العوامل", ar_eg: "MFA / التحقق بخطوتين", keep_en_in_ar: true, definition: "Signing in with two or more proofs, such as a password plus an app prompt or code."}
+  - {term: mfa-fatigue, en: "MFA fatigue", ar: "إغراق طلبات المصادقة", ar_eg: "زنّ طلبات الـMFA", keep_en_in_ar: true, definition: "Sending repeated sign-in prompts hoping the user approves one."}
+  - {term: password-manager, en: "Password manager", ar: "مدير كلمات المرور", ar_eg: "Password manager", keep_en_in_ar: true, definition: "An app that creates and stores unique strong passwords."}
+  - {term: passkey, en: "Passkey", ar: "مفتاح المرور", ar_eg: "Passkey", keep_en_in_ar: true, definition: "A phishing-resistant sign-in credential stored on your device, unlocked by biometrics or PIN."}
+  - {term: malware, en: "Malware", ar: "البرمجيات الخبيثة", ar_eg: "فيروسات / مالوير", keep_en_in_ar: true, definition: "Software designed to harm, spy on or take control of a device."}
+  - {term: ransomware, en: "Ransomware", ar: "برمجيات الفدية", ar_eg: "رانسوموير", keep_en_in_ar: true, definition: "Malware that locks or encrypts data and demands payment."}
+  - {term: infostealer, en: "Infostealer", ar: "برمجية سرقة المعلومات", ar_eg: "برنامج بيسرق الباسوردات", keep_en_in_ar: true, definition: "Malware that harvests saved passwords, cookies and card data."}
+  - {term: deepfake, en: "Deepfake", ar: "التزييف العميق", ar_eg: "ديب فيك", keep_en_in_ar: true, definition: "AI-generated or altered audio, video or images that impersonate a real person."}
+  - {term: spoofing, en: "Spoofing", ar: "الانتحال", ar_eg: "تزييف المرسِل", keep_en_in_ar: true, definition: "Faking a sender's name, address, number or website."}
+  - {term: lookalike-domain, en: "Look-alike domain", ar: "نطاق مُشابه", ar_eg: "دومين شبه الأصلي", keep_en_in_ar: false, definition: "A web or email domain that imitates a trusted one with small changes."}
+  - {term: usb-drop, en: "USB drop attack", ar: "هجوم وحدات USB المتروكة", ar_eg: "فلاشة متسابة", keep_en_in_ar: false, definition: "Leaving infected USB devices where people will find and plug them in."}
+  - {term: help-desk-se, en: "Help-desk social engineering", ar: "الهندسة الاجتماعية ضد الدعم الفني", ar_eg: "نصب على الـhelp desk", keep_en_in_ar: false, definition: "Impersonating an employee to get the service desk to reset passwords or MFA."}
+  - {term: ai-data-leakage, en: "AI data leakage", ar: "تسريب البيانات عبر أدوات الذكاء الاصطناعي", ar_eg: "تسريب بيانات في أدوات الـAI", keep_en_in_ar: false, definition: "Exposing confidential data by pasting it into unapproved AI tools."}
+  - {term: least-privilege, en: "Least privilege", ar: "مبدأ أقل الصلاحيات", ar_eg: "أقل صلاحيات لازمة", keep_en_in_ar: true, definition: "Giving each person only the access their job needs."}
+  - {term: patching, en: "Patching", ar: "التحديثات الأمنية", ar_eg: "التحديثات", keep_en_in_ar: false, definition: "Installing updates that fix security weaknesses."}
+  - {term: data-breach, en: "Data breach", ar: "اختراق البيانات", ar_eg: "تسريب بيانات", keep_en_in_ar: false, definition: "Unauthorised access to, or disclosure of, protected data."}
+  - {term: insider-threat, en: "Insider threat", ar: "التهديد الداخلي", ar_eg: "خطر من جوه الشركة", keep_en_in_ar: false, definition: "Risk from people inside the organisation, malicious or careless."}
+  - {term: incident, en: "Security incident", ar: "حادث أمني", ar_eg: "حادثة أمنية", keep_en_in_ar: false, definition: "An event that threatens the confidentiality, integrity or availability of information."}
+  - {term: report-phishing, en: "Report Phishing button", ar: "زر الإبلاغ عن التصيّد", ar_eg: "زرار Report", keep_en_in_ar: true, definition: "The mail-client button that sends a suspicious message to the security team."}
+  - {term: vpn, en: "VPN", ar: "الشبكة الافتراضية الخاصة", ar_eg: "VPN", keep_en_in_ar: true, definition: "An encrypted connection to the company network over the internet."}
+  - {term: encryption, en: "Encryption", ar: "التشفير", ar_eg: "تشفير", keep_en_in_ar: false, definition: "Scrambling data so only authorised people can read it."}
+notes:
+  - "Captions/props in Arabic: wrap Latin terms in bidi isolates (U+2066 … U+2069)."
+  - "Egyptian narration may use ar_eg forms; MSA narration and job aids use ar forms."

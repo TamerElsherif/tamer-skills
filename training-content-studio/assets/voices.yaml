@@ -1,0 +1,36 @@
+# TTS voice slots → storyboard.json `voices{}` (key = persona id = `who` in narration lines).
+# Primary provider: OpenAI gpt-4o-mini-tts (voices: alloy ash ballad coral echo fable nova onyx sage shimmer verse marin cedar).
+# Alternates are suggestions — audition before use; record the final choice in decisions.json.
+# Known gotchas: occasional truncated clips (detect words-per-minute outliers and retry); Arabic numerals/acronyms read
+# better spelled out in the narration text; keep each line ≤ ~40 words for stable prosody.
+slots:
+  narrator:
+    en-US:
+      openai: {model: gpt-4o-mini-tts, voice: marin, instructions: "Warm, confident corporate trainer speaking American English to colleagues. Clear, friendly, professional; natural conversational pace, brief pauses between list items. Never robotic."}
+      elevenlabs: {voice: "<pick a warm narrator from the voice library>", model: eleven_multilingual_v2}
+      azure: {voice: en-US-AvaMultilingualNeural}
+    en-GB:
+      openai: {model: gpt-4o-mini-tts, voice: marin, instructions: "Warm, confident trainer speaking British English. Clear, friendly, measured pace."}
+      azure: {voice: en-GB-SoniaNeural}
+    ar-EG:
+      openai: {model: gpt-4o-mini-tts, voice: marin, instructions: "Speak natural Egyptian Arabic (Cairene colloquial), warm and friendly like a respected colleague explaining to the team. Clear, relaxed pace; pronounce English technical terms the way Egyptian professionals say them."}
+      elevenlabs: {voice: "<Egyptian-Arabic-capable voice; audition>", model: eleven_multilingual_v2}
+      azure: {voice: ar-EG-SalmaNeural, alt: ar-EG-ShakirNeural}
+    ar-MSA:
+      openai: {model: gpt-4o-mini-tts, voice: marin, instructions: "Speak clear Modern Standard Arabic (فصحى) in a calm, professional training tone. Moderate pace, precise pronunciation."}
+      azure: {voice: ar-SA-ZariyahNeural, alt: ar-SA-HamedNeural}
+  # Character personas (cartoon/comic/branching). Same voice id across languages; swap `instructions` language line.
+  host:      {openai: {voice: marin,   instructions: "On-screen host; warm, upbeat, clear."}}
+  learner:   {openai: {voice: ash,     instructions: "Friendly, curious employee; casual and quick."}}
+  manager:   {openai: {voice: onyx,    instructions: "Brisk, good-humoured team manager; decisive."}}
+  mentor:    {openai: {voice: echo,    instructions: "Calm, friendly expert; warm, clear, a touch of dry humour."}}
+  customer:  {openai: {voice: coral,   instructions: "Polite customer/partner; slightly impatient when stakes rise."}}
+  rookie:    {openai: {voice: ballad,  instructions: "Good-natured, over-eager new starter; expressive, quick to panic, comic."}}
+  colleague: {openai: {voice: sage,    instructions: "Supportive co-worker; natural and relaxed."}}
+  exec:      {openai: {voice: cedar,   instructions: "Senior executive; composed, low and confident."}}
+  support:   {openai: {voice: nova,    instructions: "Helpful, busy help-desk agent; friendly and fast."}}
+  # domain-pack personas declare their own voice in domains/<pack>/personas.yaml (e.g. vex → verse)
+rules:
+  - "Narrator voice ≠ any character voice in the same lesson."
+  - "Arabic characters speak Egyptian colloquial unless the brief requires MSA; narrator follows the course language."
+  - "Recording a human voice instead? Fill license fields in MANIFEST.md (talent, consent, usage, term)."

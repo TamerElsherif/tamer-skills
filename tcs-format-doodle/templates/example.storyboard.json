@@ -1,0 +1,350 @@
+{
+ "schema_version": "1.0",
+ "course_id": "northwind-security-basics",
+ "lesson_id": "M2L1",
+ "title": "How Social Engineering Works",
+ "language": "en-US",
+ "direction": "ltr",
+ "subtitle_languages": [
+  "ar-EG"
+ ],
+ "aspect": "16:9",
+ "fps": 30,
+ "formats": [
+  "doodle"
+ ],
+ "wpm": 150,
+ "objective_ids": [
+  "O1",
+  "O2"
+ ],
+ "theme": {
+  "preset": "neutral",
+  "logo": null
+ },
+ "voices": {
+  "narrator": {
+   "provider": "openai",
+   "model": "gpt-4o-mini-tts",
+   "voice": "marin",
+   "lang": "en-US",
+   "instructions": "Warm, confident corporate trainer speaking to colleagues. Clear, friendly, natural pace; brief pauses between list items. Never robotic."
+  },
+  "vex": {
+   "provider": "openai",
+   "voice": "verse",
+   "instructions": "Smug, theatrical cartoon con-artist, playful not scary."
+  }
+ },
+ "music": {
+  "bed": "whiteboard",
+  "volume": 0.12
+ },
+ "cast": [
+  "host",
+  "vex",
+  "learner"
+ ],
+ "scenes": [
+  {
+   "id": "s01_title",
+   "template": "title",
+   "props": {
+    "title": "How Social Engineering Works",
+    "sub": "Hacking people, not computers",
+    "icon": "users"
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "Welcome to a quick whiteboard session on social engineering."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Intro.",
+     "general_knowledge": true
+    }
+   ],
+   "duration_hint_s": 5
+  },
+  {
+   "id": "s02_what",
+   "template": "whiteboard",
+   "props": {
+    "title": "Social engineering",
+    "items": [
+     {
+      "cue": 0,
+      "kind": "person",
+      "cast": "vex",
+      "pose": "rub",
+      "expr": "sly",
+      "x": 380,
+      "y": 880
+     },
+     {
+      "cue": 1,
+      "kind": "arrow",
+      "x": 560,
+      "y": 600,
+      "to": {
+       "x": 1180,
+       "y": 600
+      },
+      "color": "attention"
+     },
+     {
+      "cue": 1,
+      "kind": "person",
+      "cast": "learner",
+      "pose": "phone",
+      "expr": "neutral",
+      "x": 1400,
+      "y": 880
+     },
+     {
+      "cue": 2,
+      "kind": "note",
+      "text": "tricks people",
+      "x": 760,
+      "y": 520,
+      "color": "ink"
+     },
+     {
+      "cue": 3,
+      "kind": "icon",
+      "icon": "key",
+      "x": 1600,
+      "y": 300,
+      "color": "attention"
+     },
+     {
+      "cue": 3,
+      "kind": "circle",
+      "x": 1600,
+      "y": 300,
+      "w": 180,
+      "h": 180,
+      "color": "attention"
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "^ Meet a social engineer. ^ Instead of breaking into computers, he goes straight for people, ^ using tricks to make them do what he wants, ^ like handing over a password."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Social engineering manipulates people into revealing information or granting access.",
+     "general_knowledge": true
+    }
+   ],
+   "duration_hint_s": 16
+  },
+  {
+   "id": "s03_levers",
+   "template": "whiteboard",
+   "props": {
+    "title": "The levers",
+    "items": [
+     {
+      "cue": 0,
+      "kind": "icon",
+      "icon": "clock",
+      "x": 420,
+      "y": 420,
+      "color": "ink"
+     },
+     {
+      "cue": 0,
+      "kind": "note",
+      "text": "Urgency",
+      "x": 420,
+      "y": 600,
+      "color": "ink"
+     },
+     {
+      "cue": 1,
+      "kind": "icon",
+      "icon": "badge",
+      "x": 960,
+      "y": 420,
+      "color": "ink"
+     },
+     {
+      "cue": 1,
+      "kind": "note",
+      "text": "Authority",
+      "x": 960,
+      "y": 600,
+      "color": "ink"
+     },
+     {
+      "cue": 2,
+      "kind": "icon",
+      "icon": "heart",
+      "x": 1500,
+      "y": 420,
+      "color": "ink"
+     },
+     {
+      "cue": 2,
+      "kind": "note",
+      "text": "Helpfulness",
+      "x": 1500,
+      "y": 600,
+      "color": "ink"
+     },
+     {
+      "cue": 3,
+      "kind": "underline",
+      "x": 300,
+      "y": 700,
+      "w": 1320,
+      "color": "attention"
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "Three levers do most of the work. ^ Urgency, ^ authority, ^ and our wish to be helpful. ^ Spot the lever, and you've spotted the trick."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Common levers: urgency, authority, helpfulness.",
+     "source_ids": [
+      "S03#c1"
+     ]
+    }
+   ],
+   "duration_hint_s": 15
+  },
+  {
+   "id": "s04_rules",
+   "template": "whiteboard",
+   "props": {
+    "title": "Three rules",
+    "items": [
+     {
+      "cue": 0,
+      "kind": "check",
+      "x": 360,
+      "y": 380,
+      "color": "safe"
+     },
+     {
+      "cue": 0,
+      "kind": "note",
+      "text": "Verify on a known number",
+      "x": 820,
+      "y": 380,
+      "color": "ink"
+     },
+     {
+      "cue": 1,
+      "kind": "check",
+      "x": 360,
+      "y": 560,
+      "color": "safe"
+     },
+     {
+      "cue": 1,
+      "kind": "note",
+      "text": "Never share passwords",
+      "x": 820,
+      "y": 560,
+      "color": "ink"
+     },
+     {
+      "cue": 2,
+      "kind": "check",
+      "x": 360,
+      "y": 740,
+      "color": "safe"
+     },
+     {
+      "cue": 2,
+      "kind": "note",
+      "text": "Report it",
+      "x": 820,
+      "y": 740,
+      "color": "ink"
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "Three rules keep you safe. ^ Verify the person on a number you already know. ^ Never share a password, with anyone. ^ And report anything odd."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Verify identity, never share passwords, report.",
+     "source_ids": [
+      "S03#c2"
+     ]
+    }
+   ],
+   "duration_hint_s": 14
+  },
+  {
+   "id": "s05_quiz",
+   "template": "quiz",
+   "props": {
+    "quiz_item": "Q1",
+    "q": "A caller from 'IT' needs your password to fix your account. You…",
+    "options": [
+     "Give it",
+     "Hang up and call IT on the known number",
+     "Email it instead"
+    ],
+    "answer": 1
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "Quick check. A caller from IT needs your password. What do you do?",
+     "pause": 2.2
+    },
+    {
+     "who": "narrator",
+     "text": "^ B. Hang up and call IT on the number you already know."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Never share passwords; verify on a known number.",
+     "source_ids": [
+      "S03#c2"
+     ]
+    }
+   ],
+   "hold": 3
+  },
+  {
+   "id": "s06_outro",
+   "template": "outro",
+   "props": {
+    "line": "Stop. Verify. Then act."
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "Stop, verify, then act."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Closing.",
+     "general_knowledge": true
+    }
+   ]
+  }
+ ]
+}

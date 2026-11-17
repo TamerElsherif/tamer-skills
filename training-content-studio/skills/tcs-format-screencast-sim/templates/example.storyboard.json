@@ -1,0 +1,271 @@
+{
+ "schema_version": "1.0",
+ "course_id": "northwind-finance-onboarding",
+ "lesson_id": "M1L3",
+ "title": "Practice: File an Expense Claim",
+ "language": "en-US",
+ "direction": "ltr",
+ "subtitle_languages": [
+  "ar-EG"
+ ],
+ "aspect": "16:9",
+ "fps": 30,
+ "formats": [
+  "screencast-sim"
+ ],
+ "wpm": 150,
+ "objective_ids": [
+  "O1",
+  "O2"
+ ],
+ "theme": {
+  "preset": "neutral",
+  "logo": null
+ },
+ "voices": {
+  "narrator": {
+   "provider": "openai",
+   "model": "gpt-4o-mini-tts",
+   "voice": "marin",
+   "lang": "en-US",
+   "instructions": "Warm, confident corporate trainer speaking to colleagues. Clear, friendly, natural pace; brief pauses between list items. Never robotic."
+  }
+ },
+ "music": {
+  "bed": "explainer",
+  "volume": 0.12
+ },
+ "scenes": [
+  {
+   "id": "s01_title",
+   "template": "title",
+   "props": {
+    "title": "File an Expense Claim",
+    "sub": "Watch, then try it yourself",
+    "icon": "click"
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "Let's file a claim. Watch once, then try it yourself."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Intro.",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "s02_demo",
+   "template": "screencast",
+   "props": {
+    "app": {
+     "kind": "form",
+     "title": "Northwind Expenses · New claim",
+     "fields": [
+      {
+       "id": "date",
+       "label": "Date",
+       "kind": "date"
+      },
+      {
+       "id": "cat",
+       "label": "Category",
+       "kind": "select"
+      },
+      {
+       "id": "amount",
+       "label": "Amount",
+       "kind": "amount"
+      },
+      {
+       "id": "receipt",
+       "label": "Receipt",
+       "kind": "file"
+      },
+      {
+       "id": "submit",
+       "label": "Submit",
+       "kind": "button"
+      }
+     ]
+    },
+    "actions": [
+     {
+      "cue": 0,
+      "do": "click",
+      "target": "date"
+     },
+     {
+      "cue": 1,
+      "do": "select",
+      "target": "cat",
+      "value": "Taxi"
+     },
+     {
+      "cue": 2,
+      "do": "type",
+      "target": "amount",
+      "value": "23.50"
+     },
+     {
+      "cue": 3,
+      "do": "click",
+      "target": "receipt",
+      "label": "Attach the photo"
+     },
+     {
+      "cue": 4,
+      "do": "click",
+      "target": "submit"
+     },
+     {
+      "cue": 5,
+      "do": "toast",
+      "label": "Claim sent to your manager"
+     }
+    ],
+    "sim": {
+     "mode": "demo"
+    }
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "^ Pick the date. ^ Choose the category, Taxi. ^ Type the amount. ^ Attach the receipt photo. ^ Press submit, ^ and the claim goes to your manager."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Expense portal steps.",
+     "source_ids": [
+      "S08#c1"
+     ]
+    }
+   ],
+   "duration_hint_s": 22
+  },
+  {
+   "id": "s03_try",
+   "template": "screencast",
+   "props": {
+    "app": {
+     "kind": "form",
+     "title": "Northwind Expenses · New claim",
+     "fields": [
+      {
+       "id": "date",
+       "label": "Date",
+       "kind": "date"
+      },
+      {
+       "id": "cat",
+       "label": "Category",
+       "kind": "select"
+      },
+      {
+       "id": "amount",
+       "label": "Amount",
+       "kind": "amount"
+      },
+      {
+       "id": "receipt",
+       "label": "Receipt",
+       "kind": "file"
+      },
+      {
+       "id": "submit",
+       "label": "Submit",
+       "kind": "button"
+      }
+     ]
+    },
+    "actions": [
+     {
+      "cue": 0,
+      "do": "highlight",
+      "target": "cat",
+      "label": "Your turn: pick the category"
+     },
+     {
+      "cue": 1,
+      "do": "callout",
+      "target": "receipt",
+      "label": "Don't forget the receipt"
+     }
+    ],
+    "sim": {
+     "mode": "practice",
+     "task": "File a 23.50 taxi claim for today",
+     "expect": [
+      {
+       "target": "cat",
+       "value": "Taxi"
+      },
+      {
+       "target": "amount",
+       "value": "23.50"
+      },
+      {
+       "target": "receipt",
+       "value": "*"
+      },
+      {
+       "target": "submit"
+      }
+     ],
+     "hints": {
+      "receipt": "Itemised receipts are mandatory."
+     },
+     "max_attempts": 3,
+     "on_fail": "replay_demo"
+    }
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "^ Your turn. File a taxi claim for twenty-three fifty. ^ And don't forget the receipt."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Receipts mandatory.",
+     "source_ids": [
+      "S01#p3"
+     ]
+    }
+   ],
+   "notes": "Video target shows the guided overlay; lesson/SCORM target makes it interactive."
+  },
+  {
+   "id": "s04_recap",
+   "template": "checklist",
+   "props": {
+    "title": "You did it",
+    "items": [
+     "Date",
+     "Category",
+     "Amount",
+     "Receipt",
+     "Submit"
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "^ Date, ^ category, ^ amount, ^ receipt, ^ submit. That is the whole flow."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Expense portal steps.",
+     "source_ids": [
+      "S08#c1"
+     ]
+    }
+   ]
+  }
+ ]
+}

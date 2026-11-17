@@ -1,0 +1,329 @@
+{
+ "schema_version": "1.0",
+ "run_id": "golden-security-microdrama",
+ "request": "90-second security micro-drama + branching scenario + knowledge check on BEC / CEO-fraud payment requests, English (en-US), 16:9, for all staff incl. finance",
+ "decisions": [
+  {
+   "key": "language",
+   "value": {
+    "primary": "en-US",
+    "subtitles": []
+   },
+   "signal": "--lang en",
+   "confidence": 1.0,
+   "source": "flag",
+   "alternative_rejected": "Arabic primary"
+  },
+  {
+   "key": "audience",
+   "value": {
+    "id": "all-staff",
+    "roles": [
+     "learner"
+    ],
+    "segment": "staff",
+    "notes": "all staff incl. finance / payment approvers"
+   },
+   "signal": "request 'for all staff incl. finance'",
+   "confidence": 1.0,
+   "source": "request",
+   "alternative_rejected": "general staff",
+   "critical": true
+  },
+  {
+   "key": "level",
+   "value": "beginner-intermediate",
+   "signal": "mixed audience ('all staff'), jargon density 0.00",
+   "confidence": 0.7,
+   "source": "rule",
+   "alternative_rejected": "intermediate"
+  },
+  {
+   "key": "other",
+   "value": "behavior",
+   "signal": "behavior: 'fraud', 'sources:warningx10'",
+   "confidence": 0.81,
+   "source": "sources",
+   "name": "objective_type",
+   "alternative_rejected": "policy=0.714286, procedure=0.285714, concept=0.142857"
+  },
+  {
+   "key": "domain",
+   "value": "security-awareness",
+   "signal": "--domain security-awareness",
+   "confidence": 1.0,
+   "source": "flag",
+   "critical": true
+  },
+  {
+   "key": "domain_pack",
+   "value": "security-awareness",
+   "signal": "--domain flag",
+   "confidence": 1.0,
+   "source": "flag",
+   "alternative_rejected": "_template"
+  },
+  {
+   "key": "objectives",
+   "value": [
+    {
+     "id": "O1",
+     "text": "Spot the warning signs of a fake payment or bank-detail change request",
+     "bloom": "analyze"
+    },
+    {
+     "id": "O2",
+     "text": "Decide the safe response: call back a known number and keep two-person approval",
+     "bloom": "evaluate"
+    },
+    {
+     "id": "O3",
+     "text": "Report a suspicious payment request to IT Security",
+     "bloom": "apply"
+    }
+   ],
+   "signal": "intake: user kept the 3 proposed objectives",
+   "confidence": 1.0,
+   "source": "user",
+   "alternative_rejected": "decide.py template objectives (topic parsed from the whole request)",
+   "critical": true
+  },
+  {
+   "key": "formats",
+   "value": [
+    "cartoon",
+    "branching"
+   ],
+   "signal": "request wording pins ['cartoon', 'branching']; behavior -> ['cartoon', 'branching']",
+   "confidence": 0.95,
+   "source": "request",
+   "alternative_rejected": "['cartoon', 'branching'] (rule)"
+  },
+  {
+   "key": "other",
+   "value": {
+    "assessment": "knowledge-check",
+    "evidence": false,
+    "broll": false
+   },
+   "signal": "assessment for behavior",
+   "confidence": 0.8,
+   "source": "rule",
+   "name": "assessment",
+   "alternative_rejected": "no assessment"
+  },
+  {
+   "key": "blend",
+   "value": [
+    "cartoon",
+    "branching"
+   ],
+   "signal": "primary cartoon + secondary branching (max 2/lesson, 3/course)",
+   "confidence": 0.8,
+   "source": "rule",
+   "alternative_rejected": "single format"
+  },
+  {
+   "key": "length",
+   "value": {
+    "lessons": 1,
+    "minutes_per_lesson": 1.5,
+    "total_minutes": 1.5
+   },
+   "signal": "request '90-second'",
+   "confidence": 1.0,
+   "source": "request",
+   "alternative_rejected": "microlearning default"
+  },
+  {
+   "key": "wpm",
+   "value": 140,
+   "signal": "beginner-intermediate 140 wpm",
+   "confidence": 0.8,
+   "source": "rule",
+   "alternative_rejected": "155 wpm"
+  },
+  {
+   "key": "verbosity",
+   "value": "standard",
+   "signal": "all-staff / beginner-intermediate",
+   "confidence": 0.7,
+   "source": "rule",
+   "alternative_rejected": "detailed"
+  },
+  {
+   "key": "targets",
+   "value": [
+    "video",
+    "lesson",
+    "scorm"
+   ],
+   "signal": "intake Q2: 'MP4 16:9, HTML lesson and SCORM'",
+   "confidence": 1.0,
+   "source": "user",
+   "alternative_rejected": "derived from formats"
+  },
+  {
+   "key": "aspect",
+   "value": [
+    "16:9"
+   ],
+   "signal": "--aspect 16:9",
+   "confidence": 1.0,
+   "source": "flag",
+   "alternative_rejected": "16:9 primary"
+  },
+  {
+   "key": "renderer",
+   "value": "remotion",
+   "signal": "default: standalone kit (OpenMontage alternative documented in RENDER_COMMANDS.md)",
+   "confidence": 0.8,
+   "source": "default",
+   "alternative_rejected": "openmontage"
+  },
+  {
+   "key": "other",
+   "name": "sources",
+   "value": {
+    "files": [
+     "sources/northwind-payment-verification-policy.md"
+    ],
+    "general_knowledge_allowed": true
+   },
+   "signal": "intake Q1: 'use the policy; general knowledge OK, labelled'",
+   "confidence": 1.0,
+   "source": "user"
+  },
+  {
+   "key": "other",
+   "name": "cast",
+   "value": [
+    "rookie",
+    "exec",
+    "vex",
+    "mentor"
+   ],
+   "signal": "domain scenarios.md #3 CEO fraud + #2 BEC",
+   "confidence": 0.8,
+   "source": "default"
+  },
+  {
+   "key": "other",
+   "name": "approval",
+   "value": {
+    "status": "approved",
+    "edits": []
+   },
+   "signal": "gate shown (skeleton + M1L1 preview); simulated user: 'Approve'",
+   "confidence": 1.0,
+   "source": "user"
+  }
+ ],
+ "flags": {
+  "request": "90-second security micro-drama + branching scenario + knowledge check on BEC / CEO-fraud payment requests, English (en-US), 16:9, for all staff incl. finance",
+  "lang": "en",
+  "targets": "video,lesson,scorm",
+  "aspect": "16:9",
+  "review": "none",
+  "domain": "security-awareness",
+  "renderer": "remotion",
+  "sources_summary": "examples/golden-security-microdrama/sources.yaml"
+ },
+ "summary": {
+  "course_id": "90-second-security-micro-drama-branching-scenari",
+  "title": "90-second security micro-drama + branching scenario + knowledge check on BEC / CEO-fraud payment requests, English (en-US), 16:9, incl. finance",
+  "topic": "90-second security micro-drama + branching scenario + knowledge check on BEC / CEO-fraud payment requests, English (en-US), 16:9, incl. finance",
+  "objective_type": "behavior",
+  "domain": "security-awareness",
+  "domain_pack": "security-awareness",
+  "audience": {
+   "id": "all-staff",
+   "segment": "staff",
+   "roles": [
+    "learner"
+   ],
+   "level": "beginner-intermediate"
+  },
+  "language": {
+   "primary": "en-US",
+   "subtitles": []
+  },
+  "formats": [
+   "cartoon",
+   "branching"
+  ],
+  "assessment": "knowledge-check",
+  "evidence": false,
+  "targets": [
+   "video",
+   "lesson",
+   "scorm"
+  ],
+  "aspects": [
+   "16:9"
+  ],
+  "wpm": 140,
+  "verbosity": "standard",
+  "renderer": "remotion",
+  "has_sources": true
+ },
+ "plan": {
+  "objectives": [
+   {
+    "id": "O1",
+    "text": "Spot the warning signs of 90-second security micro-drama + branching scenario + knowledge check on BEC / CEO-fraud payment requests, English (en-US), 16:9, incl. finance in realistic situations",
+    "bloom": "analyze",
+    "type": "behavior",
+    "lesson_title": "Spot the signs",
+    "source_ids": [
+     "S01#c1"
+    ],
+    "source_hint": "Fictional Northwind Co. payment verification policy FIN-SEC-07 v2.1 (effective 2026-03-01), all staff: verify any paymen"
+   },
+   {
+    "id": "O2",
+    "text": "Decide the safest response when you meet 90-second security micro-drama + branching scenario + knowledge check on BEC / CEO-fraud payment requests, English (en-US), 16:9, incl. finance",
+    "bloom": "evaluate",
+    "type": "behavior",
+    "lesson_title": "Make the call"
+   },
+   {
+    "id": "O3",
+    "text": "Report suspected 90-second security micro-drama + branching scenario + knowledge check on BEC / CEO-fraud payment requests, English (en-US), 16:9, incl. finance through the right channel",
+    "bloom": "apply",
+    "type": "behavior",
+    "lesson_title": "Report it"
+   }
+  ],
+  "lessons": [
+   {
+    "module": "M1",
+    "id": "M1L1",
+    "title": "Spot the signs",
+    "objective_ids": [
+     "O1",
+     "O2",
+     "O3"
+    ],
+    "formats": [
+     "cartoon",
+     "branching"
+    ],
+    "duration_min": 1.5,
+    "source_ids": [
+     "S01#c1"
+    ]
+   }
+  ]
+ },
+ "estimate": {
+  "tokens": 37000,
+  "usd": 0.36,
+  "tts_minutes": 1.5,
+  "images": 0
+ },
+ "scope": "full",
+ "pause_after": null,
+ "warnings": [],
+ "flagged_top": []
+}

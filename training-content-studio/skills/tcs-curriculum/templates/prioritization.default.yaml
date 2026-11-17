@@ -1,0 +1,53 @@
+# Generic prioritization config (used when no domain pack provides one).
+# priority = Σ weight_i · score_i  (scores 0–5) → filter → dedupe by subject → audience quotas → tiers.
+# A domain pack overrides any key via domains/<pack>/prioritization.yaml (or `prioritization:` in pack.yaml).
+weights: {impact: 0.30, frequency: 0.25, gap: 0.20, urgency: 0.15, compliance: 0.10}
+
+quotas: {standard: 10}          # segment id -> number of "include" picks
+tiers: {tier2: 15}              # next N after quotas = tier-2; the rest that pass filters = tier-3
+family_cap: 2                   # soft cap on top picks per subject family (parent + specialisations, via prerequisite column)
+
+segments:                       # first matching audience token decides the preferred segment
+  - {id: standard, default: true, match: ["all staff", "everyone", "all employees"]}
+
+filters:
+  exclude_topics: []            # substring match on topic (case-insensitive)
+  exclude_labels: ["retired", "not relevant"]
+  allowed_regions: []           # empty = all regions allowed; substring match otherwise
+  require_media: false          # true = drop rows whose media_count == 0 (text-only originals)
+
+scoring:
+  default: {impact: 2.5, frequency: 2.5, gap: 3, urgency: 2, compliance: 2}
+  topic_penalty: 1.5            # a keyword found only in the topic column scores 1.5 lower than in the title
+  specialisation_penalty: 1.0   # items with a prerequisite reach fewer people: frequency -1
+  foundation_bonus: {3: 1.0, 1: 0.5}   # prerequisite of >=3 items: frequency +1; of >=1: +0.5
+  label_compliance:             # substring of the label/priority column -> compliance score
+    mandatory: 5
+    core: 5
+    annual: 5
+    compliance: 4
+    role-specific: 3
+    onboarding: 3
+    recommended: 2.5
+    optional: 1
+  audience_frequency: {"all staff": 4, "everyone": 4, "new joiners": 3}
+  keywords: {impact: {}, frequency: {}, urgency: {}, compliance: {}}
+  richness_format: {cartoon: 3, whiteboard: 3, animation: 3, explainer: 2, video: 2, mixed: 2, slides: 1, blog: 0, text: 0}
+
+clusters: {}                    # cluster-id -> list of regexes on the title (explicit subject groups)
+title_noise:                    # stripped before subject matching (variants of the same subject)
+  - "\\(.*?\\)"
+  - "^(protecting|preventing|avoiding|securing|keeping up|keeping|staying safe from|staying safe on|staying safe when|staying secure (on|with|at)|how to|the importance of|introduction to)\\s+"
+  - "\\b(micro ?training|microtraining|essentials|awareness|basics|101)\\b"
+  - "\\b(your|yourself|the|a|an|with|from|in|of|and|&)\\b"
+
+existing: []                    # titles/ids already built (-> previously-built; related subjects gap=1)
+
+format_map:                     # original style -> plugin format (enums.formats)
+  cartoon: cartoon
+  whiteboard: doodle
+  explainer: explainer
+  mixed: explainer
+  blog: narrated-deck
+  default: explainer
+minutes_per_lesson: 5

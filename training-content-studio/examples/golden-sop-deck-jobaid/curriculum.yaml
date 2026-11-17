@@ -1,0 +1,49 @@
+schema_version: "1.0"
+course:
+  id: northwind-expenses
+  title: Expense claims at Northwind Co.
+  title_ar: مطالبات المصروفات في نورثويند
+  domain: finance-procedure
+  domain_pack: _template
+  audience: {level: beginner, roles: [learner], segments: [staff], notes: "new employees, contractors and interns"}
+  languages: {primary: en-US, secondary: [ar-EG], subtitles: [ar-EG]}
+  total_minutes: 5
+  verbosity: standard
+  wpm: 130
+  complexity: low
+  targets: [video, deck, lesson, scorm, jobaid]
+  aspects: ["16:9"]
+  renderer: remotion
+objectives:
+  - {id: O1, text: "Submit an expense claim in the Northwind Expenses app that meets the receipt, deadline and approval rules", bloom: apply, verb: submit, type: procedure, source_ids: ["S01#c1"]}
+  - {id: O2, text: "Check a claim against the pre-submit checklist and avoid the three warning-level mistakes", bloom: apply, verb: check, type: procedure, source_ids: ["S01#c1"]}
+modules:
+  - id: M1
+    title: Getting expense claims right
+    title_ar: المطالبة الصح من أول مرة
+    lessons:
+      - id: M1L1
+        title: Submitting an expense claim
+        title_ar: إزاي تقدّم مطالبة مصروفات
+        objective_ids: [O1]
+        formats: [narrated-deck]
+        duration_min: 3
+        targets: [video, deck, lesson, scorm]
+        status: planned
+        rationale: "Policy rules + six-step procedure from an SOP, beginner audience, user asked for a narrated deck -> narrated-deck (PPTX + narrated video)"
+        source_ids: ["S01#c1"]
+      - id: M1L2
+        title: Expense claim checklist
+        title_ar: قائمة مراجعة المطالبة
+        objective_ids: [O2]
+        formats: [job-aid]
+        duration_min: 2
+        targets: [jobaid, lesson, scorm]
+        status: planned
+        rationale: "Performance support at the moment of submitting -> one-page A4 job aid (checklist + limits + warnings)"
+        source_ids: ["S01#c1"]
+approval:
+  status: approved
+  by: user
+  at: '2026-11-17T20:30:00Z'
+  edits: []

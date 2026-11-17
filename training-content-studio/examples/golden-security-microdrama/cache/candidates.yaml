@@ -1,0 +1,55 @@
+S01#c1:
+- kind: definition
+  text: 'Applies to: all Northwind Co. employees, contractors and temporary staff'
+  heading: Northwind Co. — Payment Verification Policy
+- kind: policy
+  text: This policy sets the checks every employee must make
+  heading: 1. Purpose
+- kind: fact
+  text: 3.1 Before you act on any request to make a payment or change bank details,
+    call the requester back on a phone number that is already
+  heading: 3. Verify by calling back a known number
+- kind: warning
+  text: 3.2 Never use a phone number, link or contact detail given in the request
+    itself.
+  heading: 3. Verify by calling back a known number
+- kind: fact
+  text: '3.3 A request from an executive is verified the same way: call the executive
+    back on their directory number or'
+  heading: 3. Verify by calling back a known number
+- kind: warning
+  text: Seniority is never a reason to skip verification.
+  heading: 3. Verify by calling back a known number
+- kind: warning
+  text: 3.4 If you cannot verify the request, do not make the payment or the change.
+  heading: 3. Verify by calling back a known number
+- kind: fact
+  text: 4.1 Every payment of USD 10,000 or more needs approval from two authorised
+    people before it is released.
+  heading: 4. Two-person approval
+- kind: fact
+  text: 4.2 Every change to bank details needs a second person to approve it after
+    the callback, whatever the amount.
+  heading: 4. Two-person approval
+- kind: fact
+  text: 4.3 No one may split a payment into smaller amounts to stay below the USD
+    10,000 threshold.
+  heading: 4. Two-person approval
+- kind: fact
+  text: 6.1 Report every suspicious payment request to IT Security straight away,
+    using the Report Phishing button in Outlook
+  heading: 6. Report it
+- kind: fact
+  text: or by calling the IT Security hotline on extension 4400.
+  heading: 6. Report it
+- kind: warning
+  text: 6.2 Do not reply to, forward or delete the suspicious message before reporting
+    it.
+  heading: 6. Report it
+- kind: fact
+  text: 6.3 If you think money has already been sent, report it to IT Security and
+    Finance immediately.
+  heading: 6. Report it
+- kind: fact
+  text: 6.4 No one will be blamed for reporting a request that turns out to be genuine.
+  heading: 6. Report it

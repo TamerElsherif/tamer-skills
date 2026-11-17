@@ -1,0 +1,322 @@
+{
+ "schema_version": "1.0",
+ "run_id": "g2-phishing-arabic",
+ "request": "توعية الموظفين بالتصيد الاحتيالي",
+ "decisions": [
+  {
+   "key": "language",
+   "value": {
+    "primary": "ar-EG",
+    "subtitles": [
+     "en-US"
+    ]
+   },
+   "signal": "request written in Arabic script (100% of letters)",
+   "confidence": 0.9,
+   "source": "request",
+   "alternative_rejected": "English primary"
+  },
+  {
+   "key": "audience",
+   "value": {
+    "id": "all-staff",
+    "roles": [
+     "learner"
+    ],
+    "segment": "staff"
+   },
+   "signal": "wording 'الموظفين'",
+   "confidence": 0.7,
+   "source": "request",
+   "alternative_rejected": "general staff",
+   "critical": true
+  },
+  {
+   "key": "level",
+   "value": "beginner-intermediate",
+   "signal": "mixed audience ('الموظفين'), jargon density 0.00",
+   "confidence": 0.7,
+   "source": "rule",
+   "alternative_rejected": "intermediate"
+  },
+  {
+   "key": "other",
+   "value": "behavior",
+   "signal": "behavior: 'توعية', 'التصيد', 'الاحتيال'",
+   "confidence": 0.95,
+   "source": "request",
+   "name": "objective_type",
+   "alternative_rejected": "concept (default)"
+  },
+  {
+   "key": "domain",
+   "value": "security-awareness",
+   "signal": "pack keywords ['التصيد', 'الاحتيال']",
+   "confidence": 0.9,
+   "source": "rule",
+   "alternative_rejected": "workplace-behavior",
+   "critical": true
+  },
+  {
+   "key": "domain_pack",
+   "value": "security-awareness",
+   "signal": "matched 2 keyword(s)",
+   "confidence": 0.9,
+   "source": "rule",
+   "alternative_rejected": "_template"
+  },
+  {
+   "key": "objectives",
+   "value": [
+    {
+     "id": "O1",
+     "text": "اكتشف علامات التصيد الاحتيالي في مواقف واقعية",
+     "bloom": "analyze"
+    },
+    {
+     "id": "O2",
+     "text": "قرّر التصرف الأكثر أمانًا عند مواجهة التصيد الاحتيالي",
+     "bloom": "evaluate"
+    },
+    {
+     "id": "O3",
+     "text": "أبلغ عن التصيد الاحتيالي المشتبه به عبر القناة الصحيحة",
+     "bloom": "apply"
+    }
+   ],
+   "signal": "type=behavior (Bloom matched: know->remember/understand, do->apply, decide->analyze/evaluate); no sources/count wording -> default objective set for type",
+   "confidence": 0.55,
+   "source": "default",
+   "alternative_rejected": "single broad objective",
+   "critical": true
+  },
+  {
+   "key": "formats",
+   "value": [
+    "cartoon",
+    "branching"
+   ],
+   "signal": "behavior -> ['cartoon', 'branching']",
+   "confidence": 0.75,
+   "source": "rule",
+   "alternative_rejected": "['explainer'] (concept rule)"
+  },
+  {
+   "key": "other",
+   "value": {
+    "assessment": "knowledge-check",
+    "evidence": false,
+    "broll": false
+   },
+   "signal": "assessment for behavior",
+   "confidence": 0.8,
+   "source": "rule",
+   "name": "assessment",
+   "alternative_rejected": "no assessment"
+  },
+  {
+   "key": "blend",
+   "value": [
+    "cartoon",
+    "branching"
+   ],
+   "signal": "primary cartoon + secondary branching (max 2/lesson, 3/course)",
+   "confidence": 0.8,
+   "source": "rule",
+   "alternative_rejected": "single format"
+  },
+  {
+   "key": "length",
+   "value": {
+    "lessons": 3,
+    "minutes_per_lesson": 5,
+    "total_minutes": 15
+   },
+   "signal": "microlearning: 1 objective/lesson, 5 min for behavior (band 3-7), <= 6 lessons/module",
+   "confidence": 0.75,
+   "source": "rule",
+   "alternative_rejected": "one long lesson"
+  },
+  {
+   "key": "wpm",
+   "value": 126,
+   "signal": "beginner-intermediate 140 wpm x0.9 Arabic",
+   "confidence": 0.8,
+   "source": "rule",
+   "alternative_rejected": "155 wpm"
+  },
+  {
+   "key": "verbosity",
+   "value": "standard",
+   "signal": "all-staff / beginner-intermediate",
+   "confidence": 0.7,
+   "source": "rule",
+   "alternative_rejected": "detailed"
+  },
+  {
+   "key": "targets",
+   "value": [
+    "video",
+    "lesson",
+    "video-vertical",
+    "scorm"
+   ],
+   "signal": "cartoon->video; branching->lesson; video format -> + 9:16 nudge cut; 3 lessons -> + SCORM",
+   "confidence": 0.8,
+   "source": "rule",
+   "alternative_rejected": "video only"
+  },
+  {
+   "key": "aspect",
+   "value": [
+    "16:9",
+    "9:16"
+   ],
+   "signal": "16:9 master + 9:16 nudge cut",
+   "confidence": 0.8,
+   "source": "rule",
+   "alternative_rejected": "9:16 only"
+  },
+  {
+   "key": "renderer",
+   "value": "remotion",
+   "signal": "standalone kit (tcs-render-remotion); no OPENMONTAGE_ROOT",
+   "confidence": 0.6,
+   "source": "rule",
+   "alternative_rejected": "openmontage"
+  },
+  {
+   "key": "other",
+   "value": "general_knowledge",
+   "signal": "no --sources and no sources.yaml",
+   "confidence": 0.9,
+   "source": "default",
+   "name": "grounding",
+   "alternative_rejected": "grounded content"
+  }
+ ],
+ "flags": {
+  "request": "توعية الموظفين بالتصيد الاحتيالي",
+  "review": "none"
+ },
+ "summary": {
+  "course_id": "g2-phishing-arabic",
+  "title": "توعية الموظفين بالتصيد الاحتيالي",
+  "topic": "التصيد الاحتيالي",
+  "objective_type": "behavior",
+  "domain": "security-awareness",
+  "domain_pack": "security-awareness",
+  "audience": {
+   "id": "all-staff",
+   "segment": "staff",
+   "roles": [
+    "learner"
+   ],
+   "level": "beginner-intermediate"
+  },
+  "language": {
+   "primary": "ar-EG",
+   "subtitles": [
+    "en-US"
+   ]
+  },
+  "formats": [
+   "cartoon",
+   "branching"
+  ],
+  "assessment": "knowledge-check",
+  "evidence": false,
+  "targets": [
+   "video",
+   "lesson",
+   "video-vertical",
+   "scorm"
+  ],
+  "aspects": [
+   "16:9",
+   "9:16"
+  ],
+  "wpm": 126,
+  "verbosity": "standard",
+  "renderer": "remotion",
+  "has_sources": false
+ },
+ "plan": {
+  "objectives": [
+   {
+    "id": "O1",
+    "text": "اكتشف علامات التصيد الاحتيالي في مواقف واقعية",
+    "bloom": "analyze",
+    "type": "behavior",
+    "lesson_title": "اكتشف العلامات"
+   },
+   {
+    "id": "O2",
+    "text": "قرّر التصرف الأكثر أمانًا عند مواجهة التصيد الاحتيالي",
+    "bloom": "evaluate",
+    "type": "behavior",
+    "lesson_title": "اتخذ القرار"
+   },
+   {
+    "id": "O3",
+    "text": "أبلغ عن التصيد الاحتيالي المشتبه به عبر القناة الصحيحة",
+    "bloom": "apply",
+    "type": "behavior",
+    "lesson_title": "أبلغ عنه"
+   }
+  ],
+  "lessons": [
+   {
+    "module": "M1",
+    "id": "M1L1",
+    "title": "اكتشف العلامات",
+    "objective_ids": [
+     "O1"
+    ],
+    "formats": [
+     "cartoon",
+     "branching"
+    ],
+    "duration_min": 5
+   },
+   {
+    "module": "M1",
+    "id": "M1L2",
+    "title": "اتخذ القرار",
+    "objective_ids": [
+     "O2"
+    ],
+    "formats": [
+     "cartoon",
+     "branching"
+    ],
+    "duration_min": 5
+   },
+   {
+    "module": "M1",
+    "id": "M1L3",
+    "title": "أبلغ عنه",
+    "objective_ids": [
+     "O3"
+    ],
+    "formats": [
+     "cartoon",
+     "branching"
+    ],
+    "duration_min": 5
+   }
+  ]
+ },
+ "estimate": {
+  "tokens": 111000,
+  "usd": 1.22,
+  "tts_minutes": 15.0,
+  "images": 0
+ },
+ "scope": "full",
+ "pause_after": null,
+ "warnings": [
+  "No sources supplied: content will be general knowledge; every claim is labelled general_knowledge and listed in REPORT.md."
+ ],
+ "flagged_top": []
+}

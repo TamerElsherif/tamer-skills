@@ -1,0 +1,281 @@
+schema_version: '1.0'
+sources:
+- id: S01
+  type: pdf
+  uri: examples/_shared/sop/expenses.pdf
+  title: Northwind Co. Expense Policy (SOP-FIN-007)
+  retrieved_at: '2026-11-17T20:07:41'
+  language: en-US
+  owner: Finance Department
+  date: '2026-03-01'
+  authority: 5
+  pages_or_duration: 2 pages
+  chunks:
+  - id: c1
+    loc: p. 1-2
+    summary: 'Northwind expense SOP v3.2 (effective 2026-03-01): scope and definitions, seven spending rules (receipts
+      over $25, 30/90-day deadlines, per diems, $220 hotel cap, economy flights, alcohol, approval limits), a six-step
+      claim procedure in the Northwind Expenses app, warnings, 2025 statistics, a client-dinner example and 7-year
+      receipt retention.'
+    tokens: 867
+    path: cache/S01/c1.md
+facts:
+- id: F026
+  kind: policy
+  text: This policy applies to all Northwind Co. employees, contractors and interns in every country where Northwind
+    Co. operates.
+  source_id: S01
+  chunk_id: c1
+  loc: §2
+  confidence: 0.9
+- id: F027
+  kind: fact
+  text: The policy covers travel, meals, accommodation, client entertainment, training fees and small office purchases.
+  source_id: S01
+  chunk_id: c1
+  loc: §2
+  confidence: 0.9
+- id: F028
+  kind: definition
+  text: A business expense is a cost an employee pays personally that is necessary to do Northwind Co. work and
+    is not a personal benefit.
+  source_id: S01
+  chunk_id: c1
+  loc: §3
+  confidence: 0.9
+- id: F029
+  kind: definition
+  text: A receipt is an itemised proof of payment showing the vendor, date, items and amount paid; a card statement
+    alone is not a receipt.
+  source_id: S01
+  chunk_id: c1
+  loc: §3
+  confidence: 0.9
+- id: F030
+  kind: definition
+  text: The approver is the person who checks and approves an expense claim, normally the employee's direct manager.
+  source_id: S01
+  chunk_id: c1
+  loc: §3
+  confidence: 0.9
+- id: F031
+  kind: definition
+  text: Per diem is a fixed daily allowance for meals and incidental costs while travelling overnight on company
+    business.
+  source_id: S01
+  chunk_id: c1
+  loc: §3
+  confidence: 0.9
+- id: F032
+  kind: policy
+  text: A receipt is required for every expense over $25.
+  source_id: S01
+  chunk_id: c1
+  loc: §4 rule 1
+  confidence: 0.9
+- id: F033
+  kind: policy
+  text: Employees must submit expense claims within 30 days of the expense date.
+  source_id: S01
+  chunk_id: c1
+  loc: §4 rule 2
+  confidence: 0.9
+- id: F034
+  kind: policy
+  text: Claims older than 90 days are not reimbursed.
+  source_id: S01
+  chunk_id: c1
+  loc: §4 rule 2
+  confidence: 0.9
+- id: F035
+  kind: policy
+  text: The meal per diem is $60 per day for domestic travel and $85 per day for international travel.
+  source_id: S01
+  chunk_id: c1
+  loc: §4 rule 3
+  confidence: 0.9
+- id: F036
+  kind: policy
+  text: Hotel costs are capped at $220 per night unless the Travel Desk approves an exception in writing.
+  source_id: S01
+  chunk_id: c1
+  loc: §4 rule 4
+  confidence: 0.9
+- id: F037
+  kind: policy
+  text: Flights under 6 hours must be booked in economy class.
+  source_id: S01
+  chunk_id: c1
+  loc: §4 rule 5
+  confidence: 0.9
+- id: F038
+  kind: policy
+  text: Alcohol is not reimbursable, except during client entertainment that the employee's manager approved in
+    advance.
+  source_id: S01
+  chunk_id: c1
+  loc: §4 rule 6
+  confidence: 0.9
+- id: F039
+  kind: policy
+  text: A manager approves claims up to $1,000, a director approves claims up to $5,000, and the CFO approves any
+    claim above $5,000.
+  source_id: S01
+  chunk_id: c1
+  loc: §4 rule 7
+  confidence: 0.9
+- id: F040
+  kind: procedure
+  text: Submitting an expense claim in the Northwind Expenses app (six steps).
+  source_id: S01
+  chunk_id: c1
+  loc: §5
+  confidence: 0.9
+- id: F041
+  kind: step
+  text: Keep the itemised receipt for every expense and photograph it on the same day.
+  source_id: S01
+  chunk_id: c1
+  loc: §5 step 1
+  confidence: 0.9
+  procedure_order: 1
+- id: F042
+  kind: step
+  text: Open the Northwind Expenses app and select New Claim.
+  source_id: S01
+  chunk_id: c1
+  loc: §5 step 2
+  confidence: 0.9
+  procedure_order: 2
+- id: F043
+  kind: step
+  text: Choose the expense category and enter the date, amount and business purpose.
+  source_id: S01
+  chunk_id: c1
+  loc: §5 step 3
+  confidence: 0.9
+  procedure_order: 3
+- id: F044
+  kind: step
+  text: Attach the receipt photo to each line and check that the total matches.
+  source_id: S01
+  chunk_id: c1
+  loc: §5 step 4
+  confidence: 0.9
+  procedure_order: 4
+- id: F045
+  kind: step
+  text: Submit the claim to your approver before the 30-day deadline.
+  source_id: S01
+  chunk_id: c1
+  loc: §5 step 5
+  confidence: 0.9
+  procedure_order: 5
+- id: F046
+  kind: step
+  text: Respond to any approver question within 5 business days, or the claim is returned to you.
+  source_id: S01
+  chunk_id: c1
+  loc: §5 step 6
+  confidence: 0.9
+  procedure_order: 6
+- id: F047
+  kind: warning
+  text: Never split one expense into several claims to stay under an approval limit.
+  source_id: S01
+  chunk_id: c1
+  loc: §6
+  confidence: 0.9
+- id: F048
+  kind: warning
+  text: Do not submit personal costs, such as family meals or private travel upgrades, as business expenses.
+  source_id: S01
+  chunk_id: c1
+  loc: §6
+  confidence: 0.9
+- id: F049
+  kind: warning
+  text: Submitting a false or inflated claim is treated as misconduct and can lead to disciplinary action, including
+    dismissal.
+  source_id: S01
+  chunk_id: c1
+  loc: §6
+  confidence: 0.9
+- id: F050
+  kind: statistic
+  text: In 2025, 18% of expense claims were returned to employees because a receipt was missing.
+  source_id: S01
+  chunk_id: c1
+  loc: §7
+  date: '2025'
+  confidence: 0.9
+- id: F051
+  kind: statistic
+  text: In 2025, claims submitted with all receipts were reimbursed in an average of 6 business days.
+  source_id: S01
+  chunk_id: c1
+  loc: §7
+  date: '2025'
+  confidence: 0.9
+- id: F052
+  kind: example
+  text: Mona from Sales took a client to dinner in Alexandria after her manager approved the client entertainment
+    in advance; the $140 bill included one bottle of wine.
+  source_id: S01
+  chunk_id: c1
+  loc: §8
+  confidence: 0.9
+- id: F053
+  kind: example
+  text: Mona photographed the itemised receipt that evening, submitted the claim the next morning under Client Entertainment,
+    and was reimbursed in full because the entertainment was pre-approved.
+  source_id: S01
+  chunk_id: c1
+  loc: §8
+  confidence: 0.9
+- id: F054
+  kind: policy
+  text: Employees must keep original paper receipts for 7 years after the claim date.
+  source_id: S01
+  chunk_id: c1
+  loc: §9
+  confidence: 0.9
+- id: F055
+  kind: fact
+  text: Finance stores the scanned receipts in the expense system for 7 years.
+  source_id: S01
+  chunk_id: c1
+  loc: §9
+  confidence: 0.7
+- id: F056
+  kind: fact
+  text: Questions about the policy go to the Finance Help Desk through the internal service portal.
+  source_id: S01
+  chunk_id: c1
+  loc: §10
+  confidence: 0.9
+- id: F057
+  kind: fact
+  text: Northwind Co. Expense Policy SOP-FIN-007 is version 3.2, effective date 2026-03-01, owned by the Finance
+    Department.
+  source_id: S01
+  chunk_id: c1
+  loc: header
+  confidence: 0.9
+course_id: northwind-expenses
+general_knowledge_allowed: true
+glossary:
+- term: Business expense
+  definition: A cost an employee pays personally that is necessary for Northwind Co. work and is not a personal
+    benefit.
+  source_id: S01
+- term: Receipt
+  definition: Itemised proof of payment showing vendor, date, items and amount; a card statement alone is not a
+    receipt.
+  source_id: S01
+- term: Approver
+  definition: Person who checks and approves an expense claim, normally the direct manager.
+  source_id: S01
+- term: Per diem
+  definition: Fixed daily allowance for meals and incidental costs on overnight business travel.
+  source_id: S01

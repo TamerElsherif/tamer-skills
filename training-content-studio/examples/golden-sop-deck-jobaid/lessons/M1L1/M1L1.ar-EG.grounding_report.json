@@ -1,0 +1,363 @@
+{
+ "schema_version": "1.0",
+ "lesson_id": "M1L1",
+ "summary": {
+  "total": 31,
+  "supported": 29,
+  "general_knowledge": 2,
+  "unsupported": 0,
+  "conflicting": 0,
+  "outdated": 0,
+  "partial": 0
+ },
+ "claims": [
+  {
+   "scene_id": "s01_title",
+   "text": "This lesson covers submitting an expense claim at Northwind Co.",
+   "status": "general-knowledge"
+  },
+  {
+   "scene_id": "s02_why",
+   "text": "In 2025, 18% of expense claims were returned to employees because a receipt was missing.",
+   "status": "supported",
+   "fact_ids": [
+    "F050"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "s02_why",
+   "text": "In 2025, claims submitted with all receipts were reimbursed in an average of 6 business days.",
+   "status": "supported",
+   "fact_ids": [
+    "F051"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "s03_rules",
+   "text": "A receipt is required for every expense over $25.",
+   "status": "supported",
+   "fact_ids": [
+    "F032"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "s03_rules",
+   "text": "A card statement alone is not a receipt.",
+   "status": "supported",
+   "fact_ids": [
+    "F029"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "s03_rules",
+   "text": "Employees must submit expense claims within 30 days of the expense date.",
+   "status": "supported",
+   "fact_ids": [
+    "F033"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "s03_rules",
+   "text": "Claims older than 90 days are not reimbursed.",
+   "status": "supported",
+   "fact_ids": [
+    "F034"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "s03_rules",
+   "text": "Personal costs such as family meals must not be submitted as business expenses.",
+   "status": "supported",
+   "fact_ids": [
+    "F048"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "s04_limits",
+   "text": "The meal per diem is $60 per day for domestic travel and $85 per day for international travel.",
+   "status": "supported",
+   "fact_ids": [
+    "F035"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "s04_limits",
+   "text": "Hotel costs are capped at $220 per night unless the Travel Desk approves an exception in writing.",
+   "status": "supported",
+   "fact_ids": [
+    "F036"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "s04_limits",
+   "text": "Flights under 6 hours must be booked in economy class.",
+   "status": "supported",
+   "fact_ids": [
+    "F037"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "s04_limits",
+   "text": "Alcohol is not reimbursable, except during client entertainment that the manager approved in advance.",
+   "status": "supported",
+   "fact_ids": [
+    "F038"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "s05_steps",
+   "text": "Keep the itemised receipt for every expense and photograph it on the same day.",
+   "status": "supported",
+   "fact_ids": [
+    "F041"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "s05_steps",
+   "text": "Open the Northwind Expenses app and select New Claim.",
+   "status": "supported",
+   "fact_ids": [
+    "F042"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "s05_steps",
+   "text": "Choose the expense category and enter the date, amount and business purpose.",
+   "status": "supported",
+   "fact_ids": [
+    "F043"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "s05_steps",
+   "text": "Attach the receipt photo to each line and check that the total matches.",
+   "status": "supported",
+   "fact_ids": [
+    "F044"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "s05_steps",
+   "text": "Submit the claim to your approver before the 30-day deadline.",
+   "status": "supported",
+   "fact_ids": [
+    "F045"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "s05_steps",
+   "text": "Respond to any approver question within 5 business days, or the claim is returned.",
+   "status": "supported",
+   "fact_ids": [
+    "F046"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "s06_approval",
+   "text": "A manager approves claims up to $1,000, a director up to $5,000, and the CFO any claim above $5,000.",
+   "status": "supported",
+   "fact_ids": [
+    "F039"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "s07_check",
+   "text": "A director approves claims up to $5,000; a manager approves claims up to $1,000.",
+   "status": "supported",
+   "fact_ids": [
+    "F039"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "s07_check",
+   "text": "Scenario: a $3,200 conference trip claim (fictional example).",
+   "status": "general-knowledge"
+  },
+  {
+   "scene_id": "s08_dont",
+   "text": "Never split one expense into several claims to stay under an approval limit.",
+   "status": "supported",
+   "fact_ids": [
+    "F047"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "s08_dont",
+   "text": "Do not submit personal costs, such as family meals or private travel upgrades, as business expenses.",
+   "status": "supported",
+   "fact_ids": [
+    "F048"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "s08_dont",
+   "text": "Submitting a false or inflated claim is treated as misconduct and can lead to disciplinary action, including dismissal.",
+   "status": "supported",
+   "fact_ids": [
+    "F049"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "s08_dont",
+   "text": "Questions about the policy go to the Finance Help Desk.",
+   "status": "supported",
+   "fact_ids": [
+    "F056"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "s09_outro",
+   "text": "Employees must submit expense claims within 30 days of the expense date.",
+   "status": "supported",
+   "fact_ids": [
+    "F033"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "s09_outro",
+   "text": "Contact the Finance Help Desk through the internal service portal for any question about this policy.",
+   "status": "supported",
+   "fact_ids": [
+    "F056"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "quiz:Q1",
+   "text": "Your conference trip comes to $3,200. Who approves the claim? → A director",
+   "status": "supported",
+   "fact_ids": [
+    "F039"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "quiz:Q2",
+   "text": "You paid $48 for a work lunch with a client and only have your card statement. Can you claim it as it is? → No, you need the itemised receipt",
+   "status": "supported",
+   "fact_ids": [
+    "F032"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "scene_id": "quiz:Q3",
+   "text": "Put the claim steps in order. → Photograph the receipt the same day Open Northwind Expenses and select New Claim Enter category, date, amount and purpose Attach the receipt photo and check the total Submit the claim to your approver",
+   "status": "supported",
+   "fact_ids": [
+    "F041",
+    "F042",
+    "F043",
+    "F044",
+    "F045"
+   ],
+   "note": "each ordering option supported by its own fact"
+  },
+  {
+   "scene_id": "quiz:Q4",
+   "text": "A claim submitted 100 days after the expense will still be reimbursed. — this is false. ",
+   "status": "supported",
+   "fact_ids": [
+    "F033"
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  }
+ ],
+ "coverage": {
+  "O1": [
+   "s01_title",
+   "s02_why",
+   "s03_rules",
+   "s04_limits",
+   "s05_steps",
+   "s06_approval",
+   "s07_check",
+   "s08_dont",
+   "s09_outro",
+   "quiz:Q1",
+   "quiz:Q2",
+   "quiz:Q3",
+   "quiz:Q4"
+  ]
+ }
+}

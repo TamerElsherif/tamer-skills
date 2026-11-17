@@ -1,0 +1,16 @@
+# B-roll shot list → copied into storyboard.json `broll_shots[]` (schema: id, query, provider, path, min_s, license)
+# Query = who + action + setting. No logos, no readable screens, no hoodie hackers / matrix code.
+- id: hook            # referenced by scenes[].props.shot
+  query: "person reading email on laptop in office"
+  provider: pexels     # pexels | pixabay | local
+  min_s: 12            # >= planned scene length; renderer loops/slows (>=0.6x) if shorter
+  # path: filled by the renderer/fetcher
+  # license: "Pexels License — https://www.pexels.com/license/ — <clip url>"
+- id: inbox
+  query: "hands typing on laptop keyboard close up"
+  provider: pexels
+  min_s: 12
+- id: team
+  query: "colleagues talking at office desk"
+  provider: pexels
+  min_s: 12

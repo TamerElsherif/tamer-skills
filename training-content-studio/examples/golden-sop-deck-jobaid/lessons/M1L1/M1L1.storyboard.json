@@ -1,0 +1,612 @@
+{
+ "schema_version": "1.0",
+ "course_id": "northwind-expenses",
+ "lesson_id": "M1L1",
+ "title": "Submitting an expense claim",
+ "language": "en-US",
+ "direction": "ltr",
+ "aspect": "16:9",
+ "fps": 30,
+ "formats": [
+  "narrated-deck"
+ ],
+ "wpm": 130,
+ "objective_ids": [
+  "O1"
+ ],
+ "theme": {
+  "preset": "neutral",
+  "logo": null
+ },
+ "voices": {
+  "narrator": {
+   "provider": "openai",
+   "voice": "marin",
+   "model": "gpt-4o-mini-tts",
+   "instructions": "Warm, confident corporate trainer speaking American English to colleagues. Clear, friendly, professional; natural conversational pace, brief pauses between list items. Never robotic.",
+   "lang": "en-US"
+  }
+ },
+ "cast": [
+  "host"
+ ],
+ "scenes": [
+  {
+   "id": "s01_title",
+   "template": "title",
+   "props": {
+    "kicker": "Northwind Co. · Finance onboarding",
+    "title": "Submitting an expense claim",
+    "sub": "Module 1 · Lesson 1 · 3 min",
+    "icon": "invoice"
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "Welcome to Northwind. In the next three minutes, you'll learn how to submit an expense claim that gets paid the first time."
+    }
+   ],
+   "claims": [
+    {
+     "text": "This lesson covers submitting an expense claim at Northwind Co.",
+     "general_knowledge": true
+    }
+   ],
+   "duration_hint_s": 11.5,
+   "notes": "Presenter: ask who has already paid for something work-related out of pocket. Time: 30 s.",
+   "objective_ids": [
+    "O1"
+   ],
+   "visual": "Title slide with invoice icon.",
+   "on_screen_text": [
+    "Northwind Co. · Finance onboarding",
+    "Submitting an expense claim",
+    "Module 1 · Lesson 1 · 3 min"
+   ]
+  },
+  {
+   "id": "s02_why",
+   "template": "stat",
+   "props": {
+    "value": 18,
+    "suffix": "%",
+    "label": "of 2025 claims were returned: missing receipt",
+    "source": "Northwind Expense Policy SOP-FIN-007 §7",
+    "icon": "file"
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "Here's why it matters. In twenty twenty-five, ^ eighteen percent of expense claims were sent back, because a receipt was missing. Claims with every receipt were paid in about six business days."
+    }
+   ],
+   "claims": [
+    {
+     "text": "In 2025, 18% of expense claims were returned to employees because a receipt was missing.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "In 2025, claims submitted with all receipts were reimbursed in an average of 6 business days.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    }
+   ],
+   "duration_hint_s": 15.7,
+   "notes": "Ask: why do you think receipts go missing? Complete claims were paid in about 6 business days (§7).",
+   "objective_ids": [
+    "O1"
+   ],
+   "visual": "Hero number counts up to 18%.",
+   "on_screen_text": [
+    "18%",
+    "of 2025 claims were returned: missing receipt"
+   ]
+  },
+  {
+   "id": "s03_rules",
+   "template": "bullets",
+   "props": {
+    "title": "Four rules before you start",
+    "items": [
+     {
+      "text": "Itemised receipt for every expense over $25",
+      "sub": "A card statement alone is not a receipt",
+      "icon": "file"
+     },
+     {
+      "text": "Submit within 30 days",
+      "icon": "calendar"
+     },
+     {
+      "text": "After 90 days: not reimbursed",
+      "icon": "clock",
+      "tone": "warn"
+     },
+     {
+      "text": "Personal costs are never business expenses",
+      "icon": "x",
+      "tone": "warn"
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "Four rules come before anything else. ^ Keep an itemised receipt for every expense over twenty-five dollars. A card statement alone doesn't count. ^ Submit within thirty days of the expense. ^ After ninety days, a claim isn't paid at all. ^ And personal costs, like family meals, are never business expenses."
+    }
+   ],
+   "claims": [
+    {
+     "text": "A receipt is required for every expense over $25.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "A card statement alone is not a receipt.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Employees must submit expense claims within 30 days of the expense date.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Claims older than 90 days are not reimbursed.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Personal costs such as family meals must not be submitted as business expenses.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    }
+   ],
+   "duration_hint_s": 23.5,
+   "notes": "If asked about small items: no receipt needed at $25 or less, but keeping one never hurts.",
+   "objective_ids": [
+    "O1"
+   ],
+   "visual": "Four rules revealed one per click.",
+   "on_screen_text": [
+    "Four rules before you start",
+    "Itemised receipt for every expense over $25",
+    "A card statement alone is not a receipt",
+    "Submit within 30 days",
+    "After 90 days: not reimbursed",
+    "Personal costs are never business expenses"
+   ]
+  },
+  {
+   "id": "s04_limits",
+   "template": "table",
+   "props": {
+    "title": "Travel limits",
+    "columns": [
+     "Item",
+     "Limit",
+     "Exception"
+    ],
+    "rows": [
+     [
+      "Meals (per diem)",
+      "$60 domestic · $85 international / day",
+      "—"
+     ],
+     [
+      "Hotel",
+      "$220 per night",
+      "Travel Desk, in writing"
+     ],
+     [
+      "Flights under 6 h",
+      "Economy class",
+      "—"
+     ],
+     [
+      "Alcohol",
+      "Not reimbursable",
+      "Pre-approved client entertainment"
+     ]
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "^ When you travel, these limits apply. Meals are sixty dollars a day at home, and eighty-five dollars abroad. Hotels are capped at two hundred and twenty dollars a night, unless the Travel Desk approves an exception in writing. Flights under six hours are economy. And alcohol is only paid for client entertainment your manager approved in advance."
+    }
+   ],
+   "claims": [
+    {
+     "text": "The meal per diem is $60 per day for domestic travel and $85 per day for international travel.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Hotel costs are capped at $220 per night unless the Travel Desk approves an exception in writing.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Flights under 6 hours must be booked in economy class.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Alcohol is not reimbursable, except during client entertainment that the manager approved in advance.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    }
+   ],
+   "duration_hint_s": 27.7,
+   "notes": "Example (SOP §8): Mona's pre-approved $140 client dinner incl. wine was reimbursed in full.",
+   "objective_ids": [
+    "O1"
+   ],
+   "visual": "Reference table of travel limits.",
+   "on_screen_text": [
+    "Travel limits",
+    "Item",
+    "Limit",
+    "Exception",
+    "Meals (per diem)",
+    "$60 domestic · $85 international / day",
+    "—",
+    "Hotel",
+    "$220 per night",
+    "Travel Desk, in writing",
+    "Flights under 6 h",
+    "Economy class",
+    "Alcohol",
+    "Not reimbursable",
+    "Pre-approved client entertainment"
+   ]
+  },
+  {
+   "id": "s05_steps",
+   "template": "steps",
+   "props": {
+    "title": "Six steps in the Northwind Expenses app",
+    "steps": [
+     {
+      "label": "Photograph the receipt",
+      "sub": "Same day",
+      "icon": "camera"
+     },
+     {
+      "label": "Open the app · New Claim",
+      "icon": "smartphone"
+     },
+     {
+      "label": "Category, date, amount, purpose",
+      "icon": "invoice"
+     },
+     {
+      "label": "Attach receipt to each line",
+      "sub": "Check the total",
+      "icon": "upload"
+     },
+     {
+      "label": "Submit to your approver",
+      "sub": "Within 30 days",
+      "icon": "check"
+     },
+     {
+      "label": "Answer questions",
+      "sub": "Within 5 business days",
+      "icon": "clock"
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "Now, the claim itself, in six steps. ^ Photograph the receipt on the same day. ^ Open the Northwind Expenses app and select New Claim. ^ Choose the category, then enter the date, amount and business purpose. ^ Attach the receipt photo to each line, and check the total. ^ Submit it to your approver within thirty days. ^ And answer any question from your approver within five business days."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Keep the itemised receipt for every expense and photograph it on the same day.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Open the Northwind Expenses app and select New Claim.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Choose the expense category and enter the date, amount and business purpose.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Attach the receipt photo to each line and check that the total matches.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Submit the claim to your approver before the 30-day deadline.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Respond to any approver question within 5 business days, or the claim is returned.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    }
+   ],
+   "duration_hint_s": 30.9,
+   "notes": "Live session: demo the app here if available. Time: 1 min.",
+   "objective_ids": [
+    "O1"
+   ],
+   "visual": "Numbered steps, one per click.",
+   "on_screen_text": [
+    "Six steps in the Northwind Expenses app",
+    "Photograph the receipt",
+    "Same day",
+    "Open the app · New Claim",
+    "Category, date, amount, purpose",
+    "Attach receipt to each line",
+    "Check the total",
+    "Submit to your approver",
+    "Within 30 days",
+    "Answer questions",
+    "Within 5 business days"
+   ]
+  },
+  {
+   "id": "s06_approval",
+   "template": "process_flow",
+   "props": {
+    "title": "Who approves your claim",
+    "nodes": [
+     {
+      "id": "a",
+      "label": "You submit",
+      "kind": "start"
+     },
+     {
+      "id": "b",
+      "label": "Manager: up to $1,000",
+      "kind": "step"
+     },
+     {
+      "id": "c",
+      "label": "Director: up to $5,000",
+      "kind": "step"
+     },
+     {
+      "id": "d",
+      "label": "CFO: above $5,000",
+      "kind": "end"
+     }
+    ],
+    "edges": [
+     {
+      "from": "a",
+      "to": "b"
+     },
+     {
+      "from": "b",
+      "to": "c"
+     },
+     {
+      "from": "c",
+      "to": "d"
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "Who approves depends on the amount. ^ You submit. ^ Your manager approves claims up to one thousand dollars. ^ A director approves up to five thousand. ^ And anything above five thousand goes to the C F O."
+    }
+   ],
+   "claims": [
+    {
+     "text": "A manager approves claims up to $1,000, a director up to $5,000, and the CFO any claim above $5,000.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    }
+   ],
+   "duration_hint_s": 17.5,
+   "objective_ids": [
+    "O1"
+   ],
+   "visual": "Approval path by amount.",
+   "on_screen_text": [
+    "Who approves your claim",
+    "You submit",
+    "Manager: up to $1,000",
+    "Director: up to $5,000",
+    "CFO: above $5,000"
+   ]
+  },
+  {
+   "id": "s07_check",
+   "template": "quiz",
+   "props": {
+    "quiz_item": "Q1",
+    "q": "Your trip comes to $3,200. Who approves?",
+    "options": [
+     "Your manager",
+     "A director",
+     "The CFO"
+    ],
+    "answer": 1,
+    "why": "Above $1,000 but not above $5,000"
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "Quick check. Your conference trip comes to three thousand two hundred dollars. Who approves the claim?",
+     "pause": 2.2
+    },
+    {
+     "who": "narrator",
+     "text": "^ A director. It's above one thousand dollars, but not above five thousand."
+    }
+   ],
+   "claims": [
+    {
+     "text": "A director approves claims up to $5,000; a manager approves claims up to $1,000.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Scenario: a $3,200 conference trip claim (fictional example).",
+     "general_knowledge": true
+    }
+   ],
+   "duration_hint_s": 16.5,
+   "objective_ids": [
+    "O1"
+   ],
+   "visual": "Knowledge check with three options.",
+   "hold": 2,
+   "on_screen_text": [
+    "Your trip comes to $3,200. Who approves?",
+    "Your manager",
+    "A director",
+    "The CFO",
+    "Above $1,000 but not above $5,000"
+   ]
+  },
+  {
+   "id": "s08_dont",
+   "template": "do_dont",
+   "props": {
+    "title": "Never do this",
+    "dont_head": "Never",
+    "do_head": "Instead",
+    "dont": [
+     "Split one expense to stay under a limit",
+     "Claim personal costs or upgrades",
+     "Inflate a claim (misconduct)"
+    ],
+    "do": [
+     "One expense, one claim, real amount",
+     "Unsure? Ask the Finance Help Desk"
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "Three things you must never do. ^ Never split one expense into several claims to stay under a limit. ^ Never submit personal costs or private upgrades. ^ And never inflate a claim. False claims are treated as misconduct, and can lead to dismissal. Instead, ^ submit each expense once, with its real amount, ^ and ask Finance when you're unsure."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Never split one expense into several claims to stay under an approval limit.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Do not submit personal costs, such as family meals or private travel upgrades, as business expenses.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Submitting a false or inflated claim is treated as misconduct and can lead to disciplinary action, including dismissal.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Questions about the policy go to the Finance Help Desk.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    }
+   ],
+   "duration_hint_s": 27.2,
+   "notes": "Stress: false or inflated claims can lead to dismissal (§6).",
+   "objective_ids": [
+    "O1"
+   ],
+   "visual": "Don'ts then dos, one per click.",
+   "on_screen_text": [
+    "Never do this",
+    "Never",
+    "Instead",
+    "Split one expense to stay under a limit",
+    "Claim personal costs or upgrades",
+    "Inflate a claim (misconduct)",
+    "One expense, one claim, real amount",
+    "Unsure? Ask the Finance Help Desk"
+   ]
+  },
+  {
+   "id": "s09_outro",
+   "template": "outro",
+   "props": {
+    "title": "Next: expense claim checklist",
+    "line": "Receipt · 30 days · right approver",
+    "tips": [
+     "Finance Help Desk: internal service portal"
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "That's it. Keep the receipt, submit within thirty days, and use the expense checklist in the next lesson. Questions? Contact the Finance Help Desk through the service portal."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Employees must submit expense claims within 30 days of the expense date.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Contact the Finance Help Desk through the internal service portal for any question about this policy.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    }
+   ],
+   "duration_hint_s": 14.3,
+   "objective_ids": [
+    "O1"
+   ],
+   "visual": "Closing slide with next lesson.",
+   "on_screen_text": [
+    "Next: expense claim checklist",
+    "Receipt · 30 days · right approver",
+    "Finance Help Desk: internal service portal"
+   ]
+  }
+ ],
+ "subtitle_languages": [
+  "ar-EG"
+ ],
+ "music": {
+  "bed": "executive",
+  "volume": 0.1
+ }
+}

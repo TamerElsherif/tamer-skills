@@ -1,0 +1,152 @@
+{
+ "schema_version": "1.0",
+ "course_id": "northwind-security-series",
+ "lesson_id": "E03N1",
+ "title": "Nudge: Smishing in 45 Seconds",
+ "language": "en-US",
+ "direction": "ltr",
+ "subtitle_languages": [
+  "ar-EG"
+ ],
+ "aspect": "9:16",
+ "fps": 30,
+ "formats": [
+  "series"
+ ],
+ "wpm": 150,
+ "objective_ids": [
+  "O3"
+ ],
+ "theme": {
+  "preset": "neutral",
+  "logo": null
+ },
+ "voices": {
+  "narrator": {
+   "provider": "openai",
+   "model": "gpt-4o-mini-tts",
+   "voice": "marin",
+   "lang": "en-US",
+   "instructions": "Warm, confident corporate trainer speaking to colleagues. Clear, friendly, natural pace; brief pauses between list items. Never robotic."
+  }
+ },
+ "music": {
+  "bed": "explainer",
+  "volume": 0.12
+ },
+ "scenes": [
+  {
+   "id": "n01_hook",
+   "template": "chat_mock",
+   "props": {
+    "device": "phone",
+    "title": "Messages",
+    "messages": [
+     {
+      "text": "NorthPost: your parcel is on hold. Pay 1.99 to release it: npost-delivery.example/pay",
+      "warn": true,
+      "cue": 0
+     }
+    ],
+    "callouts": [
+     {
+      "cue": 1,
+      "label": "Odd link, tiny fee, urgency",
+      "tone": "warn"
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "^ A text says your parcel's on hold, pay a tiny fee. ^ Odd link, small fee, urgency. That's smishing."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Smishing uses delivery-fee lures with links.",
+     "source_ids": [
+      "S09#c1"
+     ]
+    }
+   ],
+   "duration_hint_s": 12
+  },
+  {
+   "id": "n02_card",
+   "template": "flashcard",
+   "props": {
+    "front": "Parcel text with a payment link?",
+    "back": "Don't tap. Check the courier's own app or site.",
+    "icon": "smartphone"
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "^ Flip it: don't tap. Check the courier's own app instead."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Verify via official app.",
+     "source_ids": [
+      "S09#c2"
+     ]
+    }
+   ],
+   "duration_hint_s": 10
+  },
+  {
+   "id": "n03_quiz",
+   "template": "quiz",
+   "props": {
+    "quiz_item": "Q7",
+    "q": "Safest move?",
+    "options": [
+     "Tap and pay 1.99",
+     "Open the courier's own app"
+    ],
+    "answer": 1
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "Safest move?",
+     "pause": 2.0
+    },
+    {
+     "who": "narrator",
+     "text": "^ Open the courier's own app. Plus ten points!"
+    }
+   ],
+   "claims": [
+    {
+     "text": "Verify via official app.",
+     "source_ids": [
+      "S09#c2"
+     ]
+    }
+   ],
+   "hold": 2
+  },
+  {
+   "id": "n04_outro",
+   "template": "outro",
+   "props": {
+    "line": "Streak +1 · Episode 4 drops Monday"
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "Streak plus one. See you Monday."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Series nudge closing.",
+     "general_knowledge": true
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,39 @@
+<!doctype html><html lang="en-US" dir="ltr"><head><meta charset="utf-8">
+<title>Expense claim checklist</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600&family=Cairo:wght@400;600;700&family=IBM+Plex+Sans+Arabic:wght@400;600&family=IBM+Plex+Mono:wght@400;600&family=Caveat:wght@500;700&display=swap">
+<style>:root{--navy:#363E77;--blue:#006AB3;--cyan:#6FC7DA;--attention:#FF6700;--bg:#F4F7FB;--card:#FFFFFF;--ink:#363E77;--muted:#5A6385;--safe:#1E7F4F;--line:#D5DCE8;--ink-strong:#1E2350;--attention-text:#B34700;--font-head:'Poppins', 'Inter', system-ui, sans-serif;--font-body:'Inter', 'Inter', system-ui, sans-serif;--font-mono:'IBM Plex Mono', ui-monospace, monospace;--font-hand:'Caveat', 'Comic Sans MS', cursive;} @page{size:A4;margin:11mm} :root{--scale:1.0} /* tcs-render-lesson job aid — print-first, 2 columns, sizes scale with --scale to fit the page budget */
+*{box-sizing:border-box}
+html{font-size:calc(11pt * var(--scale))}
+body{margin:0;color:var(--ink);font:400 1rem/1.4 var(--font-body);-webkit-print-color-adjust:exact;print-color-adjust:exact;background:#fff}
+h1,h2,h3{font-family:var(--font-head);margin:0}
+.hd{background:linear-gradient(90deg,var(--navy),var(--blue));color:#fff;border-radius:10px;padding:.9rem 1.2rem;margin-bottom:.8rem}
+.hd h1{font-size:2rem;line-height:1.15}.hd .kick{margin:0 0 .2rem;font-size:.8rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--cyan)}
+[dir=rtl] .hd .kick{letter-spacing:0}
+.hd .sub{margin:.3rem 0 0;font-size:1rem;opacity:.9}
+.cols{column-count:2;column-gap:.9rem}
+.blk{break-inside:avoid;background:var(--bg);border-radius:10px;padding:.7rem .9rem;margin:0 0 .8rem;border:1px solid var(--line)}
+.blk.wide{column-span:all}
+.blk h2{font-size:1.15rem;color:var(--navy);margin-bottom:.45rem}
+.blk ul,.blk ol{list-style:none;margin:0;padding:0;display:grid;gap:.35rem}
+.ck li{display:flex;gap:.5rem;align-items:flex-start}
+.ck .box{flex:none;width:.95rem;height:.95rem;border:2px solid var(--navy);border-radius:3px;margin-top:.15rem;background:#fff}
+.st li{display:flex;gap:.55rem;align-items:center}
+.st .n{flex:none;width:1.6rem;height:1.6rem;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-weight:700;font-size:.85rem}
+.st.danger .n{background:var(--attention);color:var(--ink-strong)}
+.dd{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.dd>div{background:#fff;border-radius:8px;padding:.5rem .6rem}
+.dd h3{font-size:.95rem;display:flex;gap:.3rem;align-items:center;margin-bottom:.3rem}
+.dd .dont h3{color:var(--attention-text)}.dd .dont svg{color:var(--attention)}.dd .do h3{color:var(--safe)}
+.dd li{padding-inline-start:.9rem;position:relative}.dd li:before{content:"•";position:absolute;inset-inline-start:0}
+.cmp h3{color:var(--navy)}
+table{width:100%;border-collapse:collapse;font-size:.92rem;background:#fff}
+th{background:var(--navy);color:#fff;text-align:start;padding:.35rem .5rem}
+td{padding:.35rem .5rem;border-bottom:1px solid var(--line);vertical-align:top}
+.bl li{display:flex;gap:.4rem;align-items:flex-start}.bl svg{flex:none;margin-top:.2rem;color:var(--blue)}
+.t-note{background:color-mix(in srgb,var(--cyan) 18%,#fff)}
+.big{font:600 1.15rem/1.3 var(--font-head);margin:0 0 .3rem}
+.mut{color:var(--muted);font-size:.9rem}
+p{margin:.2rem 0}
+footer{margin-top:.4rem;font-size:.75rem;color:var(--muted);border-top:1px solid var(--line);padding-top:.3rem}
+@media screen{body{max-width:200mm;margin:10mm auto}}
+</style></head>
+<body><header class="hd"><p class='kick'>Job aid · keep it next to your screen</p><h1>Expense claim checklist</h1><p class='sub'>Northwind Co. Expense Policy SOP-FIN-007 v3.2 · effective 2026-03-01</p></header><main class="cols"><section class='blk t-checklist'><h2>Before you press Submit</h2><ul class='ck'><li><span class='box'></span>Itemised receipt for every expense over $25</li><li><span class='box'></span>Receipt photo attached to each line</li><li><span class='box'></span>Total matches the receipts</li><li><span class='box'></span>Category, date, amount and purpose entered</li><li><span class='box'></span>Submitted within 30 days of the expense</li><li><span class='box'></span>Within meal and hotel limits</li><li><span class='box'></span>No personal costs included</li></ul></section><section class='blk t-table'><h2>Limits and approvers</h2><table><thead><tr><th>Item</th><th>Rule</th></tr></thead><tbody><tr><td>Meals (per diem)</td><td>$60/day domestic · $85/day international</td></tr><tr><td>Hotel</td><td>Max $220/night (Travel Desk exception in writing)</td></tr><tr><td>Flights under 6 h</td><td>Economy class</td></tr><tr><td>Alcohol</td><td>Only pre-approved client entertainment</td></tr><tr><td>Approver</td><td>Manager ≤ $1,000 · Director ≤ $5,000 · CFO &gt; $5,000</td></tr></tbody></table></section><section class='blk t-do_dont'><h2>Never / instead</h2><div class='dd'><div class='dont'><h3><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></svg> Never</h3><ul><li>Split one expense to stay under a limit</li><li>Claim family meals or private upgrades</li><li>Inflate a claim: it is misconduct</li></ul></div><div class='do'><h3><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg> Instead</h3><ul><li>One expense, one claim, real amount</li><li>Unsure? Ask before you submit</li></ul></div></div></section><section class='blk t-table'><h2>Deadlines and help</h2><table><thead><tr><th>When</th><th>What</th></tr></thead><tbody><tr><td>Same day</td><td>Photograph the receipt</td></tr><tr><td>30 days</td><td>Submit the claim</td></tr><tr><td>5 business days</td><td>Answer your approver&#x27;s questions</td></tr><tr><td>After 90 days</td><td>Claim is not reimbursed</td></tr><tr><td>7 years</td><td>Keep original paper receipts</td></tr><tr><td>Questions</td><td>Finance Help Desk via the service portal</td></tr></tbody></table></section></main></body></html>

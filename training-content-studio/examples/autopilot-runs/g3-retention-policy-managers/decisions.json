@@ -1,0 +1,308 @@
+{
+ "schema_version": "1.0",
+ "run_id": "g3-retention-policy-managers",
+ "request": "Explain our new data retention policy to managers",
+ "decisions": [
+  {
+   "key": "language",
+   "value": {
+    "primary": "en-US",
+    "subtitles": []
+   },
+   "signal": "request written in English, no MENA cue",
+   "confidence": 0.85,
+   "source": "request",
+   "alternative_rejected": "Arabic primary + English subtitles"
+  },
+  {
+   "key": "audience",
+   "value": {
+    "id": "managers",
+    "roles": [
+     "manager"
+    ],
+    "segment": "executive"
+   },
+   "signal": "wording 'managers'",
+   "confidence": 0.75,
+   "source": "request",
+   "alternative_rejected": "general staff",
+   "critical": true
+  },
+  {
+   "key": "level",
+   "value": "beginner-intermediate",
+   "signal": "audience cue 'managers'",
+   "confidence": 0.75,
+   "source": "request",
+   "alternative_rejected": "intermediate"
+  },
+  {
+   "key": "other",
+   "value": "policy",
+   "signal": "policy: 'policy', 'retention'",
+   "confidence": 0.8,
+   "source": "request",
+   "name": "objective_type",
+   "alternative_rejected": "concept=1"
+  },
+  {
+   "key": "domain",
+   "value": "policy-compliance",
+   "signal": "no pack keyword; inferred from objective type 'policy'",
+   "confidence": 0.6,
+   "source": "rule",
+   "alternative_rejected": "a specific domain pack",
+   "critical": true
+  },
+  {
+   "key": "domain_pack",
+   "value": "_template",
+   "signal": "no domain pack matched",
+   "confidence": 0.7,
+   "source": "default",
+   "alternative_rejected": "closest pack"
+  },
+  {
+   "key": "objectives",
+   "value": [
+    {
+     "id": "O1",
+     "text": "Explain what the new data retention policy requires and why",
+     "bloom": "understand"
+    },
+    {
+     "id": "O2",
+     "text": "Apply the new data retention policy to everyday decisions",
+     "bloom": "apply"
+    },
+    {
+     "id": "O3",
+     "text": "Decide how to handle exceptions and edge cases under the new data retention policy",
+     "bloom": "evaluate"
+    }
+   ],
+   "signal": "type=policy (Bloom matched: know->remember/understand, do->apply, decide->analyze/evaluate); no sources/count wording -> default objective set for type",
+   "confidence": 0.55,
+   "source": "default",
+   "alternative_rejected": "single broad objective",
+   "critical": true
+  },
+  {
+   "key": "formats",
+   "value": [
+    "narrated-deck",
+    "job-aid"
+   ],
+   "signal": "policy -> ['cartoon']; managers audience -> narrated-deck primary + job-aid",
+   "confidence": 0.75,
+   "source": "rule",
+   "alternative_rejected": "['cartoon'] (type default)"
+  },
+  {
+   "key": "other",
+   "value": {
+    "assessment": "post-test",
+    "evidence": true,
+    "broll": false
+   },
+   "signal": "assessment for policy; compliance evidence (completion + attestation)",
+   "confidence": 0.8,
+   "source": "rule",
+   "name": "assessment",
+   "alternative_rejected": "no assessment"
+  },
+  {
+   "key": "blend",
+   "value": [
+    "narrated-deck",
+    "job-aid"
+   ],
+   "signal": "primary narrated-deck + secondary job-aid (max 2/lesson, 3/course)",
+   "confidence": 0.8,
+   "source": "rule",
+   "alternative_rejected": "single format"
+  },
+  {
+   "key": "length",
+   "value": {
+    "lessons": 3,
+    "minutes_per_lesson": 5,
+    "total_minutes": 15
+   },
+   "signal": "microlearning: 1 objective/lesson, 5 min for policy (band 3-7), <= 6 lessons/module",
+   "confidence": 0.75,
+   "source": "rule",
+   "alternative_rejected": "one long lesson"
+  },
+  {
+   "key": "wpm",
+   "value": 140,
+   "signal": "beginner-intermediate 140 wpm",
+   "confidence": 0.8,
+   "source": "rule",
+   "alternative_rejected": "155 wpm"
+  },
+  {
+   "key": "verbosity",
+   "value": "concise",
+   "signal": "managers / beginner-intermediate",
+   "confidence": 0.7,
+   "source": "rule",
+   "alternative_rejected": "detailed"
+  },
+  {
+   "key": "targets",
+   "value": [
+    "deck",
+    "video",
+    "jobaid",
+    "scorm"
+   ],
+   "signal": "narrated-deck->deck+video; job-aid->jobaid; 3 lessons + compliance evidence -> + SCORM",
+   "confidence": 0.8,
+   "source": "rule",
+   "alternative_rejected": "video only"
+  },
+  {
+   "key": "aspect",
+   "value": [
+    "16:9"
+   ],
+   "signal": "16:9 master",
+   "confidence": 0.8,
+   "source": "rule",
+   "alternative_rejected": "9:16 only"
+  },
+  {
+   "key": "renderer",
+   "value": "remotion",
+   "signal": "standalone kit (tcs-render-remotion); no OPENMONTAGE_ROOT",
+   "confidence": 0.6,
+   "source": "rule",
+   "alternative_rejected": "openmontage"
+  }
+ ],
+ "flags": {
+  "request": "Explain our new data retention policy to managers",
+  "sources": [
+   "./policies/"
+  ],
+  "review": "skeleton"
+ },
+ "summary": {
+  "course_id": "new-data-retention-policy",
+  "title": "New data retention policy",
+  "topic": "new data retention policy",
+  "objective_type": "policy",
+  "domain": "policy-compliance",
+  "domain_pack": "_template",
+  "audience": {
+   "id": "managers",
+   "segment": "executive",
+   "roles": [
+    "manager"
+   ],
+   "level": "beginner-intermediate"
+  },
+  "language": {
+   "primary": "en-US",
+   "subtitles": []
+  },
+  "formats": [
+   "narrated-deck",
+   "job-aid"
+  ],
+  "assessment": "post-test",
+  "evidence": true,
+  "targets": [
+   "deck",
+   "video",
+   "jobaid",
+   "scorm"
+  ],
+  "aspects": [
+   "16:9"
+  ],
+  "wpm": 140,
+  "verbosity": "concise",
+  "renderer": "remotion",
+  "has_sources": true
+ },
+ "plan": {
+  "objectives": [
+   {
+    "id": "O1",
+    "text": "Explain what the new data retention policy requires and why",
+    "bloom": "understand",
+    "type": "policy",
+    "lesson_title": "What changes and why"
+   },
+   {
+    "id": "O2",
+    "text": "Apply the new data retention policy to everyday decisions",
+    "bloom": "apply",
+    "type": "policy",
+    "lesson_title": "Applying it day to day"
+   },
+   {
+    "id": "O3",
+    "text": "Decide how to handle exceptions and edge cases under the new data retention policy",
+    "bloom": "evaluate",
+    "type": "policy",
+    "lesson_title": "Exceptions and edge cases"
+   }
+  ],
+  "lessons": [
+   {
+    "module": "M1",
+    "id": "M1L1",
+    "title": "What changes and why",
+    "objective_ids": [
+     "O1"
+    ],
+    "formats": [
+     "narrated-deck",
+     "job-aid"
+    ],
+    "duration_min": 5
+   },
+   {
+    "module": "M1",
+    "id": "M1L2",
+    "title": "Applying it day to day",
+    "objective_ids": [
+     "O2"
+    ],
+    "formats": [
+     "narrated-deck",
+     "job-aid"
+    ],
+    "duration_min": 5
+   },
+   {
+    "module": "M1",
+    "id": "M1L3",
+    "title": "Exceptions and edge cases",
+    "objective_ids": [
+     "O3"
+    ],
+    "formats": [
+     "narrated-deck",
+     "job-aid"
+    ],
+    "duration_min": 5
+   }
+  ]
+ },
+ "estimate": {
+  "tokens": 78000,
+  "usd": 1.17,
+  "tts_minutes": 15.0,
+  "images": 6
+ },
+ "scope": "full",
+ "pause_after": "plan",
+ "warnings": [],
+ "flagged_top": []
+}

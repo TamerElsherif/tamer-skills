@@ -1,0 +1,57 @@
+# Compliance mapping: what training evidence to keep. This is general knowledge about the frameworks, not legal or audit
+# advice — confirm scope and wording with the client's ISMS owner / auditor. Control titles paraphrased.
+schema_version: "1.0"
+general_knowledge: true
+frameworks:
+  iso27001_2022:
+    name: "ISO/IEC 27001:2022"
+    controls:
+      - id: "A.6.3"
+        title: "Information security awareness, education and training"
+        meaning: "Personnel and relevant interested parties receive appropriate, regularly updated awareness, education and training relevant to their role."
+      - id: "7.2"
+        title: "Competence (clause)"
+        meaning: "Determine needed competence, ensure it (e.g. through training), evaluate effectiveness, retain documented information as evidence."
+      - id: "7.3"
+        title: "Awareness (clause)"
+        meaning: "People are aware of the policy, their contribution, and the implications of not conforming."
+    evidence_line: "Completion recorded as ISO/IEC 27001:2022 A.6.3 awareness evidence."
+  soc2:
+    name: "SOC 2 (AICPA Trust Services Criteria)"
+    controls:
+      - id: "CC1.4"
+        title: "Commitment to competence"
+        meaning: "The entity attracts, develops and retains competent individuals — training records demonstrate development."
+      - id: "CC2.2"
+        title: "Internal communication"
+        meaning: "The entity communicates information, including responsibilities for internal control, internally — awareness training is a common evidence item."
+    evidence_line: "Completion recorded as SOC 2 CC1.4 / CC2.2 training evidence."
+  optional_verify_before_use:
+    - "PCI DSS v4.0 requirement 12.6 (security awareness programme) — only for card-data environments; verify sub-requirements."
+    - "Local data-protection laws (e.g. Egypt Personal Data Protection Law No. 151 of 2020) — verify obligations with counsel."
+records_to_keep:              # per learner per assignment; retained per client policy (commonly ≥ 1 audit cycle)
+  - {field: learner_id, note: "pseudonymous id preferred; HR system key"}
+  - {field: role_or_audience, note: "standard / IT / exec — shows role-relevant training"}
+  - {field: course_id, note: "curriculum.yaml course.id"}
+  - {field: lesson_id}
+  - {field: content_version, note: "storyboard/quiz version or git commit + render date"}
+  - {field: language, note: "en-US / ar-EG / ar-MSA"}
+  - {field: assigned_at}
+  - {field: completed_at}
+  - {field: status, note: "completed / incomplete / exempt (with reason)"}
+  - {field: score, note: "quiz score % and pass_mark"}
+  - {field: attempts}
+  - {field: policy_acknowledged, note: "true/false + policy version, if the lesson includes an acknowledgement"}
+  - {field: delivery_channel, note: "LMS (SCORM), live session, email nudge"}
+programme_records:            # once per programme/year
+  - "Training plan / curriculum (curriculum.yaml + approval record)"
+  - "Content inventory with versions and review dates (tracker export)"
+  - "Grounding report per lesson (sources behind every claim)"
+  - "Completion and score summary by audience; follow-up for non-completers"
+  - "Phishing-simulation results and remedial micro-training, if run"
+  - "Annual review of content for currency (threats change)"
+scorm_mapping:                # how the LMS export carries evidence
+  cmi.core.lesson_status: "passed / failed / completed / incomplete"
+  cmi.core.score.raw: "quiz score %"
+  cmi.core.session_time: "time spent"
+  cmi.suspend_data: "content_version + language"

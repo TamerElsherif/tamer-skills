@@ -1,0 +1,25 @@
+{
+ "lesson_id": "M1L1",
+ "output": "examples/golden-security-microdrama/renders/M1L1/video/M1L1_16x9.mp4",
+ "aspect": "16:9",
+ "duration_s": 86.8,
+ "audio": true,
+ "render_s": 33,
+ "draft": false,
+ "target": "video",
+ "engine": "remotion",
+ "missing_assets": [
+  {
+   "kind": "sfx",
+   "id": "ding",
+   "reason": "sfx file not found (assets/sfx or TCS_SFX_DIR)",
+   "placeholder": true
+  },
+  {
+   "kind": "music",
+   "id": "cartoon",
+   "reason": "music bed not found (assets/music, TCS_MUSIC_DIR or --music-dir); rendering without music",
+   "placeholder": true
+  }
+ ]
+}

@@ -1,0 +1,14 @@
+schema_version: "1.0"
+weights: {impact: 0.30, frequency: 0.25, gap: 0.20, urgency: 0.15, compliance: 0.10}   # must sum to 1.0
+scoring_anchors:
+  impact: "<what 5 vs 1 means here>"
+  frequency: "<…>"
+  gap: "<…>"
+  urgency: "<…>"
+  compliance: "<…>"
+quotas: {standard: 10}          # tier-1 picks per audience
+tiers: {tier-1: "quota picks", tier-2: "next N", tier-3: "remaining in scope"}
+filters_out_of_scope: ["<what to exclude>"]
+dedupe: {rule: "One item per cluster unless a variant adds a distinct objective or audience.", decision_for_dropped: deprioritised-duplicate}
+clusters:
+  <cluster-id>: {label: "<label>", members: ["<topic>", "<topic>"]}

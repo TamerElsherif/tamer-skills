@@ -1,0 +1,252 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://tamer-skills/training-content-studio/schemas/run_state.schema.json",
+ "title": "runs/<run-id>/state.json — resumable pipeline state",
+ "type": "object",
+ "required": [
+  "run_id",
+  "stages"
+ ],
+ "properties": {
+  "run_id": {
+   "type": "string"
+  },
+  "request": {
+   "type": "string"
+  },
+  "flags": {
+   "type": "object"
+  },
+  "created": {
+   "type": "string"
+  },
+  "stages": {
+   "type": "object",
+   "properties": {
+    "ingest": {
+     "type": "object",
+     "properties": {
+      "status": {
+       "enum": [
+        "pending",
+        "running",
+        "done",
+        "failed",
+        "skipped",
+        "needs-human"
+       ]
+      },
+      "at": {
+       "type": "string"
+      },
+      "outputs": {
+       "type": "array",
+       "items": {
+        "type": "string"
+       }
+      },
+      "note": {
+       "type": "string"
+      }
+     }
+    },
+    "decide": {
+     "type": "object",
+     "properties": {
+      "status": {
+       "enum": [
+        "pending",
+        "running",
+        "done",
+        "failed",
+        "skipped",
+        "needs-human"
+       ]
+      },
+      "at": {
+       "type": "string"
+      },
+      "outputs": {
+       "type": "array",
+       "items": {
+        "type": "string"
+       }
+      },
+      "note": {
+       "type": "string"
+      }
+     }
+    },
+    "plan": {
+     "type": "object",
+     "properties": {
+      "status": {
+       "enum": [
+        "pending",
+        "running",
+        "done",
+        "failed",
+        "skipped",
+        "needs-human"
+       ]
+      },
+      "at": {
+       "type": "string"
+      },
+      "outputs": {
+       "type": "array",
+       "items": {
+        "type": "string"
+       }
+      },
+      "note": {
+       "type": "string"
+      }
+     }
+    },
+    "produce": {
+     "type": "object",
+     "properties": {
+      "status": {
+       "enum": [
+        "pending",
+        "running",
+        "done",
+        "failed",
+        "skipped",
+        "needs-human"
+       ]
+      },
+      "at": {
+       "type": "string"
+      },
+      "outputs": {
+       "type": "array",
+       "items": {
+        "type": "string"
+       }
+      },
+      "note": {
+       "type": "string"
+      }
+     }
+    },
+    "qa": {
+     "type": "object",
+     "properties": {
+      "status": {
+       "enum": [
+        "pending",
+        "running",
+        "done",
+        "failed",
+        "skipped",
+        "needs-human"
+       ]
+      },
+      "at": {
+       "type": "string"
+      },
+      "outputs": {
+       "type": "array",
+       "items": {
+        "type": "string"
+       }
+      },
+      "note": {
+       "type": "string"
+      }
+     }
+    },
+    "render": {
+     "type": "object",
+     "properties": {
+      "status": {
+       "enum": [
+        "pending",
+        "running",
+        "done",
+        "failed",
+        "skipped",
+        "needs-human"
+       ]
+      },
+      "at": {
+       "type": "string"
+      },
+      "outputs": {
+       "type": "array",
+       "items": {
+        "type": "string"
+       }
+      },
+      "note": {
+       "type": "string"
+      }
+     }
+    },
+    "report": {
+     "type": "object",
+     "properties": {
+      "status": {
+       "enum": [
+        "pending",
+        "running",
+        "done",
+        "failed",
+        "skipped",
+        "needs-human"
+       ]
+      },
+      "at": {
+       "type": "string"
+      },
+      "outputs": {
+       "type": "array",
+       "items": {
+        "type": "string"
+       }
+      },
+      "note": {
+       "type": "string"
+      }
+     }
+    }
+   }
+  },
+  "lessons": {
+   "type": "object",
+   "additionalProperties": {
+    "type": "object",
+    "properties": {
+     "status": {
+      "type": "string"
+     },
+     "attempts": {
+      "type": "integer"
+     },
+     "qa": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  "cost": {
+   "type": "object",
+   "properties": {
+    "tokens": {
+     "type": "integer"
+    },
+    "usd": {
+     "type": "number"
+    },
+    "estimate_usd": {
+     "type": "number"
+    },
+    "budget": {
+     "type": "string"
+    }
+   }
+  }
+ }
+}

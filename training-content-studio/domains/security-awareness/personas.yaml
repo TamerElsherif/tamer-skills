@@ -1,0 +1,31 @@
+# Domain personas for security-awareness. Core personas (host, learner, manager, mentor, customer, rookie, colleague,
+# exec, support) come from assets/characters/personas.yaml; this pack adds roles and one new persona.
+schema_version: "1.0"
+role_mapping:                 # how core personas are typically cast in this domain
+  mentor: "IT & security team member (explains the rule, takes reports)"
+  support: "service-desk agent (target of help-desk social engineering)"
+  exec: "CEO/CFO (impersonated in BEC, deepfake voice and CEO-fraud scenarios)"
+  manager: "line manager / payment approver"
+  rookie: "employee who nearly falls for the trick"
+  learner: "employee who spots it"
+  customer: "supplier/customer whose identity is spoofed (invoice fraud)"
+personas:
+  vex:
+    display_name: {en: "Vex", ar: "ڤيكس"}
+    role: "The attacker / con artist. The ONLY persona wearing the attention colour #FF6700."
+    kit_cast: vex
+    look: "lanky man of indeterminate age, light-olive skin, slicked-back dark hair, thin moustache, orange jacket over a dark-grey turtleneck, charcoal trousers, pointed shoes; theatrical body language"
+    palette: {skin: "#D8B08C", hair: "#1B1B1B", jacket: "#FF6700", turtleneck: "#3A3F55", bottom: "#2E3446"}
+    personality: "Smug, theatrical, playful — a cartoon con artist, never scary or violent."
+    voice: {provider: openai, voice: verse, instructions: "Smug, theatrical cartoon con-artist, playful not scary. Savouring every word."}
+    poses: [rub, cross, point, shrug, handsHips]
+    expressions: [sly, happy, angry, shocked]
+    do: ["Narrate his tricks in asides (think bubbles)", "Lose at the end when someone verifies or reports"]
+    dont: ["Hoodie-in-the-dark hacker cliché", "Resemble any real person, nationality stereotype or group", "Win in the final scene"]
+    prompt: "Flat vector illustration of one original cartoon character for a corporate training video, full body, standing, front three-quarter view, clean uniform outlines, flat colours, simple rounded shapes, plain light #F4F7FB background, not a real person. Character: lanky cartoon con artist, light-olive skin, slicked-back dark hair, thin moustache, orange #FF6700 jacket over dark-grey turtleneck, charcoal trousers, theatrical playful pose. {SCENE}. no text, no letters, no numbers, no signage, no logos"
+  voice_clone:
+    display_name: {en: "Fake voice", ar: "صوت مزيّف"}
+    role: "Deepfake stand-in: rendered as the impersonated persona (usually exec) with a glitch overlay; voiced with the exec voice, delivered slightly flat."
+    kit_cast: exec
+    overlay: glitch
+    voice: {provider: openai, voice: cedar, instructions: "Imitate a composed senior executive, but slightly flat and rushed — subtle unnatural pauses."}

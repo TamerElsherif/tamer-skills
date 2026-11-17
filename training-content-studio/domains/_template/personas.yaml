@@ -1,0 +1,16 @@
+schema_version: "1.0"
+role_mapping:                 # core personas from assets/characters/personas.yaml → roles in this domain
+  mentor: "<expert role>"
+  rookie: "<who makes the typical mistake>"
+  learner: "<who gets it right>"
+personas: {}                  # optional extra personas:
+#  <id>:
+#    display_name: {en: "<Name>", ar: "<الاسم>"}
+#    role: "<role>"
+#    kit_cast: <id>            # ask the kit owner to add an SVG persona with this id
+#    look: "<age, skin, hair, outfit>"
+#    palette: {top: "#RRGGBB"}  # attention #FF6700 reserved for an antagonist, if any
+#    voice: {provider: openai, voice: <voice>, instructions: "<acting>"}
+#    poses: [idle]              # from schemas/enums.json
+#    expressions: [neutral]
+#    prompt: "<locked flat-vector prompt> {SCENE}. no text, no letters, no numbers, no signage, no logos"

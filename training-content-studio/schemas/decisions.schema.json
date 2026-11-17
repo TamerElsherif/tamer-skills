@@ -1,0 +1,91 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://tamer-skills/training-content-studio/schemas/decisions.schema.json",
+ "title": "decisions.json \u2014 autopilot/orchestrator decision record (rendered to decisions.md)",
+ "type": "object",
+ "required": [
+  "schema_version",
+  "run_id",
+  "decisions"
+ ],
+ "properties": {
+  "schema_version": {
+   "const": "1.0"
+  },
+  "run_id": {
+   "type": "string"
+  },
+  "request": {
+   "type": "string"
+  },
+  "decisions": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": [
+     "key",
+     "value",
+     "signal",
+     "confidence",
+     "source"
+    ],
+    "properties": {
+     "key": {
+      "enum": [
+       "domain",
+       "domain_pack",
+       "audience",
+       "level",
+       "objectives",
+       "length",
+       "verbosity",
+       "wpm",
+       "formats",
+       "blend",
+       "language",
+       "targets",
+       "aspect",
+       "renderer",
+       "scope",
+       "conflict-resolution",
+       "budget-tradeoff",
+       "other"
+      ]
+     },
+     "value": {},
+     "signal": {
+      "type": "string"
+     },
+     "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+     },
+     "source": {
+      "enum": [
+       "flag",
+       "request",
+       "rule",
+       "sources",
+       "default",
+       "user"
+      ]
+     },
+     "alternative_rejected": {
+      "type": "string"
+     },
+     "critical": {
+      "type": "boolean"
+     },
+     "flagged": {
+      "type": "boolean"
+     },
+     "name": {
+      "type": "string",
+      "description": "label for key: other"
+     }
+    }
+   }
+  }
+ }
+}

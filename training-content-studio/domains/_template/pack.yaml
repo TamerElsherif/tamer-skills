@@ -1,0 +1,16 @@
+schema_version: "1.0"
+id: <pack-id>                     # kebab-case, equals folder name
+title: "<Domain title>"
+version: "0.1.0"
+languages: [en-US, ar-EG]
+audiences: [standard]             # audience keys used by prioritization quotas
+files:
+  glossary: glossary.yaml
+  personas: personas.yaml
+  scenarios: scenarios.md
+  prioritization: prioritization.yaml
+  compliance: compliance.yaml
+  format_defaults: format_defaults.yaml
+  mockups: mockups.yaml
+detect_keywords: ["<keyword>", "<keyword>"]
+facts_policy: "Definitions may be general_knowledge; procedures, thresholds, contacts and policy rules must come from client sources."

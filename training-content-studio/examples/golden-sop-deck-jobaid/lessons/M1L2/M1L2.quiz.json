@@ -1,0 +1,97 @@
+{
+ "schema_version": "1.0",
+ "quiz_id": "M1L2-kc",
+ "course_id": "northwind-expenses",
+ "lesson_id": "M1L2",
+ "kind": "knowledge-check",
+ "language": "en-US",
+ "pass_mark": 80,
+ "shuffle": true,
+ "items": [
+  {
+   "id": "Q1",
+   "type": "scenario",
+   "objective_id": "O2",
+   "bloom": "apply",
+   "difficulty": "medium",
+   "stem": "A $1,400 hotel bill would need director approval. A colleague suggests two claims of $700. What do you do?",
+   "options": [
+    {
+     "id": "a",
+     "text": "Split it so your manager can approve it",
+     "feedback": "Splitting one expense to stay under a limit is never allowed."
+    },
+    {
+     "id": "b",
+     "text": "Submit it as one claim with the real amount",
+     "correct": true,
+     "feedback": "Right: one expense, one claim, real amount."
+    },
+    {
+     "id": "c",
+     "text": "Leave out the receipt to keep it simple",
+     "feedback": "Expenses over $25 always need the itemised receipt."
+    }
+   ],
+   "explanation": "Never split one expense into several claims to stay under an approval limit (§6).",
+   "source_ids": [
+    "S01#c1"
+   ],
+   "scenario": "You stayed four nights at a hotel for a client project; the bill is one expense of $1,400."
+  },
+  {
+   "id": "Q2",
+   "type": "mcq",
+   "objective_id": "O2",
+   "bloom": "apply",
+   "difficulty": "easy",
+   "stem": "Your approver asked a question about your claim. By when must you answer?",
+   "options": [
+    {
+     "id": "a",
+     "text": "Within 5 business days",
+     "correct": true,
+     "feedback": "Correct: otherwise the claim is returned to you."
+    },
+    {
+     "id": "b",
+     "text": "Within 30 days",
+     "feedback": "30 days is the submission deadline, not the reply deadline."
+    },
+    {
+     "id": "c",
+     "text": "Any time before payment",
+     "feedback": "After 5 business days the claim is returned to you."
+    }
+   ],
+   "source_ids": [
+    "S01#c1"
+   ]
+  },
+  {
+   "id": "Q3",
+   "type": "true_false",
+   "objective_id": "O2",
+   "bloom": "remember",
+   "difficulty": "easy",
+   "stem": "A hotel night of $250 is fine without any extra approval.",
+   "options": [
+    {
+     "id": "t",
+     "text": "True",
+     "feedback": "Hotels are capped at $220 per night."
+    },
+    {
+     "id": "f",
+     "text": "False",
+     "correct": true,
+     "feedback": "Correct: above $220 needs a written Travel Desk exception."
+    }
+   ],
+   "source_ids": [
+    "S01#c1"
+   ],
+   "explanation": "Hotel costs are capped at $220 per night unless the Travel Desk approves an exception in writing."
+  }
+ ]
+}

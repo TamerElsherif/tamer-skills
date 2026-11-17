@@ -1,0 +1,174 @@
+1
+00:00:00,350 --> 00:00:05,506
+Welcome to Northwind. In the next three
+minutes, you'll learn how to submit an
+
+2
+00:00:05,506 --> 00:00:08,414
+expense claim that gets
+paid the first time.
+
+3
+00:00:09,517 --> 00:00:14,068
+Here's
+why it matters. In twenty twenty-five, eighteen percent of expense claims
+
+4
+00:00:14,068 --> 00:00:16,685
+were sent back, because
+a receipt was missing.
+
+5
+00:00:16,685 --> 00:00:20,269
+Claims with every receipt were
+paid in about six business days.
+
+6
+00:00:21,383 --> 00:00:26,468
+Four rules come before anything else.
+Keep an itemised receipt for every expense
+
+7
+00:00:26,468 --> 00:00:30,473
+over twenty-five dollars. A card
+statement alone doesn't count.
+
+8
+00:00:30,473 --> 00:00:33,079
+Submit within thirty days of the expense.
+
+9
+00:00:33,079 --> 00:00:35,940
+After ninety days, a
+claim isn't paid at all.
+
+10
+00:00:35,940 --> 00:00:40,199
+And personal costs, like family
+meals, are never business expenses.
+
+11
+00:00:41,283 --> 00:00:46,261
+When you travel, these limits apply.
+Meals are sixty dollars a day at home, and
+
+12
+00:00:46,261 --> 00:00:51,240
+eighty-five dollars abroad. Hotels are
+capped at two hundred and twenty dollars
+
+13
+00:00:51,240 --> 00:00:55,336
+a night, unless the Travel Desk
+approves an exception in writing.
+
+14
+00:00:55,336 --> 00:00:59,873
+Flights under six hours are economy.
+And alcohol is only paid for client
+
+15
+00:00:59,873 --> 00:01:02,835
+entertainment your manager
+approved in advance.
+
+16
+00:01:03,950 --> 00:01:08,762
+Now, the claim itself, in six steps.
+Photograph the receipt on the same day.
+
+17
+00:01:08,762 --> 00:01:12,117
+Open the Northwind Expenses
+app and select New Claim.
+
+18
+00:01:12,117 --> 00:01:16,549
+Choose the category, then enter the
+date, amount and business purpose.
+
+19
+00:01:16,549 --> 00:01:20,285
+Attach the receipt photo to
+each line, and check the total.
+
+20
+00:01:20,285 --> 00:01:23,197
+Submit it to your approver
+within thirty days.
+
+21
+00:01:23,197 --> 00:01:27,566
+And answer any question from your
+approver within five business days.
+
+22
+00:01:28,650 --> 00:01:32,115
+Who approves depends on
+the amount. You submit.
+
+23
+00:01:32,115 --> 00:01:36,244
+Your manager approves claims
+up to one thousand dollars.
+
+24
+00:01:36,244 --> 00:01:41,995
+A director approves up to five thousand.
+And anything above five thousand goes
+
+25
+00:01:41,995 --> 00:01:42,954
+to the C F O.
+
+26
+00:01:44,050 --> 00:01:48,647
+Quick check. Your conference trip comes
+to three thousand two hundred dollars.
+
+27
+00:01:48,647 --> 00:01:50,002
+Who approves the claim?
+
+28
+00:01:52,202 --> 00:01:57,266
+A director. It's above one thousand
+dollars, but not above five thousand.
+
+29
+00:01:59,617 --> 00:02:04,240
+Three things you must never do. Never
+split one expense into several claims to
+
+30
+00:02:04,240 --> 00:02:08,271
+stay under a limit. Never submit
+personal costs or private upgrades.
+
+31
+00:02:08,271 --> 00:02:12,953
+And never inflate a claim. False claims
+are treated as misconduct, and can lead
+
+32
+00:02:12,953 --> 00:02:17,577
+to dismissal. Instead, submit each expense
+once, with its real amount, and ask
+
+33
+00:02:17,577 --> 00:02:19,177
+Finance when you're unsure.
+
+34
+00:02:20,283 --> 00:02:24,930
+That's it. Keep the receipt, submit
+within thirty days, and use the expense
+
+35
+00:02:24,930 --> 00:02:29,762
+checklist in the next lesson. Questions?
+Contact the Finance Help Desk through
+
+36
+00:02:29,762 --> 00:02:30,939
+the service portal.

@@ -1,0 +1,619 @@
+{
+ "schema_version": "1.0",
+ "course_id": "northwind-expenses",
+ "lesson_id": "M1L1",
+ "title": "إزاي تقدّم مطالبة مصاريف",
+ "language": "ar-EG",
+ "direction": "rtl",
+ "aspect": "16:9",
+ "fps": 30,
+ "formats": [
+  "narrated-deck"
+ ],
+ "wpm": 117,
+ "objective_ids": [
+  "O1"
+ ],
+ "theme": {
+  "preset": "neutral",
+  "logo": null,
+  "fonts": {
+   "arabic": "Cairo",
+   "latin": "Poppins"
+  }
+ },
+ "voices": {
+  "narrator": {
+   "provider": "openai",
+   "voice": "marin",
+   "model": "gpt-4o-mini-tts",
+   "instructions": "Speak natural Egyptian Arabic (Cairene colloquial), warm and friendly like a respected colleague explaining to the team. Clear, relaxed pace; pronounce English technical terms the way Egyptian professionals say them.",
+   "lang": "ar-EG"
+  }
+ },
+ "cast": [
+  "host"
+ ],
+ "scenes": [
+  {
+   "id": "s01_title",
+   "template": "title",
+   "props": {
+    "kicker": "نورثويند · تأهيل الموظفين الجدد في المالية",
+    "title": "إزاي تقدّم مطالبة مصاريف",
+    "sub": "الوحدة 1 · الدرس 1 · 3 دقايق",
+    "icon": "invoice"
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "أهلاً بيك في نورثويند. في التلات دقايق الجايين، هتتعلم إزاي تقدّم مطالبة مصاريف تتصرف لك من أول مرة."
+    }
+   ],
+   "claims": [
+    {
+     "text": "This lesson covers submitting an expense claim at Northwind Co.",
+     "general_knowledge": true
+    }
+   ],
+   "duration_hint_s": 11.5,
+   "notes": "Presenter: ask who has already paid for something work-related out of pocket. Time: 30 s. · localized from en-US",
+   "objective_ids": [
+    "O1"
+   ],
+   "visual": "شريحة العنوان مع أيقونة فاتورة.",
+   "on_screen_text": [
+    "نورثويند · تأهيل الموظفين الجدد في المالية",
+    "إزاي تقدّم مطالبة مصاريف",
+    "الوحدة 1 · الدرس 1 · 3 دقايق"
+   ]
+  },
+  {
+   "id": "s02_why",
+   "template": "stat",
+   "props": {
+    "value": 18,
+    "suffix": "%",
+    "label": "من مطالبات 2025 رجعت بسبب إيصال ناقص",
+    "source": "Northwind Expense Policy SOP-FIN-007 §7",
+    "icon": "file"
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "خلّيني أقولك ليه ده مهم. في سنة ألفين خمسة وعشرين، ^ تمنتاشر في المية من المطالبات رجعت لأصحابها، عشان الإيصال كان ناقص. والمطالبات اللي كانت كاملة الإيصالات اتصرفت في حوالي ست أيام شغل."
+    }
+   ],
+   "claims": [
+    {
+     "text": "In 2025, 18% of expense claims were returned to employees because a receipt was missing.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "In 2025, claims submitted with all receipts were reimbursed in an average of 6 business days.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    }
+   ],
+   "duration_hint_s": 15.7,
+   "notes": "Ask: why do you think receipts go missing? Complete claims were paid in about 6 business days (§7). · localized from en-US",
+   "objective_ids": [
+    "O1"
+   ],
+   "visual": "الرقم الكبير بيعدّ لحد 18%.",
+   "on_screen_text": [
+    "18%",
+    "من مطالبات 2025 رجعت بسبب إيصال ناقص"
+   ]
+  },
+  {
+   "id": "s03_rules",
+   "template": "bullets",
+   "props": {
+    "title": "أربع قواعد قبل ما تبدأ",
+    "items": [
+     {
+      "text": "إيصال مفصّل لأي مصروف فوق $25",
+      "sub": "كشف حساب الكارت لوحده مش إيصال",
+      "icon": "file"
+     },
+     {
+      "text": "قدّم خلال 30 يوم",
+      "icon": "calendar"
+     },
+     {
+      "text": "بعد 90 يوم: مفيش صرف",
+      "icon": "clock",
+      "tone": "warn"
+     },
+     {
+      "text": "المصاريف الشخصية مش مصاريف شغل",
+      "icon": "x",
+      "tone": "warn"
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "فيه أربع قواعد قبل أي حاجة. ^ أي مصروف فوق خمسة وعشرين دولار لازم له إيصال مفصّل، وكشف حساب الكارت لوحده مش بيتحسب إيصال. ^ قدّم المطالبة خلال تلاتين يوم من تاريخ المصروف. ^ وبعد تسعين يوم، المطالبة مش بتتصرف خالص. ^ والمصاريف الشخصية، زي أكل العيلة، عمرها ما تبقى مصاريف شغل."
+    }
+   ],
+   "claims": [
+    {
+     "text": "A receipt is required for every expense over $25.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "A card statement alone is not a receipt.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Employees must submit expense claims within 30 days of the expense date.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Claims older than 90 days are not reimbursed.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Personal costs such as family meals must not be submitted as business expenses.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    }
+   ],
+   "duration_hint_s": 23.5,
+   "notes": "If asked about small items: no receipt needed at $25 or less, but keeping one never hurts. · localized from en-US",
+   "objective_ids": [
+    "O1"
+   ],
+   "visual": "أربع قواعد بتظهر واحدة واحدة.",
+   "on_screen_text": [
+    "أربع قواعد قبل ما تبدأ",
+    "إيصال مفصّل لأي مصروف فوق $25",
+    "كشف حساب الكارت لوحده مش إيصال",
+    "قدّم خلال 30 يوم",
+    "بعد 90 يوم: مفيش صرف",
+    "المصاريف الشخصية مش مصاريف شغل"
+   ]
+  },
+  {
+   "id": "s04_limits",
+   "template": "table",
+   "props": {
+    "title": "حدود السفر",
+    "columns": [
+     "البند",
+     "الحد",
+     "الاستثناء"
+    ],
+    "rows": [
+     [
+      "الأكل (بدل يومي)",
+      "في اليوم: $60 داخلي · $85 خارجي",
+      "—"
+     ],
+     [
+      "الفندق",
+      "لحد $220 في الليلة",
+      "مكتب السفر، بموافقة مكتوبة"
+     ],
+     [
+      "رحلات طيران أقل من 6 ساعات",
+      "درجة سياحية",
+      "—"
+     ],
+     [
+      "الكحول",
+      "مش بيتصرف",
+      "ضيافة عميل متوافق عليها مسبقاً"
+     ]
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "^ لما تسافر، دي الحدود اللي ماشية عليك. الأكل ستين دولار في اليوم جوّه البلد، وخمسة وتمانين دولار برّه. الفندق حدّه الأقصى متين وعشرين دولار في الليلة، إلا لو مكتب السفر وافق على استثناء كتابةً. الطيران أقل من ست ساعات يبقى درجة سياحية. والكحول مش بيتصرف غير في ضيافة عميل مديرك وافق عليها مسبقاً."
+    }
+   ],
+   "claims": [
+    {
+     "text": "The meal per diem is $60 per day for domestic travel and $85 per day for international travel.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Hotel costs are capped at $220 per night unless the Travel Desk approves an exception in writing.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Flights under 6 hours must be booked in economy class.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Alcohol is not reimbursable, except during client entertainment that the manager approved in advance.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    }
+   ],
+   "duration_hint_s": 27.7,
+   "notes": "Example (SOP §8): Mona's pre-approved $140 client dinner incl. wine was reimbursed in full. · localized from en-US",
+   "objective_ids": [
+    "O1"
+   ],
+   "visual": "جدول مرجعي لحدود السفر.",
+   "on_screen_text": [
+    "حدود السفر",
+    "البند",
+    "الحد",
+    "الاستثناء",
+    "الأكل (بدل يومي)",
+    "في اليوم: $60 داخلي · $85 خارجي",
+    "—",
+    "الفندق",
+    "لحد $220 في الليلة",
+    "مكتب السفر، بموافقة مكتوبة",
+    "رحلات طيران أقل من 6 ساعات",
+    "درجة سياحية",
+    "الكحول",
+    "مش بيتصرف",
+    "ضيافة عميل متوافق عليها مسبقاً"
+   ]
+  },
+  {
+   "id": "s05_steps",
+   "template": "steps",
+   "props": {
+    "title": "ست خطوات في تطبيق Northwind Expenses",
+    "steps": [
+     {
+      "label": "صوّر الإيصال",
+      "sub": "في نفس اليوم",
+      "icon": "camera"
+     },
+     {
+      "label": "افتح التطبيق · New Claim",
+      "icon": "smartphone"
+     },
+     {
+      "label": "الفئة والتاريخ والمبلغ والغرض",
+      "icon": "invoice"
+     },
+     {
+      "label": "ارفع الإيصال على كل سطر",
+      "sub": "راجع الإجمالي",
+      "icon": "upload"
+     },
+     {
+      "label": "ابعت للمسؤول عن الموافقة",
+      "sub": "خلال 30 يوم",
+      "icon": "check"
+     },
+     {
+      "label": "رد على الأسئلة",
+      "sub": "خلال 5 أيام شغل",
+      "icon": "clock"
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "دلوقتي، المطالبة نفسها في ست خطوات. ^ صوّر الإيصال في نفس اليوم. ^ افتح تطبيق Northwind Expenses واختار New Claim. ^ اختار الفئة، وبعدين دخّل التاريخ والمبلغ والغرض من المصروف. ^ ارفع صورة الإيصال على كل سطر، واتأكد من الإجمالي. ^ ابعت المطالبة للمسؤول عن الموافقة خلال تلاتين يوم. ^ ولو سألك أي سؤال، رد عليه خلال خمس أيام شغل."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Keep the itemised receipt for every expense and photograph it on the same day.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Open the Northwind Expenses app and select New Claim.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Choose the expense category and enter the date, amount and business purpose.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Attach the receipt photo to each line and check that the total matches.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Submit the claim to your approver before the 30-day deadline.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Respond to any approver question within 5 business days, or the claim is returned.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    }
+   ],
+   "duration_hint_s": 30.9,
+   "notes": "Live session: demo the app here if available. Time: 1 min. · localized from en-US",
+   "objective_ids": [
+    "O1"
+   ],
+   "visual": "خطوات مرقّمة، واحدة مع كل ضغطة.",
+   "on_screen_text": [
+    "ست خطوات في تطبيق Northwind Expenses",
+    "صوّر الإيصال",
+    "في نفس اليوم",
+    "افتح التطبيق · New Claim",
+    "الفئة والتاريخ والمبلغ والغرض",
+    "ارفع الإيصال على كل سطر",
+    "راجع الإجمالي",
+    "ابعت للمسؤول عن الموافقة",
+    "خلال 30 يوم",
+    "رد على الأسئلة",
+    "خلال 5 أيام شغل"
+   ]
+  },
+  {
+   "id": "s06_approval",
+   "template": "process_flow",
+   "props": {
+    "title": "مين بيوافق على مطالبتك",
+    "nodes": [
+     {
+      "id": "a",
+      "label": "إنت بتقدّم",
+      "kind": "start"
+     },
+     {
+      "id": "b",
+      "label": "المدير المباشر: لحد $1,000",
+      "kind": "step"
+     },
+     {
+      "id": "c",
+      "label": "المدير الأعلى: لحد $5,000",
+      "kind": "step"
+     },
+     {
+      "id": "d",
+      "label": "المدير المالي (CFO): فوق $5,000",
+      "kind": "end"
+     }
+    ],
+    "edges": [
+     {
+      "from": "a",
+      "to": "b"
+     },
+     {
+      "from": "b",
+      "to": "c"
+     },
+     {
+      "from": "c",
+      "to": "d"
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "مين اللي يوافق؟ ده بيعتمد على المبلغ. ^ إنت بتقدّم المطالبة. ^ مديرك المباشر بيوافق لحد ألف دولار. ^ المدير الأعلى بيوافق لحد خمس تلاف. ^ وأي حاجة فوق خمس تلاف بتروح للمدير المالي، الـ CFO."
+    }
+   ],
+   "claims": [
+    {
+     "text": "A manager approves claims up to $1,000, a director up to $5,000, and the CFO any claim above $5,000.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    }
+   ],
+   "duration_hint_s": 17.5,
+   "objective_ids": [
+    "O1"
+   ],
+   "visual": "مسار الموافقة حسب المبلغ.",
+   "notes": "localized from en-US",
+   "on_screen_text": [
+    "مين بيوافق على مطالبتك",
+    "إنت بتقدّم",
+    "المدير المباشر: لحد $1,000",
+    "المدير الأعلى: لحد $5,000",
+    "المدير المالي (CFO): فوق $5,000"
+   ]
+  },
+  {
+   "id": "s07_check",
+   "template": "quiz",
+   "props": {
+    "quiz_item": "Q1",
+    "q": "رحلتك كلّفت $3,200. مين يوافق؟",
+    "options": [
+     "مديرك المباشر",
+     "المدير الأعلى",
+     "المدير المالي (CFO)"
+    ],
+    "answer": 1,
+    "why": "فوق $1,000 ومش فوق $5,000"
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "سؤال سريع. رحلة المؤتمر بتاعتك كلّفت تلات تلاف ومتين دولار. مين يوافق على المطالبة؟",
+     "pause": 2.2
+    },
+    {
+     "who": "narrator",
+     "text": "^ المدير الأعلى. لأنها فوق الألف دولار، بس مش فوق الخمس تلاف."
+    }
+   ],
+   "claims": [
+    {
+     "text": "A director approves claims up to $5,000; a manager approves claims up to $1,000.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Scenario: a $3,200 conference trip claim (fictional example).",
+     "general_knowledge": true
+    }
+   ],
+   "duration_hint_s": 16.5,
+   "objective_ids": [
+    "O1"
+   ],
+   "visual": "سؤال سريع بتلات اختيارات.",
+   "hold": 2,
+   "notes": "localized from en-US",
+   "on_screen_text": [
+    "رحلتك كلّفت $3,200. مين يوافق؟",
+    "مديرك المباشر",
+    "المدير الأعلى",
+    "المدير المالي (CFO)",
+    "فوق $1,000 ومش فوق $5,000"
+   ]
+  },
+  {
+   "id": "s08_dont",
+   "template": "do_dont",
+   "props": {
+    "title": "عمرك ما تعمل كده",
+    "dont_head": "ممنوع",
+    "do_head": "بدل كده",
+    "dont": [
+     "تقسيم مصروف عشان تفضل تحت الحد",
+     "مصاريف شخصية أو ترقيات خاصة",
+     "تزويد المبلغ (مخالفة جسيمة)"
+    ],
+    "do": [
+     "مصروف واحد، مطالبة واحدة، بالمبلغ الحقيقي",
+     "مش متأكد؟ اسأل مكتب مساعدة المالية"
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "فيه تلات حاجات عمرك ما تعملها. ^ متقسّمش مصروف واحد على كذا مطالبة عشان تفضل تحت الحد. ^ متقدّمش مصاريف شخصية أو ترقيات خاصة. ^ ومتزوّدش أي مطالبة. المطالبة الكدب بتتعتبر مخالفة جسيمة، وممكن توصل للفصل. بدل كده، ^ قدّم كل مصروف مرة واحدة بمبلغه الحقيقي، ^ ولو مش متأكد، اسأل المالية."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Never split one expense into several claims to stay under an approval limit.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Do not submit personal costs, such as family meals or private travel upgrades, as business expenses.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Submitting a false or inflated claim is treated as misconduct and can lead to disciplinary action, including dismissal.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Questions about the policy go to the Finance Help Desk.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    }
+   ],
+   "duration_hint_s": 27.2,
+   "notes": "Stress: false or inflated claims can lead to dismissal (§6). · localized from en-US",
+   "objective_ids": [
+    "O1"
+   ],
+   "visual": "الممنوعات وبعدها الصح، واحدة مع كل ضغطة.",
+   "on_screen_text": [
+    "عمرك ما تعمل كده",
+    "ممنوع",
+    "بدل كده",
+    "تقسيم مصروف عشان تفضل تحت الحد",
+    "مصاريف شخصية أو ترقيات خاصة",
+    "تزويد المبلغ (مخالفة جسيمة)",
+    "مصروف واحد، مطالبة واحدة، بالمبلغ الحقيقي",
+    "مش متأكد؟ اسأل مكتب مساعدة المالية"
+   ]
+  },
+  {
+   "id": "s09_outro",
+   "template": "outro",
+   "props": {
+    "title": "الجاي: قايمة مراجعة المطالبة",
+    "line": "الإيصال · 30 يوم · المسؤول الصح",
+    "tips": [
+     "مكتب مساعدة المالية: بوابة الخدمات الداخلية"
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "كده خلصنا. احتفظ بالإيصال، قدّم خلال تلاتين يوم، واستخدم قايمة المراجعة في الدرس الجاي. عندك سؤال؟ كلّم مكتب مساعدة المالية من بوابة الخدمات."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Employees must submit expense claims within 30 days of the expense date.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    },
+    {
+     "text": "Contact the Finance Help Desk through the internal service portal for any question about this policy.",
+     "source_ids": [
+      "S01#c1"
+     ]
+    }
+   ],
+   "duration_hint_s": 14.3,
+   "objective_ids": [
+    "O1"
+   ],
+   "visual": "شريحة الختام والدرس الجاي.",
+   "notes": "localized from en-US",
+   "on_screen_text": [
+    "الجاي: قايمة مراجعة المطالبة",
+    "الإيصال · 30 يوم · المسؤول الصح",
+    "مكتب مساعدة المالية: بوابة الخدمات الداخلية"
+   ]
+  }
+ ],
+ "subtitle_languages": [
+  "en-US"
+ ],
+ "music": {
+  "bed": "executive",
+  "volume": 0.1
+ }
+}

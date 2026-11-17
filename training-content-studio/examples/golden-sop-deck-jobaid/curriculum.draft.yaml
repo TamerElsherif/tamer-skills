@@ -1,0 +1,85 @@
+schema_version: '1.0'
+course:
+  id: narrated-deck-and-a-one-page-job-aid-from-our-ex
+  title: How to narrated deck and a one-page job aid from our expense SOP (beginners), English with an Egyptian Arabic version
+    of the deck
+  domain: _template
+  domain_pack: _template
+  audience:
+    level: beginner
+    roles:
+    - learner
+    - rookie
+    segments:
+    - staff
+  languages:
+    primary: en-US
+    secondary:
+    - ar-EG
+    subtitles:
+    - ar-EG
+  total_minutes: 15
+  verbosity: standard
+  wpm: 130
+  targets:
+  - video
+  - deck
+  - lesson
+  - scorm
+  - jobaid
+  aspects:
+  - '16:9'
+  renderer: remotion
+objectives:
+- id: O1
+  text: Identify what you need before you narrated deck and a one-page job aid from our expense SOP (beginners), English with
+    an Egyptian Arabic version of the deck
+  bloom: remember
+  type: procedure
+  source_ids: &id001
+  - S01#c1
+- id: O2
+  text: Complete the steps to narrated deck and a one-page job aid from our expense SOP (beginners), English with an Egyptian
+    Arabic version of the deck correctly
+  bloom: apply
+  type: procedure
+- id: O3
+  text: Check your work and fix common errors when you narrated deck and a one-page job aid from our expense SOP (beginners),
+    English with an Egyptian Arabic version of the deck
+  bloom: analyze
+  type: procedure
+modules:
+- id: M1
+  title: Module 1
+  lessons:
+  - id: M1L1
+    title: Before you start
+    objective_ids:
+    - O1
+    formats:
+    - narrated-deck
+    - job-aid
+    duration_min: 5
+    source_ids: *id001
+    status: planned
+  - id: M1L2
+    title: Step by step
+    objective_ids:
+    - O2
+    formats:
+    - narrated-deck
+    - job-aid
+    duration_min: 5
+    status: planned
+  - id: M1L3
+    title: Check and fix
+    objective_ids:
+    - O3
+    formats:
+    - narrated-deck
+    - job-aid
+    duration_min: 5
+    status: planned
+approval:
+  status: draft
+  by: tcs-autopilot

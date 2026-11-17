@@ -1,0 +1,74 @@
+schema_version: '1.0'
+course:
+  id: new-data-retention-policy
+  title: New data retention policy
+  domain: policy-compliance
+  domain_pack: _template
+  audience:
+    level: beginner-intermediate
+    roles:
+    - manager
+    segments:
+    - executive
+  languages:
+    primary: en-US
+  total_minutes: 15
+  verbosity: concise
+  wpm: 140
+  targets:
+  - deck
+  - video
+  - jobaid
+  - scorm
+  aspects:
+  - '16:9'
+  renderer: remotion
+  compliance:
+  - completion + attestation evidence
+objectives:
+- id: O1
+  text: Explain what the new data retention policy requires and why
+  bloom: understand
+  type: policy
+- id: O2
+  text: Apply the new data retention policy to everyday decisions
+  bloom: apply
+  type: policy
+- id: O3
+  text: Decide how to handle exceptions and edge cases under the new data retention policy
+  bloom: evaluate
+  type: policy
+modules:
+- id: M1
+  title: Module 1
+  lessons:
+  - id: M1L1
+    title: What changes and why
+    objective_ids:
+    - O1
+    formats:
+    - narrated-deck
+    - job-aid
+    duration_min: 5
+    status: planned
+  - id: M1L2
+    title: Applying it day to day
+    objective_ids:
+    - O2
+    formats:
+    - narrated-deck
+    - job-aid
+    duration_min: 5
+    status: planned
+  - id: M1L3
+    title: Exceptions and edge cases
+    objective_ids:
+    - O3
+    formats:
+    - narrated-deck
+    - job-aid
+    duration_min: 5
+    status: planned
+approval:
+  status: draft
+  by: tcs-autopilot

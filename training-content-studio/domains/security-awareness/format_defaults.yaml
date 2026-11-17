@@ -1,0 +1,31 @@
+# NOTE: when this file and skills/tcs-autopilot/decision-rules.yaml disagree, decision-rules.yaml wins; this pack only fills gaps.
+# Format defaults for security-awareness (orchestrator/autopilot use these when the request doesn't specify).
+schema_version: "1.0"
+default_formats_by_objective_type:
+  concept: [explainer]            # what is phishing / BEC
+  behavior: [cartoon, branching]  # micro-drama + branching + knowledge check (autopilot rule)
+  procedure: [screencast-sim, job-aid]   # report button, enable MFA
+  policy: [cartoon, job-aid]      # compliance policy → micro-drama + quiz + evidence; narrated-deck when audience is exec
+  recall: [series]                # flashcards / nudges
+default_formats_by_audience:
+  standard: [cartoon, explainer]
+  it: [explainer, branching]
+  exec: [narrated-deck, explainer] # music: executive; theme: executive or midnight; shorter (2–4 min)
+when_remaking_original:
+  rule: "Match the original's format (explainer / cartoon / whiteboard→doodle); duration ≥ 90% of original (aim 100–120%); cover every original point."
+blends:
+  - [explainer, job-aid]
+  - [cartoon, branching]
+  - [cartoon, series]
+  - [screencast-sim, job-aid]
+durations_min: {micro: 1.5, standard: 3.5, exec: 3, deep: 6}
+music_by_format: {explainer: explainer, cartoon: cartoon, doodle: whiteboard, comic: cartoon, branching: cartoon, narrated-deck: executive, mindmap: explainer, screencast-sim: explainer, series: cartoon}
+music_exec_override: executive
+theme: {default: neutral, exec: executive, doodle: whiteboard}
+cast_defaults: {protagonist: rookie, spotter: learner, expert: mentor, attacker: vex}
+standard_arc: [title, hook, what, how_it_works, example_mockup, warning_signs, consequences, what_to_do, report_it, quick_check, recap, outro]
+evidence_line: "Completion recorded as ISO/IEC 27001:2022 A.6.3 awareness evidence."
+always_include:
+  - "How and where to report (client's channel — placeholder until provided)"
+  - "At least one realistic mock-up with red-flag callouts"
+  - "A quick-check question per objective"

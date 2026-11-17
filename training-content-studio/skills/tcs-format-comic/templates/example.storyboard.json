@@ -1,0 +1,300 @@
+{
+ "schema_version": "1.0",
+ "course_id": "northwind-security-basics",
+ "lesson_id": "M4L1",
+ "title": "The Friendly Tailgater",
+ "language": "en-US",
+ "direction": "ltr",
+ "subtitle_languages": [
+  "ar-EG"
+ ],
+ "aspect": "9:16",
+ "fps": 30,
+ "formats": [
+  "comic"
+ ],
+ "wpm": 150,
+ "objective_ids": [
+  "O1",
+  "O2"
+ ],
+ "theme": {
+  "preset": "neutral",
+  "logo": null
+ },
+ "voices": {
+  "narrator": {
+   "provider": "openai",
+   "model": "gpt-4o-mini-tts",
+   "voice": "marin",
+   "lang": "en-US",
+   "instructions": "Warm, confident corporate trainer speaking to colleagues. Clear, friendly, natural pace; brief pauses between list items. Never robotic."
+  },
+  "learner": {
+   "provider": "openai",
+   "voice": "ash",
+   "instructions": "Friendly, polite office worker."
+  },
+  "vex": {
+   "provider": "openai",
+   "voice": "verse",
+   "instructions": "Over-friendly courier, smooth talker, playful not scary."
+  }
+ },
+ "music": {
+  "bed": "cartoon",
+  "volume": 0.12
+ },
+ "cast": [
+  "learner",
+  "vex",
+  "manager"
+ ],
+ "scenes": [
+  {
+   "id": "s01_title",
+   "template": "title",
+   "props": {
+    "kicker": "Comic",
+    "title": "The Friendly Tailgater",
+    "icon": "door"
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "The friendly tailgater. A three-panel story."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Intro.",
+     "general_knowledge": true
+    }
+   ]
+  },
+  {
+   "id": "s02_strip1",
+   "template": "comic",
+   "props": {
+    "layout": "3-row",
+    "panels": [
+     {
+      "cue": 0,
+      "set": "reception",
+      "people": [
+       {
+        "cast": "vex",
+        "x": 640,
+        "y": 1000,
+        "s": 1.0,
+        "pose": "hold",
+        "expr": "happy",
+        "holding": "paper"
+       }
+      ],
+      "caption": "8:58 a.m. Arms full of boxes."
+     },
+     {
+      "cue": 1,
+      "set": "reception",
+      "people": [
+       {
+        "cast": "learner",
+        "x": 420,
+        "y": 1000,
+        "s": 1.0,
+        "pose": "idle",
+        "expr": "neutral",
+        "holding": "card"
+       },
+       {
+        "cast": "vex",
+        "x": 760,
+        "y": 1000,
+        "s": 1.0,
+        "pose": "hold",
+        "expr": "happy"
+       }
+      ],
+      "bubbles": [
+       {
+        "who": "vex",
+        "text": "Could you hold the door? My hands are full!"
+       }
+      ]
+     },
+     {
+      "cue": 2,
+      "set": "openOffice",
+      "people": [
+       {
+        "cast": "vex",
+        "x": 600,
+        "y": 1000,
+        "s": 1.0,
+        "pose": "rub",
+        "expr": "sly"
+       }
+      ],
+      "bubbles": [
+       {
+        "who": "vex",
+        "text": "Too easy.",
+        "think": true
+       }
+      ],
+      "sfx_word": "CLICK"
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "^ Nine o'clock. A courier with arms full of boxes waits by the secure door."
+    },
+    {
+     "who": "vex",
+     "text": "^ Could you hold the door? My hands are full!"
+    },
+    {
+     "who": "narrator",
+     "text": "^ One polite gesture, and a stranger is inside without a badge."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Tailgating: following an authorised person through a secure door.",
+     "source_ids": [
+      "S05#c1"
+     ]
+    }
+   ],
+   "duration_hint_s": 18
+  },
+  {
+   "id": "s03_strip2",
+   "template": "comic",
+   "props": {
+    "layout": "1+2",
+    "panels": [
+     {
+      "cue": 0,
+      "set": "reception",
+      "people": [
+       {
+        "cast": "learner",
+        "x": 640,
+        "y": 1000,
+        "s": 1.0,
+        "pose": "stop",
+        "expr": "neutral"
+       }
+      ],
+      "bubbles": [
+       {
+        "who": "learner",
+        "text": "Reception will sign you in."
+       }
+      ]
+     },
+     {
+      "cue": 1,
+      "set": "reception",
+      "people": [
+       {
+        "cast": "manager",
+        "x": 640,
+        "y": 1000,
+        "s": 1.0,
+        "pose": "point",
+        "expr": "happy"
+       }
+      ],
+      "caption": "Visitors sign in at reception."
+     },
+     {
+      "cue": 2,
+      "set": "reception",
+      "people": [
+       {
+        "cast": "learner",
+        "x": 640,
+        "y": 1000,
+        "s": 1.0,
+        "pose": "cheer",
+        "expr": "happy"
+       }
+      ],
+      "caption": "Kind and secure."
+     }
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "Let's rewind. ^ This time, Nour smiles and points to reception."
+    },
+    {
+     "who": "narrator",
+     "text": "^ Visitors sign in there and get escorted. ^ Polite, and secure."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Visitors must sign in at reception and be escorted.",
+     "source_ids": [
+      "S05#c2"
+     ]
+    }
+   ],
+   "duration_hint_s": 14
+  },
+  {
+   "id": "s04_dodont",
+   "template": "do_dont",
+   "props": {
+    "title": "At secure doors",
+    "dont": [
+     "Hold the door for strangers"
+    ],
+    "do": [
+     "Send visitors to reception",
+     "Report unbadged people"
+    ]
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "At secure doors: ^ don't hold them for strangers. ^ Send visitors to reception, ^ and report anyone without a badge."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Door policy.",
+     "source_ids": [
+      "S05#c2"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s05_outro",
+   "template": "outro",
+   "props": {
+    "line": "Kind is fine. Badge first."
+   },
+   "narration": [
+    {
+     "who": "narrator",
+     "text": "Kind is fine. Badge first."
+    }
+   ],
+   "claims": [
+    {
+     "text": "Closing.",
+     "general_knowledge": true
+    }
+   ]
+  }
+ ]
+}

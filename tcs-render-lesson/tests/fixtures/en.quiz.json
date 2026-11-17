@@ -1,0 +1,129 @@
+{
+ "schema_version": "1.0",
+ "quiz_id": "M1L1-kc",
+ "course_id": "security-basics",
+ "lesson_id": "M1L1",
+ "kind": "knowledge-check",
+ "language": "en-US",
+ "pass_mark": 80,
+ "items": [
+  {
+   "id": "Q1",
+   "type": "mcq",
+   "objective_id": "O1",
+   "stem": "Which is the strongest sign that an email is phishing?",
+   "options": [
+    {
+     "id": "a",
+     "text": "It uses the company logo",
+     "feedback": "Logos are easy to copy."
+    },
+    {
+     "id": "b",
+     "text": "It creates urgency and asks for your password",
+     "correct": true,
+     "feedback": "Yes: urgency plus a credential request."
+    },
+    {
+     "id": "c",
+     "text": "It was sent on a Monday"
+    }
+   ],
+   "explanation": "Urgency combined with a request for credentials is the classic pattern.",
+   "general_knowledge": true
+  },
+  {
+   "id": "Q2",
+   "type": "multi",
+   "objective_id": "O1",
+   "stem": "Select all red flags.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Lookalike sender domain",
+     "correct": true
+    },
+    {
+     "id": "b",
+     "text": "Expected invoice from a known supplier"
+    },
+    {
+     "id": "c",
+     "text": "Generic greeting",
+     "correct": true
+    }
+   ],
+   "general_knowledge": true
+  },
+  {
+   "id": "Q3",
+   "type": "true_false",
+   "objective_id": "O2",
+   "stem": "Replying to ask whether an email is real is a safe way to verify it.",
+   "options": [
+    {
+     "id": "t",
+     "text": "True"
+    },
+    {
+     "id": "f",
+     "text": "False",
+     "correct": true,
+     "feedback": "The attacker controls the reply address."
+    }
+   ],
+   "general_knowledge": true
+  },
+  {
+   "id": "Q4",
+   "type": "ordering",
+   "objective_id": "O2",
+   "stem": "Put the response steps in order.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Report the email",
+     "order": 2
+    },
+    {
+     "id": "b",
+     "text": "Stop and do not click",
+     "order": 1
+    },
+    {
+     "id": "c",
+     "text": "Delete it after reporting",
+     "order": 3
+    }
+   ],
+   "general_knowledge": true
+  },
+  {
+   "id": "Q5",
+   "type": "matching",
+   "objective_id": "O2",
+   "stem": "Match each situation to the right contact.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Suspicious email",
+     "match": "Report button"
+    },
+    {
+     "id": "b",
+     "text": "Clicked a link",
+     "match": "IT Service Desk"
+    }
+   ],
+   "general_knowledge": true
+  },
+  {
+   "id": "Q6",
+   "type": "flashcard",
+   "objective_id": "O1",
+   "stem": "Phishing",
+   "back": "A fake message pretending to come from someone you trust.",
+   "general_knowledge": true
+  }
+ ]
+}

@@ -1,0 +1,108 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://tamer-skills/training-content-studio/schemas/grounding_report.schema.json",
+ "title": "grounding_report.json — claim verification",
+ "type": "object",
+ "required": [
+  "schema_version",
+  "lesson_id",
+  "summary",
+  "claims"
+ ],
+ "properties": {
+  "schema_version": {
+   "const": "1.0"
+  },
+  "lesson_id": {
+   "type": "string"
+  },
+  "summary": {
+   "type": "object",
+   "required": [
+    "total",
+    "supported",
+    "general_knowledge",
+    "unsupported",
+    "conflicting",
+    "outdated"
+   ],
+   "properties": {
+    "total": {
+     "type": "integer"
+    },
+    "supported": {
+     "type": "integer"
+    },
+    "general_knowledge": {
+     "type": "integer"
+    },
+    "unsupported": {
+     "type": "integer"
+    },
+    "conflicting": {
+     "type": "integer"
+    },
+    "outdated": {
+     "type": "integer"
+    }
+   }
+  },
+  "claims": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": [
+     "scene_id",
+     "text",
+     "status"
+    ],
+    "properties": {
+     "scene_id": {
+      "type": "string"
+     },
+     "text": {
+      "type": "string"
+     },
+     "status": {
+      "enum": [
+       "supported",
+       "general-knowledge",
+       "unsupported",
+       "conflicting",
+       "outdated",
+       "partial"
+      ]
+     },
+     "source_ids": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "fact_ids": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "note": {
+      "type": "string"
+     },
+     "fix": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  "coverage": {
+   "type": "object",
+   "description": "objective_id -> scene ids covering it",
+   "additionalProperties": {
+    "type": "array",
+    "items": {
+     "type": "string"
+    }
+   }
+  }
+ }
+}

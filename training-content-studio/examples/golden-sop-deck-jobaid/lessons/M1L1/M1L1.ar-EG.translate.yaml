@@ -1,0 +1,389 @@
+- path: title
+  src: Submitting an expense claim
+  tr: إزاي تقدّم مطالبة مصاريف
+  cues: 0
+  hints:
+  - expense claim → طلب استرداد مصاريف
+- path: scenes/0/narration/0/text
+  src: Welcome to Northwind. In the next three minutes, you'll learn how to submit an expense claim that gets paid the first time.
+  tr: أهلاً بيك في نورثويند. في التلات دقايق الجايين، هتتعلم إزاي تقدّم مطالبة مصاريف تتصرف لك من أول مرة.
+  cues: 0
+  hints:
+  - expense claim → طلب استرداد مصاريف
+- path: scenes/0/props/kicker
+  src: Northwind Co. · Finance onboarding
+  tr: نورثويند · تأهيل الموظفين الجدد في المالية
+  cues: 0
+- path: scenes/0/props/title
+  src: Submitting an expense claim
+  tr: إزاي تقدّم مطالبة مصاريف
+  cues: 0
+  hints:
+  - expense claim → طلب استرداد مصاريف
+- path: scenes/0/props/sub
+  src: Module 1 · Lesson 1 · 3 min
+  tr: الوحدة 1 · الدرس 1 · 3 دقايق
+  cues: 0
+- path: scenes/0/visual
+  src: Title slide with invoice icon.
+  tr: شريحة العنوان مع أيقونة فاتورة.
+  cues: 0
+- path: scenes/1/narration/0/text
+  src: Here's why it matters. In twenty twenty-five, ^ eighteen percent of expense claims were sent back, because a receipt was missing. Claims with every receipt were paid in about six business days.
+  tr: خلّيني أقولك ليه ده مهم. في سنة ألفين خمسة وعشرين، ^ تمنتاشر في المية من المطالبات رجعت لأصحابها، عشان الإيصال كان ناقص. والمطالبات اللي كانت كاملة الإيصالات اتصرفت في حوالي ست أيام شغل.
+  cues: 1
+  hints:
+  - receipt → الإيصال
+- path: scenes/1/props/label
+  src: 'of 2025 claims were returned: missing receipt'
+  tr: من مطالبات 2025 رجعت بسبب إيصال ناقص
+  cues: 0
+  hints:
+  - receipt → الإيصال
+- path: scenes/1/visual
+  src: Hero number counts up to 18%.
+  tr: الرقم الكبير بيعدّ لحد 18%.
+  cues: 0
+- path: scenes/2/narration/0/text
+  src: Four rules come before anything else. ^ Keep an itemised receipt for every expense over twenty-five dollars. A card statement alone doesn't count. ^ Submit within thirty days of the expense. ^ After
+    ninety days, a claim isn't paid at all. ^ And personal costs, like family meals, are never business expenses.
+  tr: فيه أربع قواعد قبل أي حاجة. ^ أي مصروف فوق خمسة وعشرين دولار لازم له إيصال مفصّل، وكشف حساب الكارت لوحده مش بيتحسب إيصال. ^ قدّم المطالبة خلال تلاتين يوم من تاريخ المصروف. ^ وبعد تسعين يوم، المطالبة
+    مش بتتصرف خالص. ^ والمصاريف الشخصية، زي أكل العيلة، عمرها ما تبقى مصاريف شغل.
+  cues: 4
+  hints:
+  - Submit → إرسال
+  - receipt → الإيصال
+- path: scenes/2/props/title
+  src: Four rules before you start
+  tr: أربع قواعد قبل ما تبدأ
+  cues: 0
+- path: scenes/2/props/items/0/text
+  src: Itemised receipt for every expense over $25
+  tr: إيصال مفصّل لأي مصروف فوق $25
+  cues: 0
+  hints:
+  - receipt → الإيصال
+- path: scenes/2/props/items/0/sub
+  src: A card statement alone is not a receipt
+  tr: كشف حساب الكارت لوحده مش إيصال
+  cues: 0
+  hints:
+  - receipt → الإيصال
+- path: scenes/2/props/items/1/text
+  src: Submit within 30 days
+  tr: قدّم خلال 30 يوم
+  cues: 0
+  hints:
+  - Submit → إرسال
+- path: scenes/2/props/items/2/text
+  src: 'After 90 days: not reimbursed'
+  tr: 'بعد 90 يوم: مفيش صرف'
+  cues: 0
+- path: scenes/2/props/items/3/text
+  src: Personal costs are never business expenses
+  tr: المصاريف الشخصية مش مصاريف شغل
+  cues: 0
+- path: scenes/2/visual
+  src: Four rules revealed one per click.
+  tr: أربع قواعد بتظهر واحدة واحدة.
+  cues: 0
+- path: scenes/3/narration/0/text
+  src: ^ When you travel, these limits apply. Meals are sixty dollars a day at home, and eighty-five dollars abroad. Hotels are capped at two hundred and twenty dollars a night, unless the Travel Desk approves
+    an exception in writing. Flights under six hours are economy. And alcohol is only paid for client entertainment your manager approved in advance.
+  tr: ^ لما تسافر، دي الحدود اللي ماشية عليك. الأكل ستين دولار في اليوم جوّه البلد، وخمسة وتمانين دولار برّه. الفندق حدّه الأقصى متين وعشرين دولار في الليلة، إلا لو مكتب السفر وافق على استثناء كتابةً. الطيران
+    أقل من ست ساعات يبقى درجة سياحية. والكحول مش بيتصرف غير في ضيافة عميل مديرك وافق عليها مسبقاً.
+  cues: 1
+  hints:
+  - client → العميل
+  - manager → المدير
+- path: scenes/3/props/title
+  src: Travel limits
+  tr: حدود السفر
+  cues: 0
+- path: scenes/3/props/columns/0
+  src: Item
+  tr: البند
+  cues: 0
+- path: scenes/3/props/columns/1
+  src: Limit
+  tr: الحد
+  cues: 0
+- path: scenes/3/props/columns/2
+  src: Exception
+  tr: الاستثناء
+  cues: 0
+- path: scenes/3/props/rows/0/0
+  src: Meals (per diem)
+  tr: الأكل (بدل يومي)
+  cues: 0
+  hints:
+  - per diem → البدل اليومي
+- path: scenes/3/props/rows/0/1
+  src: $60 domestic · $85 international / day
+  tr: 'في اليوم: $60 داخلي · $85 خارجي'
+  cues: 0
+- path: scenes/3/props/rows/0/2
+  src: —
+  tr: —
+  cues: 0
+- path: scenes/3/props/rows/1/0
+  src: Hotel
+  tr: الفندق
+  cues: 0
+- path: scenes/3/props/rows/1/1
+  src: $220 per night
+  tr: لحد $220 في الليلة
+  cues: 0
+- path: scenes/3/props/rows/1/2
+  src: Travel Desk, in writing
+  tr: مكتب السفر، بموافقة مكتوبة
+  cues: 0
+- path: scenes/3/props/rows/2/0
+  src: Flights under 6 h
+  tr: رحلات طيران أقل من 6 ساعات
+  cues: 0
+- path: scenes/3/props/rows/2/1
+  src: Economy class
+  tr: درجة سياحية
+  cues: 0
+- path: scenes/3/props/rows/2/2
+  src: —
+  tr: —
+  cues: 0
+- path: scenes/3/props/rows/3/0
+  src: Alcohol
+  tr: الكحول
+  cues: 0
+- path: scenes/3/props/rows/3/1
+  src: Not reimbursable
+  tr: مش بيتصرف
+  cues: 0
+- path: scenes/3/props/rows/3/2
+  src: Pre-approved client entertainment
+  tr: ضيافة عميل متوافق عليها مسبقاً
+  cues: 0
+  hints:
+  - client → العميل
+- path: scenes/3/visual
+  src: Reference table of travel limits.
+  tr: جدول مرجعي لحدود السفر.
+  cues: 0
+- path: scenes/4/narration/0/text
+  src: Now, the claim itself, in six steps. ^ Photograph the receipt on the same day. ^ Open the Northwind Expenses app and select New Claim. ^ Choose the category, then enter the date, amount and business
+    purpose. ^ Attach the receipt photo to each line, and check the total. ^ Submit it to your approver within thirty days. ^ And answer any question from your approver within five business days.
+  tr: دلوقتي، المطالبة نفسها في ست خطوات. ^ صوّر الإيصال في نفس اليوم. ^ افتح تطبيق Northwind Expenses واختار New Claim. ^ اختار الفئة، وبعدين دخّل التاريخ والمبلغ والغرض من المصروف. ^ ارفع صورة الإيصال
+    على كل سطر، واتأكد من الإجمالي. ^ ابعت المطالبة للمسؤول عن الموافقة خلال تلاتين يوم. ^ ولو سألك أي سؤال، رد عليه خلال خمس أيام شغل.
+  cues: 6
+  hints:
+  - Submit → إرسال
+  - approver → اللي بيوافق (المعتمِد)
+  - receipt → الإيصال
+- path: scenes/4/props/title
+  src: Six steps in the Northwind Expenses app
+  tr: ست خطوات في تطبيق Northwind Expenses
+  cues: 0
+- path: scenes/4/props/steps/0/label
+  src: Photograph the receipt
+  tr: صوّر الإيصال
+  cues: 0
+  hints:
+  - receipt → الإيصال
+- path: scenes/4/props/steps/0/sub
+  src: Same day
+  tr: في نفس اليوم
+  cues: 0
+- path: scenes/4/props/steps/1/label
+  src: Open the app · New Claim
+  tr: افتح التطبيق · New Claim
+  cues: 0
+- path: scenes/4/props/steps/2/label
+  src: Category, date, amount, purpose
+  tr: الفئة والتاريخ والمبلغ والغرض
+  cues: 0
+- path: scenes/4/props/steps/3/label
+  src: Attach receipt to each line
+  tr: ارفع الإيصال على كل سطر
+  cues: 0
+  hints:
+  - receipt → الإيصال
+- path: scenes/4/props/steps/3/sub
+  src: Check the total
+  tr: راجع الإجمالي
+  cues: 0
+- path: scenes/4/props/steps/4/label
+  src: Submit to your approver
+  tr: ابعت للمسؤول عن الموافقة
+  cues: 0
+  hints:
+  - Submit → إرسال
+  - approver → اللي بيوافق (المعتمِد)
+- path: scenes/4/props/steps/4/sub
+  src: Within 30 days
+  tr: خلال 30 يوم
+  cues: 0
+- path: scenes/4/props/steps/5/label
+  src: Answer questions
+  tr: رد على الأسئلة
+  cues: 0
+- path: scenes/4/props/steps/5/sub
+  src: Within 5 business days
+  tr: خلال 5 أيام شغل
+  cues: 0
+- path: scenes/4/visual
+  src: Numbered steps, one per click.
+  tr: خطوات مرقّمة، واحدة مع كل ضغطة.
+  cues: 0
+- path: scenes/5/narration/0/text
+  src: Who approves depends on the amount. ^ You submit. ^ Your manager approves claims up to one thousand dollars. ^ A director approves up to five thousand. ^ And anything above five thousand goes to
+    the C F O.
+  tr: مين اللي يوافق؟ ده بيعتمد على المبلغ. ^ إنت بتقدّم المطالبة. ^ مديرك المباشر بيوافق لحد ألف دولار. ^ المدير الأعلى بيوافق لحد خمس تلاف. ^ وأي حاجة فوق خمس تلاف بتروح للمدير المالي، الـ CFO.
+  cues: 4
+  hints:
+  - manager → المدير
+- path: scenes/5/props/title
+  src: Who approves your claim
+  tr: مين بيوافق على مطالبتك
+  cues: 0
+- path: scenes/5/props/nodes/0/label
+  src: You submit
+  tr: إنت بتقدّم
+  cues: 0
+- path: scenes/5/props/nodes/1/label
+  src: 'Manager: up to $1,000'
+  tr: 'المدير المباشر: لحد $1,000'
+  cues: 0
+  hints:
+  - manager → المدير
+- path: scenes/5/props/nodes/2/label
+  src: 'Director: up to $5,000'
+  tr: 'المدير الأعلى: لحد $5,000'
+  cues: 0
+- path: scenes/5/props/nodes/3/label
+  src: 'CFO: above $5,000'
+  tr: 'المدير المالي (CFO): فوق $5,000'
+  cues: 0
+- path: scenes/5/visual
+  src: Approval path by amount.
+  tr: مسار الموافقة حسب المبلغ.
+  cues: 0
+  hints:
+  - approval → الموافقة
+- path: scenes/6/narration/0/text
+  src: Quick check. Your conference trip comes to three thousand two hundred dollars. Who approves the claim?
+  tr: سؤال سريع. رحلة المؤتمر بتاعتك كلّفت تلات تلاف ومتين دولار. مين يوافق على المطالبة؟
+  cues: 0
+  hints:
+  - quick check → سؤال سريع
+- path: scenes/6/narration/1/text
+  src: ^ A director. It's above one thousand dollars, but not above five thousand.
+  tr: ^ المدير الأعلى. لأنها فوق الألف دولار، بس مش فوق الخمس تلاف.
+  cues: 1
+- path: scenes/6/props/q
+  src: Your trip comes to $3,200. Who approves?
+  tr: رحلتك كلّفت $3,200. مين يوافق؟
+  cues: 0
+- path: scenes/6/props/options/0
+  src: Your manager
+  tr: مديرك المباشر
+  cues: 0
+  hints:
+  - manager → المدير
+- path: scenes/6/props/options/1
+  src: A director
+  tr: المدير الأعلى
+  cues: 0
+- path: scenes/6/props/options/2
+  src: The CFO
+  tr: المدير المالي (CFO)
+  cues: 0
+- path: scenes/6/props/why
+  src: Above $1,000 but not above $5,000
+  tr: فوق $1,000 ومش فوق $5,000
+  cues: 0
+- path: scenes/6/visual
+  src: Knowledge check with three options.
+  tr: سؤال سريع بتلات اختيارات.
+  cues: 0
+- path: scenes/7/narration/0/text
+  src: Three things you must never do. ^ Never split one expense into several claims to stay under a limit. ^ Never submit personal costs or private upgrades. ^ And never inflate a claim. False claims are
+    treated as misconduct, and can lead to dismissal. Instead, ^ submit each expense once, with its real amount, ^ and ask Finance when you're unsure.
+  tr: فيه تلات حاجات عمرك ما تعملها. ^ متقسّمش مصروف واحد على كذا مطالبة عشان تفضل تحت الحد. ^ متقدّمش مصاريف شخصية أو ترقيات خاصة. ^ ومتزوّدش أي مطالبة. المطالبة الكدب بتتعتبر مخالفة جسيمة، وممكن توصل
+    للفصل. بدل كده، ^ قدّم كل مصروف مرة واحدة بمبلغه الحقيقي، ^ ولو مش متأكد، اسأل المالية.
+  cues: 5
+  hints:
+  - False → غلط
+  - do → اعمل
+- path: scenes/7/props/title
+  src: Never do this
+  tr: عمرك ما تعمل كده
+  cues: 0
+  hints:
+  - do → اعمل
+- path: scenes/7/props/dont_head
+  src: Never
+  tr: ممنوع
+  cues: 0
+- path: scenes/7/props/do_head
+  src: Instead
+  tr: بدل كده
+  cues: 0
+- path: scenes/7/props/dont/0
+  src: Split one expense to stay under a limit
+  tr: تقسيم مصروف عشان تفضل تحت الحد
+  cues: 0
+- path: scenes/7/props/dont/1
+  src: Claim personal costs or upgrades
+  tr: مصاريف شخصية أو ترقيات خاصة
+  cues: 0
+- path: scenes/7/props/dont/2
+  src: Inflate a claim (misconduct)
+  tr: تزويد المبلغ (مخالفة جسيمة)
+  cues: 0
+- path: scenes/7/props/do/0
+  src: One expense, one claim, real amount
+  tr: مصروف واحد، مطالبة واحدة، بالمبلغ الحقيقي
+  cues: 0
+- path: scenes/7/props/do/1
+  src: Unsure? Ask the Finance Help Desk
+  tr: مش متأكد؟ اسأل مكتب مساعدة المالية
+  cues: 0
+  hints:
+  - Finance Help Desk → دعم الماليات (Finance Help Desk)
+  - help desk → الهيلب ديسك
+- path: scenes/7/visual
+  src: Don'ts then dos, one per click.
+  tr: الممنوعات وبعدها الصح، واحدة مع كل ضغطة.
+  cues: 0
+- path: scenes/8/narration/0/text
+  src: That's it. Keep the receipt, submit within thirty days, and use the expense checklist in the next lesson. Questions? Contact the Finance Help Desk through the service portal.
+  tr: كده خلصنا. احتفظ بالإيصال، قدّم خلال تلاتين يوم، واستخدم قايمة المراجعة في الدرس الجاي. عندك سؤال؟ كلّم مكتب مساعدة المالية من بوابة الخدمات.
+  cues: 0
+  hints:
+  - Finance Help Desk → دعم الماليات (Finance Help Desk)
+  - help desk → الهيلب ديسك
+  - receipt → الإيصال
+- path: scenes/8/props/title
+  src: 'Next: expense claim checklist'
+  tr: 'الجاي: قايمة مراجعة المطالبة'
+  cues: 0
+  hints:
+  - Next → التالي
+  - expense claim → طلب استرداد مصاريف
+- path: scenes/8/props/line
+  src: Receipt · 30 days · right approver
+  tr: الإيصال · 30 يوم · المسؤول الصح
+  cues: 0
+  hints:
+  - approver → اللي بيوافق (المعتمِد)
+  - receipt → الإيصال
+- path: scenes/8/props/tips/0
+  src: 'Finance Help Desk: internal service portal'
+  tr: 'مكتب مساعدة المالية: بوابة الخدمات الداخلية'
+  cues: 0
+  hints:
+  - Finance Help Desk → دعم الماليات (Finance Help Desk)
+  - help desk → الهيلب ديسك
+- path: scenes/8/visual
+  src: Closing slide with next lesson.
+  tr: شريحة الختام والدرس الجاي.
+  cues: 0

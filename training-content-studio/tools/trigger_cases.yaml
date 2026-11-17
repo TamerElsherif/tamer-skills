@@ -1,0 +1,25 @@
+# Routing tests: each request must match its expected skill's description better than any other (tools/validate.py).
+- {request: "Make a training course for my team on Excel pivot tables", expect: tcs-orchestrator}
+- {request: "Help me design a course, ask me what you need and show me the plan before producing", expect: tcs-orchestrator}
+- {request: "/tcs-autopilot build the whole course automatically with no questions", expect: tcs-autopilot}
+- {request: "Run it fully automated end to end, decide everything yourself, resume run", expect: tcs-autopilot}
+- {request: "Ingest these PDFs and the YouTube video into citable sources with chunks and facts", expect: tcs-source-ingest}
+- {request: "Prioritize this course catalogue spreadsheet and pick the top 20 modules per audience", expect: tcs-curriculum}
+- {request: "Write the narration script for this lesson in Egyptian Arabic", expect: tcs-scriptwriter}
+- {request: "Turn this script into a storyboard json with scenes and templates", expect: tcs-storyboard}
+- {request: "Create quiz questions, a pre-test and flashcards mapped to the objectives", expect: tcs-assessment}
+- {request: "Verify every claim against the sources and flag unsupported or outdated content", expect: tcs-grounding-check}
+- {request: "Translate and adapt this lesson from English to Arabic with RTL and a glossary", expect: tcs-localize}
+- {request: "Render this storyboard to MP4 through my local OpenMontage install", expect: tcs-render-openmontage}
+- {request: "Render the storyboard with standalone Remotion without OpenMontage", expect: tcs-render-remotion}
+- {request: "Export a SCORM 1.2 package and an interactive HTML lesson", expect: tcs-render-lesson}
+- {request: "Make an explainer with B-roll footage and motion graphics", expect: tcs-format-explainer}
+- {request: "I want a whiteboard doodle sketch animation", expect: tcs-format-doodle}
+- {request: "Animated 2D cartoon micro-drama with recurring characters", expect: tcs-format-cartoon}
+- {request: "Comic strip webtoon panels with speech bubbles", expect: tcs-format-comic}
+- {request: "Narrated presentation slides with speaker notes and voice-over", expect: tcs-format-narrated-deck}
+- {request: "Expanding mind map that reveals branches progressively", expect: tcs-format-mindmap}
+- {request: "Branching scenario where the learner chooses a path and sees consequences", expect: tcs-format-branching}
+- {request: "Software walkthrough screencast with a guided practice simulation", expect: tcs-format-screencast-sim}
+- {request: "One-page cheat sheet checklist job aid", expect: tcs-format-job-aid}
+- {request: "Episodic series with points, streaks and weekly nudges", expect: tcs-format-series}

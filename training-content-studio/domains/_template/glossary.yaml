@@ -1,0 +1,7 @@
+schema_version: "1.0"
+general_knowledge: true
+terms:
+  # term: stable id · en · ar (MSA) · ar_eg (spoken Egyptian usage, may be the English word) · keep_en_in_ar · definition
+  - {term: "<id>", en: "<English term>", ar: "<المصطلح بالفصحى>", ar_eg: "<كما يُقال في مصر>", keep_en_in_ar: true, definition: "<one sentence>"}
+notes:
+  - "Wrap Latin terms inside Arabic text in bidi isolates (U+2066 … U+2069)."

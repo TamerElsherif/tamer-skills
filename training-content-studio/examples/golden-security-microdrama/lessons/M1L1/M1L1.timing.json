@@ -1,0 +1,118 @@
+{
+ "lesson_id": "M1L1",
+ "language": "en-US",
+ "lines": [
+  {
+   "scene_id": "s01_title",
+   "idx": 0,
+   "start": 0.35,
+   "end": 4.454,
+   "who": "narrator",
+   "text": "One urgent email from the boss. One big decision."
+  },
+  {
+   "scene_id": "s02_request",
+   "idx": 0,
+   "start": 5.55,
+   "end": 10.854,
+   "who": "narrator",
+   "text": "Friday, four fifty. Sam in Finance gets an email from Hana, the C E O."
+  },
+  {
+   "scene_id": "s02_request",
+   "idx": 1,
+   "start": 11.134,
+   "end": 16.534,
+   "who": "rookie",
+   "text": "Pay a supplier today, and keep it quiet?"
+  },
+  {
+   "scene_id": "s03_email",
+   "idx": 0,
+   "start": 17.65,
+   "end": 27.106,
+   "who": "narrator",
+   "text": "Spot the signs. It's not Hana's usual address. It says pay today. The bank details are new. And it asks for secrecy."
+  },
+  {
+   "scene_id": "s04_vex",
+   "idx": 0,
+   "start": 28.217,
+   "end": 33.929,
+   "who": "vex",
+   "text": "Heh. Nobody questions the boss on a Friday afternoon."
+  },
+  {
+   "scene_id": "s05_decide",
+   "idx": 0,
+   "start": 35.017,
+   "end": 36.937,
+   "who": "narrator",
+   "text": "What should Sam do?"
+  },
+  {
+   "scene_id": "s05_decide",
+   "idx": 1,
+   "start": 37.437,
+   "end": 42.237,
+   "who": "narrator",
+   "text": "Pay now, reply to the email, or call Hana back on her directory number?"
+  },
+  {
+   "scene_id": "s08_callback",
+   "idx": 0,
+   "start": 43.35,
+   "end": 47.406,
+   "who": "narrator",
+   "text": "Sam calls Hana back on her number in the company directory."
+  },
+  {
+   "scene_id": "s08_callback",
+   "idx": 1,
+   "start": 47.686,
+   "end": 50.494,
+   "who": "exec",
+   "text": "I never sent that. Don't pay it!"
+  },
+  {
+   "scene_id": "s08_callback",
+   "idx": 2,
+   "start": 50.774,
+   "end": 54.494,
+   "who": "rookie",
+   "text": "Reporting it to I T Security now."
+  },
+  {
+   "scene_id": "s09_rule",
+   "idx": 0,
+   "start": 55.583,
+   "end": 66.695,
+   "who": "mentor",
+   "text": "The rule: call back a number you already have. Bank changes, and payments of ten thousand dollars or more, need two approvers. And report it to I T Security."
+  },
+  {
+   "scene_id": "s10_quiz",
+   "idx": 0,
+   "start": 67.783,
+   "end": 72.247,
+   "who": "narrator",
+   "text": "Quick check. The email lists a new number to confirm. Call it?"
+  },
+  {
+   "scene_id": "s10_quiz",
+   "idx": 1,
+   "start": 74.447,
+   "end": 78.599,
+   "who": "narrator",
+   "text": "No. Only call a number that's already on file."
+  },
+  {
+   "scene_id": "s11_outro",
+   "idx": 0,
+   "start": 79.683,
+   "end": 85.995,
+   "who": "narrator",
+   "text": "Pressure is the red flag. Verify first, and report. No one is blamed for reporting."
+  }
+ ]
+}
