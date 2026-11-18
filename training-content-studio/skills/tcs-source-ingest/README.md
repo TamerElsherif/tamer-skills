@@ -3,7 +3,7 @@
 
 Turns the user's raw source material (PDF/Word/PowerPoint/Excel/Markdown/HTML files, folders, web pages, YouTube/Vimeo or local recordings, Drive/OneDrive folders via rclone, pasted text) into a chunked, citable `sources.yaml` with S/F ids, chunk summaries, extracted facts/procedures/definitions and flagged conflicts or outdated items.
 
-Part of the **[Training Content Studio](../training-content-studio/README.md)** plugin.
+Part of the **[Training Content Studio](../../README.md)** plugin. See its "which skill when" guide.
 
 ## What it's for
 Every later claim in a course must point at a source id. This skill builds that evidence base once, keeps full text in
@@ -17,8 +17,6 @@ Every later claim in a course must point at a source id. This skill builds that 
 ```bash
 # whole plugin (recommended: scripts use the shared schemas/, kit/, assets/)
 git clone https://github.com/TamerElsherif/tamer-skills && claude --plugin-dir tamer-skills/training-content-studio
-# this skill only (instructions only; its scripts need the plugin root)
-npx skills add TamerElsherif/tamer-skills --skill tcs-source-ingest --agent claude-code
 ```
 Prerequisites: Python 3.12 venv with `tools/requirements.txt` (plugin root); keys via env or `TCS_ENV_FILE` (`OPENAI_API_KEY` for narration/transcription, `PEXELS_API_KEY` optional); Node 18+ and ffmpeg for video renders.
 

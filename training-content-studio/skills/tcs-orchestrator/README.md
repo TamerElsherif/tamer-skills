@@ -3,7 +3,7 @@
 
 Interactive entry point for making training content end to end — acts as senior instructional designer and SME, asks only the missing parameters in one round (with recommended defaults), shows an approval gate (course skeleton + lesson-1 storyboard preview), then routes every lesson through the format, script, storyboard, assessment, localization, grounding and render skills.
 
-Part of the **[Training Content Studio](../training-content-studio/README.md)** plugin.
+Part of the **[Training Content Studio](../../README.md)** plugin. See its "which skill when" guide.
 
 ## What it's for
 Get from a request ("train my team on X") to finished, grounded training outputs with the fewest questions possible
@@ -18,8 +18,6 @@ justify in one line, and let the user correct.
 ```bash
 # whole plugin (recommended: scripts use the shared schemas/, kit/, assets/)
 git clone https://github.com/TamerElsherif/tamer-skills && claude --plugin-dir tamer-skills/training-content-studio
-# this skill only (instructions only; its scripts need the plugin root)
-npx skills add TamerElsherif/tamer-skills --skill tcs-orchestrator --agent claude-code
 ```
 Prerequisites: Python 3.12 venv with `tools/requirements.txt` (plugin root); keys via env or `TCS_ENV_FILE` (`OPENAI_API_KEY` for narration/transcription, `PEXELS_API_KEY` optional); Node 18+ and ffmpeg for video renders.
 

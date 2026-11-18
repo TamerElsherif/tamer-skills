@@ -3,7 +3,7 @@
 
 Builds a job aid for a lesson — checklist, cheat sheet, quick-reference card or one-pager — as storyboard scenes that render to a printable/HTML page (target jobaid), usually paired with another format's lesson.
 
-Part of the **[Training Content Studio](../training-content-studio/README.md)** plugin.
+Part of the **[Training Content Studio](../../README.md)** plugin. See its "which skill when" guide.
 
 ## What it's for
 Give learners the thing they use *at the moment of need*: short, scannable, actionable. It summarises; it does not teach.
@@ -18,8 +18,6 @@ separate `<lesson_id>-jobaid.storyboard.json` with `formats: ["job-aid"]` and ta
 ```bash
 # whole plugin (recommended: scripts use the shared schemas/, kit/, assets/)
 git clone https://github.com/TamerElsherif/tamer-skills && claude --plugin-dir tamer-skills/training-content-studio
-# this skill only (instructions only; its scripts need the plugin root)
-npx skills add TamerElsherif/tamer-skills --skill tcs-format-job-aid --agent claude-code
 ```
 Prerequisites: Python 3.12 venv with `tools/requirements.txt` (plugin root); keys via env or `TCS_ENV_FILE` (`OPENAI_API_KEY` for narration/transcription, `PEXELS_API_KEY` optional); Node 18+ and ffmpeg for video renders.
 

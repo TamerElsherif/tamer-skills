@@ -3,7 +3,7 @@
 
 Plans and builds an episodic training series with gamification and spaced reinforcement — series plan (episodes, recurring cast, points, streaks, badges), 30–60 s vertical nudge storyboards, flashcard decks and a nudge calendar.
 
-Part of the **[Training Content Studio](../training-content-studio/README.md)** plugin.
+Part of the **[Training Content Studio](../../README.md)** plugin. See its "which skill when" guide.
 
 ## What it's for
 Turn a course (several approved lessons) into a season: weekly episodes in any base format, plus short nudges that
@@ -17,8 +17,6 @@ re-surface key behaviours (spacing + retrieval), with light gamification to keep
 ```bash
 # whole plugin (recommended: scripts use the shared schemas/, kit/, assets/)
 git clone https://github.com/TamerElsherif/tamer-skills && claude --plugin-dir tamer-skills/training-content-studio
-# this skill only (instructions only; its scripts need the plugin root)
-npx skills add TamerElsherif/tamer-skills --skill tcs-format-series --agent claude-code
 ```
 Prerequisites: Python 3.12 venv with `tools/requirements.txt` (plugin root); keys via env or `TCS_ENV_FILE` (`OPENAI_API_KEY` for narration/transcription, `PEXELS_API_KEY` optional); Node 18+ and ffmpeg for video renders.
 

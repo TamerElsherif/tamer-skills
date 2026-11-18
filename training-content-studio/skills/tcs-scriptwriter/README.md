@@ -3,7 +3,7 @@
 
 Writes the spoken narration script for one lesson — English or Arabic (Egyptian colloquial or MSA) — with format-specific beats, word budgets from words-per-minute, `^` visual-cue markers, character dialogue for cartoon/comic/branching, speakable numbers and a source-tagged claim under every scene; outputs `<lesson>.script.md` and the script stage of `storyboard.json`.
 
-Part of the **[Training Content Studio](../training-content-studio/README.md)** plugin.
+Part of the **[Training Content Studio](../../README.md)** plugin. See its "which skill when" guide.
 
 ## What it's for
 Turn an approved lesson (curriculum objectives + sources) into narration that sounds human, fits the duration, cues the
@@ -17,8 +17,6 @@ visuals and can be verified claim by claim. One script per lesson per language.
 ```bash
 # whole plugin (recommended: scripts use the shared schemas/, kit/, assets/)
 git clone https://github.com/TamerElsherif/tamer-skills && claude --plugin-dir tamer-skills/training-content-studio
-# this skill only (instructions only; its scripts need the plugin root)
-npx skills add TamerElsherif/tamer-skills --skill tcs-scriptwriter --agent claude-code
 ```
 Prerequisites: Python 3.12 venv with `tools/requirements.txt` (plugin root); keys via env or `TCS_ENV_FILE` (`OPENAI_API_KEY` for narration/transcription, `PEXELS_API_KEY` optional); Node 18+ and ffmpeg for video renders.
 

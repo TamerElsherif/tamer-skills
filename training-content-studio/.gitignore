@@ -9,3 +9,4 @@ examples/**/*.mp3
 examples/**/public/
 kit/out/
 examples/**/work/
+dist/

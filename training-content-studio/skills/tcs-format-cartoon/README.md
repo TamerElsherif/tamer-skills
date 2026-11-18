@@ -3,7 +3,7 @@
 
 Builds the cartoon-format scenes of a lesson storyboard — a 2D animated micro-drama with recurring personas acting on kit sets (poses, expressions, speech bubbles, camera beats) plus a mentor who turns the story into the lesson.
 
-Part of the **[Training Content Studio](../training-content-studio/README.md)** plugin.
+Part of the **[Training Content Studio](../../README.md)** plugin. See its "which skill when" guide.
 
 ## What it's for
 Change behaviour through story: a relatable persona makes (or nearly makes) the mistake, consequences land,
@@ -17,8 +17,6 @@ a mentor shows the right move, and teaching beats (steps/quiz/recap) lock it in.
 ```bash
 # whole plugin (recommended: scripts use the shared schemas/, kit/, assets/)
 git clone https://github.com/TamerElsherif/tamer-skills && claude --plugin-dir tamer-skills/training-content-studio
-# this skill only (instructions only; its scripts need the plugin root)
-npx skills add TamerElsherif/tamer-skills --skill tcs-format-cartoon --agent claude-code
 ```
 Prerequisites: Python 3.12 venv with `tools/requirements.txt` (plugin root); keys via env or `TCS_ENV_FILE` (`OPENAI_API_KEY` for narration/transcription, `PEXELS_API_KEY` optional); Node 18+ and ffmpeg for video renders.
 

@@ -3,7 +3,7 @@
 
 Converts a finished lesson script into the render-agnostic `<lesson>.storyboard.json` — picks a kit template per scene with schema-valid props, b-roll queries, text-free generated-image prompts, cast, voices, theme and aspect, derives on-screen text, validates cues/claims/board sizes, and prints a markdown preview table for the lesson-1 approval gate.
 
-Part of the **[Training Content Studio](../training-content-studio/README.md)** plugin.
+Part of the **[Training Content Studio](../../README.md)** plugin. See its "which skill when" guide.
 
 ## What it's for
 `storyboard.json` is the single contract every renderer consumes (Remotion/OpenMontage video, deck, HTML lesson, SCORM,
@@ -17,8 +17,6 @@ job aid). This skill makes it complete, valid and reviewable, with all on-screen
 ```bash
 # whole plugin (recommended: scripts use the shared schemas/, kit/, assets/)
 git clone https://github.com/TamerElsherif/tamer-skills && claude --plugin-dir tamer-skills/training-content-studio
-# this skill only (instructions only; its scripts need the plugin root)
-npx skills add TamerElsherif/tamer-skills --skill tcs-storyboard --agent claude-code
 ```
 Prerequisites: Python 3.12 venv with `tools/requirements.txt` (plugin root); keys via env or `TCS_ENV_FILE` (`OPENAI_API_KEY` for narration/transcription, `PEXELS_API_KEY` optional); Node 18+ and ffmpeg for video renders.
 

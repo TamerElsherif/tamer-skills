@@ -91,14 +91,13 @@ def main(force):
         notf = [s for s in sents if re.match(r'\s*(Not|Do NOT)\b', s, re.I)]
         ex = EX.get(name, [])
         body = [MARK, f'# {name}', '', what, '',
-                'Part of the **[Training Content Studio](../training-content-studio/README.md)** plugin.', '',
+                'Part of the **[Training Content Studio](../../README.md)** plugin. See its "which skill when" guide.', '',
                 "## What it's for", sec.get('Purpose', what), '',
                 '## When to use it'] + [f'- {s}' for s in use] + [f"- **Not for:** {re.sub(r'^(Not (for|when)|Do NOT( use)?( it)?( for| when| to)?)\s*', '', s, flags=re.I)}" for s in notf] + ['',
                 '## Install', '```bash',
                 '# whole plugin (recommended: scripts use the shared schemas/, kit/, assets/)',
                 f'git clone https://github.com/{REPO} && claude --plugin-dir tamer-skills/training-content-studio',
-                '# this skill only (instructions only; its scripts need the plugin root)',
-                f'npx skills add {REPO} --skill {name} --agent claude-code', '```',
+                '```',
                 'Prerequisites: Python 3.12 venv with `tools/requirements.txt` (plugin root); keys via env or `TCS_ENV_FILE` '
                 '(`OPENAI_API_KEY` for narration/transcription, `PEXELS_API_KEY` optional); Node 18+ and ffmpeg for video renders.', '',
                 '## How to use', '```', f'/{name} <request or file>', '```',

@@ -3,7 +3,7 @@
 
 Builds the doodle/whiteboard-format scenes of a lesson storyboard — hand-drawn line-art figures, marker arrows and handwritten notes drawn on in sync with narration (a draw-on sequence spec).
 
-Part of the **[Training Content Studio](../training-content-studio/README.md)** plugin.
+Part of the **[Training Content Studio](../../README.md)** plugin. See its "which skill when" guide.
 
 ## What it's for
 Express one approved lesson as a whiteboard draw-on sequence: every visual element is a `whiteboard` item that is
@@ -17,8 +17,6 @@ Express one approved lesson as a whiteboard draw-on sequence: every visual eleme
 ```bash
 # whole plugin (recommended: scripts use the shared schemas/, kit/, assets/)
 git clone https://github.com/TamerElsherif/tamer-skills && claude --plugin-dir tamer-skills/training-content-studio
-# this skill only (instructions only; its scripts need the plugin root)
-npx skills add TamerElsherif/tamer-skills --skill tcs-format-doodle --agent claude-code
 ```
 Prerequisites: Python 3.12 venv with `tools/requirements.txt` (plugin root); keys via env or `TCS_ENV_FILE` (`OPENAI_API_KEY` for narration/transcription, `PEXELS_API_KEY` optional); Node 18+ and ffmpeg for video renders.
 

@@ -3,7 +3,7 @@
 
 Audits a finished lesson for factual grounding — every storyboard claim, quiz answer key and on-screen number is checked against the cited `sources.yaml` facts and chunk text (ids exist, wording and numbers match, conflicts, outdated sources, uncited numbers), followed by an LLM verification pass; writes `<lesson>.grounding_report.json` plus a markdown summary with fix guidance.
 
-Part of the **[Training Content Studio](../training-content-studio/README.md)** plugin.
+Part of the **[Training Content Studio](../../README.md)** plugin. See its "which skill when" guide.
 
 ## What it's for
 Nothing ships that the sources don't say (or that isn't openly labelled general knowledge). This is the gate between
@@ -17,8 +17,6 @@ storyboard/quiz and rendering.
 ```bash
 # whole plugin (recommended: scripts use the shared schemas/, kit/, assets/)
 git clone https://github.com/TamerElsherif/tamer-skills && claude --plugin-dir tamer-skills/training-content-studio
-# this skill only (instructions only; its scripts need the plugin root)
-npx skills add TamerElsherif/tamer-skills --skill tcs-grounding-check --agent claude-code
 ```
 Prerequisites: Python 3.12 venv with `tools/requirements.txt` (plugin root); keys via env or `TCS_ENV_FILE` (`OPENAI_API_KEY` for narration/transcription, `PEXELS_API_KEY` optional); Node 18+ and ffmpeg for video renders.
 

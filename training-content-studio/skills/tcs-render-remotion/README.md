@@ -3,7 +3,7 @@
 
 Renders a lesson storyboard.json (or every lesson in a runs/<id> folder) to MP4 with the plugin's own standalone Remotion kit — narration TTS, cue timing, stock b-roll, 16:9 / 9:16 / 1:1, QA stills and frame grids — self-contained, needing only Node and ffmpeg.
 
-Part of the **[Training Content Studio](../training-content-studio/README.md)** plugin.
+Part of the **[Training Content Studio](../../README.md)** plugin. See its "which skill when" guide.
 
 ## What it's for
 Turn any schema-valid `storyboard.json` into a finished MP4 with zero hand-written scene code. The shared kit
@@ -18,8 +18,6 @@ Turn any schema-valid `storyboard.json` into a finished MP4 with zero hand-writt
 ```bash
 # whole plugin (recommended: scripts use the shared schemas/, kit/, assets/)
 git clone https://github.com/TamerElsherif/tamer-skills && claude --plugin-dir tamer-skills/training-content-studio
-# this skill only (instructions only; its scripts need the plugin root)
-npx skills add TamerElsherif/tamer-skills --skill tcs-render-remotion --agent claude-code
 ```
 Prerequisites: Python 3.12 venv with `tools/requirements.txt` (plugin root); keys via env or `TCS_ENV_FILE` (`OPENAI_API_KEY` for narration/transcription, `PEXELS_API_KEY` optional); Node 18+ and ffmpeg for video renders.
 

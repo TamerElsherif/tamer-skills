@@ -3,7 +3,7 @@
 
 Builds screencast and software-simulation scenes for a lesson — a step script played on a template-drawn app screen (watch), then a guided-practice / try-it simulation spec (do) that becomes interactive in HTML/SCORM.
 
-Part of the **[Training Content Studio](../training-content-studio/README.md)** plugin.
+Part of the **[Training Content Studio](../../README.md)** plugin. See its "which skill when" guide.
 
 ## What it's for
 Teach a software procedure with the watch → try → do pattern, without recording real screens (screens are drawn by
@@ -17,8 +17,6 @@ the kit from `screencast.app` fields, or from a supplied, scrubbed screenshot).
 ```bash
 # whole plugin (recommended: scripts use the shared schemas/, kit/, assets/)
 git clone https://github.com/TamerElsherif/tamer-skills && claude --plugin-dir tamer-skills/training-content-studio
-# this skill only (instructions only; its scripts need the plugin root)
-npx skills add TamerElsherif/tamer-skills --skill tcs-format-screencast-sim --agent claude-code
 ```
 Prerequisites: Python 3.12 venv with `tools/requirements.txt` (plugin root); keys via env or `TCS_ENV_FILE` (`OPENAI_API_KEY` for narration/transcription, `PEXELS_API_KEY` optional); Node 18+ and ffmpeg for video renders.
 

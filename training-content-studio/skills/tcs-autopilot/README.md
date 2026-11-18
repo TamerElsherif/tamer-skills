@@ -3,7 +3,7 @@
 
 Fully automated course production with no questions — `/tcs-autopilot "<request>" [--sources …] [--lang ar|en|both] [--targets …] [--aspect …] [--review none|skeleton|final] [--budget …] [--domain …] [--resume <run-id>]` decides audience, objectives, length, formats, language and outputs from the request and sources, logs every decision with confidence, produces, QA-fixes and renders every lesson, and ends with REPORT.md.
 
-Part of the **[Training Content Studio](../training-content-studio/README.md)** plugin.
+Part of the **[Training Content Studio](../../README.md)** plugin. See its "which skill when" guide.
 
 ## What it's for
 Run the whole pipeline unattended: ingest → decide → plan → produce → QA → render → report, resumable at every stage,
@@ -17,8 +17,6 @@ never blocking on a missing asset or renderer, and transparent about every choic
 ```bash
 # whole plugin (recommended: scripts use the shared schemas/, kit/, assets/)
 git clone https://github.com/TamerElsherif/tamer-skills && claude --plugin-dir tamer-skills/training-content-studio
-# this skill only (instructions only; its scripts need the plugin root)
-npx skills add TamerElsherif/tamer-skills --skill tcs-autopilot --agent claude-code
 ```
 Prerequisites: Python 3.12 venv with `tools/requirements.txt` (plugin root); keys via env or `TCS_ENV_FILE` (`OPENAI_API_KEY` for narration/transcription, `PEXELS_API_KEY` optional); Node 18+ and ffmpeg for video renders.
 

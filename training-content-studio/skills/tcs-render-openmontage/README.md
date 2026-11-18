@@ -3,7 +3,7 @@
 
 Renders a lesson storyboard.json to MP4 through the user's local OpenMontage install (video_compose atelier render with OpenMontage's own venv), so the lesson also appears as a project on the OpenMontage Backlot board.
 
-Part of the **[Training Content Studio](../training-content-studio/README.md)** plugin.
+Part of the **[Training Content Studio](../../README.md)** plugin. See its "which skill when" guide.
 
 ## What it's for
 Same output as tcs-render-remotion (same kit, same prepared run dir), but the final render runs inside OpenMontage:
@@ -19,8 +19,6 @@ Same output as tcs-render-remotion (same kit, same prepared run dir), but the fi
 ```bash
 # whole plugin (recommended: scripts use the shared schemas/, kit/, assets/)
 git clone https://github.com/TamerElsherif/tamer-skills && claude --plugin-dir tamer-skills/training-content-studio
-# this skill only (instructions only; its scripts need the plugin root)
-npx skills add TamerElsherif/tamer-skills --skill tcs-render-openmontage --agent claude-code
 ```
 Prerequisites: Python 3.12 venv with `tools/requirements.txt` (plugin root); keys via env or `TCS_ENV_FILE` (`OPENAI_API_KEY` for narration/transcription, `PEXELS_API_KEY` optional); Node 18+ and ffmpeg for video renders.
 

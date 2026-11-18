@@ -3,7 +3,7 @@
 
 Builds the comic-format scenes of a lesson storyboard — static panel strips or vertical webtoons with a panel layout, persona staging, captions and dialogue balloons, optionally read aloud as a motion comic.
 
-Part of the **[Training Content Studio](../training-content-studio/README.md)** plugin.
+Part of the **[Training Content Studio](../../README.md)** plugin. See its "which skill when" guide.
 
 ## What it's for
 Tell a short scenario in 3–12 panels that work both as a readable page (lesson/job-aid/HTML/PDF targets) and as a
@@ -17,8 +17,6 @@ motion comic (video: panels reveal on `^` cues with narration and character voic
 ```bash
 # whole plugin (recommended: scripts use the shared schemas/, kit/, assets/)
 git clone https://github.com/TamerElsherif/tamer-skills && claude --plugin-dir tamer-skills/training-content-studio
-# this skill only (instructions only; its scripts need the plugin root)
-npx skills add TamerElsherif/tamer-skills --skill tcs-format-comic --agent claude-code
 ```
 Prerequisites: Python 3.12 venv with `tools/requirements.txt` (plugin root); keys via env or `TCS_ENV_FILE` (`OPENAI_API_KEY` for narration/transcription, `PEXELS_API_KEY` optional); Node 18+ and ffmpeg for video renders.
 

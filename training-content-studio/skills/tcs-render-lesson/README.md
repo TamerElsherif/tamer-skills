@@ -3,7 +3,7 @@
 
 Renders a lesson's storyboard.json / quiz.json / curriculum.yaml into the NON-VIDEO deliverables — an interactive HTML lesson (branching, knowledge checks, screencast sims), a narrated deck (PPTX with speaker notes + HTML slides), a SCORM 1.2 package for an LMS (e.g. Tandrik), and a printable PDF job aid (A4/Letter).
 
-Part of the **[Training Content Studio](../training-content-studio/README.md)** plugin.
+Part of the **[Training Content Studio](../../README.md)** plugin. See its "which skill when" guide.
 
 ## What it's for
 Turn finished, validated lesson data into deliverables learners and LMSs can use, with **no new text**: every visible
@@ -19,8 +19,6 @@ placeholders in the persona palette from `assets/characters/personas.yaml`).
 ```bash
 # whole plugin (recommended: scripts use the shared schemas/, kit/, assets/)
 git clone https://github.com/TamerElsherif/tamer-skills && claude --plugin-dir tamer-skills/training-content-studio
-# this skill only (instructions only; its scripts need the plugin root)
-npx skills add TamerElsherif/tamer-skills --skill tcs-render-lesson --agent claude-code
 ```
 Prerequisites: Python 3.12 venv with `tools/requirements.txt` (plugin root); keys via env or `TCS_ENV_FILE` (`OPENAI_API_KEY` for narration/transcription, `PEXELS_API_KEY` optional); Node 18+ and ffmpeg for video renders.
 
