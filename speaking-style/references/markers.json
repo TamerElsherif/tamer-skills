@@ -1,0 +1,16 @@
+{
+ "_doc": "Egyptian Arabic + English discourse markers, counted per 1000 words. Multi-word entries match word sequences. Grow this per speaker; keep the categories. Whisper drops most hesitation sounds (اه / امم), so 'hesitation' undercounts; pauses in the metrics show hesitation better.",
+ "hesitation": ["اه", "آه", "أه", "إه", "ااه", "اااه", "امم", "ممم", "إمم", "ام", "uh", "um", "hmm"],
+ "filler": ["يعني", "بص", "بقى", "كده", "اللي هو", "الحاجة", "الموضوع", "بتاع", "بتاعة", "خلينا نقول", "تقريبا", "فعلا", "بجد", "طبعا", "so", "like", "actually", "basically"],
+ "framing": ["الفكرة إن", "الفكرة", "النقطة", "السؤال", "خلينا", "تعالى", "تعالوا", "بمعنى", "بمعنى إن", "اللي أقصده", "قصدي", "يعني إيه", "خد بالك", "المهم", "أهم حاجة", "في الآخر", "في النهاية", "the point is", "the idea"],
+ "example": ["مثلا", "مثلاً", "زي", "تخيل", "تخيلي", "لو إنت", "لو انت", "على سبيل المثال", "for example", "example", "case", "يعني لو"],
+ "agreement": ["صح", "مظبوط", "بالظبط", "أكيد", "تمام", "طيب", "اه طبعا", "exactly", "right", "true"],
+ "contrast": ["بس", "لكن", "إنما", "في المقابل", "بالعكس", "but", "however"],
+ "cause": ["علشان", "عشان", "لإن", "لأن", "لان", "فـ", "ف", "because", "so that"],
+ "question": ["ليه", "إزاي", "ازاي", "إيه", "ايه", "هل", "مين", "فين", "إمتى", "امتى", "كام", "؟", "?"],
+ "hedge": ["ممكن", "أعتقد", "اعتقد", "في رأيي", "في رأيى", "من وجهة نظري", "أظن", "حسب", "مش متأكد", "I think", "maybe", "probably"],
+ "certainty": ["أكيد", "لازم", "دايما", "دايمًا", "مستحيل", "بالتأكيد", "always", "never", "must"],
+ "inclusive": ["إحنا", "احنا", "بتاعنا", "عندنا", "خلينا", "we", "us", "our"],
+ "self": ["أنا", "انا", "عندي", "بتاعي", "I", "my", "me"],
+ "audience": ["إنت", "انت", "إنتوا", "انتوا", "حضرتك", "you", "your"]
+}
