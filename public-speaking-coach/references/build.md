@@ -32,6 +32,8 @@ bio, a statistic with no story.
 ## 5. Stories bank
 Pull real stories from the speaker's corpus and profile (with source timestamps) before inventing any.
 For each: the setup in one line, the turn, the line people will quote, how long it takes (≤ 90 s).
+To shape or rewrite a story (five beats, dialogue, the turn, exact details, the Button), use the
+storytelling-techniques skill when it's installed next to this one.
 
 ## 6. Slides
 One idea per slide; title = a claim, not a topic; numbers big; little text (≤ 6 words where possible);
