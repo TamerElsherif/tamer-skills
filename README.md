@@ -11,6 +11,7 @@ Reusable [Claude Code skills](https://docs.anthropic.com/en/docs/claude-code/ski
 | [rabet-podcast-studio](./rabet-podcast-studio) | Skill set for producing and publishing Rabet (رابط) Podcast content |
 | [rabet-reels](./rabet-reels) | Produce 9:16 reels + thumbnails (and 16:9 YouTube episode thumbnails, titles and descriptions) from Rabet (راب… |
 | [speaking-style](./speaking-style) | Extract and analyze a person's real speaking style from their recorded videos (podcast episodes, talks, interv… |
+| [storytelling-techniques](./storytelling-techniques) | Build, rewrite and review stories for talks, lectures, podcasts and social content using proven storytelling m… |
 | [training-content-studio](./training-content-studio) | Plugin of 22 skills that turns any subject + your documents into grounded training: video, narrated decks, interactive HTML lessons, SCORM 1.2 and PDF job aids, in English and Arabic (RTL); includes `/tcs-autopilot`. See its README for which skill to use when. | Use when you need a training course, lesson, microlearning video, quiz or SCORM package on any topic, interactively (`tcs-orchestrator`) or fully automated (`tcs-autopilot`) | `git clone https://github.com/TamerElsherif/tamer-skills && claude --plugin-dir tamer-skills/training-content-studio` |
 
 ## Install all skills at once
